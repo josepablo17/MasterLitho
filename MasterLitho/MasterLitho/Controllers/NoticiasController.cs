@@ -13,5 +13,13 @@ namespace MasterLitho.Controllers
         {
             return View();
         }
-    }
+
+
+        [HttpGet]
+        public ActionResult ConsultarNoticias()
+        {
+            return View();
+        }
+    
+}
 }

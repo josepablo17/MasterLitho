@@ -1,0 +1,117 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Calendario de Asignaciones y Eventos</title>
+
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="content-wrapper" class="container mt-4">
+        <h1 class="mb-4">Calendario de Asignaciones y Eventos</h1>
+
+        <!-- Calendario -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Calendario Mensual</h6>
+            </div>
+            <div class="card-body">
+                <div id="calendar"></div>
+            </div>
+        </div>
+
+        <!-- Modal para Detalles del Evento -->
+        <div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="eventDetailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="eventDetailsModalLabel">Detalles del Evento</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="eventDetails">
+                        <!-- Los detalles del evento se llenarán dinámicamente -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap y FullCalendar -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                selectable: true,
+                editable: true,
+                events: [
+                    {
+                        title: 'Reunión de Proyecto',
+                        start: '2024-07-10',
+                        description: 'Reunión para discutir los avances del proyecto.',
+                    },
+                    {
+                        title: 'Entrega de Reportes',
+                        start: '2024-07-15',
+                        description: 'Fecha límite para entregar los reportes trimestrales.',
+                    },
+                    {
+                        title: 'Capacitación de Seguridad',
+                        start: '2024-07-20',
+                        description: 'Sesión de capacitación sobre medidas de seguridad en el trabajo.',
+                    },
+                    {
+                        title: 'Fiesta de Fin de Año',
+                        start: '2024-12-20',
+                        description: 'Celebración de fin de año para todos los empleados.',
+                    }
+                ],
+                eventClick: function (info) {
+                    // Mostrar los detalles del evento en el modal
+                    var modalBody = document.getElementById('eventDetails');
+                    modalBody.innerHTML = `
+                            <p><strong>Evento:</strong> ${info.event.title}</p>
+                            <p><strong>Fecha:</strong> ${info.event.start.toLocaleDateString()}</p>
+                            <p><strong>Descripción:</strong> ${info.event.extendedProps.description}</p>
+                        `;
+
+                    $('#eventDetailsModal').modal('show');
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+</body>
+
+</html>

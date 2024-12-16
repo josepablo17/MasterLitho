@@ -1,22 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\",
+  "WorkspaceRootPath": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\controllers\\quejasreportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\quejasreportescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\documents\\masterlitho\\masterlitho\\masterlitho\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\shared\\_layoutempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\documents\\masterlitho\\masterlitho\\masterlitho\\views\\formularios\\consultarformularios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\formularios\\consultarformularios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\documents\\masterlitho\\masterlitho\\masterlitho\\controllers\\noticiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\noticiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\documents\\masterlitho\\masterlitho\\masterlitho\\views\\noticias\\consultarnoticias.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\noticias\\consultarnoticias.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\documents\\masterlitho\\masterlitho\\masterlitho\\controllers\\calendariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\calendariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\documents\\masterlitho\\masterlitho\\masterlitho\\views\\calendario\\consultarcalendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\calendario\\consultarcalendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\masterlitho\\views\\shared\\_layoutempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layoutempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\quejasreportes\\enviarquejas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\quejasreportes\\enviarquejas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\home\\indexempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\home\\indexempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,68 +38,99 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EnviarQuejas.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\QuejasReportes\\EnviarQuejas.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\QuejasReportes\\EnviarQuejas.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\QuejasReportes\\EnviarQuejas.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\QuejasReportes\\EnviarQuejas.cshtml",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAcwHAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ConsultarCalendario.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\ConsultarCalendario.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Calendario\\ConsultarCalendario.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\ConsultarCalendario.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Calendario\\ConsultarCalendario.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T03:08:30.219Z",
+              "WhenOpened": "2024-12-16T05:45:18.514Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "QuejasReportesController.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\QuejasReportesController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\QuejasReportesController.cs",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\QuejasReportesController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\QuejasReportesController.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAmwB4AAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "CalendarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\CalendarioController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\CalendarioController.cs",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\CalendarioController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\CalendarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T03:08:11.519Z",
+              "WhenOpened": "2024-12-16T05:45:02.803Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "IndexEmpleado.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\IndexEmpleado.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Home\\IndexEmpleado.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\IndexEmpleado.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Home\\IndexEmpleado.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ConsultarNoticias.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\ConsultarNoticias.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Noticias\\ConsultarNoticias.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\ConsultarNoticias.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Noticias\\ConsultarNoticias.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-16T02:28:05.22Z",
+              "WhenOpened": "2024-12-16T05:44:46.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NoticiasController.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\NoticiasController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\NoticiasController.cs",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\NoticiasController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\NoticiasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T05:44:27.672Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ConsultarFormularios.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-16T05:43:50.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormulariosController.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\FormulariosController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\FormulariosController.cs",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\FormulariosController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\FormulariosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T05:43:47.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "_LayoutEmpleado.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
               "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
               "RelativeToolTip": "MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAD0AAABDAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-16T00:35:13.92Z",
               "EditorCaption": ""

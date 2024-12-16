@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Noticias de la Empresa</title>
+
+    <!-- Bootstrap CSS (Asegúrate de tener el link correcto) -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="content-wrapper" class="container mt-4">
+        <h1 class="mb-4">Noticias de la Empresa</h1>
+
+        <!-- Notificación de Nueva Noticia Publicada -->
+        <div class="alert alert-info" role="alert">
+            <strong>¡Nueva Noticia!</strong> Se ha publicado una nueva actualización. <a href="#noticia1" class="alert-link">Leer ahora</a>.
+        </div>
+
+        <!-- Sección de Noticias Recientes -->
+        <div class="card mb-4">
+            <div class="card-header">Noticias Recientes</div>
+            <div class="card-body">
+                <div class="list-group">
+                    <a href="#noticia1" class="list-group-item list-group-item-action">
+                        <h5 class="mb-1">Actualización de Políticas de Trabajo</h5>
+                        <small>Publicado el 2024-07-01</small>
+                        <p class="mb-1">Conoce las nuevas políticas que entrarán en vigor el próximo mes...</p>
+                    </a>
+                    <a href="#noticia2" class="list-group-item list-group-item-action">
+                        <h5 class="mb-1">Inauguración de Nueva Sede</h5>
+                        <small>Publicado el 2024-06-20</small>
+                        <p class="mb-1">Estamos emocionados de anunciar la apertura de nuestra nueva sede en...</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Completo de Noticias -->
+        <div class="card mb-4" id="noticia1">
+            <div class="card-header">
+                <h3>Actualización de Políticas de Trabajo</h3>
+                <small class="text-muted">Publicado el 2024-07-01</small>
+            </div>
+            <div class="card-body">
+                <p>A partir del 1 de agosto, se implementarán nuevas políticas relacionadas con el horario laboral y los días de trabajo remoto. Estas políticas buscan mejorar la eficiencia y el bienestar de todos los empleados.</p>
+                <p>Consulta el documento completo en la sección de recursos para empleados.</p>
+                <a href="#" class="btn btn-primary">Leer Más</a>
+            </div>
+        </div>
+
+        <div class="card mb-4" id="noticia2">
+            <div class="card-header">
+                <h3>Inauguración de Nueva Sede</h3>
+                <small class="text-muted">Publicado el 2024-06-20</small>
+            </div>
+            <div class="card-body">
+                <p>Nos complace anunciar la inauguración de nuestra nueva sede en la ciudad de San José. Esta nueva instalación cuenta con tecnología avanzada y amplias áreas de trabajo para fomentar la colaboración.</p>
+                <p>¡Están todos invitados al evento de apertura el próximo 5 de julio!</p>
+                <a href="#" class="btn btn-primary">Ver Detalles del Evento</a>
+            </div>
+        </div>
+
+        <!-- Consulta de Noticias Anteriores -->
+        <div class="card mb-4">
+            <div class="card-header">Noticias Anteriores</div>
+            <div class="card-body">
+                <a href="#" class="btn btn-secondary">Ver Archivo de Noticias</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para subir al inicio -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+

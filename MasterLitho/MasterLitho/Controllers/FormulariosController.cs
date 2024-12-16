@@ -13,5 +13,12 @@ namespace MasterLitho.Controllers
         {
             return View();
         }
+    
+
+         [HttpGet]
+        public ActionResult ConsultarFormularios()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,94 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Formularios Pendientes</title>
+
+    <!-- Bootstrap CSS (Asegúrate de tener el link correcto) -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="content-wrapper" class="container mt-4">
+        <h1 class="mb-4">Formularios Pendientes</h1>
+
+        <!-- Notificación de Formulario Pendiente -->
+        <div class="alert alert-warning" role="alert">
+            Tienes un formulario pendiente con fecha límite: <strong>2024-07-20</strong>.
+        </div>
+
+        <!-- Sección de Formularios -->
+        <div class="card mb-4">
+            <div class="card-header">Completar Formulario</div>
+            <div class="card-body">
+                <form id="employeeForm">
+                    <div class="form-group">
+                        <label for="employeeName">Nombre del Empleado</label>
+                        <input type="text" class="form-control" id="employeeName" placeholder="Ingresa tu nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="employeeEmail">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="employeeEmail" placeholder="Ingresa tu correo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comments">Comentarios</label>
+                        <textarea class="form-control" id="comments" rows="4" placeholder="Ingresa tus comentarios" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar Formulario</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Mensaje de Éxito en el Envío -->
+        <div class="alert alert-success d-none" role="alert" id="successAlert">
+            El formulario se ha enviado correctamente.
+        </div>
+
+        <!-- Mensaje de Error en el Envío -->
+        <div class="alert alert-danger d-none" role="alert" id="errorAlert">
+            Hubo un error al enviar el formulario. Inténtalo de nuevo más tarde.
+        </div>
+    </div>
+
+    <!-- Botón para subir al inicio -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Scripts de Bootstrap y JavaScript -->
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('employeeForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simula el envío del formulario
+            const success = Math.random() > 0.2; // 80% de probabilidad de éxito
+
+            if (success) {
+                document.getElementById('successAlert').classList.remove('d-none');
+                document.getElementById('errorAlert').classList.add('d-none');
+                document.getElementById('employeeForm').reset();
+            } else {
+                document.getElementById('errorAlert').classList.remove('d-none');
+                document.getElementById('successAlert').classList.add('d-none');
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+

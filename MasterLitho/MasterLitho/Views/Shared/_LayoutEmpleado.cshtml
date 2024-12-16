@@ -24,7 +24,7 @@
  
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-          
+
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("IndexEmpleado","Home")">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class=""></i>
@@ -40,7 +40,7 @@
 
             <hr class="sidebar-divider">
 
-    
+
             <div class="sidebar-heading">Gestión Administrativa</div>
 
             <li class="nav-item">
@@ -72,34 +72,41 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("GestionExpedientes","Expedientes")">
+                <a class="nav-link" href="@Url.Action("ConsultarPlanillasEmpleado","Planillas")">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Gestión de Expedientes</span>
+                    <span>Consultar planilla</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("EnvioFormulario","Formularios")">
+                <a class="nav-link" href="@Url.Action("ConsultarDiasVacaciones","SolicitudVacaciones")">
                     <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Formularios</span>
+                    <span>Dias de vacaciones</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("GestionNoticias","Noticias")">
+                <a class="nav-link" href="@Url.Action("ConsultarFormularios","Formularios")">
                     <i class="fas fa-fw fa-newspaper"></i>
-                    <span>Gestión de Noticias</span>
+                    <span>Consultar Formularios</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Calendario","Calendario")">
+                <a class="nav-link" href="@Url.Action("ConsultarNoticias","Noticias")">
+                    <i class="fas fa-fw fa-calendar-alt"></i>
+                    <span>Noticias</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("ConsultarCalendario","Calendario")">
                     <i class="fas fa-fw fa-calendar-alt"></i>
                     <span>Calendario</span>
                 </a>
             </li>
 
-  
+
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>

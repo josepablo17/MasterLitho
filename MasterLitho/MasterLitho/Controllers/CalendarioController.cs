@@ -13,5 +13,11 @@ namespace MasterLitho.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult ConsultarCalendario()
+        {
+            return View();
+        }
     }
 }

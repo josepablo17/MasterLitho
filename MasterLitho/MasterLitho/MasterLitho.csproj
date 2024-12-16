@@ -2065,6 +2065,11 @@
     <Content Include="Views\Constancias\SolicitarConstanciaEmpleado.cshtml" />
     <Content Include="Views\Expedientes\consultaExpedientes.cshtml" />
     <Content Include="Views\QuejasReportes\EnviarQuejas.cshtml" />
+    <Content Include="Views\Planillas\ConsultarPlanillasEmpleado.cshtml" />
+    <Content Include="Views\SolicitudVacaciones\ConsultarDiasVacaciones.cshtml" />
+    <Content Include="Views\Formularios\ConsultarFormularios.cshtml" />
+    <Content Include="Views\Noticias\ConsultarNoticias.cshtml" />
+    <Content Include="Views\Calendario\ConsultarCalendario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

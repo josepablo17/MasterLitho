@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Consulta de Planilla</title>
+
+    <!-- Bootstrap CSS (Asegúrate de tener el link correcto) -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="content-wrapper" class="container mt-4">
+        <h1 class="mb-4">Consulta de Planilla</h1>
+
+        <!-- Filtros de Período -->
+        <div class="card mb-4">
+            <div class="card-header">Filtrar por Período</div>
+            <div class="card-body">
+                <form>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="startDate">Desde</label>
+                            <input type="date" class="form-control" id="startDate">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="endDate">Hasta</label>
+                            <input type="date" class="form-control" id="endDate">
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button class="btn btn-primary" type="submit">Aplicar Filtro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla de Detalles de Planilla -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Detalles de Planilla</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Pago Bruto</th>
+                                <th>Deducciones</th>
+                                <th>Pago Neto</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2024-07-01</td>
+                                <td>$2,000.00</td>
+                                <td>$300.00</td>
+                                <td>$1,700.00</td>
+                                <td>
+                                    <button class="btn btn-info btn-sm">Ver Detalles</button>
+                                    <button class="btn btn-warning btn-sm">Ver Deducciones</button>
+                                    <button class="btn btn-danger btn-sm">Descargar PDF</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2024-08-01</td>
+                                <td>$2,100.00</td>
+                                <td>$320.00</td>
+                                <td>$1,780.00</td>
+                                <td>
+                                    <button class="btn btn-info btn-sm">Ver Detalles</button>
+                                    <button class="btn btn-warning btn-sm">Ver Deducciones</button>
+                                    <button class="btn btn-danger btn-sm">Descargar PDF</button>
+                                </td>
+                            </tr>
+                            <!-- Más filas aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notificación de Actualización -->
+        <div class="alert alert-success" role="alert">
+            La planilla se ha actualizado correctamente.
+        </div>
+
+        <!-- Error de Consulta -->
+        <div class="alert alert-danger" role="alert">
+            Hubo un error al consultar la planilla. Inténtalo de nuevo más tarde.
+        </div>
+    </div>
+
+    <!-- Botón para subir al inicio -->
+    <a class="scroll-to
+
