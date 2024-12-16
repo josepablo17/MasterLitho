@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Jose\\Documents\\MasterLitho\\MasterLitho\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\constancias\\envioconstancia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\constancias\\envioconstancia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\shared\\_layoutempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layoutempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_LayoutEmpleado.cshtml",
+              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
+              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_LayoutEmpleado.cshtml",
+              "ViewState": "AgIAAB0BAAAAAAAAAAAAACwBAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-16T19:27:09.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-16T19:17:06.32Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EnvioConstancia.cshtml",
+              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
+              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-16T19:14:37.517Z",
+              "EditorCaption": ""
             }
           ]
         }
