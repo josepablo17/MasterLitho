@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Constancia Laboral</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Solicitar Constancia Laboral</h2>
+
+        <!-- Formulario de Solicitud de Constancia Laboral -->
+        <form id="certificate-request-form">
+            <div class="mb-3">
+                <label for="request-date" class="form-label">Fecha de solicitud</label>
+                <input type="date" class="form-control" id="request-date" required>
+            </div>
+            <div class="mb-3">
+                <label for="reason" class="form-label">Motivo de la solicitud</label>
+                <input type="text" class="form-control" id="reason" required>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+            </div>
+        </form>
+
+        <!-- Mensaje de Error o Éxito -->
+        <div id="message" class="alert d-none"></div>
+
+        <hr>
+
+        <!-- Visualización del estado de la solicitud -->
+        <h3>Estado de mi solicitud</h3>
+        <div id="certificate-status">
+            <div class="alert alert-info" role="alert" id="status-pending" style="display: none;">
+                <strong>Estado:</strong> Pendiente
+            </div>
+            <div class="alert alert-success" role="alert" id="status-approved" style="display: none;">
+                <strong>Estado:</strong> Aprobada
+            </div>
+            <div class="alert alert-danger" role="alert" id="status-rejected" style="display: none;">
+                <strong>Estado:</strong> Rechazada
+            </div>
+        </div>
+
+        <!-- Notificación de Constancia Lista para Descarga -->
+        <div id="certificate-ready-notification" class="alert alert-warning mt-3 d-none">
+            <strong>Notificación:</strong> Tu constancia laboral está lista para ser descargada.
+        </div>
+
+    </div>
+
+    <script>
+        // Función para simular la solicitud de constancia laboral
+        document.getElementById('certificate-request-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let requestDate = document.getElementById('request-date').value;
+            let reason = document.getElementById('reason').value;
+
+            if (requestDate && reason) {
+                // Simulación de verificación de la solicitud
+                let requestValid = true;
+
+                // Verificar si la solicitud es válida
+                if (!requestValid) {
+                    showMessage('Ocurrió un error al procesar la solicitud', 'danger');
+                    return;
+                }
+
+                // Mostrar solicitud pendiente
+                showStatus('Pendiente');
+                showMessage('Solicitud enviada correctamente', 'success');
+            } else {
+                showMessage('Por favor, complete todos los campos', 'danger');
+            }
+        });
+
+        // Función para mostrar el estado de la solicitud
+        function showStatus(status) {
+            document.getElementById('status-pending').style.display = 'none';
+            document.getElementById('status-approved').style.display = 'none';
+            document.getElementById('status-rejected').style.display = 'none';
+
+            if (status === 'Pendiente') {
+                document.getElementById('status-pending').style.display = 'block';
+            } else if (status === 'Aprobada') {
+                document.getElementById('status-approved').style.display = 'block';
+            } else if (status === 'Rechazada') {
+                document.getElementById('status-rejected').style.display = 'block';
+            }
+        }
+
+        // Función para mostrar mensajes de estado
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.className = `alert alert-${type}`;
+            messageDiv.innerHTML = message;
+            messageDiv.classList.remove('d-none');
+        }
+
+    </script>
+
+</body>
+</html>

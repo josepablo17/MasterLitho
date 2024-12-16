@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Quejas o Reportes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Enviar Quejas o Reportes</h2>
+
+  
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Enviar Queja o Reporte</h4>
+                <form id="complaint-form">
+                    <div class="mb-3">
+                        <label for="complaint-description" class="form-label">Descripción de la Queja o Reporte</label>
+                        <textarea class="form-control" id="complaint-description" rows="4" placeholder="Escribe tu queja o reporte" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Enviar Queja</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+   
+        <div id="message" class="alert d-none"></div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Estado de la Queja o Reporte</h4>
+                <div id="complaint-status">
+                    <div class="alert alert-success" role="alert" id="status-approved" style="display: none;">
+                        <strong>Estado:</strong> Queja aceptada.
+                    </div>
+                    <div class="alert alert-warning" role="alert" id="status-pending" style="display: none;">
+                        <strong>Estado:</strong> Queja en revisión.
+                    </div>
+                    <div class="alert alert-danger" role="alert" id="status-rejected" style="display: none;">
+                        <strong>Estado:</strong> Queja rechazada.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+     
+        <div id="status-change-notification" class="alert alert-info d-none" role="alert">
+            <strong>Notificación:</strong> El estado de tu queja ha cambiado.
+        </div>
+
+    </div>
+
+    <script>
+    
+    document.getElementById('complaint-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let complaintDescription = document.getElementById('complaint-description').value;
+
+        if (complaintDescription) {
+          
+            showMessage('Queja enviada exitosamente', 'success');
+            showStatus('pending'); 
+        } else {
+            showMessage('Por favor, ingresa una descripción para tu queja o reporte', 'danger');
+        }
+    });
+
+    function showStatus(status) {
+        document.getElementById('status-approved').style.display = 'none';
+        document.getElementById('status-pending').style.display = 'none';
+        document.getElementById('status-rejected').style.display = 'none';
+
+        if (status === 'approved') {
+            document.getElementById('status-approved').style.display = 'block';
+        } else if (status === 'pending') {
+            document.getElementById('status-pending').style.display = 'block';
+        } else if (status === 'rejected') {
+            document.getElementById('status-rejected').style.display = 'block';
+        }
+    }
+
+
+    function showMessage(message, type) {
+        const messageDiv = document.getElementById('message');
+        messageDiv.className = `alert alert-${type}`;
+        messageDiv.innerHTML = message;
+        messageDiv.classList.remove('d-none');
+    }
+
+
+    setTimeout(() => {
+        document.getElementById('status-change-notification').classList.remove('d-none');
+        showStatus('approved'); 
+    }, 10000); 
+    </script>
+
+</body>
+</html>
+
+

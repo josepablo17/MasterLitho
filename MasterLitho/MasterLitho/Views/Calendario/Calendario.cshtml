@@ -1,0 +1,133 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MasterLithoADMIN</title>
+
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="content-wrapper" class="container">
+        <!-- Main Content -->
+        <div id="content">
+            <h1 class="my-4">Calendario de Asignaciones y Eventos</h1>
+            <div class="container-fluid">
+                <!-- Calendario -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Calendario Mensual</h6>
+                    </div>
+                    <div class="card-body">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+
+                <!-- Modal para Crear un Evento -->
+                <div class="modal fade" id="crearEventoModal" tabindex="-1" role="dialog" aria-labelledby="crearEventoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="crearEventoModalLabel">Crear Nuevo Evento</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="eventoTitulo">Título del Evento:</label>
+                                        <input type="text" class="form-control" id="eventoTitulo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventoDescripcion">Descripción:</label>
+                                        <textarea class="form-control" id="eventoDescripcion" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="eventoFecha">Fecha del Evento:</label>
+                                        <input type="date" class="form-control" id="eventoFecha" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="guardarEvento">Guardar Evento</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                selectable: true,
+                editable: true,
+                dateClick: function (info) {
+                    // Mostrar el modal y asignar la fecha seleccionada
+                    $('#crearEventoModal').modal('show');
+                    document.getElementById('eventoFecha').value = info.dateStr;
+                },
+                events: [] // Aquí puedes cargar eventos dinámicos si es necesario
+            });
+
+            calendar.render();
+
+            // Agregar un nuevo evento
+            document.getElementById('guardarEvento').addEventListener('click', function () {
+                var titulo = document.getElementById('eventoTitulo').value;
+                var descripcion = document.getElementById('eventoDescripcion').value;
+                var fecha = document.getElementById('eventoFecha').value;
+
+                if (titulo && fecha) {
+                    calendar.addEvent({
+                        title: titulo,
+                        start: fecha,
+                        description: descripcion
+                    });
+
+                    // Cerrar el modal y limpiar campos
+                    $('#crearEventoModal').modal('hide');
+                    document.getElementById('eventoTitulo').value = '';
+                    document.getElementById('eventoDescripcion').value = '';
+                    document.getElementById('eventoFecha').value = '';
+                } else {
+                    alert('Por favor complete todos los campos obligatorios.');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

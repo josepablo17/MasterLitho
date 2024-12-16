@@ -1,0 +1,153 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MasterLithoADMIN</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Estilos personalizados para la constancia */
+        .constancia-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .constancia-header {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .firma {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+            .firma p {
+                margin: 0;
+            }
+    </style>
+
+</head>
+
+<body id="page-top">
+    <div class="container mt-5">
+        <h2 class="mb-4">Listado de Empleados</h2>
+        <!-- Tabla de empleados -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Cédula</th>
+                    <th>Cargo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Juan Pérez García</td>
+                    <td>1-2345-6789</td>
+                    <td>Analista de Recursos Humanos</td>
+                    <td>
+                        <!-- Botón para abrir el modal -->
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                data-target="#constanciaModal">
+                            Ver
+                        </button>
+                        <a href="@Url.Action("EnvioConstancia","Constancias")" class="btn btn-primary btn-sm">Volver</a>
+                    </td>
+                </tr>
+                <!-- Puedes agregar más empleados aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="constanciaModal" tabindex="-1" role="dialog"
+         aria-labelledby="constanciaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="constanciaModalLabel">Constancia Laboral</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="constancia-container">
+                        <div class="constancia-header">
+                            <p>MasterLitho S.A.</p>
+                            <p>Dirección de la Empresa</p>
+                            <p>Teléfono: 1234-5678</p>
+                            <p>Fecha: 15 de agosto de 2024</p>
+                        </div>
+                        <p>A quien corresponda:</p>
+                        <p>
+                            Por medio de la presente, certificamos que <strong>Juan Pérez García</strong>,
+                            identificado con cédula N° <strong>1-2345-6789</strong>, labora en nuestra empresa
+                            <strong>MasterLitho S.A.</strong> desde el <strong>15 de enero de 2020</strong>,
+                            desempeñándose como <strong>Analista de Recursos Humanos</strong>.
+                        </p>
+                        <p>
+                            El señor Pérez percibe un salario mensual bruto de
+                            <strong>₡1,200,000 (un millón doscientos mil colones)</strong>.
+                        </p>
+                        <p>
+                            Esta constancia se emite a solicitud del interesado para fines que estime
+                            convenientes.
+                        </p>
+                        <div class="firma">
+                            <p>Atentamente,</p>
+                            <br><br>
+                            <p>__________________________</p>
+                            <p>Nombre del Gerente</p>
+                            <p>Gerente General</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scroll to top button -->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+</body>
+
+</html>

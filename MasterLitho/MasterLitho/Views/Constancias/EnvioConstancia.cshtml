@@ -1,0 +1,160 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>MasterLithoADMIN</title>
+
+
+
+</head>
+
+<body id="page-top">
+
+    <div id="content-wrapper" class="container">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <h1 class="my-4">Envío de Constancias Laborales</h1>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Formulario de Envío de Constancias -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Emitir Nueva Constancia</h6>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <!-- Selección del Empleado -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="selectEmpleado">Seleccionar Empleado</label>
+                                    <select class="form-control" id="selectEmpleado" >
+                                        <option  selected disabled>Seleccione un empleado</option>
+                                        <option value="1">Juan Pérez</option>
+                                        <option value="2">María González</option>
+                                        <option value="3">Carlos Rodríguez</option>
+                                    </select>
+                                </div>
+                                <!-- Tipo de Constancia -->
+                                <div class="col-md-6 mb-3">
+                                    <label for="tipoConstancia">Tipo de Constancia</label>
+                                    <select class="form-control" id="tipoConstancia">
+                                        <option selected disabled>Seleccione el tipo de constancia</option>
+                                        <option value="laboral">Constancia Laboral</option>
+                                        <option value="salarial">Constancia Salarial</option>
+                                        <option value="personalizada">Constancia Personalizada</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Detalles Adicionales -->
+                                <div class="col-md-12 mb-3">
+                                    <label for="detallesConstancia">Detalles Adicionales (Opcional)</label>
+                                    <textarea class="form-control" id="detallesConstancia" rows="3"
+                                              placeholder="Ingrese detalles adicionales si es necesario..."></textarea>
+                                </div>
+                            </div>
+                            <!-- Botón de Generar Vista Previa -->
+                            <button type="button" class="btn btn-primary" id="btnVistaPrevia">
+                                Generar Vista
+                                Previa
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Vista Previa de la Constancia -->
+                <div class="card shadow mb-4 d-none" id="vistaPreviaConstancia">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Vista Previa de la Constancia</h6>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Empleado:</strong> <span id="vistaEmpleado">Juan Pérez</span></p>
+                        <p>
+                            <strong>Tipo de Constancia:</strong> <span id="vistaTipo">
+                                Constancia
+                                Laboral
+                            </span>
+                        </p>
+                        <p><strong>Detalles:</strong></p>
+                        <p id="vistaDetalles">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <!-- Botón de Envío -->
+                        <button class="btn btn-success" id="btnEnviarConstancia">Enviar Constancia</button>
+                    </div>
+                </div>
+
+                <!-- Tabla de Constancias Enviadas -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Historial de Constancias Enviadas</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Empleado</th>
+                                        <th>Tipo de Constancia</th>
+                                        <th>Fecha de Envío</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Juan Pérez</td>
+                                        <td>Constancia Laboral</td>
+                                        <td>2024-08-15</td>
+                                        <td>
+                                            <a href="@Url.Action("detallesConstancia","Constancias")"
+                                               class="btn btn-info btn-sm">Ver</a>
+                                            <button class="btn btn-secondary btn-sm">Reenviar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Page Content -->
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btnVistaPrevia').addEventListener('click', function () {
+            // Mostrar Vista Previa
+            document.getElementById('vistaPreviaConstancia').classList.remove('d-none');
+
+            // Capturar valores del formulario
+            let empleado = document.getElementById('selectEmpleado').selectedOptions[0].text;
+            let tipo = document.getElementById('tipoConstancia').selectedOptions[0].text;
+            let detalles = document.getElementById('detallesConstancia').value || 'N/A';
+
+            // Actualizar la Vista Previa
+            document.getElementById('vistaEmpleado').innerText = empleado;
+            document.getElementById('vistaTipo').innerText = tipo;
+            document.getElementById('vistaDetalles').innerText = detalles;
+        });
+    </script>
+
+
+</body>
+
+</html>
