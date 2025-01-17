@@ -36,74 +36,147 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">Gestión Administrativa</div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("ConsultarVacaciones","SolicitudVacaciones")">
-                    <i class="fas fa-fw fa-calendar-check"></i>
-                    <span>Solicitudes de Vacaciones</span>
-                </a>
-            </li>
+            @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1")
+            {
+                <!-- Heading -->
+                <div class="sidebar-heading">Gestión Administrativa</div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("EnvioConstancia","Constancias")">
-                    <i class="fas fa-fw fa-paper-plane"></i>
-                    <span>Envio de Constancias</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ConsultarVacaciones", "SolicitudVacaciones")">
+                        <i class="fas fa-fw fa-calendar-check"></i>
+                        <span>Solicitudes de Vacaciones</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("GestionQuejasReportes","QuejasReportes")">
-                    <i class="fas fa-fw fa-exclamation-circle"></i>
-                    <span>Reportes y Quejas</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("EnvioConstancia", "Constancias")">
+                        <i class="fas fa-fw fa-paper-plane"></i>
+                        <span>Envio de Constancias</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("ConsultarPlanillas","Planillas")">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Consultas de Planillas</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("GestionQuejasReportes", "QuejasReportes")">
+                        <i class="fas fa-fw fa-exclamation-circle"></i>
+                        <span>Reportes y Quejas</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("GestionExpedientes","Expedientes")">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Gestión de Expedientes</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ConsultarPlanillas", "Planillas")">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Consultas de Planillas</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("EnvioFormulario","Formularios")">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Formularios</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("GestionExpedientes", "Expedientes")">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Gestión de Expedientes</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("GestionNoticias","Noticias")">
-                    <i class="fas fa-fw fa-newspaper"></i>
-                    <span>Gestión de Noticias</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("EnvioFormulario", "Formularios")">
+                        <i class="fas fa-fw fa-clipboard"></i>
+                        <span>Formularios</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Calendario","Calendario")">
-                    <i class="fas fa-fw fa-calendar-alt"></i>
-                    <span>Calendario</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("GestionNoticias", "Noticias")">
+                        <i class="fas fa-fw fa-newspaper"></i>
+                        <span>Gestión de Noticias</span>
+                    </a>
+                </li>
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Calendario", "Calendario")">
+                        <i class="fas fa-fw fa-calendar-alt"></i>
+                        <span>Calendario</span>
+                    </a>
+                </li>
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            }
+
+            @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "2")
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("SolicitarVacaciones","SolicitudVacaciones")">
+                        <i class="fas fa-fw fa-calendar-check"></i>
+                        <span>Solicitar Vacaciones</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("SolicitarConstanciaEmpleado","Constancias")">
+                        <i class="fas fa-fw fa-paper-plane"></i>
+                        <span>Solicitar Constancia</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("EnviarQuejas","QuejasReportes")">
+                        <i class="fas fa-fw fa-exclamation-circle"></i>
+                        <span>Reportes y Quejas</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("consultaExpedientes","Expedientes")">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Consulta de Expediente</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ConsultarPlanillasEmpleado","Planillas")">
+                        <i class="fas fa-fw fa-folder"></i>
+                        <span>Consultar planilla</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ConsultarDiasVacaciones","SolicitudVacaciones")">
+                        <i class="fas fa-fw fa-clipboard"></i>
+                        <span>Dias de vacaciones</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ConsultarFormularios","Formularios")">
+                        <i class="fas fa-fw fa-newspaper"></i>
+                        <span>Consultar Formularios</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ConsultarNoticias","Noticias")">
+                        <i class="fas fa-fw fa-calendar-alt"></i>
+                        <span>Noticias</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("ConsultarCalendario","Calendario")">
+                        <i class="fas fa-fw fa-calendar-alt"></i>
+                        <span>Calendario</span>
+                    </a>
+                </li>
+            }
+
+
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -332,7 +405,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="@Url.Action("IniciarSesion", "Login")">Logout</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LithoManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CONSTANCIA_LABORAL">
+    <Key>
+      <PropertyRef Name="ID_CONSTANCIA" />
+    </Key>
+    <Property Name="ID_CONSTANCIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_EMISION" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DETALLE_ADICIONAL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__CONSTANCI__ID_EM__49C3F6B7" FromRole="CONSTANCIA_LABORAL" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="DEPARTAMENTO">
+    <Key>
+      <PropertyRef Name="ID_DEPARTAMENTO" />
+    </Key>
+    <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_DEPARTAMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__EMPLEADO__ID_DEP__4AB81AF0" FromRole="DEPARTAMENTO" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="EMPLEADO">
+    <Key>
+      <PropertyRef Name="ID_EMPLEADO" />
+    </Key>
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+    <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_CONTRATACION" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CONSTANCIA_LABORAL" Relationship="Self.FK__CONSTANCI__ID_EM__49C3F6B7" FromRole="EMPLEADO" ToRole="CONSTANCIA_LABORAL" />
+    <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK__EMPLEADO__ID_DEP__4AB81AF0" FromRole="EMPLEADO" ToRole="DEPARTAMENTO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK__EMPLEADO__ID_USU__4BAC3F29" FromRole="EMPLEADO" ToRole="USUARIO" />
+    <NavigationProperty Name="FORMULARIO" Relationship="Self.FK__FORMULARI__ID_EM__4CA06362" FromRole="EMPLEADO" ToRole="FORMULARIO" />
+    <NavigationProperty Name="PLANILLA" Relationship="Self.FK__PLANILLA__ID_EMP__4D94879B" FromRole="EMPLEADO" ToRole="PLANILLA" />
+    <NavigationProperty Name="QUEJAS_REPORTES" Relationship="Self.FK__QUEJAS_RE__ID_EM__4E88ABD4" FromRole="EMPLEADO" ToRole="QUEJAS_REPORTES" />
+    <NavigationProperty Name="SOLICITUD_VACACIONES" Relationship="Self.FK__SOLICITUD__ID_EM__5070F446" FromRole="EMPLEADO" ToRole="SOLICITUD_VACACIONES" />
+  </EntityType>
+  <EntityType Name="ESTADO_SOLICITUD">
+    <Key>
+      <PropertyRef Name="ID_ESTADO" />
+    </Key>
+    <Property Name="ID_ESTADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TIPO_ESTADO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="QUEJAS_REPORTES" Relationship="Self.FK__QUEJAS_RE__ID_ES__4F7CD00D" FromRole="ESTADO_SOLICITUD" ToRole="QUEJAS_REPORTES" />
+    <NavigationProperty Name="SOLICITUD_VACACIONES" Relationship="Self.FK__SOLICITUD__ID_ES__5165187F" FromRole="ESTADO_SOLICITUD" ToRole="SOLICITUD_VACACIONES" />
+  </EntityType>
+  <EntityType Name="FORMULARIO">
+    <Key>
+      <PropertyRef Name="ID_FORMULARIO" />
+    </Key>
+    <Property Name="ID_FORMULARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_ENVIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="OBSERVACIONES" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__FORMULARI__ID_EM__4CA06362" FromRole="FORMULARIO" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="PLANILLA">
+    <Key>
+      <PropertyRef Name="ID_PLANILLA" />
+    </Key>
+    <Property Name="ID_PLANILLA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_PAGO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SALARIO_BRUTO" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="DEDUCCIONES" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="BONOS" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="SALARIO_NETO" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__PLANILLA__ID_EMP__4D94879B" FromRole="PLANILLA" ToRole="EMPLEADO" />
+  </EntityType>
+  <EntityType Name="QUEJAS_REPORTES">
+    <Key>
+      <PropertyRef Name="ID_QUEJA" />
+    </Key>
+    <Property Name="ID_QUEJA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_ENVIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FECHA_RESOLUCION" Type="DateTime" Precision="3" />
+    <Property Name="COMENTARIO_ADMIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ID_ESTADO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__QUEJAS_RE__ID_EM__4E88ABD4" FromRole="QUEJAS_REPORTES" ToRole="EMPLEADO" />
+    <NavigationProperty Name="ESTADO_SOLICITUD" Relationship="Self.FK__QUEJAS_RE__ID_ES__4F7CD00D" FromRole="QUEJAS_REPORTES" ToRole="ESTADO_SOLICITUD" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="ID_ROL" />
+    </Key>
+    <Property Name="ID_ROL" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_ROL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK__USUARIO__ID_ROL__52593CB8" FromRole="ROL" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="SOLICITUD_VACACIONES">
+    <Key>
+      <PropertyRef Name="ID_SOLICITUD" />
+    </Key>
+    <Property Name="ID_SOLICITUD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_SOLICITUD" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DIAS_SOLICITADOS" Type="Int32" Nullable="false" />
+    <Property Name="ID_ESTADO" Type="Int32" Nullable="false" />
+    <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__SOLICITUD__ID_EM__5070F446" FromRole="SOLICITUD_VACACIONES" ToRole="EMPLEADO" />
+    <NavigationProperty Name="ESTADO_SOLICITUD" Relationship="Self.FK__SOLICITUD__ID_ES__5165187F" FromRole="SOLICITUD_VACACIONES" ToRole="ESTADO_SOLICITUD" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDENTIFICACION" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="APELLIDO_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CORREO_USUARIO" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CONTRASENA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_ROL" Type="Int32" Nullable="false" />
+    <Property Name="ESTADO" Type="Boolean" Nullable="false" />
+    <Property Name="ESTADO_CONTRASENA_TEMPORAL" Type="Boolean" Nullable="false" />
+    <Property Name="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__EMPLEADO__ID_USU__4BAC3F29" FromRole="USUARIO" ToRole="EMPLEADO" />
+    <NavigationProperty Name="ROL" Relationship="Self.FK__USUARIO__ID_ROL__52593CB8" FromRole="USUARIO" ToRole="ROL" />
+  </EntityType>
+  <Association Name="FK__CONSTANCI__ID_EM__49C3F6B7">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="CONSTANCIA_LABORAL" Type="Self.CONSTANCIA_LABORAL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="CONSTANCIA_LABORAL">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLEADO__ID_DEP__4AB81AF0">
+    <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTAMENTO">
+        <PropertyRef Name="ID_DEPARTAMENTO" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="ID_DEPARTAMENTO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLEADO__ID_USU__4BAC3F29">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="EMPLEADO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FORMULARI__ID_EM__4CA06362">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="FORMULARIO" Type="Self.FORMULARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="FORMULARIO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PLANILLA__ID_EMP__4D94879B">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="PLANILLA" Type="Self.PLANILLA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="PLANILLA">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUEJAS_RE__ID_EM__4E88ABD4">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="QUEJAS_REPORTES">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SOLICITUD__ID_EM__5070F446">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="SOLICITUD_VACACIONES">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUEJAS_RE__ID_ES__4F7CD00D">
+    <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="1" />
+    <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_SOLICITUD">
+        <PropertyRef Name="ID_ESTADO" />
+      </Principal>
+      <Dependent Role="QUEJAS_REPORTES">
+        <PropertyRef Name="ID_ESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SOLICITUD__ID_ES__5165187F">
+    <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="1" />
+    <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_SOLICITUD">
+        <PropertyRef Name="ID_ESTADO" />
+      </Principal>
+      <Dependent Role="SOLICITUD_VACACIONES">
+        <PropertyRef Name="ID_ESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIO__ID_ROL__52593CB8">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="ID_ROL" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="ID_ROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LithoManagerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CONSTANCIA_LABORAL" EntityType="Self.CONSTANCIA_LABORAL" />
+    <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" />
+    <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" />
+    <EntitySet Name="ESTADO_SOLICITUD" EntityType="Self.ESTADO_SOLICITUD" />
+    <EntitySet Name="FORMULARIO" EntityType="Self.FORMULARIO" />
+    <EntitySet Name="PLANILLA" EntityType="Self.PLANILLA" />
+    <EntitySet Name="QUEJAS_REPORTES" EntityType="Self.QUEJAS_REPORTES" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" />
+    <EntitySet Name="SOLICITUD_VACACIONES" EntityType="Self.SOLICITUD_VACACIONES" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK__CONSTANCI__ID_EM__49C3F6B7" Association="Self.FK__CONSTANCI__ID_EM__49C3F6B7">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="CONSTANCIA_LABORAL" EntitySet="CONSTANCIA_LABORAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLEADO__ID_DEP__4AB81AF0" Association="Self.FK__EMPLEADO__ID_DEP__4AB81AF0">
+      <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLEADO__ID_USU__4BAC3F29" Association="Self.FK__EMPLEADO__ID_USU__4BAC3F29">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FORMULARI__ID_EM__4CA06362" Association="Self.FK__FORMULARI__ID_EM__4CA06362">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="FORMULARIO" EntitySet="FORMULARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PLANILLA__ID_EMP__4D94879B" Association="Self.FK__PLANILLA__ID_EMP__4D94879B">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="PLANILLA" EntitySet="PLANILLA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUEJAS_RE__ID_EM__4E88ABD4" Association="Self.FK__QUEJAS_RE__ID_EM__4E88ABD4">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SOLICITUD__ID_EM__5070F446" Association="Self.FK__SOLICITUD__ID_EM__5070F446">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__4F7CD00D" Association="Self.FK__QUEJAS_RE__ID_ES__4F7CD00D">
+      <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
+      <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SOLICITUD__ID_ES__5165187F" Association="Self.FK__SOLICITUD__ID_ES__5165187F">
+      <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
+      <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIO__ID_ROL__52593CB8" Association="Self.FK__USUARIO__ID_ROL__52593CB8">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

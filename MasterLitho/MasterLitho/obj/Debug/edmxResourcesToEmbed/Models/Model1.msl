@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LithoManagerModelStoreContainer" CdmEntityContainer="LithoManagerEntities">
+    <EntitySetMapping Name="CONSTANCIA_LABORAL">
+      <EntityTypeMapping TypeName="LithoManagerModel.CONSTANCIA_LABORAL">
+        <MappingFragment StoreEntitySet="CONSTANCIA_LABORAL">
+          <ScalarProperty Name="ID_CONSTANCIA" ColumnName="ID_CONSTANCIA" />
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="FECHA_EMISION" ColumnName="FECHA_EMISION" />
+          <ScalarProperty Name="DETALLE_ADICIONAL" ColumnName="DETALLE_ADICIONAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTAMENTO">
+      <EntityTypeMapping TypeName="LithoManagerModel.DEPARTAMENTO">
+        <MappingFragment StoreEntitySet="DEPARTAMENTO">
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+          <ScalarProperty Name="NOMBRE_DEPARTAMENTO" ColumnName="NOMBRE_DEPARTAMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLEADO">
+      <EntityTypeMapping TypeName="LithoManagerModel.EMPLEADO">
+        <MappingFragment StoreEntitySet="EMPLEADO">
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="DIAS_VACACIONES_DISPONIBLES" ColumnName="DIAS_VACACIONES_DISPONIBLES" />
+          <ScalarProperty Name="FECHA_CONTRATACION" ColumnName="FECHA_CONTRATACION" />
+          <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO_SOLICITUD">
+      <EntityTypeMapping TypeName="LithoManagerModel.ESTADO_SOLICITUD">
+        <MappingFragment StoreEntitySet="ESTADO_SOLICITUD">
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+          <ScalarProperty Name="TIPO_ESTADO" ColumnName="TIPO_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORMULARIO">
+      <EntityTypeMapping TypeName="LithoManagerModel.FORMULARIO">
+        <MappingFragment StoreEntitySet="FORMULARIO">
+          <ScalarProperty Name="ID_FORMULARIO" ColumnName="ID_FORMULARIO" />
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="FECHA_ENVIO" ColumnName="FECHA_ENVIO" />
+          <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLANILLA">
+      <EntityTypeMapping TypeName="LithoManagerModel.PLANILLA">
+        <MappingFragment StoreEntitySet="PLANILLA">
+          <ScalarProperty Name="ID_PLANILLA" ColumnName="ID_PLANILLA" />
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="FECHA_PAGO" ColumnName="FECHA_PAGO" />
+          <ScalarProperty Name="SALARIO_BRUTO" ColumnName="SALARIO_BRUTO" />
+          <ScalarProperty Name="DEDUCCIONES" ColumnName="DEDUCCIONES" />
+          <ScalarProperty Name="BONOS" ColumnName="BONOS" />
+          <ScalarProperty Name="SALARIO_NETO" ColumnName="SALARIO_NETO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUEJAS_REPORTES">
+      <EntityTypeMapping TypeName="LithoManagerModel.QUEJAS_REPORTES">
+        <MappingFragment StoreEntitySet="QUEJAS_REPORTES">
+          <ScalarProperty Name="ID_QUEJA" ColumnName="ID_QUEJA" />
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="FECHA_ENVIO" ColumnName="FECHA_ENVIO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="FECHA_RESOLUCION" ColumnName="FECHA_RESOLUCION" />
+          <ScalarProperty Name="COMENTARIO_ADMIN" ColumnName="COMENTARIO_ADMIN" />
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROL">
+      <EntityTypeMapping TypeName="LithoManagerModel.ROL">
+        <MappingFragment StoreEntitySet="ROL">
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="NOMBRE_ROL" ColumnName="NOMBRE_ROL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOLICITUD_VACACIONES">
+      <EntityTypeMapping TypeName="LithoManagerModel.SOLICITUD_VACACIONES">
+        <MappingFragment StoreEntitySet="SOLICITUD_VACACIONES">
+          <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
+          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
+          <ScalarProperty Name="DIAS_SOLICITADOS" ColumnName="DIAS_SOLICITADOS" />
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+          <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="LithoManagerModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="IDENTIFICACION" ColumnName="IDENTIFICACION" />
+          <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+          <ScalarProperty Name="APELLIDO_USUARIO" ColumnName="APELLIDO_USUARIO" />
+          <ScalarProperty Name="CORREO_USUARIO" ColumnName="CORREO_USUARIO" />
+          <ScalarProperty Name="CONTRASENA" ColumnName="CONTRASENA" />
+          <ScalarProperty Name="ID_ROL" ColumnName="ID_ROL" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+          <ScalarProperty Name="ESTADO_CONTRASENA_TEMPORAL" ColumnName="ESTADO_CONTRASENA_TEMPORAL" />
+          <ScalarProperty Name="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" ColumnName="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

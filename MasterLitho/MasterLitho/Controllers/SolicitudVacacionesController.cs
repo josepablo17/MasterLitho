@@ -15,7 +15,7 @@ namespace MasterLitho.Controllers
         }
 
         [HttpGet]
-        public ActionResult ConsultarVacacionesEmpleado()
+        public ActionResult SolicitarVacaciones()
         {
             return View();
         }

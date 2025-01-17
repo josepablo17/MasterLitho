@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MasterLitho.Models.tUsuario
+
+@{
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
 }
 
@@ -23,13 +25,13 @@
     <!-- Estilos personalizados -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    
+
 </head>
 
 <body class="bg-gradient-primary">
 
     <div class="container d-flex justify-content-center align-items-center vh-100">
-       
+
         <div class="row justify-content-center w-100">
             <div class="col-xl-5 col-lg-6 col-md-8">
                 <div class="card shadow-lg border-0 rounded-lg">
@@ -37,28 +39,39 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
                         </div>
-                        <form class="user" action="#" method="post">
-                            <div class="form-group">
-                                <input type="email" class="form-control form-control-user"
-                                       id="exampleInputEmail" name="email" aria-describedby="emailHelp"
-                                       placeholder="Ingresa tu dirección de correo electrónico..." required>
+                        @if (ViewBag.MensajePantalla != null)
+                        {
+                            <div class="alert alert-danger text-center" role="alert">
+                                @ViewBag.MensajePantalla
                             </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control form-control-user"
-                                       id="exampleInputPassword" name="password" placeholder="Contraseña" required>
-                            </div>
-                            <div class="form-group d-flex justify-content-between">
-                                
-                                <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">Iniciar sesión</button>
+                        }
 
-                            <a class="btn btn-primary btn-user btn-block" href="@Url.Action("IndexEmpleado","Home")">Iniciar como empleado</a>
-                            <hr>
-                        </form>
+                        @using (Html.BeginForm("IniciarSesion", "Login"))
+                        {
+                            <h3 class="text-center fw-bold mb-4">Iniciar Sesión</h3>
+
+                            <div class="mb-3">
+                                <label for="Nombre_Usuario" class="form-label">Usuario</label>
+                                @Html.TextBoxFor(m => m.correoUsuario, new { @class = "form-control rounded-pill", @placeholder = "Correo electronico" })
+                            </div>
+
+                            <div class="mb-4 position-relative">
+                                <label for="PassWord" class="form-label">Contraseña</label>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.contrasena, new { @class = "form-control rounded-pill pe-5", @type = "password", @id = "PassWord", @placeholder = "Contraseña" })
+                                    <span onclick="toggleVisibility('PassWord')">
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <a href="@Url.Action("RecuperarAcceso", "Login")">¿Olvidaste tu contraseña?</a>
+                            </div>
+
+                            <input type="submit" class="btn btn-primary btn-block w-100 rounded-pill py-2 fs-5 mb-3" value="Iniciar Sesión" />
+                        }
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="@Url.Action("Registrar", "Login")">¡Crear una cuenta!</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +79,7 @@
         </div>
     </div>
 
-    
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
