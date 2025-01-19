@@ -38,6 +38,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EVENTOS">
+      <EntityTypeMapping TypeName="LithoManagerModel.EVENTOS">
+        <MappingFragment StoreEntitySet="EVENTOS">
+          <ScalarProperty Name="ID_EVENTO" ColumnName="ID_EVENTO" />
+          <ScalarProperty Name="NOMBRE_EVENTO" ColumnName="NOMBRE_EVENTO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+          <ScalarProperty Name="FECHA_FINAL" ColumnName="FECHA_FINAL" />
+          <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="FORMULARIO">
       <EntityTypeMapping TypeName="LithoManagerModel.FORMULARIO">
         <MappingFragment StoreEntitySet="FORMULARIO">

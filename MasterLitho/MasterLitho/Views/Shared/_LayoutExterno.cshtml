@@ -11,17 +11,21 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <style>
-        /* Agregar la imagen de fondo */
         body {
-    background: url('@Url.Content("~/Styles/img/MasterlithoFondo.png")') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
-}
+            background-color: #F2F2F2 !important;
+        }
 
+     
     </style>
 </head>
 
 <body>
+    <div class="text-center mt-4">
+        <img src="~/Styles/img/martelithocr-logo (1).png"
+             class="img-fluid rounded"
+             alt="Logo"
+             style="width: auto; height: auto; object-fit: contain;">
+    </div>
 
     @RenderBody()
 

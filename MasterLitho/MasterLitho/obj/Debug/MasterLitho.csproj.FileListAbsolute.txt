@@ -30,7 +30,6 @@ D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compressi
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.ZipFile.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.Primitives.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Net.Http.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Net.Sockets.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Reflection.Metadata.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
@@ -50,18 +49,6 @@ D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe.config
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.rsp
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe.config
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Antlr3.Runtime.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Web.Infrastructure.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Newtonsoft.Json.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Helpers.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Mvc.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Optimization.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Razor.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Deployment.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Razor.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\WebGrease.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Helpers.xml
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Mvc.xml
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Optimization.xml
@@ -226,3 +213,7 @@ C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y 
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.dll
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
