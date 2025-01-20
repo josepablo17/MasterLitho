@@ -1,7 +1,9 @@
 ﻿using MasterLitho.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,7 +24,7 @@ namespace MasterLitho.Controllers
 
         [HttpPost]
 
-        public JsonResult AgregarEvento(EVENTOS model)
+        public JsonResult AgregarEvento(EVENTOS model, USUARIO usuario)
         {
             using (var context = new LithoManagerEntities())
             {
@@ -45,6 +47,12 @@ namespace MasterLitho.Controllers
 
                 if (respuesta > 0)
                 {
+                    string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Styles\\TemplateCorreo.html";
+                    string contenido = System.IO.File.ReadAllText(ruta);
+
+                    contenido = contenido.Replace("@@Nombre", usuario.NOMBRE_USUARIO);
+                    
+                    EnviarCorreo("secogonzalez2005@gmail.com", "Contraseña Temporal", contenido);
                     return Json(new { success = true });
                 }
                 else
@@ -104,37 +112,39 @@ namespace MasterLitho.Controllers
                 return Json(new { success = false, message = $"Error al eliminar el evento: {ex.Message}" });
             }
         }
-
         [HttpGet]
         public JsonResult ObtenerEventByID(int id)
         {
-            using (var context = new LithoManagerEntities())
+            try
             {
-                var evento = context.EVENTOS.FirstOrDefault(e => e.ID_EVENTO == id);
-                if (evento != null)
+                using (var context = new LithoManagerEntities())
                 {
-                    var eventoResponse = new
+                    EVENTOS evt = context.EVENTOS.Find(id);
+
+                    if (evt == null)
+                    {
+                        return Json(new { success = false, message = "Evento no encontrado." });
+                    }
+
+                    return Json(new
                     {
                         success = true,
-                        evento = new
+                        data = new
                         {
-                            id = evento.ID_EVENTO,
-                            Titulo = evento.NOMBRE_EVENTO,
-                            Descripcion = evento.DESCRIPCION,
-                            FechaInicio = evento.FECHA_INICIO.ToString("yyyy-MM-dd"),
-                            FechaFinal = evento.FECHA_FINAL.ToString("yyyy-MM-dd"),
-                            Color = evento.COLOR
+                            ID = evt.ID_EVENTO,
+                            evt.NOMBRE_EVENTO,
+                            evt.DESCRIPCION,
+                            FECHA_INICIO = evt.FECHA_INICIO.ToString("yyyy-MM-dd"),
+                            FECHA_FINAL = evt.FECHA_FINAL.ToString("yyyy-MM-dd")
                         }
-                    };
-                    return Json(eventoResponse);
+                    }, JsonRequestBehavior.AllowGet);
                 }
-                else
-                {
-                    return Json(new { success = false });
-                }
-
             }
-               
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return Json(new { success = false, message = $"Error al obtener el evento: {ex.Message}" });
+            }
         }
 
         [HttpPost]
@@ -161,7 +171,7 @@ namespace MasterLitho.Controllers
                     evento.DESCRIPCION = model.DESCRIPCION;
                     evento.FECHA_INICIO = model.FECHA_INICIO;
                     evento.FECHA_FINAL = model.FECHA_FINAL;
-                    evento.COLOR = model.COLOR;
+                    
 
                     context.SaveChanges();
 
@@ -173,6 +183,31 @@ namespace MasterLitho.Controllers
                 
                 return Json(new { success = false, message = "Ocurrió un error: " + ex.Message });
             }
+        }
+
+
+        private void EnviarCorreo(string destino, string asunto, string contenido)
+        {
+            string cuenta = ConfigurationManager.AppSettings["CorreoNotificaciones"].ToString();
+            string contrasenna = ConfigurationManager.AppSettings["ContrasennaNotificaciones"].ToString();
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(cuenta);
+
+            foreach (var item in destino.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries ))
+            {
+                message.To.Add(new MailAddress(item));
+            }
+            message.Subject = asunto;
+            message.Body = contenido;
+            message.Priority = MailPriority.Normal;
+            message.IsBodyHtml = true;
+
+            SmtpClient client = new SmtpClient("smtp.office365.com", 587);
+            client.Credentials = new System.Net.NetworkCredential(cuenta, contrasenna);
+            client.EnableSsl = true;
+            client.Send(message);
+
         }
 
     }

@@ -341,6 +341,7 @@
     <Content Include="Styles\js\demo\datatables-demo.js" />
     <Content Include="Styles\js\sb-admin-2.js" />
     <Content Include="Styles\js\sb-admin-2.min.js" />
+    <Content Include="Styles\TemplateCorreo.html" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.js" />

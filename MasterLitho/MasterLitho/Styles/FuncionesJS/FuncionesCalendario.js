@@ -11,28 +11,43 @@
         selectable: false,
         editable: false,
         dateClick: function (info) {
-            const fechaSeleccionadaObj = new Date(info.dateStr);
-            const fechaActual = new Date();
-            fechaActual.setHours(0, 0, 0, 0);
 
-            if (fechaSeleccionadaObj < fechaActual) {
+            if (rolUsuario == 2) {
                 Swal.fire({
                     icon: "error",
-                    title: "Oops...",
-                    text: "No se puede agendar en una fecha que ya pasó!"
+                    title: "Acción no permitida",
+                    text: "No tienes permiso para crear eventos."
                 });
-                $('#guardarEvento').prop('disabled', true); // Deshabilitar el botón de guardar
-            } else {
-                $('#guardarEvento').prop('disabled', false); // Habilitar el botón de guardar
-                $('#crearEventoModal').modal('show');
-                document.getElementById('eventoFechaInicio').value = info.dateStr;
-
-                const fechaSiguiente = new Date(fechaSeleccionadaObj);
-                fechaSiguiente.setDate(fechaSeleccionadaObj.getDate() + 1);
-
-                const fechaSiguienteStr = fechaSiguiente.toISOString().split('T')[0];
-                document.getElementById('eventoFechaFinal').value = fechaSiguienteStr;
+                return;
             }
+
+            
+                const fechaSeleccionadaObj = new Date(info.dateStr);
+                const fechaActual = new Date();
+                fechaActual.setHours(0, 0, 0, 0);
+
+                if (fechaSeleccionadaObj < fechaActual) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "No se puede agendar en una fecha que ya pasó!"
+                    });
+                    $('#guardarEvento').prop('disabled', true);
+                } else {
+                    $('#guardarEvento').prop('disabled', false);
+                    $('#crearEventoModal').modal('show');
+                    document.getElementById('eventoFechaInicio').value = info.dateStr;
+
+                    const fechaSiguiente = new Date(fechaSeleccionadaObj);
+                    fechaSiguiente.setDate(fechaSeleccionadaObj.getDate() + 1);
+
+                    const fechaSiguienteStr = fechaSiguiente.toISOString().split('T')[0];
+                    document.getElementById('eventoFechaFinal').value = fechaSiguienteStr;
+                    
+                }
+            
+            
+            
         },
         events: function (info, successCallback, failureCallback) {
             $.ajax({
@@ -49,30 +64,136 @@
         },
         eventClick: function (info) {
             var event = info.event;
-            if (rolUsuario === 1) {
-                $('#editarEventoModal').modal('show');
-            } else if (rolUsuario === 2) {
-                $('#eventoDetallesModal').modal('show');
-                document.getElementById('eventoDetallesTitulo').textContent = info.event.title;
-                document.getElementById('eventoDetallesDescripcion').textContent = info.event.extendedProps.descripcion;
-                document.getElementById('eventoDetallesFechaInicio').textContent = info.event.start.toLocaleDateString();
-                document.getElementById('eventoDetallesFechaFinal').textContent = info.event.end ? info.event.end.toLocaleDateString() : 'No especificada';
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Acceso denegado",
-                    text: "No tienes permiso para ver este evento."
-                });
-            }
 
-            $('#eliminarEvento').off('click').on('click', function () {
-                eliminarEvento(event);
+            $.ajax({
+                url: '/Calendario/ObtenerEventByID?id=' + event.id,
+                type: 'GET',
+                success: function (response) {
+                    if (response.success) {
+                        if (rolUsuario == 1) {
+                            $('#editarEventoId').val(response.data.ID);
+                            $('#editarEventoTitulo').val(response.data.NOMBRE_EVENTO);
+                            $('#editarEventoDescripcion').val(response.data.DESCRIPCION);
+                            $('#editarEventoFechaInicio').val(response.data.FECHA_INICIO.split('T')[0]);
+                            $('#editarEventoFechaFinal').val(response.data.FECHA_FINAL ? response.data.FECHA_FINAL.split('T')[0] : '');
+                            $('#editarEventoModal').modal('show');
+
+
+                            $('#eliminarEvento').off('click').on('click', function () {
+                                eliminarEvento(event);
+                            });
+                        } else if (rolUsuario == 2) {
+                            $('#eventoDetallesTitulo').text(response.data.NOMBRE_EVENTO);
+                            $('#eventoDetallesDescripcion').text(response.data.DESCRIPCION);
+                            $('#eventoDetallesFechaInicio').text(response.data.FECHA_INICIO.split('T')[0]);
+                            $('#eventoDetallesFechaFinal').text(response.data.FECHA_FINAL ? response.data.FECHA_FINAL.split('T')[0] : 'N/A');
+                            $('#eventoDetallesModal').modal('show');
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Acceso denegado",
+                                text: "No tienes permiso para ver este evento."
+                            });
+                        }
+                            
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Acceso denegado",
+                            text: "No tienes permiso para ver este evento."
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error al obtener el evento:', error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "No se pudo cargar el evento, intenta nuevamente."
+                    });
+                }
             });
         }
     });
 
     calendar.render();
 
+    function editarEvento() {
+        var eventoId = $('#editarEventoId').val();
+        var titulo = $('#editarEventoTitulo').val();
+        var descripcion = $('#editarEventoDescripcion').val();
+        var fechaInicio = $('#editarEventoFechaInicio').val();
+        var fechaFinal = $('#editarEventoFechaFinal').val();
+        var color = $('#editarEventoColor').val();
+
+        var inicio = new Date(fechaInicio);
+        var final = new Date(fechaFinal);
+
+        if (inicio > final) {
+            Swal.fire({
+                icon: "error",
+                title: "No se puede agendar, esas fechas no son válidas"
+            });
+            return;
+        }
+        var eventoData = {
+            ID_EVENTO: eventoId,
+            NOMBRE_EVENTO: titulo,
+            DESCRIPCION: descripcion,
+            FECHA_INICIO: fechaInicio,
+            FECHA_FINAL: fechaFinal || null,
+            COLOR: color
+        };
+
+        $.ajax({
+            url: '/Calendario/EditarEvento',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(eventoData),
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Evento editado exitosamente"
+                    });
+                    
+                    var eventToUpdate = calendar.getEventById(eventoId);
+                    eventToUpdate.setProp('title', titulo);
+                    eventToUpdate.setProp('start', fechaInicio);
+                    eventToUpdate.setProp('end', fechaFinal || null);
+                    eventToUpdate.setExtendedProp('descripcion', descripcion);
+                    
+
+                    
+                    $('#editarEventoModal').modal('hide');
+                    location.reload();
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error al actualizar",
+                        text: "Ha ocurrido un error al actualizar, intenta de nuevo"
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error al actualizar evento:', error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No se pudo actualizar el evento, intenta nuevamente."
+                });
+            }
+        });
+    }
+
+    $('#editarEvento').on('click', function (event) {
+        event.preventDefault();
+        editarEvento();
+    });
+
+
+    
     function eliminarEvento(event) {
         $.ajax({
             url: '/Calendario/EliminarEvento?id=' + event.id,
@@ -81,10 +202,13 @@
             success: function (response) {
                 console.log('Respuesta del servidor:', response);
                 if (response.success) {
-                    alert('Evento eliminado correctamente.');
+                    Swal.fire({
+                        icon: "success",
+                        title: "Evento eliminado exitosamente"
+                    });
                     var eventToRemove = calendar.getEventById(event.id);
                     eventToRemove.remove();
-                    $('#eventoDetallesModal').modal('hide');
+                    $('#editarEventoModal').modal('hide');
                 } else {
                     alert('Hubo un error al eliminar el evento: ' + response.message);
                 }
@@ -98,9 +222,10 @@
                 });
             }
         });
+        
     }
+    
 
-    // Función para agregar un evento
     function agregarEvento() {
         var nombreEvento = $('#eventoTitulo').val();
         var descripcion = $('#eventoDescripcion').val();
@@ -108,11 +233,24 @@
         var fechaFinal = $('#eventoFechaFinal').val();
         var color = $('#color').val();
 
+        // Validación de campos
         if (!nombreEvento || !fechaInicio || !fechaFinal) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Campos incompletos',
                 text: 'Por favor complete todos los campos.'
+            });
+            return;
+        }
+
+        var inicio = new Date(fechaInicio);
+        var final = new Date(fechaFinal);
+
+        
+        if (inicio > final) {
+            Swal.fire({
+                icon: "error",
+                title: "No se puede agendar, esas fechas no son válidas"
             });
             return;
         }
@@ -125,14 +263,31 @@
             COLOR: color
         };
 
+        
+        const swalLoading = Swal.fire({
+            title: 'Cargando...',
+            text: 'Por favor espera mientras se agrega el evento.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading(); 
+            }
+        });
+
+        // Solicitud AJAX
         $.ajax({
             url: '/Calendario/AgregarEvento',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(eventoData),
             success: function (response) {
+                swalLoading.close(); 
+
                 if (response.success) {
-                    alert('Evento agregado exitosamente.');
+                    Swal.fire({
+                        icon: "success",
+                        title: "Evento agregado exitosamente"
+                    });
+
                     calendar.addEvent({
                         title: nombreEvento,
                         start: fechaInicio,
@@ -141,18 +296,24 @@
                         color: color
                     });
 
-                    document.getElementById('eventoTitulo').value = "";
-                    document.getElementById('eventoDescripcion').value = "";
-                    document.getElementById('eventoFechaInicio').value = "";
-                    document.getElementById('eventoFechaFinal').value = "";
-                    document.getElementById('color').value = "";
+                   
+                    $('#eventoTitulo').val('');
+                    $('#eventoDescripcion').val('');
+                    $('#eventoFechaInicio').val('');
+                    $('#eventoFechaFinal').val('');
+                    $('#color').val('');
 
                     $('#crearEventoModal').modal('hide');
                 } else {
-                    alert('Hubo un error al agregar el evento.');
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error al agregar el evento",
+                        text: "Hubo un error al agregar el evento, intenta de nuevo."
+                    });
                 }
             },
             error: function (xhr, status, error) {
+                swalLoading.close(); 
                 console.error('Error al agregar evento:', error);
                 Swal.fire({
                     icon: "error",
@@ -163,9 +324,10 @@
         });
     }
 
-    // Evento para guardar el evento
+   
     $('#guardarEvento').on('click', function (event) {
         event.preventDefault();
         agregarEvento();
     });
+
 });
