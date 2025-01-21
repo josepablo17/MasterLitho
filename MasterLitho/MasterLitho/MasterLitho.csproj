@@ -187,6 +187,10 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tEventos.cs" />
     <Compile Include="Models\tUsuario.cs" />
     <Compile Include="Models\tVacaciones.cs" />
     <Compile Include="Models\USUARIO.cs">
@@ -326,6 +330,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Styles\css\sb-admin-2.css" />
     <Content Include="Styles\css\sb-admin-2.min.css" />
+    <Content Include="Styles\FuncionesJS\CambiarContrasena.js" />
+    <Content Include="Styles\FuncionesJS\FuncionesCalendario.js" />
     <Content Include="Styles\img\martelithocr-logo %281%29.png" />
     <Content Include="Styles\img\MasterlithoFondo.png" />
     <Content Include="Styles\img\masterlitho_impresi_n_digital_y_offset_logo.jpg" />
@@ -341,6 +347,8 @@
     <Content Include="Styles\js\demo\datatables-demo.js" />
     <Content Include="Styles\js\sb-admin-2.js" />
     <Content Include="Styles\js\sb-admin-2.min.js" />
+    <Content Include="Styles\TemplateCorreo.html" />
+    <Content Include="Styles\TemplateCorreoSolicitudVacaciones.html" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.js" />
