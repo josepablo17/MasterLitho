@@ -12,10 +12,33 @@
     <!-- Custom fonts for this template -->
     <link href="~/Styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* En tu archivo CSS */
+        .sidebar {
+            transition: background-color 0.3s ease; /* Transición suave */
+        }
 
+        .sidebar-admin {
+            background-color: #dc3545; /* Color para rol 1 */
+        }
+
+        .sidebar-employee {
+            background-color: #007bff; /* Color para rol 2 */
+        }
+
+        .sidebar .nav-link {
+            color: #ffffff; /* Color del texto */
+        }
+
+            .sidebar .nav-link:hover {
+                color: #f8f9fa; /* Color del texto al pasar el mouse */
+            }
+
+        .sidebar .sidebar-brand-text {
+            color: #ffffff; /* Color del texto de la marca */
+        }
+
+    </style>
     <!-- Custom styles for this template -->
     <link href="~/Styles/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
@@ -26,32 +49,33 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class=""></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">MasterLithoADMIN</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
+        <ul class="navbar-nav sidebar @((Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1") ? "sidebar-admin" : "sidebar-employee") accordion" id="accordionSidebar">
 
             @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1")
             {
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class=""></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">MasterLithoADMIN</div>
+                </a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+
+
                 <!-- Heading -->
-                <div class="sidebar-heading">Gestión Administrativa</div>
+
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("GestionarVacaciones", "SolicitudVacaciones")">
+                    <a class="nav-link" href="@Url.Action("ConsultarVacaciones", "SolicitudVacaciones")">
                         <i class="fas fa-fw fa-calendar-check"></i>
                         <span>Solicitudes de Vacaciones</span>
                     </a>
@@ -114,6 +138,20 @@
 
             @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "2")
             {
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class=""></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">MasterLitho</div>
+                </a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("SolicitarVacaciones","SolicitudVacaciones")">
                         <i class="fas fa-fw fa-calendar-check"></i>
@@ -171,7 +209,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ConsultarCalendario","Calendario")">
+                    <a class="nav-link" href="@Url.Action("Calendario", "Calendario")">
                         <i class="fas fa-fw fa-calendar-alt"></i>
                         <span>Calendario</span>
                     </a>
@@ -197,18 +235,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
 
-                        <!-- Topbar Search -->
-                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                       aria-label="Search" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -339,7 +366,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Session["NOMBRE_USUARIO"]</span>
                                     <img class="img-profile rounded-circle" src="~/Styles/img/undraw_profile.svg">
                                 </a>
                                 <!-- Dropdown - User Information -->
@@ -425,10 +452,11 @@
         <script src="~/Styles/js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
-        <!-- Page level custom scripts -->
+       
 
+        <!-- Page level custom scripts -->
+       
         <link href="~/~/Styles/css/sb-admin-2.min.css" rel="stylesheet" />
         <link href="~/~/Styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
-
 </body>
 </html>

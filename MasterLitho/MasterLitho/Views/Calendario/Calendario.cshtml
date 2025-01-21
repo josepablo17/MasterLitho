@@ -2,6 +2,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    var rolUsuario = Session["rolUsuario"];
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +41,7 @@
                     </div>
                 </div>
 
-                <!-- Modal para Crear un Evento -->
+
                 <div class="modal fade" id="crearEventoModal" tabindex="-1" role="dialog" aria-labelledby="crearEventoModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -58,9 +62,20 @@
                                         <textarea class="form-control" id="eventoDescripcion" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="eventoFecha">Fecha del Evento:</label>
-                                        <input type="date" class="form-control" id="eventoFecha" required>
+                                        <label for="eventoFechaInicio">Fecha de inicio:</label>
+                                        <input type="date" class="form-control" id="eventoFechaInicio" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="eventoFechaFinal">Fecha Final :</label>
+                                        <input type="date" class="form-control" id="eventoFechaFinal" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="color">Color :</label>
+                                        <input type="color" class="form-control" id="color" required>
+                                    </div>
+
+                                   
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -70,64 +85,103 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+                <div class="modal fade" id="eventoDetallesModal" tabindex="-1" role="dialog" aria-labelledby="eventoDetallesModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content rounded-3 shadow-lg">
+                            <div class="modal-header bg-primary text-white">
+                                <h5 class="modal-title" id="eventoDetallesModalLabel"><i class="fas fa-calendar-alt"></i> Detalles del Evento</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-3">
+                                    <div class="col-sm-4"><strong>Título:</strong></div>
+                                    <div class="col-sm-8"><span id="eventoDetallesTitulo" class="font-weight-bold"></span></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-4"><strong>Descripción:</strong></div>
+                                    <div class="col-sm-8"><span id="eventoDetallesDescripcion"></span></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-4"><strong>Fecha de Inicio:</strong></div>
+                                    <div class="col-sm-8"><span id="eventoDetallesFechaInicio"></span></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-4"><strong>Fecha Final:</strong></div>
+                                    <div class="col-sm-8"><span id="eventoDetallesFechaFinal"></span></div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="editarEventoModal" tabindex="-1" role="dialog" aria-labelledby="editarEventoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editarEventoModalLabel">Editar Evento</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formEditarEvento">
+                                    <input type="hidden" id="editarEventoId" />
+                                    <div class="form-group">
+                                        <label for="editarEventoTitulo">Título del Evento</label>
+                                        <input type="text" class="form-control" id="editarEventoTitulo" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editarEventoDescripcion">Descripción</label>
+                                        <textarea class="form-control" id="editarEventoDescripcion"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editarEventoFechaInicio">Fecha de Inicio</label>
+                                        <input type="date" class="form-control" id="editarEventoFechaInicio" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="editarEventoFechaFinal">Fecha de Finalización</label>
+                                        <input type="date" class="form-control" id="editarEventoFechaFinal" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <div class="ml-auto">
+                                    <button type="button" class="btn btn-danger" id="eliminarEvento">Eliminar</button>
+                                    <button type="button" class="btn btn-primary" id="editarEvento">Editar Evento</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- FullCalendar JS -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                selectable: true,
-                editable: true,
-                dateClick: function (info) {
-                    // Mostrar el modal y asignar la fecha seleccionada
-                    $('#crearEventoModal').modal('show');
-                    document.getElementById('eventoFecha').value = info.dateStr;
-                },
-                events: [] // Aquí puedes cargar eventos dinámicos si es necesario
-            });
-
-            calendar.render();
-
-            // Agregar un nuevo evento
-            document.getElementById('guardarEvento').addEventListener('click', function () {
-                var titulo = document.getElementById('eventoTitulo').value;
-                var descripcion = document.getElementById('eventoDescripcion').value;
-                var fecha = document.getElementById('eventoFecha').value;
-
-                if (titulo && fecha) {
-                    calendar.addEvent({
-                        title: titulo,
-                        start: fecha,
-                        description: descripcion
-                    });
-
-                    // Cerrar el modal y limpiar campos
-                    $('#crearEventoModal').modal('hide');
-                    document.getElementById('eventoTitulo').value = '';
-                    document.getElementById('eventoDescripcion').value = '';
-                    document.getElementById('eventoFecha').value = '';
-                } else {
-                    alert('Por favor complete todos los campos obligatorios.');
-                }
-            });
-        });
+        var rolUsuario = @rolUsuario;
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+    <script src="~/Styles/FuncionesJS/FuncionesCalendario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
