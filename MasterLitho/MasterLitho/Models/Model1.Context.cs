@@ -34,6 +34,7 @@ namespace MasterLitho.Models
         public virtual DbSet<QUEJAS_REPORTES> QUEJAS_REPORTES { get; set; }
         public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
     }
 }

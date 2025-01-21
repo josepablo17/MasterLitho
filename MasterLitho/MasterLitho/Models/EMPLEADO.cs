@@ -21,7 +21,6 @@ namespace MasterLitho.Models
             this.FORMULARIO = new HashSet<FORMULARIO>();
             this.PLANILLA = new HashSet<PLANILLA>();
             this.QUEJAS_REPORTES = new HashSet<QUEJAS_REPORTES>();
-            this.SOLICITUD_VACACIONES = new HashSet<SOLICITUD_VACACIONES>();
         }
     
         public int ID_EMPLEADO { get; set; }
@@ -40,7 +39,5 @@ namespace MasterLitho.Models
         public virtual ICollection<PLANILLA> PLANILLA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QUEJAS_REPORTES> QUEJAS_REPORTES { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
     }
 }

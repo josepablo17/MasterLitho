@@ -15,7 +15,7 @@ namespace MasterLitho.Models
     public partial class SOLICITUD_VACACIONES
     {
         public int ID_SOLICITUD { get; set; }
-        public int ID_EMPLEADO { get; set; }
+        public int ID_USUARIO { get; set; }
         public System.DateTime FECHA_SOLICITUD { get; set; }
         public System.DateTime FECHA_INICIO { get; set; }
         public System.DateTime FECHA_FIN { get; set; }
@@ -23,7 +23,9 @@ namespace MasterLitho.Models
         public int ID_ESTADO { get; set; }
         public string COMENTARIO { get; set; }
     
-        public virtual EMPLEADO EMPLEADO { get; set; }
         public virtual ESTADO_SOLICITUD ESTADO_SOLICITUD { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
+        public virtual SOLICITUD_VACACIONES SOLICITUD_VACACIONES1 { get; set; }
+        public virtual SOLICITUD_VACACIONES SOLICITUD_VACACIONES2 { get; set; }
     }
 }

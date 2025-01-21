@@ -1,0 +1,140 @@
+﻿@model List<MasterLitho.Models.tVacaciones>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content-wrapper" class="container">
+    <!-- Main Content -->
+    <div id="content">
+        <h1 class="my-4">Gestión y Aprobación de Solicitudes de Vacaciones</h1>
+
+        <div class="container-fluid">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de solicitudes</h5>
+                    <div class="table-responsive">
+                        <table id="example" class="table table-bordered table-hover text-nowrap align-middle mb-0 w-100">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Nombre usuario</th>
+                                    <th>Fecha de la solicitud</th>
+                                    <th>Fecha inicio</th>
+                                    <th>Fecha fin</th>
+                                    <th>Días solicitados</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr data-id="@item.idSolicitud">
+                                        <td>@item.nombreUsuario</td>
+                                        <td>@item.fechaSolicitud.ToString("dd-MM-yyyy")</td>
+                                        <td>@item.fechaInicio.ToString("dd-MM-yyyy")</td>
+                                        <td>@item.fechaFin.ToString("dd-MM-yyyy")</td>
+                                        <td>@item.diasSolicitados</td>
+                                        <td class="estado-columna">@item.nombreEstado</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" onclick="abrirModal(@item.idSolicitud)">Cambiar Estado</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="cambiarEstadoModal" tabindex="-1" role="dialog" aria-labelledby="cambiarEstadoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cambiarEstadoModalLabel">Cambiar Estado de Solicitud</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="estadoForm">
+                    <input type="hidden" id="solicitudId" name="idSolicitud" />
+                    <div class="form-group">
+                        <label for="nuevoEstado">Nuevo Estado</label>
+                        <select id="nuevoEstado" name="estado" class="form-control">
+                            @foreach (var estado in ViewBag.listaEstados as List<SelectListItem>)
+                            {
+                                <option value="@estado.Value">@estado.Text</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarEstado()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    var jq = jQuery.noConflict();
+    jq(document).ready(function () {
+        jq('#example').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
+            },
+            "order": [[1, "desc"]],
+            "paging": true,
+            "searching": true,
+            "info": true
+        });
+    });
+
+    function abrirModal(id) {
+        $('#solicitudId').val(id);
+        $('#cambiarEstadoModal').modal('show');
+    }
+
+    function guardarEstado() {
+        const idSolicitud = $('#solicitudId').val();
+        const idEstado = $('#nuevoEstado').val();
+
+        if (!idEstado) {
+            alert('Por favor, seleccione un estado válido.');
+            return;
+        }
+
+        $.ajax({
+            url: '@Url.Action("EditarEstado", "SolicitudVacaciones")',
+            type: 'POST',
+            data: {
+                idSolicitud: idSolicitud,
+                idEstado: idEstado
+            },
+            success: function (response) {
+                if (response.success) {
+                    location.reload();
+                }
+            },
+            error: function () {
+                console.error('Ocurrió un error al intentar actualizar el estado.');
+            }
+        });
+    }
+</script>

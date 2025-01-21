@@ -78,13 +78,23 @@
       <PropertyRef Name="ID_SOLICITUD" />
     </Key>
     <Property Name="ID_SOLICITUD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="int" Nullable="false" />
     <Property Name="FECHA_SOLICITUD" Type="datetime" Nullable="false" />
     <Property Name="FECHA_INICIO" Type="datetime" Nullable="false" />
     <Property Name="FECHA_FIN" Type="datetime" Nullable="false" />
     <Property Name="DIAS_SOLICITADOS" Type="int" Nullable="false" />
     <Property Name="ID_ESTADO" Type="int" Nullable="false" />
     <Property Name="COMENTARIO" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="USUARIO">
     <Key>
@@ -186,14 +196,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__SOLICITUD__ID_EM__5070F446">
-    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
     <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="EMPLEADO">
-        <PropertyRef Name="ID_EMPLEADO" />
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
       </Principal>
       <Dependent Role="SOLICITUD_VACACIONES">
-        <PropertyRef Name="ID_EMPLEADO" />
+        <PropertyRef Name="ID_USUARIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -221,6 +231,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
+    <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="1" />
+    <End Role="SOLICITUD_VACACIONES1" Type="Self.SOLICITUD_VACACIONES" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SOLICITUD_VACACIONES">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Principal>
+      <Dependent Role="SOLICITUD_VACACIONES1">
+        <PropertyRef Name="ID_SOLICITUD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="LithoManagerModelStoreContainer">
     <EntitySet Name="CONSTANCIA_LABORAL" EntityType="Self.CONSTANCIA_LABORAL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
@@ -231,6 +253,7 @@
     <EntitySet Name="QUEJAS_REPORTES" EntityType="Self.QUEJAS_REPORTES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SOLICITUD_VACACIONES" EntityType="Self.SOLICITUD_VACACIONES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__CONSTANCI__ID_EM__49C3F6B7" Association="Self.FK__CONSTANCI__ID_EM__49C3F6B7">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
@@ -261,7 +284,7 @@
       <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
     </AssociationSet>
     <AssociationSet Name="FK__SOLICITUD__ID_EM__5070F446" Association="Self.FK__SOLICITUD__ID_EM__5070F446">
-      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
     <AssociationSet Name="FK__SOLICITUD__ID_ES__5165187F" Association="Self.FK__SOLICITUD__ID_ES__5165187F">
@@ -271,6 +294,10 @@
     <AssociationSet Name="FK__USUARIO__ID_ROL__52593CB8" Association="Self.FK__USUARIO__ID_ROL__52593CB8">
       <End Role="ROL" EntitySet="ROL" />
       <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" Association="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
+      <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
+      <End Role="SOLICITUD_VACACIONES1" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
