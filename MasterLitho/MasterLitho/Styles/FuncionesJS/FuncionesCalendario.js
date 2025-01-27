@@ -1,4 +1,5 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
+    
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -21,33 +22,33 @@
                 return;
             }
 
-            
-                const fechaSeleccionadaObj = new Date(info.dateStr);
-                const fechaActual = new Date();
-                fechaActual.setHours(0, 0, 0, 0);
 
-                if (fechaSeleccionadaObj < fechaActual) {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "No se puede agendar en una fecha que ya pasó!"
-                    });
-                    $('#guardarEvento').prop('disabled', true);
-                } else {
-                    $('#guardarEvento').prop('disabled', false);
-                    $('#crearEventoModal').modal('show');
-                    document.getElementById('eventoFechaInicio').value = info.dateStr;
+            const fechaSeleccionadaObj = new Date(info.dateStr);
+            const fechaActual = new Date();
+            fechaActual.setHours(0, 0, 0, 0);
 
-                    const fechaSiguiente = new Date(fechaSeleccionadaObj);
-                    fechaSiguiente.setDate(fechaSeleccionadaObj.getDate() + 1);
+            if (fechaSeleccionadaObj < fechaActual) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "No se puede agendar en una fecha que ya pasó!"
+                });
+                $('#guardarEvento').prop('disabled', true);
+            } else {
+                $('#guardarEvento').prop('disabled', false);
+                $('#crearEventoModal').modal('show');
+                document.getElementById('eventoFechaInicio').value = info.dateStr;
 
-                    const fechaSiguienteStr = fechaSiguiente.toISOString().split('T')[0];
-                    document.getElementById('eventoFechaFinal').value = fechaSiguienteStr;
-                    
-                }
-            
-            
-            
+                const fechaSiguiente = new Date(fechaSeleccionadaObj);
+                fechaSiguiente.setDate(fechaSeleccionadaObj.getDate() + 1);
+
+                const fechaSiguienteStr = fechaSiguiente.toISOString().split('T')[0];
+                document.getElementById('eventoFechaFinal').value = fechaSiguienteStr;
+
+            }
+
+
+
         },
         events: function (info, successCallback, failureCallback) {
             $.ajax({
@@ -70,6 +71,7 @@
                 type: 'GET',
                 success: function (response) {
                     if (response.success) {
+                        
                         if (rolUsuario == 1) {
                             $('#editarEventoId').val(response.data.ID);
                             $('#editarEventoTitulo').val(response.data.NOMBRE_EVENTO);
@@ -95,7 +97,7 @@
                                 text: "No tienes permiso para ver este evento."
                             });
                         }
-                            
+
                     } else {
                         Swal.fire({
                             icon: "error",
@@ -115,8 +117,34 @@
             });
         }
     });
-
+    
     calendar.render();
+
+    $(document).ready(function () {
+        
+        $('.eventoInvitados').select2({
+            language: "es",  
+            ajax: {
+                url: '/Calendario/ObtenerCorreosSeleccionados',  
+                type: 'GET',
+                dataType: 'json',
+                processResults: function (data) {
+                    
+                    return {
+                        results: data.results  
+                    };
+                }
+            }
+        });
+    });
+
+    $('.eventoInvitados').on('change', function () {
+        correosSeleccionados = $(this).val();
+        console.log("Correos seleccionados:", correosSeleccionados); 
+    });
+
+
+
 
     function editarEvento() {
         var eventoId = $('#editarEventoId').val();
@@ -156,15 +184,15 @@
                         icon: "success",
                         title: "Evento editado exitosamente"
                     });
-                    
+
                     var eventToUpdate = calendar.getEventById(eventoId);
                     eventToUpdate.setProp('title', titulo);
                     eventToUpdate.setProp('start', fechaInicio);
                     eventToUpdate.setProp('end', fechaFinal || null);
                     eventToUpdate.setExtendedProp('descripcion', descripcion);
-                    
 
-                    
+
+
                     $('#editarEventoModal').modal('hide');
                     location.reload();
 
@@ -193,7 +221,7 @@
     });
 
 
-    
+
     function eliminarEvento(event) {
         $.ajax({
             url: '/Calendario/EliminarEvento?id=' + event.id,
@@ -222,18 +250,31 @@
                 });
             }
         });
-        
-    }
+
+    } 
+
     
 
-    function agregarEvento() {
+    function agregarEvento(selectedUser) {
+        var correosSeleccionados = $('.eventoInvitados').val();
+        console.log("Correos seleccionados (en JS):", correosSeleccionados);
+
+        
+        if (!Array.isArray(correosSeleccionados)) {
+            correosSeleccionados = [correosSeleccionados];  
+        }
+
+        if (correosSeleccionados.length > 0) {
+            correosSeleccionados = correosSeleccionados.join(','); 
+            console.log("Correos seleccionados (después de join):", correosSeleccionados);
+        }
+
         var nombreEvento = $('#eventoTitulo').val();
         var descripcion = $('#eventoDescripcion').val();
         var fechaInicio = $('#eventoFechaInicio').val();
         var fechaFinal = $('#eventoFechaFinal').val();
         var color = $('#color').val();
 
-        // Validación de campos
         if (!nombreEvento || !fechaInicio || !fechaFinal) {
             Swal.fire({
                 icon: 'warning',
@@ -245,8 +286,6 @@
 
         var inicio = new Date(fechaInicio);
         var final = new Date(fechaFinal);
-
-        
         if (inicio > final) {
             Swal.fire({
                 icon: "error",
@@ -255,32 +294,36 @@
             return;
         }
 
+        
+
         var eventoData = {
             NOMBRE_EVENTO: nombreEvento,
             DESCRIPCION: descripcion,
             FECHA_INICIO: fechaInicio,
             FECHA_FINAL: fechaFinal,
-            COLOR: color
+            COLOR: color,
+            invitados: correosSeleccionados
         };
 
-        
+
+        console.log("Datos que se envían al backend:", eventoData);
         const swalLoading = Swal.fire({
             title: 'Cargando...',
             text: 'Por favor espera mientras se agrega el evento.',
             allowOutsideClick: false,
             didOpen: () => {
-                Swal.showLoading(); 
+                Swal.showLoading();
             }
         });
 
-        // Solicitud AJAX
+
         $.ajax({
             url: '/Calendario/AgregarEvento',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(eventoData),
             success: function (response) {
-                swalLoading.close(); 
+                swalLoading.close();
 
                 if (response.success) {
                     Swal.fire({
@@ -288,20 +331,24 @@
                         title: "Evento agregado exitosamente"
                     });
 
+
                     calendar.addEvent({
                         title: nombreEvento,
                         start: fechaInicio,
                         end: fechaFinal,
                         description: descripcion,
-                        color: color
+                        color: color,
+                        invitados: correosSeleccionados
                     });
 
-                   
+
                     $('#eventoTitulo').val('');
                     $('#eventoDescripcion').val('');
                     $('#eventoFechaInicio').val('');
                     $('#eventoFechaFinal').val('');
                     $('#color').val('');
+                    $('#eventoInvitados').val(null).trigger('change');
+
 
                     $('#crearEventoModal').modal('hide');
                 } else {
@@ -313,7 +360,7 @@
                 }
             },
             error: function (xhr, status, error) {
-                swalLoading.close(); 
+                swalLoading.close();
                 console.error('Error al agregar evento:', error);
                 Swal.fire({
                     icon: "error",
@@ -323,11 +370,21 @@
             }
         });
     }
-
-   
     $('#guardarEvento').on('click', function (event) {
         event.preventDefault();
         agregarEvento();
     });
+    
+
+   
+    
+    
 
 });
+
+    
+
+    
+
+
+

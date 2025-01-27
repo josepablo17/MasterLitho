@@ -39,6 +39,7 @@ namespace MasterLitho.Controllers
                         Session["ID_USUARIO"] = datos.ID_USUARIO;
                         Session["NOMBRE_USUARIO"] = datos.NOMBRE_USUARIO;
                         Session["rolUsuario"] = datos.ID_ROL;
+                        Session["correoUsuario"] = datos.CORREO_USUARIO;
 
                         return RedirectToAction("Index", "Home");
                     }

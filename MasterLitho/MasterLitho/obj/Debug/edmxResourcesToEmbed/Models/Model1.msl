@@ -47,6 +47,7 @@
           <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
           <ScalarProperty Name="FECHA_FINAL" ColumnName="FECHA_FINAL" />
           <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="invitados" ColumnName="invitados" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -98,7 +99,7 @@
       <EntityTypeMapping TypeName="LithoManagerModel.SOLICITUD_VACACIONES">
         <MappingFragment StoreEntitySet="SOLICITUD_VACACIONES">
           <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
-          <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
           <ScalarProperty Name="FECHA_SOLICITUD" ColumnName="FECHA_SOLICITUD" />
           <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
           <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />

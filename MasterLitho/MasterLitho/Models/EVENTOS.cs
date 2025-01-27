@@ -20,5 +20,6 @@ namespace MasterLitho.Models
         public System.DateTime FECHA_INICIO { get; set; }
         public System.DateTime FECHA_FINAL { get; set; }
         public string COLOR { get; set; }
+        public string invitados { get; set; }
     }
 }
