@@ -1,11 +1,10 @@
-﻿@model List<MasterLitho.Models.tVacaciones>
+﻿@model List <MasterLitho.Models.tVacaciones>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div id="content-wrapper" class="container">
-    <!-- Main Content -->
     <div id="content">
         <h1 class="my-4">Gestión y Aprobación de Solicitudes de Vacaciones</h1>
 
@@ -14,7 +13,7 @@
                 <div class="card-body">
                     <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de solicitudes</h5>
                     <div class="table-responsive">
-                        <table id="example" class="table table-bordered table-hover text-nowrap align-middle mb-0 w-100">
+                        <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
                             <thead class="table-dark">
                                 <tr>
                                     <th>Nombre usuario</th>
@@ -72,6 +71,10 @@
                             }
                         </select>
                     </div>
+                    <div class="form-group mt-3">
+                        <label for="comentario">Comentario</label>
+                        <textarea id="comentario" name="comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -82,29 +85,11 @@
     </div>
 </div>
 
-
 <script>
-
-    var jq = jQuery.noConflict();
-    jq(document).ready(function () {
-        jq('#example').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
-            }
-        });
-    });
-
     $(document).ready(function () {
-        $('#example').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
-            },
-            "order": [[1, "desc"]],
-            "paging": true,
-            "searching": true,
-            "info": true
-        });
+        inicializarDataTable('#solicitudesTable');
     });
+
 
     function abrirModal(id) {
         $('#solicitudId').val(id);
@@ -114,7 +99,7 @@
     function guardarEstado() {
         const idSolicitud = $('#solicitudId').val();
         const idEstado = $('#nuevoEstado').val();
-
+        const comentario = $('#comentario').val();
         if (!idEstado) {
             alert('Por favor, seleccione un estado válido.');
             return;
@@ -125,7 +110,8 @@
             type: 'POST',
             data: {
                 idSolicitud: idSolicitud,
-                idEstado: idEstado
+                idEstado: idEstado,
+                comentario: comentario
             },
             success: function (response) {
                 if (response.success) {

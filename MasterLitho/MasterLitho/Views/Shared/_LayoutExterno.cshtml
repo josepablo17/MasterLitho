@@ -6,25 +6,38 @@
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Estilos personalizados -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
     <style>
         body {
-            background-color: #F2F2F2 !important;
+            background-color: #f8f9fa !important;
+            font-family: 'Nunito', sans-serif;
         }
 
-     
+        .card {
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group-text {
+            border-radius: 1rem 0 0 1rem !important;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3 !important;
+            }
     </style>
 </head>
 
-<body>
-    <div class="text-center mt-4">
-        <img src="~/Styles/img/martelithocr-logo (1).png"
-             class="img-fluid rounded"
-             alt="Logo"
-             style="width: auto; height: auto; object-fit: contain;">
+<body class="bg-light">
+    <div class="text-center py-3">
+        <img src="~/Styles/img/martelithocr-logo (1).png" class="img-fluid" style="width: 300px; object-fit: contain;" alt="Logo">
     </div>
 
     @RenderBody()

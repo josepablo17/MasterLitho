@@ -42,6 +42,7 @@
     <Property Name="TIPO_ESTADO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="QUEJAS_REPORTES" Relationship="Self.FK__QUEJAS_RE__ID_ES__52593CB8" FromRole="ESTADO_SOLICITUD" ToRole="QUEJAS_REPORTES" />
     <NavigationProperty Name="SOLICITUD_VACACIONES" Relationship="Self.FK__SOLICITUD__ID_ES__5441852A" FromRole="ESTADO_SOLICITUD" ToRole="SOLICITUD_VACACIONES" />
+    <NavigationProperty Name="PLANILLA" Relationship="Self.FK_ESTADO_PLANILLA" FromRole="ESTADO_SOLICITUD" ToRole="PLANILLA" />
   </EntityType>
   <EntityType Name="EVENTOS">
     <Key>
@@ -75,7 +76,17 @@
     <Property Name="DEDUCCIONES" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
     <Property Name="BONOS" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
     <Property Name="SALARIO_NETO" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="DIAS_VACACIONES_TOMADOS" Type="Int32" Nullable="false" />
+    <Property Name="HORAS_EXTRAS" Type="Int32" />
+    <Property Name="MONTO_HORAS_EXTRAS" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="OTROS_BENEFICIOS" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="APORTE_SEGURIDAD_SOCIAL" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IMPUESTOS" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PERIODO_INICIO" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PERIODO_FIN" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ID_ESTADO" Type="Int32" />
     <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__PLANILLA__ID_EMP__5070F446" FromRole="PLANILLA" ToRole="EMPLEADO" />
+    <NavigationProperty Name="ESTADO_SOLICITUD" Relationship="Self.FK_ESTADO_PLANILLA" FromRole="PLANILLA" ToRole="ESTADO_SOLICITUD" />
   </EntityType>
   <EntityType Name="QUEJAS_REPORTES">
     <Key>
@@ -110,7 +121,7 @@
     <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="DIAS_SOLICITADOS" Type="Int32" Nullable="false" />
     <Property Name="ID_ESTADO" Type="Int32" Nullable="false" />
-    <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="ESTADO_SOLICITUD" Relationship="Self.FK__SOLICITUD__ID_ES__5441852A" FromRole="SOLICITUD_VACACIONES" ToRole="ESTADO_SOLICITUD" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK__SOLICITUD__ID_EM__5070F446" FromRole="SOLICITUD_VACACIONES" ToRole="USUARIO" />
     <NavigationProperty Name="SOLICITUD_VACACIONES1" Relationship="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" FromRole="SOLICITUD_VACACIONES" ToRole="SOLICITUD_VACACIONES1" />
@@ -240,6 +251,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ESTADO_PLANILLA">
+    <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="0..1" />
+    <End Role="PLANILLA" Type="Self.PLANILLA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_SOLICITUD">
+        <PropertyRef Name="ID_ESTADO" />
+      </Principal>
+      <Dependent Role="PLANILLA">
+        <PropertyRef Name="ID_ESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__USUARIO__ID_ROL__5629CD9C">
     <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
@@ -320,6 +343,10 @@
     <AssociationSet Name="FK__SOLICITUD__ID_ES__5441852A" Association="Self.FK__SOLICITUD__ID_ES__5441852A">
       <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTADO_PLANILLA" Association="Self.FK_ESTADO_PLANILLA">
+      <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
+      <End Role="PLANILLA" EntitySet="PLANILLA" />
     </AssociationSet>
     <AssociationSet Name="FK__USUARIO__ID_ROL__5629CD9C" Association="Self.FK__USUARIO__ID_ROL__5629CD9C">
       <End Role="ROL" EntitySet="ROL" />

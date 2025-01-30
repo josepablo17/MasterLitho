@@ -12,7 +12,7 @@ using MasterLitho.Models;
 
 namespace MasterLitho.Controllers
 {
-    public class MetodosComunesController
+    public class MetodosComunesController : Controller
     {
         public void EnviarCorreo(string destino, string asunto, string contenido)
         {
@@ -31,6 +31,31 @@ namespace MasterLitho.Controllers
             cliente.Credentials = new System.Net.NetworkCredential(cuenta, contrasena);
             cliente.EnableSsl = true;
             cliente.Send(message);
+        }
+
+
+        public void CargarEstados()
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var datos = context.ESTADO_SOLICITUD.ToList();
+                var estados = new List<SelectListItem>();
+
+                estados.Add(new SelectListItem
+                {
+                    Text = "Seleccione",
+                    Value = string.Empty
+                });
+                foreach (var item in datos)
+                {
+                    estados.Add(new SelectListItem
+                    {
+                        Text = item.TIPO_ESTADO,
+                        Value = item.ID_ESTADO.ToString()
+                    });
+                }
+                ViewBag.listaEstados = estados;
+            }
         }
     }
 }

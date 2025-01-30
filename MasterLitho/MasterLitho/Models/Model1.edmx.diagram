@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="df570200227145c0a9d7c47a82a96de3" Name="Diagram1">
-        <EntityTypeShape EntityType="LithoManagerModel.CONSTANCIA_LABORAL" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.DEPARTAMENTO" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.EMPLEADO" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+      <Diagram DiagramId="a0edda2975584661b75b713f6a5eb876" Name="Diagram1">
+        <EntityTypeShape EntityType="LithoManagerModel.CONSTANCIA_LABORAL" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.DEPARTAMENTO" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.EMPLEADO" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.ESTADO_SOLICITUD" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.EVENTOS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.FORMULARIO" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.PLANILLA" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.QUEJAS_REPORTES" Width="1.5" PointX="10.5" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.ROL" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.SOLICITUD_VACACIONES" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.FORMULARIO" Width="1.5" PointX="7.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.PLANILLA" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.QUEJAS_REPORTES" Width="1.5" PointX="10.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.ROL" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.SOLICITUD_VACACIONES" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.USUARIO" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.USUARIO" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="LithoManagerModel.FK__CONSTANCI__ID_EM__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__EMPLEADO__ID_DEP__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__EMPLEADO__ID_USU__4E88ABD4" ManuallyRouted="false" />
@@ -25,6 +25,7 @@
         <AssociationConnector Association="LithoManagerModel.FK__QUEJAS_RE__ID_EM__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__QUEJAS_RE__ID_ES__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__SOLICITUD__ID_ES__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="LithoManagerModel.FK_ESTADO_PLANILLA" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__USUARIO__ID_ROL__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__SOLICITUD__ID_EM__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" ManuallyRouted="false" />

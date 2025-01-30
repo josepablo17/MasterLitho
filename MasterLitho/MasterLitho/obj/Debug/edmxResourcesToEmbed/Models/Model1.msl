@@ -70,6 +70,15 @@
           <ScalarProperty Name="DEDUCCIONES" ColumnName="DEDUCCIONES" />
           <ScalarProperty Name="BONOS" ColumnName="BONOS" />
           <ScalarProperty Name="SALARIO_NETO" ColumnName="SALARIO_NETO" />
+          <ScalarProperty Name="DIAS_VACACIONES_TOMADOS" ColumnName="DIAS_VACACIONES_TOMADOS" />
+          <ScalarProperty Name="HORAS_EXTRAS" ColumnName="HORAS_EXTRAS" />
+          <ScalarProperty Name="MONTO_HORAS_EXTRAS" ColumnName="MONTO_HORAS_EXTRAS" />
+          <ScalarProperty Name="OTROS_BENEFICIOS" ColumnName="OTROS_BENEFICIOS" />
+          <ScalarProperty Name="APORTE_SEGURIDAD_SOCIAL" ColumnName="APORTE_SEGURIDAD_SOCIAL" />
+          <ScalarProperty Name="IMPUESTOS" ColumnName="IMPUESTOS" />
+          <ScalarProperty Name="PERIODO_INICIO" ColumnName="PERIODO_INICIO" />
+          <ScalarProperty Name="PERIODO_FIN" ColumnName="PERIODO_FIN" />
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
