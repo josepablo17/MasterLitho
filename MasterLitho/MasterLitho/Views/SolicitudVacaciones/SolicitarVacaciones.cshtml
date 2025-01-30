@@ -1,128 +1,85 @@
-﻿@{
+﻿@model MasterLitho.Models.tVacaciones
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitud de Vacaciones</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 
-    <div class="container mt-5">
-        <h2 class="text-center">Solicitar Vacaciones</h2>
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h3 class="fw-bold mb-0">Solicitud de Vacaciones</h3>
+                </div>
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("SolicitarVacaciones", "SolicitudVacaciones"))
+                    {
+                        @Html.HiddenFor(m => m.idUsuario)
 
-        <!-- Formulario de Solicitud de Vacaciones -->
-        <form id="vacation-request-form">
-            <div class="mb-3">
-                <label for="start-date" class="form-label">Fecha de inicio</label>
-                <input type="date" class="form-control" id="start-date" required>
-            </div>
-            <div class="mb-3">
-                <label for="end-date" class="form-label">Fecha de fin</label>
-                <input type="date" class="form-control" id="end-date" required>
-            </div>
-            <div class="mb-3">
-                <label for="days-off" class="form-label">Días de vacaciones disponibles</label>
-                <input type="number" class="form-control" id="days-off" value="20" disabled> <!-- Ejemplo de días disponibles -->
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Enviar solicitud</button>
-            </div>
-        </form>
+                        <!-- Mostrar días disponibles -->
+                        <div class="mb-4">
+                            <label for="diasDisponibles" class="form-label fw-semibold">Días Disponibles</label>
+                            @Html.TextBoxFor(m => m.diasVacacionesDisponibles, new { @class = "form-control rounded-pill", @readonly = "readonly" })
+                        </div>
 
-        <!-- Mensaje de Error o Éxito -->
-        <div id="message" class="alert d-none"></div>
+                        <!-- Fecha de inicio -->
+                        <div class="mb-4">
+                            <label for="FechaInicio" class="form-label fw-semibold">Fecha de inicio</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-calendar"></i></span>
+                                @Html.TextBoxFor(m => m.fechaInicio, new { @class = "form-control rounded-end-pill", @type = "date", @required = "required" })
+                            </div>
+                        </div>
 
-        <hr>
+                        <!-- Fecha de fin -->
+                        <div class="mb-4">
+                            <label for="FechaFin" class="form-label fw-semibold">Fecha de fin</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="bi bi-calendar"></i></span>
+                                @Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control rounded-end-pill", @type = "date", @required = "required" })
+                            </div>
+                        </div>
 
-        <!-- Visualización del estado de la solicitud -->
-        <h3>Estado de mi solicitud</h3>
-        <div id="vacation-status">
-            <div class="alert alert-info" role="alert" id="status-pending" style="display: none;">
-                <strong>Estado:</strong> Pendiente
-            </div>
-            <div class="alert alert-success" role="alert" id="status-approved" style="display: none;">
-                <strong>Estado:</strong> Aprobada
-            </div>
-            <div class="alert alert-danger" role="alert" id="status-rejected" style="display: none;">
-                <strong>Estado:</strong> Rechazada
+                        <!-- Comentario -->
+                        <div class="mb-4">
+                            <label for="Comentario" class="form-label fw-semibold">Comentario</label>
+                            @Html.TextAreaFor(m => m.comentario, new { @class = "form-control rounded", @placeholder = "Añade un comentario (opcional)", rows = 3 })
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fs-5">Enviar Solicitud</button>
+                    }
+
+                    <!-- Mensaje de error -->
+                    @if (!string.IsNullOrEmpty(ViewBag.MensajePantalla))
+                    {
+                        <div class="alert alert-warning mt-3">
+                            @ViewBag.MensajePantalla
+                        </div>
+                    }
+
+                    <!-- Alerta de solicitud pendiente -->
+                    @if (ViewBag.MostrarAlerta != null && (bool)ViewBag.MostrarAlerta)
+                    {
+                        <script>
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '¡Solicitud pendiente!',
+                                text: 'No puedes realizar una nueva solicitud mientras tienes una en estado pendiente.',
+                                confirmButtonText: 'Entendido',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary'
+                                },
+                                buttonsStyling: false
+                            }).then(() => {
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            });
+                        </script>
+                    }
+                </div>
             </div>
         </div>
-
-        <!-- Notificación de Cambio de Estado -->
-        <div id="status-change-notification" class="alert alert-warning mt-3 d-none">
-            <strong>Notificación:</strong> El estado de tu solicitud ha cambiado.
-        </div>
-
     </div>
+</div>
 
-    <script>
-        // Función para simular la solicitud de vacaciones
-        document.getElementById('vacation-request-form').addEventListener('submit', function (event) {
-            event.preventDefault();
 
-            let startDate = document.getElementById('start-date').value;
-            let endDate = document.getElementById('end-date').value;
-            let daysOff = document.getElementById('days-off').value;
-
-            if (startDate && endDate && parseInt(daysOff) > 0) {
-                // Simulación de verificación de días y superposición
-                let requestValid = true;
-                let availableDays = 20; // Ejemplo: días disponibles
-                let daysRequested = Math.floor((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)) + 1;
-
-                if (daysRequested > availableDays) {
-                    showMessage('Días de vacaciones insuficientes', 'danger');
-                    return;
-                }
-
-                // Simulación de solicitud
-                let isOverlap = false; // Simular si hay una superposición de fechas
-                if (isOverlap) {
-                    showMessage('Solicitud de vacaciones superpuesta', 'danger');
-                    return;
-                }
-
-                // Mostrar solicitud pendiente
-                showStatus('Pendiente');
-                showMessage('Solicitud enviada correctamente', 'success');
-            } else {
-                showMessage('Por favor, complete todos los campos', 'danger');
-            }
-        });
-
-        // Función para mostrar el estado de la solicitud
-        function showStatus(status) {
-            document.getElementById('status-pending').style.display = 'none';
-            document.getElementById('status-approved').style.display = 'none';
-            document.getElementById('status-rejected').style.display = 'none';
-
-            if (status === 'Pendiente') {
-                document.getElementById('status-pending').style.display = 'block';
-            } else if (status === 'Aprobada') {
-                document.getElementById('status-approved').style.display = 'block';
-            } else if (status === 'Rechazada') {
-                document.getElementById('status-rejected').style.display = 'block';
-            }
-        }
-
-        // Función para mostrar mensajes de estado
-        function showMessage(message, type) {
-            const messageDiv = document.getElementById('message');
-            messageDiv.className = `alert alert-${type}`;
-            messageDiv.innerHTML = message;
-            messageDiv.classList.remove('d-none');
-        }
-
-        // Simulación de notificación de cambio de estado
-        setTimeout(() => {
-            document.getElementById('status-change-notification').classList.remove('d-none');
-        }, 5000); // 5 segundos después de enviar la solicitud
-    </script>
-
-</body>
-</html>

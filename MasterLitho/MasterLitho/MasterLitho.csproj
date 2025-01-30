@@ -134,6 +134,7 @@
     <Compile Include="Controllers\FormulariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MetodosComunesController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
     <Compile Include="Controllers\PlanillasController.cs" />
     <Compile Include="Controllers\QuejasReportesController.cs" />
@@ -186,8 +187,12 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tEventos.cs" />
     <Compile Include="Models\tUsuario.cs" />
+    <Compile Include="Models\tVacaciones.cs" />
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -408,6 +413,7 @@
     <Content Include="Styles\js\sb-admin-2.min.js" />
     <Content Include="Styles\TemplateCorreoEventos.html" />
     <Content Include="Styles\TemplateCorreo.html" />
+    <Content Include="Styles\TemplateCorreoSolicitudVacaciones.html" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.js" />
@@ -2089,7 +2095,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\SolicitudVacaciones\ConsultarVacaciones.cshtml" />
+    <Content Include="Views\SolicitudVacaciones\GestionarVacaciones.cshtml" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.js.map" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.js.map" />
@@ -2283,9 +2289,11 @@
     <Content Include="Views\SolicitudVacaciones\ConsultarDiasVacaciones.cshtml" />
     <Content Include="Views\Formularios\ConsultarFormularios.cshtml" />
     <Content Include="Views\Noticias\ConsultarNoticias.cshtml" />
+    <Content Include="Views\Calendario\ConsultarCalendario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MetodosComunes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

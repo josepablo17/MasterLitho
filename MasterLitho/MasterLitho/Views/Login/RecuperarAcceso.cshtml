@@ -1,0 +1,78 @@
+﻿@model MasterLitho.Models.tUsuario
+
+@{
+    ViewBag.Title = "RecuperarAcceso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <div class="position-relative min-vh-100 d-flex align-items-center justify-content-center" style="background-color: white;">
+        <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="row justify-content-center w-100">
+                <div class="col-md-8 col-lg-6 col-xxl-3">
+                    <div class="card shadow-lg border-0 rounded-3">
+                        <div class="card-body p-5">
+                            <a href="@Url.Action("Index","Home")" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                <img src="~/Styles/images/logo.jpg" alt="" class="img-fluid" style="width: 150px;">
+                            </a>
+
+                            @if (ViewBag.MensajePantalla != null)
+                            {
+                                <div class="alert alert-danger text-center" role="alert">
+                                    @ViewBag.MensajePantalla
+                                </div>
+                            }
+
+                            @using (Html.BeginForm("CambiarContrasena", "Login"))
+                            {
+                                <h3 class="text-center fw-bold mb-4" style="color: #007bff;">Cambiar Contraseña</h3>
+
+                                <div class="mb-3 position-relative">
+                                    <label for="PassWord1" class="form-label">Contraseña Actual</label>
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.contrasenaAnterior, new { @class = "form-control rounded-pill pe-5", @type = "password", @id = "PassWord1", @style = "border-color: #007bff;" })
+                                        <span class="input-group-text bg-white border-0 position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="toggleVisibility('PassWord1')">
+                                            <i class="bi bi-eye" style="color: #007bff;"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 position-relative">
+                                    <label for="PassWord2" class="form-label">Nueva Contraseña</label>
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.contrasena, new { @class = "form-control rounded-pill pe-5", @type = "password", @id = "PassWord2", @style = "border-color: #007bff;" })
+                                        <span class="input-group-text bg-white border-0 position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="toggleVisibility('PassWord2')">
+                                            <i class="bi bi-eye" style="color: #007bff;"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 position-relative">
+                                    <label for="PassWord3" class="form-label">Confirmar Contraseña</label>
+                                    <div class="input-group">
+                                        @Html.TextBoxFor(m => m.confirmarContrasena, new { @class = "form-control rounded-pill pe-5", @type = "password", @id = "PassWord3", @style = "border-color: #007bff;" })
+                                        <span class="input-group-text bg-white border-0 position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="toggleVisibility('PassWord3')">
+                                            <i class="bi bi-eye" style="color: #007bff;"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+
+                                <input type="submit" onclick="mostrarNotificacionExito(event, this)" class="btn btn-primary btn-block w-100 rounded-pill py-2 fs-5 mb-3" value="Realizar Cambio" style="background-color: #007bff; border-color: #007bff;" />
+
+
+                                <a class="btn btn-outline-secondary btn-block w-100 rounded-pill py-2 fs-5 mb-3" href="@Url.Action("Index", "Home")">Volver</a>
+
+
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Styles/FuncionesJS/CambiarContrasena.js"></script>

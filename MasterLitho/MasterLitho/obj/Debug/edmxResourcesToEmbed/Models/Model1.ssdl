@@ -98,6 +98,16 @@
     <Property Name="ID_ESTADO" Type="int" Nullable="false" />
     <Property Name="COMENTARIO" Type="varchar" MaxLength="255" Nullable="false" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="USUARIO">
     <Key>
       <PropertyRef Name="ID_USUARIO" />
@@ -256,6 +266,7 @@
     <EntitySet Name="QUEJAS_REPORTES" EntityType="Self.QUEJAS_REPORTES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SOLICITUD_VACACIONES" EntityType="Self.SOLICITUD_VACACIONES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__CONSTANCI__ID_EM__4CA06362" Association="Self.FK__CONSTANCI__ID_EM__4CA06362">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />

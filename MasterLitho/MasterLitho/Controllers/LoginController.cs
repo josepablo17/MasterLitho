@@ -79,10 +79,57 @@ namespace MasterLitho.Controllers
                     contenido = contenido.Replace("@@ESTADO_CONTRASENA_TEMPORAL", datos.CONTRASENA);
                     contenido = contenido.Replace("@@FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL", datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL.ToString("dd/MM/yyyy HH:mm"));
 
-                    EnviarCorreo(datos.CORREO_USUARIO, "Contraseña Temporal", contenido);
+                    var metodosComunes = new MetodosComunesController();
+
+                    metodosComunes.EnviarCorreo(datos.CORREO_USUARIO, "Contraseña Temporal", contenido);
                     return RedirectToAction("InicioSesion", "Login");
                 }
                 ViewBag.MensajePantalla = "Su información no se ha podido validar correctamente";
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult CambiarContrasena()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult CambiarContrasena(tUsuario model)
+        {
+            if (model.contrasenaAnterior == model.contrasena)
+            {
+                ViewBag.MensajePantalla = "Debe ingresar una contraseña diferente";
+                return View();
+            }
+            else if (model.contrasena != model.confirmarContrasena)
+            {
+                ViewBag.MensajePantalla = "Sus contraseñas no coinciden";
+                return View();
+            }
+            using (var context = new LithoManagerEntities())
+            {
+                int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+                var datos = context.USUARIO.Where(u => u.ID_USUARIO == idUsuario).FirstOrDefault();
+
+                if (datos != null)
+                {
+                    if (datos.CONTRASENA != model.contrasenaAnterior)
+                    {
+                        ViewBag.MensajePantalla = "La contraseña actual no coincide";
+                        return View();
+                    }
+
+                    datos.CONTRASENA = model.contrasena;
+                    datos.ESTADO_CONTRASENA_TEMPORAL = false;
+                    datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now;
+                    context.SaveChanges();
+                    return RedirectToAction("Index", "Home");
+                }
+
+                ViewBag.MensajePantalla = "Sus credenciales no se han podido actualizar correctamente";
                 return View();
             }
         }
@@ -98,27 +145,6 @@ namespace MasterLitho.Controllers
                 res.Append(valid[rnd.Next(valid.Length)]);
             }
             return res.ToString();
-        }
-
-        private void EnviarCorreo(string destino, string asunto, string contenido)
-        {
-            string cuenta = ConfigurationManager.AppSettings["Correo"].ToString();
-            string contrasena = ConfigurationManager.AppSettings["Contrasena"].ToString();
-
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress(cuenta);
-            message.To.Add(new MailAddress(destino));
-            message.Subject = asunto;
-            message.Body = contenido;
-            message.Priority = MailPriority.Normal;
-            message.IsBodyHtml = true;
-
-            SmtpClient cliente = new SmtpClient("smtp.office365.com", 587);
-            cliente.Credentials = new System.Net.NetworkCredential(cuenta, contrasena);
-            cliente.EnableSsl = true;
-            cliente.Send(message);
-        }
+        }       
     }
-
-
 }
