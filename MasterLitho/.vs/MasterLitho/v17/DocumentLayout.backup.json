@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\CalendarioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:MasterLitho\\Controllers\\CalendarioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\styles\\funcionesjs\\funcionescalendario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\funcionesjs\\funcionescalendario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,15 +38,28 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FuncionesCalendario.js",
+              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "RelativeDocumentMoniker": "MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "RelativeToolTip": "MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAUwJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-28T20:06:55.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Web.config",
-              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Web.config",
-              "RelativeDocumentMoniker": "MasterLitho\\Web.config",
-              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Web.config",
-              "RelativeToolTip": "MasterLitho\\Web.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-01-27T00:57:42.633Z",
+              "Title": "CalendarioController.cs",
+              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\CalendarioController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\CalendarioController.cs",
+              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\CalendarioController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\CalendarioController.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAcwGEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T20:05:19.061Z",
               "EditorCaption": ""
             }
           ]

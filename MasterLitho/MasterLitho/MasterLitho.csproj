@@ -2290,10 +2290,10 @@
     <Content Include="Views\Formularios\ConsultarFormularios.cshtml" />
     <Content Include="Views\Noticias\ConsultarNoticias.cshtml" />
     <Content Include="Views\Calendario\ConsultarCalendario.cshtml" />
+    <Content Include="Views\Login\RecuperarAcceso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MetodosComunes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

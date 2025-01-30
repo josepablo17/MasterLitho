@@ -74,11 +74,35 @@ namespace MasterLitho.Controllers
 
 
         [HttpGet]
-        public JsonResult ObtenerCorreosSeleccionados()
+        public JsonResult ObtenerCorreosSeleccionados(string q)
         {
             using (var context = new LithoManagerEntities())
             {
-                var empleados = context.USUARIO.Select(emp => new { emp.NOMBRE_USUARIO, emp.CORREO_USUARIO }).ToList();
+                var correoLogueado = Session["correoUsuario"]?.ToString();
+
+                if (string.IsNullOrEmpty(correoLogueado))
+                {
+                    return Json(new { results = new List<object>() }, JsonRequestBehavior.AllowGet);
+                }
+
+                
+                var empleadosQuery = context.USUARIO
+                    .Where(emp => emp.CORREO_USUARIO != correoLogueado);
+
+                
+                if (!string.IsNullOrEmpty(q))
+                {
+                    empleadosQuery = empleadosQuery
+                        .Where(emp => emp.NOMBRE_USUARIO.Contains(q));
+                }
+
+                var empleados = empleadosQuery
+                    .Select(emp => new
+                    {
+                        emp.NOMBRE_USUARIO,
+                        emp.CORREO_USUARIO
+                    })
+                    .ToList();
 
                 var resultados = empleados.Select(emp => new
                 {
@@ -89,6 +113,7 @@ namespace MasterLitho.Controllers
                 return Json(new { results = resultados }, JsonRequestBehavior.AllowGet);
             }
         }
+
 
 
 

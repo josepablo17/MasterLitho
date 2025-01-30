@@ -120,27 +120,35 @@
     
     calendar.render();
 
+    
+
     $(document).ready(function () {
-        
         $('.eventoInvitados').select2({
-            language: "es",  
+            language: "es",
             ajax: {
-                url: '/Calendario/ObtenerCorreosSeleccionados',  
+                url: '/Calendario/ObtenerCorreosSeleccionados',
                 type: 'GET',
                 dataType: 'json',
+                delay: 250,  
+                data: function (params) {
+                    return {
+                        q: params.term  
+                    };
+                },
                 processResults: function (data) {
                     
                     return {
-                        results: data.results  
+                        results: data.results
                     };
                 }
-            }
+            },
+            minimumInputLength: 0 
         });
     });
 
     $('.eventoInvitados').on('change', function () {
-        correosSeleccionados = $(this).val();
-        console.log("Correos seleccionados:", correosSeleccionados); 
+        var correosSeleccionados = $(this).val();
+        console.log("Correos seleccionados:", correosSeleccionados);
     });
 
 
