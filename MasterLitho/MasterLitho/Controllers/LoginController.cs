@@ -72,7 +72,7 @@ namespace MasterLitho.Controllers
                     context.SaveChanges();
 
 
-                    string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Styles\\TemplateCorreo.html";
+                    string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Styles\\TemplateCorreoRecuperarContrasena.html";
                     string contenido = System.IO.File.ReadAllText(ruta);
 
                     contenido = contenido.Replace("@@NOMBRE_USUARIO", datos.NOMBRE_USUARIO);
@@ -82,7 +82,7 @@ namespace MasterLitho.Controllers
                     var metodosComunes = new MetodosComunesController();
 
                     metodosComunes.EnviarCorreo(datos.CORREO_USUARIO, "Contraseña Temporal", contenido);
-                    return RedirectToAction("InicioSesion", "Login");
+                    return RedirectToAction("IniciarSesion", "Login");
                 }
                 ViewBag.MensajePantalla = "Su información no se ha podido validar correctamente";
                 return View();

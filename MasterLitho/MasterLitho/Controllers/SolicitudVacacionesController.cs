@@ -10,6 +10,31 @@ namespace MasterLitho.Controllers
 {
     public class SolicitudVacacionesController : Controller
     {
+
+        public void CargarEstados()
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var datos = context.ESTADO_SOLICITUD.ToList();
+                var estados = new List<SelectListItem>();
+
+                estados.Add(new SelectListItem
+                {
+                    Text = "Seleccione",
+                    Value = string.Empty
+                });
+                foreach (var item in datos)
+                {
+                    estados.Add(new SelectListItem
+                    {
+                        Text = item.TIPO_ESTADO,
+                        Value = item.ID_ESTADO.ToString()
+                    });
+                }
+                ViewBag.listaEstados = estados;
+            }
+        }
+
         [HttpGet]
         public ActionResult GestionarVacaciones()
         {
@@ -38,29 +63,38 @@ namespace MasterLitho.Controllers
             }
         }
 
-        public void CargarEstados()
+        [HttpGet]
+        public ActionResult ConsultarMisSolicitudes()
         {
+            int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.ESTADO_SOLICITUD.ToList();
-                var estados = new List<SelectListItem>();
+                var datos = context.SOLICITUD_VACACIONES.Where(s => s.ID_USUARIO == idUsuario)
+                    .ToList();
 
-                estados.Add(new SelectListItem
-                {
-                    Text = "Seleccione",
-                    Value = string.Empty
-                });
+                var solicitudes = new List<tVacaciones>();
+
                 foreach (var item in datos)
                 {
-                    estados.Add(new SelectListItem
+                    solicitudes.Add(new tVacaciones
                     {
-                        Text = item.TIPO_ESTADO,
-                        Value = item.ID_ESTADO.ToString()
-                    });
+                        idSolicitud = item.ID_SOLICITUD,
+                        nombreUsuario = item.USUARIO.NOMBRE_USUARIO,
+                        fechaSolicitud = item.FECHA_SOLICITUD,
+                        fechaInicio = item.FECHA_INICIO,
+                        fechaFin = item.FECHA_FIN,
+                        diasSolicitados = item.DIAS_SOLICITADOS,
+                        estado = item.ID_ESTADO,
+                        nombreEstado = item.ESTADO_SOLICITUD.TIPO_ESTADO,
+                        comentario = item.COMENTARIO
+                    });    
                 }
-                ViewBag.listaEstados = estados;
+                return View(solicitudes);
             }
-        }
+
+        } 
+    
 
         private string GenerarContenidoCorreo(int idSolicitud)
         {
@@ -95,33 +129,37 @@ namespace MasterLitho.Controllers
 
 
         [HttpPost]
-        public JsonResult EditarEstado(int idSolicitud, int idEstado)
+        public JsonResult EditarEstado(int idSolicitud, int idEstado, string comentario)
         {
             using (var context = new LithoManagerEntities())
             {
                 try
                 {
+                    // Buscar la solicitud de vacaciones
                     var solicitud = context.SOLICITUD_VACACIONES.FirstOrDefault(s => s.ID_SOLICITUD == idSolicitud);
                     if (solicitud == null)
                     {
                         return Json(new { success = false, message = "Solicitud no encontrada." });
                     }
 
+                    // Buscar el empleado relacionado con la solicitud
                     var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == solicitud.ID_USUARIO);
                     if (empleado == null)
                     {
                         return Json(new { success = false, message = "Empleado no encontrado." });
                     }
 
+                    // Buscar el usuario relacionado con la solicitud
                     var usuario = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == solicitud.ID_USUARIO);
                     if (usuario == null)
                     {
                         return Json(new { success = false, message = "Usuario no encontrado." });
                     }
-                    // Obtener el estado actual
+
+                    // Obtener el estado actual de la solicitud
                     int estadoActual = solicitud.ID_ESTADO;
 
-                    // Ajustar días disponibles según el nuevo estado
+                    // Ajustar días disponibles del empleado según el cambio de estado
                     if (estadoActual != idEstado)
                     {
                         if (estadoActual == 1 || estadoActual == 3) // Si estaba pendiente o aceptado
@@ -137,10 +175,15 @@ namespace MasterLitho.Controllers
 
                     // Actualizar el estado de la solicitud
                     solicitud.ID_ESTADO = idEstado;
+
+                    // Guardar el comentario del administrador
+                    solicitud.COMENTARIO = comentario; 
+
+                    // Guardar los cambios en la base de datos
                     context.SaveChanges();
 
                     // Si el estado es "aceptado", enviar un correo al usuario
-                    if (idEstado == 3) 
+                    if (idEstado == 3)
                     {
                         var metodosComunes = new MetodosComunesController();
                         string contenidoCorreo = GenerarContenidoCorreo(idSolicitud);
@@ -155,8 +198,6 @@ namespace MasterLitho.Controllers
                 }
             }
         }
-
-
 
         [HttpGet]
         public ActionResult SolicitarVacaciones()
@@ -237,7 +278,6 @@ namespace MasterLitho.Controllers
                         FECHA_FIN = Model.fechaFin,
                         DIAS_SOLICITADOS = diasSolicitados,
                         ID_ESTADO = 1,
-                        COMENTARIO = Model.comentario
                     };
 
                     // Restar los días solicitados de las vacaciones disponibles
@@ -258,10 +298,27 @@ namespace MasterLitho.Controllers
             }
         }
 
-        [HttpGet]
         public ActionResult ConsultarDiasVacaciones()
         {
-            return View();
+            int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+
+            using (var context = new LithoManagerEntities())
+            {
+                var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == idUsuario);
+
+                if (empleado == null)
+                {
+                    ViewBag.MensajeError = "No se encontró información de empleado asociada al usuario.";
+                    return View(); 
+                }
+
+                // Obtén el saldo de vacaciones del empleado
+                var saldoVacaciones = empleado.DIAS_VACACIONES_DISPONIBLES; 
+
+                ViewBag.SaldoVacaciones = saldoVacaciones;
+                return View();
+            }
         }
+
     }
 }

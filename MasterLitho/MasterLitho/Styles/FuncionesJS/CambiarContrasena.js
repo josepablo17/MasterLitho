@@ -16,11 +16,22 @@
     });
 }
 
-function toggleVisibility(id) {
-    var input = document.getElementById(id);
-    if (input.type === "password") {
-        input.type = "text";
-    } else {
-        input.type = "password";
+function toggleIconVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(`icon-${inputId}`);
+
+    if (input && icon) {
+        if (input.value.trim() !== "") {
+            icon.style.display = "flex"; // Muestra el ícono
+        } else {
+            icon.style.display = "none"; // Oculta el ícono
+        }
+    }
+}
+
+function toggleVisibility(inputId) {
+    const input = document.getElementById(inputId);
+    if (input) {
+        input.type = input.type === "password" ? "text" : "password";
     }
 }

@@ -1,0 +1,125 @@
+﻿@model List<MasterLitho.Models.tVacaciones>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content-wrapper" class="container">
+    <div id="content">
+        <h1 class="my-4">Gestión y Aprobación de Solicitudes de Vacaciones</h1>
+
+        <div class="container-fluid">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de solicitudes</h5>
+                    <div class="table-responsive">
+                        <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Fecha de la solicitud</th>
+                                    <th>Fecha inicio</th>
+                                    <th>Fecha fin</th>
+                                    <th>Días solicitados</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr data-id="@item.idSolicitud">
+                                        <td>@item.fechaSolicitud.ToString("dd-MM-yyyy")</td>
+                                        <td>@item.fechaInicio.ToString("dd-MM-yyyy")</td>
+                                        <td>@item.fechaFin.ToString("dd-MM-yyyy")</td>
+                                        <td>@item.diasSolicitados</td>
+                                        <td class="estado-columna">@item.nombreEstado</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModal(this)">Ver información</button>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="detalleSolicitudModal" tabindex="-1" role="dialog" aria-labelledby="detalleSolicitudModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleSolicitudModalLabel">Detalles de la Solicitud</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="detalleFechaSolicitud">Fecha de la Solicitud</label>
+                        <input type="text" id="detalleFechaSolicitud" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="detalleFechaInicio">Fecha de Inicio</label>
+                        <input type="text" id="detalleFechaInicio" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="detalleFechaFin">Fecha de Fin</label>
+                        <input type="text" id="detalleFechaFin" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="detalleDiasSolicitados">Días Solicitados</label>
+                        <input type="text" id="detalleDiasSolicitados" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="detalleEstado">Estado</label>
+                        <input type="text" id="detalleEstado" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="detalleComentario">Comentario del Administrador</label>
+                        <textarea id="detalleComentario" class="form-control" rows="3" readonly></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        inicializarDataTable('#solicitudesTable');
+    });
+
+    function abrirModal(button) {
+        const data = $(button).data('solicitud'); // Obtén los datos del atributo JSON
+
+        // Formatear las fechas al formato deseado
+        const fechaSolicitud = new Date(data.fechaSolicitud).toLocaleDateString('es-ES');
+        const fechaInicio = new Date(data.fechaInicio).toLocaleDateString('es-ES');
+        const fechaFin = new Date(data.fechaFin).toLocaleDateString('es-ES');
+
+        // Asignar los valores al modal
+        $('#detalleFechaSolicitud').val(fechaSolicitud);
+        $('#detalleFechaInicio').val(fechaInicio);
+        $('#detalleFechaFin').val(fechaFin);
+        $('#detalleDiasSolicitados').val(data.diasSolicitados);
+        $('#detalleEstado').val(data.nombreEstado);
+        $('#detalleComentario').val(data.comentario);
+
+        // Abrir el modal
+        $('#detalleSolicitudModal').modal('show');
+    }
+
+
+</script>
+

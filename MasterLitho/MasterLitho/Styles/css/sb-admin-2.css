@@ -10,6 +10,64 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+/* En tu archivo CSS */
+.sidebar {
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.sidebar-admin {
+    background-color: #dc3545; /* Color para rol 1 */
+}
+
+.sidebar-employee {
+    background-color: #007bff; /* Color para rol 2 */
+}
+
+.sidebar .nav-link {
+    color: #ffffff; /* Color del texto */
+}
+
+    .sidebar .nav-link:hover {
+        color: #f8f9fa; /* Color del texto al pasar el mouse */
+    }
+
+.sidebar .sidebar-brand-text {
+    color: #ffffff; /* Color del texto de la marca */
+}
+
+/* Tabla más oscura */
+#solicitudesTable {
+    background-color: #2c2f33; /* Fondo oscuro */
+    color: #f5f5f5; /* Texto claro */
+    border-collapse: separate;
+    border-spacing: 0; /* Para separar los bordes */
+}
+
+    /* Cabecera más oscura */
+    #solicitudesTable thead {
+        background-color: #23272a; /* Fondo aún más oscuro */
+        color: #ffffff; /* Texto blanco */
+    }
+
+    /* Bordes oscuros entre filas */
+    #solicitudesTable tbody tr {
+        border-bottom: 2px solid #1c1e22; /* Borde entre filas más oscuro */
+    }
+
+        /* Resaltar fila al pasar el mouse */
+        #solicitudesTable tbody tr:hover {
+            background-color: #3e4146; /* Fondo más claro al hacer hover */
+        }
+
+        /* Botones en la tabla */
+        #solicitudesTable tbody tr td .btn {
+            font-size: 0.875rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+
 :root {
   --blue: #4e73df;
   --indigo: #6610f2;

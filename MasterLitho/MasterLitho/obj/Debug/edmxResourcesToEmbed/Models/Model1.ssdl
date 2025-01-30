@@ -65,6 +65,15 @@
     <Property Name="DEDUCCIONES" Type="decimal" Precision="12" Scale="2" Nullable="false" />
     <Property Name="BONOS" Type="decimal" Precision="12" Scale="2" Nullable="false" />
     <Property Name="SALARIO_NETO" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="DIAS_VACACIONES_TOMADOS" Type="int" Nullable="false" />
+    <Property Name="HORAS_EXTRAS" Type="int" />
+    <Property Name="MONTO_HORAS_EXTRAS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="OTROS_BENEFICIOS" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="APORTE_SEGURIDAD_SOCIAL" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IMPUESTOS" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PERIODO_INICIO" Type="date" Nullable="false" />
+    <Property Name="PERIODO_FIN" Type="date" Nullable="false" />
+    <Property Name="ID_ESTADO" Type="int" />
   </EntityType>
   <EntityType Name="QUEJAS_REPORTES">
     <Key>
@@ -96,7 +105,7 @@
     <Property Name="FECHA_FIN" Type="datetime" Nullable="false" />
     <Property Name="DIAS_SOLICITADOS" Type="int" Nullable="false" />
     <Property Name="ID_ESTADO" Type="int" Nullable="false" />
-    <Property Name="COMENTARIO" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="COMENTARIO" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="USUARIO">
     <Key>
@@ -233,6 +242,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ESTADO_PLANILLA">
+    <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="0..1" />
+    <End Role="PLANILLA" Type="Self.PLANILLA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_SOLICITUD">
+        <PropertyRef Name="ID_ESTADO" />
+      </Principal>
+      <Dependent Role="PLANILLA">
+        <PropertyRef Name="ID_ESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
     <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="1" />
     <End Role="SOLICITUD_VACACIONES1" Type="Self.SOLICITUD_VACACIONES" Multiplicity="0..1" />
@@ -296,6 +317,10 @@
     <AssociationSet Name="FK__USUARIO__ID_ROL__5629CD9C" Association="Self.FK__USUARIO__ID_ROL__5629CD9C">
       <End Role="ROL" EntitySet="ROL" />
       <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTADO_PLANILLA" Association="Self.FK_ESTADO_PLANILLA">
+      <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
+      <End Role="PLANILLA" EntitySet="PLANILLA" />
     </AssociationSet>
     <AssociationSet Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" Association="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
