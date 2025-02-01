@@ -19,6 +19,7 @@ namespace MasterLitho.Controllers
                                     on empleado.ID_DEPARTAMENTO equals departamento.ID_DEPARTAMENTO
                                 join usuario in context.USUARIO
                                     on empleado.ID_USUARIO equals usuario.ID_USUARIO
+                                where empleado.ES_EMPLEADO == true
                                 select new tEmpleado
                                 {
                                     ID_EMPLEADO = empleado.ID_EMPLEADO,
