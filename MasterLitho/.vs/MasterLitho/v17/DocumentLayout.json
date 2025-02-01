@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\controllers\\calendariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\calendariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\Masterlitho\\MasterLitho\\masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\Masterlitho\\MasterLitho\\masterlitho\\styles\\funcionesjs\\funcionescalendario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\funcionesjs\\funcionescalendario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\usuarios\\gestionusuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\usuarios\\gestionusuarios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\styles\\templatecorreoregistrouser.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\templatecorreoregistrouser.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\usuarios\\registrarusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\usuarios\\registrarusuario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,15 +26,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -38,28 +46,54 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TemplateCorreoRegistroUser.html",
+              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Styles\\TemplateCorreoRegistroUser.html",
+              "RelativeDocumentMoniker": "MasterLitho\\Styles\\TemplateCorreoRegistroUser.html",
+              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Styles\\TemplateCorreoRegistroUser.html",
+              "RelativeToolTip": "MasterLitho\\Styles\\TemplateCorreoRegistroUser.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-02-01T00:23:06.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FuncionesCalendario.js",
-              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
-              "RelativeDocumentMoniker": "MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
-              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
-              "RelativeToolTip": "MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAUwJQAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-28T20:06:55.298Z",
+              "Title": "GestionUsuarios.cshtml",
+              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Usuarios\\GestionUsuarios.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Usuarios\\GestionUsuarios.cshtml",
+              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Usuarios\\GestionUsuarios.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Usuarios\\GestionUsuarios.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-01T00:18:26.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegistrarUsuario.cshtml",
+              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Usuarios\\RegistrarUsuario.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Usuarios\\RegistrarUsuario.cshtml",
+              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Usuarios\\RegistrarUsuario.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Usuarios\\RegistrarUsuario.cshtml",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAABkAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-01T00:14:08.816Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CalendarioController.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\CalendarioController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\CalendarioController.cs",
-              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\CalendarioController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\CalendarioController.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFwAAAAtAAAAAAAAAA==",
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\UsuariosController.cs",
+              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAANwAAAAAAAAAAAAtwOoAAACcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-28T20:05:19.061Z",
+              "WhenOpened": "2025-01-31T12:41:33.142Z",
               "EditorCaption": ""
             }
           ]

@@ -89,50 +89,7 @@ namespace MasterLitho.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult CambiarContrasena()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public ActionResult CambiarContrasena(tUsuario model)
-        {
-            if (model.contrasenaAnterior == model.contrasena)
-            {
-                ViewBag.MensajePantalla = "Debe ingresar una contraseña diferente";
-                return View();
-            }
-            else if (model.contrasena != model.confirmarContrasena)
-            {
-                ViewBag.MensajePantalla = "Sus contraseñas no coinciden";
-                return View();
-            }
-            using (var context = new LithoManagerEntities())
-            {
-                int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
-                var datos = context.USUARIO.Where(u => u.ID_USUARIO == idUsuario).FirstOrDefault();
-
-                if (datos != null)
-                {
-                    if (datos.CONTRASENA != model.contrasenaAnterior)
-                    {
-                        ViewBag.MensajePantalla = "La contraseña actual no coincide";
-                        return View();
-                    }
-
-                    datos.CONTRASENA = model.contrasena;
-                    datos.ESTADO_CONTRASENA_TEMPORAL = false;
-                    datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now;
-                    context.SaveChanges();
-                    return RedirectToAction("Index", "Home");
-                }
-
-                ViewBag.MensajePantalla = "Sus credenciales no se han podido actualizar correctamente";
-                return View();
-            }
-        }
+        
 
         private string CreatePassword()
         {

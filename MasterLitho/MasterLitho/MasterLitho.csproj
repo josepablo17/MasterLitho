@@ -139,6 +139,7 @@
     <Compile Include="Controllers\PlanillasController.cs" />
     <Compile Include="Controllers\QuejasReportesController.cs" />
     <Compile Include="Controllers\SolicitudVacacionesController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +193,7 @@
     </Compile>
     <Compile Include="Models\tEventos.cs" />
     <Compile Include="Models\tPlanilla.cs" />
+    <Compile Include="Models\tRol.cs" />
     <Compile Include="Models\tUsuario.cs" />
     <Compile Include="Models\tVacaciones.cs" />
     <Compile Include="Models\USUARIO.cs">
@@ -392,12 +394,15 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Styles\css\EstilosCorreos.css" />
     <Content Include="Styles\css\sb-admin-2.css" />
     <Content Include="Styles\css\sb-admin-2.min.css" />
     <Content Include="Styles\css\styles.css" />
     <Content Include="Styles\FuncionesJS\CambiarContrasena.js" />
     <Content Include="Styles\FuncionesJS\DataTables.js" />
     <Content Include="Styles\FuncionesJS\FuncionesCalendario.js" />
+    <Content Include="Styles\FuncionesJS\FuncionesGestioUsuario.js" />
+    <Content Include="Styles\FuncionesJS\FuncionesModificarUsuario.js" />
     <Content Include="Styles\img\martelithocr-logo %281%29.png" />
     <Content Include="Styles\img\martelithocr-logo.png" />
     <Content Include="Styles\img\MasterlithoFondo.png" />
@@ -417,7 +422,8 @@
     <Content Include="Styles\TemplateCorreoEventos.html" />
     <Content Include="Styles\TemplateCorreo.html" />
     <Content Include="Styles\TemplateCorreoRecuperarContrasena.html" />
-    <Content Include="Styles\TemplateCorreoSolicitudVacaciones.html" />
+    <Content Include="Styles\TemplateCorreoSolicitudVacaciones - Copy.html" />
+    <Content Include="Styles\TemplateCorreoRegistroUser.html" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.js" />
@@ -2293,8 +2299,13 @@
     <Content Include="Views\SolicitudVacaciones\ConsultarDiasVacaciones.cshtml" />
     <Content Include="Views\Formularios\ConsultarFormularios.cshtml" />
     <Content Include="Views\Noticias\ConsultarNoticias.cshtml" />
-    <Content Include="Views\Calendario\ConsultarCalendario.cshtml" />
     <Content Include="Views\Login\RecuperarAcceso.cshtml" />
+    <Content Include="Views\Usuarios\modificarPerfil.cshtml" />
+    <Content Include="Views\Usuarios\CambiarContrasena.cshtml" />
+    <Content Include="Views\Usuarios\GestionUsuarios.cshtml" />
+    <Content Include="Views\SolicitudVacaciones\ConsultarMisSolicitudes.cshtml" />
+    <Content Include="Views\Usuarios\ActualizarUsuario.cshtml" />
+    <Content Include="Views\Usuarios\RegistrarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
