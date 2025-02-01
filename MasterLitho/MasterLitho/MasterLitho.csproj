@@ -130,13 +130,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\ConstanciasController.cs" />
+    <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\ExpedientesController.cs" />
     <Compile Include="Controllers\FormulariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MetodosComunesController.cs" />
     <Compile Include="Controllers\NoticiasController.cs" />
-    <Compile Include="Controllers\PlanillasController.cs" />
     <Compile Include="Controllers\QuejasReportesController.cs" />
     <Compile Include="Controllers\SolicitudVacacionesController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -188,9 +188,7 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\tEmpleado.cs" />
     <Compile Include="Models\tEventos.cs" />
     <Compile Include="Models\tPlanilla.cs" />
     <Compile Include="Models\tRol.cs" />
@@ -2306,6 +2304,8 @@
     <Content Include="Views\SolicitudVacaciones\ConsultarMisSolicitudes.cshtml" />
     <Content Include="Views\Usuarios\ActualizarUsuario.cshtml" />
     <Content Include="Views\Usuarios\RegistrarUsuario.cshtml" />
+    <Content Include="Views\Empleado\RegistrarEmpleado.cshtml" />
+    <Content Include="Views\Empleado\ConsultarEmpleados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

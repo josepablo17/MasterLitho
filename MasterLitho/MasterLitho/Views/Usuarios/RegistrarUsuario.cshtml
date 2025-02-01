@@ -46,7 +46,10 @@
                                 <label class="form-label fw-semibold"><i class="fas fa-envelope me-2"></i> Correo</label>
                                 @Html.TextBoxFor(m => m.correoUsuario, new { @class = "form-control border-primary", @type = "email", @placeholder = "Ingrese el correo al que desea que lleguen las credenciales" })
                             </div>
-
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold"><i class="fas fa-envelope me-2"></i> Rol</label>
+                                @Html.DropDownList("idRol", ViewBag.listaRoles as List<SelectListItem>, new { @class = "form-control" })
+                            </div>
                             <div class="d-grid gap-3">
                                 <button type="submit" class="btn btn-primary btn-lg shadow" id="cambiarPass">
                                     <i class="fas fa-save me-2"></i> Realizar Cambio

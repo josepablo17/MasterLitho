@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LithoManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LithoManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CONSTANCIA_LABORAL">
           <Key>
             <PropertyRef Name="ID_CONSTANCIA" />
@@ -30,6 +30,8 @@
           <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="int" Nullable="false" />
           <Property Name="FECHA_CONTRATACION" Type="datetime" Nullable="false" />
           <Property Name="ID_DEPARTAMENTO" Type="int" Nullable="false" />
+          <Property Name="ES_EMPLEADO" Type="bit" Nullable="false" />
+          <Property Name="ESTADO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ESTADO_SOLICITUD">
           <Key>
@@ -70,15 +72,6 @@
           <Property Name="DEDUCCIONES" Type="decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="BONOS" Type="decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="SALARIO_NETO" Type="decimal" Precision="12" Scale="2" Nullable="false" />
-          <Property Name="DIAS_VACACIONES_TOMADOS" Type="int" Nullable="false" />
-          <Property Name="HORAS_EXTRAS" Type="int" />
-          <Property Name="MONTO_HORAS_EXTRAS" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="OTROS_BENEFICIOS" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="APORTE_SEGURIDAD_SOCIAL" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IMPUESTOS" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="PERIODO_INICIO" Type="date" Nullable="false" />
-          <Property Name="PERIODO_FIN" Type="date" Nullable="false" />
-          <Property Name="ID_ESTADO" Type="int" />
         </EntityType>
         <EntityType Name="QUEJAS_REPORTES">
           <Key>
@@ -110,7 +103,7 @@
           <Property Name="FECHA_FIN" Type="datetime" Nullable="false" />
           <Property Name="DIAS_SOLICITADOS" Type="int" Nullable="false" />
           <Property Name="ID_ESTADO" Type="int" Nullable="false" />
-          <Property Name="COMENTARIO" Type="varchar" MaxLength="255" />
+          <Property Name="COMENTARIO" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -247,18 +240,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ESTADO_PLANILLA">
-          <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="0..1" />
-          <End Role="PLANILLA" Type="Self.PLANILLA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ESTADO_SOLICITUD">
-              <PropertyRef Name="ID_ESTADO" />
-            </Principal>
-            <Dependent Role="PLANILLA">
-              <PropertyRef Name="ID_ESTADO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
           <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="1" />
           <End Role="SOLICITUD_VACACIONES1" Type="Self.SOLICITUD_VACACIONES" Multiplicity="0..1" />
@@ -323,17 +304,12 @@
             <End Role="ROL" EntitySet="ROL" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
-          <AssociationSet Name="FK_ESTADO_PLANILLA" Association="Self.FK_ESTADO_PLANILLA">
-            <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
-            <End Role="PLANILLA" EntitySet="PLANILLA" />
-          </AssociationSet>
           <AssociationSet Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" Association="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
             <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
             <End Role="SOLICITUD_VACACIONES1" EntitySet="SOLICITUD_VACACIONES" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LithoManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -364,12 +340,14 @@
           <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="Int32" Nullable="false" />
           <Property Name="FECHA_CONTRATACION" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ID_DEPARTAMENTO" Type="Int32" Nullable="false" />
+          <Property Name="ES_EMPLEADO" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CONSTANCIA_LABORAL" Relationship="Self.FK__CONSTANCI__ID_EM__4CA06362" FromRole="EMPLEADO" ToRole="CONSTANCIA_LABORAL" />
           <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.FK__EMPLEADO__ID_DEP__4D94879B" FromRole="EMPLEADO" ToRole="DEPARTAMENTO" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK__EMPLEADO__ID_USU__4E88ABD4" FromRole="EMPLEADO" ToRole="USUARIO" />
           <NavigationProperty Name="FORMULARIO" Relationship="Self.FK__FORMULARI__ID_EM__4F7CD00D" FromRole="EMPLEADO" ToRole="FORMULARIO" />
           <NavigationProperty Name="PLANILLA" Relationship="Self.FK__PLANILLA__ID_EMP__5070F446" FromRole="EMPLEADO" ToRole="PLANILLA" />
           <NavigationProperty Name="QUEJAS_REPORTES" Relationship="Self.FK__QUEJAS_RE__ID_EM__5165187F" FromRole="EMPLEADO" ToRole="QUEJAS_REPORTES" />
+          <Property Name="ESTADO" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ESTADO_SOLICITUD">
           <Key>
@@ -379,7 +357,6 @@
           <Property Name="TIPO_ESTADO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="QUEJAS_REPORTES" Relationship="Self.FK__QUEJAS_RE__ID_ES__52593CB8" FromRole="ESTADO_SOLICITUD" ToRole="QUEJAS_REPORTES" />
           <NavigationProperty Name="SOLICITUD_VACACIONES" Relationship="Self.FK__SOLICITUD__ID_ES__5441852A" FromRole="ESTADO_SOLICITUD" ToRole="SOLICITUD_VACACIONES" />
-          <NavigationProperty Name="PLANILLA" Relationship="Self.FK_ESTADO_PLANILLA" FromRole="ESTADO_SOLICITUD" ToRole="PLANILLA" />
         </EntityType>
         <EntityType Name="EVENTOS">
           <Key>
@@ -414,17 +391,7 @@
           <Property Name="DEDUCCIONES" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="BONOS" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="SALARIO_NETO" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
-          <Property Name="DIAS_VACACIONES_TOMADOS" Type="Int32" Nullable="false" />
-          <Property Name="HORAS_EXTRAS" Type="Int32" />
-          <Property Name="MONTO_HORAS_EXTRAS" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="OTROS_BENEFICIOS" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="APORTE_SEGURIDAD_SOCIAL" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IMPUESTOS" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="PERIODO_INICIO" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PERIODO_FIN" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ID_ESTADO" Type="Int32" />
           <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__PLANILLA__ID_EMP__5070F446" FromRole="PLANILLA" ToRole="EMPLEADO" />
-          <NavigationProperty Name="ESTADO_SOLICITUD" Relationship="Self.FK_ESTADO_PLANILLA" FromRole="PLANILLA" ToRole="ESTADO_SOLICITUD" />
         </EntityType>
         <EntityType Name="QUEJAS_REPORTES">
           <Key>
@@ -459,7 +426,7 @@
           <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DIAS_SOLICITADOS" Type="Int32" Nullable="false" />
           <Property Name="ID_ESTADO" Type="Int32" Nullable="false" />
-          <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ESTADO_SOLICITUD" Relationship="Self.FK__SOLICITUD__ID_ES__5441852A" FromRole="SOLICITUD_VACACIONES" ToRole="ESTADO_SOLICITUD" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK__SOLICITUD__ID_EM__5070F446" FromRole="SOLICITUD_VACACIONES" ToRole="USUARIO" />
           <NavigationProperty Name="SOLICITUD_VACACIONES1" Relationship="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" FromRole="SOLICITUD_VACACIONES" ToRole="SOLICITUD_VACACIONES1" />
@@ -579,18 +546,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ESTADO_PLANILLA">
-          <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="0..1" />
-          <End Role="PLANILLA" Type="Self.PLANILLA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ESTADO_SOLICITUD">
-              <PropertyRef Name="ID_ESTADO" />
-            </Principal>
-            <Dependent Role="PLANILLA">
-              <PropertyRef Name="ID_ESTADO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__USUARIO__ID_ROL__5629CD9C">
           <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
@@ -671,10 +626,6 @@
             <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
             <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
           </AssociationSet>
-          <AssociationSet Name="FK_ESTADO_PLANILLA" Association="Self.FK_ESTADO_PLANILLA">
-            <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
-            <End Role="PLANILLA" EntitySet="PLANILLA" />
-          </AssociationSet>
           <AssociationSet Name="FK__USUARIO__ID_ROL__5629CD9C" Association="Self.FK__USUARIO__ID_ROL__5629CD9C">
             <End Role="ROL" EntitySet="ROL" />
             <End Role="USUARIO" EntitySet="USUARIO" />
@@ -715,11 +666,13 @@
           <EntitySetMapping Name="EMPLEADO">
             <EntityTypeMapping TypeName="LithoManagerModel.EMPLEADO">
               <MappingFragment StoreEntitySet="EMPLEADO">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
                 <ScalarProperty Name="DIAS_VACACIONES_DISPONIBLES" ColumnName="DIAS_VACACIONES_DISPONIBLES" />
                 <ScalarProperty Name="FECHA_CONTRATACION" ColumnName="FECHA_CONTRATACION" />
                 <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+                <ScalarProperty Name="ES_EMPLEADO" ColumnName="ES_EMPLEADO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -764,15 +717,6 @@
                 <ScalarProperty Name="DEDUCCIONES" ColumnName="DEDUCCIONES" />
                 <ScalarProperty Name="BONOS" ColumnName="BONOS" />
                 <ScalarProperty Name="SALARIO_NETO" ColumnName="SALARIO_NETO" />
-                <ScalarProperty Name="DIAS_VACACIONES_TOMADOS" ColumnName="DIAS_VACACIONES_TOMADOS" />
-                <ScalarProperty Name="HORAS_EXTRAS" ColumnName="HORAS_EXTRAS" />
-                <ScalarProperty Name="MONTO_HORAS_EXTRAS" ColumnName="MONTO_HORAS_EXTRAS" />
-                <ScalarProperty Name="OTROS_BENEFICIOS" ColumnName="OTROS_BENEFICIOS" />
-                <ScalarProperty Name="APORTE_SEGURIDAD_SOCIAL" ColumnName="APORTE_SEGURIDAD_SOCIAL" />
-                <ScalarProperty Name="IMPUESTOS" ColumnName="IMPUESTOS" />
-                <ScalarProperty Name="PERIODO_INICIO" ColumnName="PERIODO_INICIO" />
-                <ScalarProperty Name="PERIODO_FIN" ColumnName="PERIODO_FIN" />
-                <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

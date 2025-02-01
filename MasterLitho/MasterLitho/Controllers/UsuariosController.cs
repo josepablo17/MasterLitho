@@ -136,23 +136,38 @@ namespace MasterLitho.Controllers
         [HttpPost]
         public ActionResult ActualizarEstadoUsuario(tUsuario model)
         {
-
             using (var context = new LithoManagerEntities())
             {
-
                 var datos = context.USUARIO.FirstOrDefault(x => x.ID_USUARIO == model.idUsuario);
 
                 if (datos != null)
                 {
-                    datos.ESTADO = (datos.ESTADO ? false : true);
+                    datos.ESTADO = !datos.ESTADO;
+
+
+                    var empleado = context.EMPLEADO.FirstOrDefault(x => x.ID_USUARIO == model.idUsuario);
+
+                    if (empleado != null)
+                    {
+                        empleado.ESTADO = datos.ESTADO;
+                    }
+                    else
+                    {
+                        ViewBag.MensajePantalla = "Empleado no encontrado para el usuario.";
+                        return View();
+                    }
+
+
                     context.SaveChanges();
                     return RedirectToAction("GestionUsuarios", "Usuarios");
                 }
 
-                ViewBag.MensajePantalla = "La información no se ha podido actualizar correctamente";
+                ViewBag.MensajePantalla = "La información no se ha podido actualizar correctamente.";
                 return View();
             }
         }
+
+
 
 
         [HttpGet]
@@ -167,7 +182,7 @@ namespace MasterLitho.Controllers
 
                 if (datos != null)
                 {
-                    usuario.idUsuario = datos.ID_USUARIO; 
+                    usuario.idUsuario = datos.ID_USUARIO;
                     usuario.identificacion = datos.IDENTIFICACION;
                     usuario.nombreUsuario = datos.NOMBRE_USUARIO;
                     usuario.apellidoUsuario = datos.APELLIDO_USUARIO;
@@ -175,92 +190,130 @@ namespace MasterLitho.Controllers
                     usuario.idRol = datos.ID_ROL;
                     usuario.NombreRol = datos.ROL.NOMBRE_ROL;
                     usuario.estado = (datos.ESTADO == true ? "Activo" : "Inactivo");
+
+
                 }
 
                 return View(usuario);
-
             }
         }
 
+
+
         [HttpPost]
-        public ActionResult ActualizarUsuario(tUsuario model)
+        public ActionResult ActualizarUsuario(tUsuario modelUsuario, tEmpleado modelEmpleado)
         {
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.USUARIO.Where(x => x.ID_USUARIO == model.idUsuario).FirstOrDefault();
+                var datos = context.USUARIO.Where(x => x.ID_USUARIO == modelUsuario.idUsuario).FirstOrDefault();
 
                 if (datos != null)
                 {
-                    datos.IDENTIFICACION = model.identificacion;
-                    datos.NOMBRE_USUARIO = model.nombreUsuario;
-                    datos.APELLIDO_USUARIO = model.apellidoUsuario;
-                    datos.CORREO_USUARIO = model.correoUsuario;
-                    datos.ID_ROL = model.idRol;
+                    var rolAnterior = datos.ID_ROL;
+
+                    datos.IDENTIFICACION = modelUsuario.identificacion;
+                    datos.NOMBRE_USUARIO = modelUsuario.nombreUsuario;
+                    datos.APELLIDO_USUARIO = modelUsuario.apellidoUsuario;
+                    datos.CORREO_USUARIO = modelUsuario.correoUsuario;
+                    datos.ID_ROL = modelUsuario.idRol;
 
                     var respuesta = context.SaveChanges();
+
+                    var empleadoExistente = context.EMPLEADO.Where(x => x.ID_USUARIO == modelUsuario.idUsuario).FirstOrDefault();
+
+                    if (rolAnterior == 1 && modelUsuario.idRol == 2)
+                    {
+                        if (empleadoExistente == null)
+                        {
+                            return RedirectToAction("RegistrarEmpleado", "Empleado", new { idUsuario = modelUsuario.idUsuario });
+                        }
+                        else
+                        {
+                            empleadoExistente.ES_EMPLEADO = true;
+                            context.SaveChanges();  
+                        }
+                    }
+                    else if (rolAnterior == 2 && modelUsuario.idRol == 1)
+                    {
+                        if (empleadoExistente != null)
+                        {
+                            empleadoExistente.ES_EMPLEADO = false;
+                            context.SaveChanges();  
+                        }
+                    }
 
                     if (respuesta > 0)
                     {
                         return RedirectToAction("GestionUsuarios", "Usuarios");
                     }
                 }
+
                 ViewBag.MensajePantalla = "El usuario no se ha podido actualizar correctamente";
                 CargarRoles();
-                return View();
+                return View(modelUsuario);
             }
-
         }
+
+
+
+
 
 
         [HttpGet]
         public ActionResult RegistrarUsuario()
         {
+            CargarRoles();
             return View();
         }
 
         [HttpPost]
-        public ActionResult RegistrarUsuario(tUsuario model)
+        public ActionResult RegistrarUsuario(tUsuario modelUsuario)
         {
             using (var context = new LithoManagerEntities())
             {
-                var tabla = new USUARIO();
-                tabla.IDENTIFICACION = model.identificacion;
-                tabla.NOMBRE_USUARIO = model.nombreUsuario;
-                tabla.APELLIDO_USUARIO = model.apellidoUsuario;
-                tabla.CORREO_USUARIO = CreateEmail();
-                tabla.CONTRASENA = CreatePassword(); 
-                tabla.ID_ROL = 2;
-                tabla.ESTADO = true;
-                tabla.ESTADO_CONTRASENA_TEMPORAL = true;  
-                tabla.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigenciaTemporal"]));
+                var tabla = new USUARIO
+                {
+                    IDENTIFICACION = modelUsuario.identificacion,
+                    NOMBRE_USUARIO = modelUsuario.nombreUsuario,
+                    APELLIDO_USUARIO = modelUsuario.apellidoUsuario,
+                    CORREO_USUARIO = CreateEmail(modelUsuario.nombreUsuario, modelUsuario.apellidoUsuario),
+                    CONTRASENA = CreatePassword(),
+                    ID_ROL = modelUsuario.idRol,
+                    ESTADO = true,
+                    ESTADO_CONTRASENA_TEMPORAL = true,
+                    FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigenciaTemporal"]))
+                };
 
-
-                string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Styles\\TemplateCorreoRegistroUser.html";
-                string contenido = System.IO.File.ReadAllText(ruta);
-
-                contenido = contenido.Replace("@@Nombre", model.nombreUsuario);
-                contenido = contenido.Replace("@@Correo", tabla.CORREO_USUARIO);
-                contenido = contenido.Replace("@@Contraseña", tabla.CONTRASENA); 
-
-                
-                var metodosComunes = new MetodosComunesController();
-                metodosComunes.EnviarCorreo(model.correoUsuario, "Credenciales Temporales", contenido);
-
-                
                 context.USUARIO.Add(tabla);
                 var respuesta = context.SaveChanges();
 
-                
                 if (respuesta > 0)
                 {
-                    
-                    
-                    return RedirectToAction("GestionUsuarios","Usuarios");
+                    int nuevoIdUsuario = tabla.ID_USUARIO;
+
+                    string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Styles\\TemplateCorreoRegistroUser.html";
+                    string contenido = System.IO.File.ReadAllText(ruta)
+                        .Replace("@@Nombre", modelUsuario.nombreUsuario)
+                        .Replace("@@Correo", tabla.CORREO_USUARIO)
+                        .Replace("@@Contraseña", tabla.CONTRASENA);
+
+                    var metodosComunes = new MetodosComunesController();
+                    metodosComunes.EnviarCorreo(modelUsuario.correoUsuario, "Credenciales Temporales", contenido);
+
+
+                    if (modelUsuario.idRol == 2)
+                    {
+                        return RedirectToAction("RegistrarEmpleado", "Empleado", new { idUsuario = nuevoIdUsuario });
+                    }
+
+                    return RedirectToAction("GestionUsuarios", "Usuarios");
                 }
             }
 
+            CargarRoles();
             return View();
         }
+
 
 
 
@@ -305,25 +358,17 @@ namespace MasterLitho.Controllers
             return res.ToString();
         }
 
-        private string CreateEmail()
+        private string CreateEmail(string nombre, string apellidos)
         {
-            int length = 10;  
-            const string valid = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";  
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(apellidos))
+                return "usuario@litho.com";
 
-            Random random = new Random();
-            StringBuilder email = new StringBuilder();
+            char inicialNombre = char.ToLower(nombre[0]);
+            string primerApellido = apellidos.Split(' ')[0].ToLower();
 
-            
-            for (int i = 0; i < length; i++)
-            {
-                email.Append(valid[random.Next(valid.Length)]);  
-            }
-
-            
-            email.Append("@Litho.com");
-
-            return email.ToString();  
+            return $"{inicialNombre}{primerApellido}@litho.com";
         }
+
 
     }
 }
