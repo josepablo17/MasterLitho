@@ -16,8 +16,8 @@ namespace MasterLitho.Controllers
     {
         public void EnviarCorreo(string destino, string asunto, string contenido)
         {
-            string cuenta = ConfigurationManager.AppSettings["Correo"].ToString();
-            string contrasena = ConfigurationManager.AppSettings["Contrasena"].ToString();
+            string cuenta = ConfigurationManager.AppSettings["CorreoNotificaciones"].ToString();
+            string contrasena = ConfigurationManager.AppSettings["ContrasennaNotificaciones"].ToString();
 
             MailMessage message = new MailMessage();
             message.From = new MailAddress(cuenta);

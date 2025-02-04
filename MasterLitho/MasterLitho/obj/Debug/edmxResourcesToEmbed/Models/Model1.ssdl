@@ -25,6 +25,8 @@
     <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="int" Nullable="false" />
     <Property Name="FECHA_CONTRATACION" Type="datetime" Nullable="false" />
     <Property Name="ID_DEPARTAMENTO" Type="int" Nullable="false" />
+    <Property Name="ES_EMPLEADO" Type="bit" Nullable="false" />
+    <Property Name="ESTADO" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ESTADO_SOLICITUD">
     <Key>
@@ -43,6 +45,7 @@
     <Property Name="FECHA_INICIO" Type="datetime" Nullable="false" />
     <Property Name="FECHA_FINAL" Type="datetime" Nullable="false" />
     <Property Name="COLOR" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="invitados" Type="text" />
   </EntityType>
   <EntityType Name="FORMULARIO">
     <Key>
@@ -60,18 +63,10 @@
     <Property Name="ID_PLANILLA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
     <Property Name="FECHA_PAGO" Type="datetime" Nullable="false" />
-    <Property Name="DEDUCCIONES" Type="decimal" Precision="12" Scale="2" Nullable="false" />
-    <Property Name="BONOS" Type="decimal" Precision="12" Scale="2" />
-    <Property Name="DIAS_VACACIONES_TOMADOS" Type="int" Nullable="false" />
-    <Property Name="HORAS_EXTRAS" Type="int" />
-    <Property Name="OTROS_BENEFICIOS" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="APORTE_SEGURIDAD_SOCIAL" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="IMPUESTOS" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="PERIODO_INICIO" Type="date" Nullable="false" />
-    <Property Name="PERIODO_FIN" Type="date" Nullable="false" />
     <Property Name="SALARIO_BRUTO" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="DEDUCCIONES" Type="decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="BONOS" Type="decimal" Precision="12" Scale="2" Nullable="false" />
     <Property Name="SALARIO_NETO" Type="decimal" Precision="12" Scale="2" Nullable="false" />
-    <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="QUEJAS_REPORTES">
     <Key>
@@ -103,7 +98,7 @@
     <Property Name="FECHA_FIN" Type="datetime" Nullable="false" />
     <Property Name="DIAS_SOLICITADOS" Type="int" Nullable="false" />
     <Property Name="ID_ESTADO" Type="int" Nullable="false" />
-    <Property Name="COMENTARIO" Type="varchar" MaxLength="255" />
+    <Property Name="COMENTARIO" Type="varchar" MaxLength="255" Nullable="false" />
   </EntityType>
   <EntityType Name="USUARIO">
     <Key>

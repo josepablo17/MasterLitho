@@ -1,0 +1,79 @@
+﻿@model MasterLitho.Models.tUsuario
+
+@{
+    ViewBag.Title = "Cambiar contraseña";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var idUsuario = Session["ID_USUARIO"]; 
+}
+
+<!-- Contenido de la vista -->
+<div class="page-wrapper d-flex align-items-start justify-content-center min-vh-100" style="background-color: #f9f9f9; padding-top: 5vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-12">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-4">
+                        <div class="text-center mb-4">
+                            <a href="@Url.Action("Index", "Home")">
+                                <img src="~/Styles/img/martelithocr-logo (1).png" alt="Logo" class="img-fluid" style="width: 120px;">
+                            </a>
+                        </div>
+
+                        @if (ViewBag.MensajePantalla != null)
+                        {
+                            <div class="alert alert-danger text-center" role="alert">
+                                @ViewBag.MensajePantalla
+                            </div>
+                        }
+
+                        @using (Html.BeginForm("CambiarContrasena", "Usuarios", FormMethod.Post, new { id = "formCambiarPass" }))
+                        {
+                            <h3 class="text-center fw-bold mb-4 text-primary">Cambiar Contraseña</h3>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Contraseña Anterior</label>
+                                <div class="input-group">
+                                    @Html.PasswordFor(m => m.contrasenaAnterior, new { @class = "form-control border-primary", @placeholder = "Ingrese su contraseña anterior", @id = "contrasenaAnterior" })
+                                    <span class="input-group-text" id="toggleEyeAnterior" style="cursor: pointer;" onclick="toggleVisibility('contrasenaAnterior')">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Contraseña Nueva</label>
+                                <div class="input-group">
+                                    @Html.PasswordFor(m => m.contrasena, new { @class = "form-control border-primary", @placeholder = "Ingrese su nueva contraseña", @id = "contrasena" })
+                                    <span class="input-group-text" id="toggleEyeNueva" style="cursor: pointer;" onclick="toggleVisibility('contrasena')">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Confirmar Contraseña</label>
+                                <div class="input-group">
+                                    @Html.PasswordFor(m => m.confirmarContrasena, new { @class = "form-control border-primary", @placeholder = "Confirme su contraseña", @id = "confirmarContrasena" })
+                                    <span class="input-group-text" id="toggleEyeConfirmar" style="cursor: pointer;" onclick="toggleVisibility('confirmarContrasena')">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-3">
+                                <button type="submit" class="btn btn-primary btn-lg shadow" id="cambiarPass">
+                                    <i class="fas fa-save me-2"></i> Realizar Cambio
+                                </button>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="@Url.Content("~/Styles/FuncionesJS/CambiarContrasena.js")"></script>

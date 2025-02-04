@@ -22,11 +22,13 @@
     <EntitySetMapping Name="EMPLEADO">
       <EntityTypeMapping TypeName="LithoManagerModel.EMPLEADO">
         <MappingFragment StoreEntitySet="EMPLEADO">
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
           <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
           <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
           <ScalarProperty Name="DIAS_VACACIONES_DISPONIBLES" ColumnName="DIAS_VACACIONES_DISPONIBLES" />
           <ScalarProperty Name="FECHA_CONTRATACION" ColumnName="FECHA_CONTRATACION" />
           <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
+          <ScalarProperty Name="ES_EMPLEADO" ColumnName="ES_EMPLEADO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -47,6 +49,7 @@
           <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
           <ScalarProperty Name="FECHA_FINAL" ColumnName="FECHA_FINAL" />
           <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+          <ScalarProperty Name="invitados" ColumnName="invitados" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -66,18 +69,10 @@
           <ScalarProperty Name="ID_PLANILLA" ColumnName="ID_PLANILLA" />
           <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
           <ScalarProperty Name="FECHA_PAGO" ColumnName="FECHA_PAGO" />
+          <ScalarProperty Name="SALARIO_BRUTO" ColumnName="SALARIO_BRUTO" />
           <ScalarProperty Name="DEDUCCIONES" ColumnName="DEDUCCIONES" />
           <ScalarProperty Name="BONOS" ColumnName="BONOS" />
-          <ScalarProperty Name="DIAS_VACACIONES_TOMADOS" ColumnName="DIAS_VACACIONES_TOMADOS" />
-          <ScalarProperty Name="HORAS_EXTRAS" ColumnName="HORAS_EXTRAS" />
-          <ScalarProperty Name="OTROS_BENEFICIOS" ColumnName="OTROS_BENEFICIOS" />
-          <ScalarProperty Name="APORTE_SEGURIDAD_SOCIAL" ColumnName="APORTE_SEGURIDAD_SOCIAL" />
-          <ScalarProperty Name="IMPUESTOS" ColumnName="IMPUESTOS" />
-          <ScalarProperty Name="PERIODO_INICIO" ColumnName="PERIODO_INICIO" />
-          <ScalarProperty Name="PERIODO_FIN" ColumnName="PERIODO_FIN" />
-          <ScalarProperty Name="SALARIO_BRUTO" ColumnName="SALARIO_BRUTO" />
           <ScalarProperty Name="SALARIO_NETO" ColumnName="SALARIO_NETO" />
-          <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
