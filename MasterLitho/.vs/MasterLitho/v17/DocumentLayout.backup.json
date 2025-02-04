@@ -1,7 +1,56 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\yeray\\source\\repos\\masterlitho\\masterlitho\\masterlitho\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\noticias\\editarnoticia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\noticias\\editarnoticia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\controllers\\noticiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\noticiascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\noticias\\noticias.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\noticias\\noticias.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\noticias\\crearnoticia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\noticias\\crearnoticia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\models\\tusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\models\\tusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\models\\tnoticias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\models\\tnoticias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,6 +91,151 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EditarNoticia.cshtml",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\EditarNoticia.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Noticias\\EditarNoticia.cshtml",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\EditarNoticia.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Noticias\\EditarNoticia.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-29T00:30:57.195Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAIwAAAAAAAAAAAAgwJwAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-28T23:01:02.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Noticias.cshtml",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\Noticias.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Noticias\\Noticias.cshtml",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\Noticias.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Noticias\\Noticias.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-28T22:50:31.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\App_Start\\RouteConfig.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "MasterLitho\\App_Start\\RouteConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T20:13:05.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T19:55:30.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "tUsuario.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tUsuario.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Models\\tUsuario.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tUsuario.cs",
+              "RelativeToolTip": "MasterLitho\\Models\\tUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAIwAwAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-26T19:11:14.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NoticiasController.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\NoticiasController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\NoticiasController.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\NoticiasController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\NoticiasController.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAlwJQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T19:32:32.312Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "MasterLitho\\Models\\Model1.edmx",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "MasterLitho\\Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-01-26T18:53:25.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CrearNoticia.cshtml",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\CrearNoticia.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Noticias\\CrearNoticia.cshtml",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Noticias\\CrearNoticia.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Noticias\\CrearNoticia.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-25T19:38:17.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-25T19:35:52.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T19:34:58.768Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "tNoticias.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tNoticias.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Models\\tNoticias.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tNoticias.cs",
+              "RelativeToolTip": "MasterLitho\\Models\\tNoticias.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T19:31:40.816Z"
             }
           ]
         }

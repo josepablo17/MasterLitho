@@ -53,6 +53,17 @@
     <Property Name="FECHA_ENVIO" Type="datetime" Nullable="false" />
     <Property Name="OBSERVACIONES" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="NOTICIAS">
+    <Key>
+      <PropertyRef Name="ID_NOTICIA" />
+    </Key>
+    <Property Name="ID_NOTICIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TITULO" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="text" Nullable="false" />
+    <Property Name="FECHA_PUBLICACION" Type="datetime" Nullable="false" />
+    <Property Name="ID_ADMINISTRADOR" Type="int" Nullable="false" />
+    <Property Name="IMAGEN_RUTA" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="PLANILLA">
     <Key>
       <PropertyRef Name="ID_PLANILLA" />
@@ -96,16 +107,6 @@
     <Property Name="DIAS_SOLICITADOS" Type="int" Nullable="false" />
     <Property Name="ID_ESTADO" Type="int" Nullable="false" />
     <Property Name="COMENTARIO" Type="varchar" MaxLength="255" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="USUARIO">
     <Key>
@@ -167,6 +168,18 @@
       </Principal>
       <Dependent Role="FORMULARIO">
         <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NOTICIAS__ID_ADM__59FA5E80">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="NOTICIAS">
+        <PropertyRef Name="ID_ADMINISTRADOR" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -242,6 +255,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_NOTICIAS_ID_ADMINISTRADOR">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="NOTICIAS">
+        <PropertyRef Name="ID_ADMINISTRADOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
     <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="1" />
     <End Role="SOLICITUD_VACACIONES1" Type="Self.SOLICITUD_VACACIONES" Multiplicity="0..1" />
@@ -261,11 +286,11 @@
     <EntitySet Name="ESTADO_SOLICITUD" EntityType="Self.ESTADO_SOLICITUD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EVENTOS" EntityType="Self.EVENTOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FORMULARIO" EntityType="Self.FORMULARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NOTICIAS" EntityType="Self.NOTICIAS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PLANILLA" EntityType="Self.PLANILLA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QUEJAS_REPORTES" EntityType="Self.QUEJAS_REPORTES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SOLICITUD_VACACIONES" EntityType="Self.SOLICITUD_VACACIONES" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__CONSTANCI__ID_EM__4CA06362" Association="Self.FK__CONSTANCI__ID_EM__4CA06362">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
@@ -282,6 +307,10 @@
     <AssociationSet Name="FK__FORMULARI__ID_EM__4F7CD00D" Association="Self.FK__FORMULARI__ID_EM__4F7CD00D">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
       <End Role="FORMULARIO" EntitySet="FORMULARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NOTICIAS__ID_ADM__59FA5E80" Association="Self.FK__NOTICIAS__ID_ADM__59FA5E80">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="NOTICIAS" EntitySet="NOTICIAS" />
     </AssociationSet>
     <AssociationSet Name="FK__PLANILLA__ID_EMP__5070F446" Association="Self.FK__PLANILLA__ID_EMP__5070F446">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
@@ -306,6 +335,10 @@
     <AssociationSet Name="FK__USUARIO__ID_ROL__5629CD9C" Association="Self.FK__USUARIO__ID_ROL__5629CD9C">
       <End Role="ROL" EntitySet="ROL" />
       <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NOTICIAS_ID_ADMINISTRADOR" Association="Self.FK_NOTICIAS_ID_ADMINISTRADOR">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="NOTICIAS" EntitySet="NOTICIAS" />
     </AssociationSet>
     <AssociationSet Name="FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" Association="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES">
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />

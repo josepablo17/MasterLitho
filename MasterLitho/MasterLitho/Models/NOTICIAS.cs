@@ -12,12 +12,15 @@ namespace MasterLitho.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class NOTICIAS
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int ID_NOTICIA { get; set; }
+        public string TITULO { get; set; }
+        public string DESCRIPCION { get; set; }
+        public System.DateTime FECHA_PUBLICACION { get; set; }
+        public int ID_ADMINISTRADOR { get; set; }
+        public string IMAGEN_RUTA { get; set; }
+    
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

@@ -19,5 +19,7 @@ namespace MasterLitho.Models
         public int idRol { get; set; }
         public string NombreRol { get; set; }
 
+
+        public virtual ICollection<Noticia> Noticias { get; set; } 
     }
 }
