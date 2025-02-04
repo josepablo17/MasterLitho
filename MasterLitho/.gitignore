@@ -1,1 +1,19 @@
-.vs
+# Archivos generados por Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Archivos de compilación
+bin/
+obj/
+
+# Otros
+*.cache
+*.dll
+*.exe
+*.pdb
+*.tmp
+*.log
+*.backup

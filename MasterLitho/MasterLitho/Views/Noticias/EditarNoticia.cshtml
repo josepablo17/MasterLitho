@@ -1,0 +1,48 @@
+﻿@model MasterLitho.Models.NOTICIAS
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Noticia";
+}
+
+<h2>Editar Noticia</h2>
+
+@using (Html.BeginForm("EditarNoticia", "Noticias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID_NOTICIA)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TITULO)
+        @Html.EditorFor(model => model.TITULO, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DESCRIPCION)
+        @Html.TextAreaFor(model => model.DESCRIPCION, new { @class = "form-control" })
+    </div>
+
+    <label for="FECHA_PUBLICACION">Fecha de Publicación</label>
+    <input type="datetime-local" id="FECHA_PUBLICACION" name="FECHA_PUBLICACION"
+           value="@Model.FECHA_PUBLICACION.ToString("yyyy-MM-ddTHH:mm")" class="form-control" />
+
+
+    <div class="form-group">
+        <label for="ImagenNoticia">Imagen Actual</label><br />
+        @if (!string.IsNullOrEmpty(Model.IMAGEN_RUTA))
+        {
+            <img src="@Url.Content(Model.IMAGEN_RUTA)" alt="Imagen Noticia" width="100" />
+        }
+        else
+        {
+            <span>No disponible</span>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="ImagenNoticia">Actualizar Imagen</label>
+        <input type="file" name="ImagenNoticia" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+}

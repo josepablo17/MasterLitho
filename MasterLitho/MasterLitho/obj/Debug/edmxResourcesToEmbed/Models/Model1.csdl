@@ -136,6 +136,7 @@
     <NavigationProperty Name="EMPLEADO" Relationship="Self.FK__EMPLEADO__ID_USU__4E88ABD4" FromRole="USUARIO" ToRole="EMPLEADO" />
     <NavigationProperty Name="ROL" Relationship="Self.FK__USUARIO__ID_ROL__5629CD9C" FromRole="USUARIO" ToRole="ROL" />
     <NavigationProperty Name="SOLICITUD_VACACIONES" Relationship="Self.FK__SOLICITUD__ID_EM__5070F446" FromRole="USUARIO" ToRole="SOLICITUD_VACACIONES" />
+    <NavigationProperty Name="NOTICIAS" Relationship="LithoManagerModel.FK__NOTICIAS__ID_ADM__59FA5E80" FromRole="USUARIO" ToRole="NOTICIAS" />
   </EntityType>
   <Association Name="FK__CONSTANCI__ID_EM__4CA06362">
     <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
@@ -325,5 +326,34 @@
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
       <End Role="SOLICITUD_VACACIONES1" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
+    <EntitySet Name="NOTICIAS" EntityType="LithoManagerModel.NOTICIAS" />
+    <AssociationSet Name="FK__NOTICIAS__ID_ADM__59FA5E80" Association="LithoManagerModel.FK__NOTICIAS__ID_ADM__59FA5E80">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="NOTICIAS" EntitySet="NOTICIAS" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="NOTICIAS">
+    <Key>
+      <PropertyRef Name="ID_NOTICIA" />
+    </Key>
+    <Property Name="ID_NOTICIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TITULO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FECHA_PUBLICACION" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ID_ADMINISTRADOR" Type="Int32" Nullable="false" />
+    <Property Name="IMAGEN_RUTA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USUARIO" Relationship="LithoManagerModel.FK__NOTICIAS__ID_ADM__59FA5E80" FromRole="NOTICIAS" ToRole="USUARIO" />
+  </EntityType>
+  <Association Name="FK__NOTICIAS__ID_ADM__59FA5E80">
+    <End Type="LithoManagerModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+    <End Type="LithoManagerModel.NOTICIAS" Role="NOTICIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="NOTICIAS">
+        <PropertyRef Name="ID_ADMINISTRADOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MasterLitho</RootNamespace>
     <AssemblyName>MasterLitho</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +55,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -61,11 +63,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -110,6 +109,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -177,6 +177,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\NOTICIAS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PLANILLA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -191,6 +194,7 @@
     </Compile>
     <Compile Include="Models\tEmpleado.cs" />
     <Compile Include="Models\tEventos.cs" />
+    <Compile Include="Models\tNoticias.cs" />
     <Compile Include="Models\tPlanilla.cs" />
     <Compile Include="Models\tRol.cs" />
     <Compile Include="Models\tUsuario.cs" />
@@ -198,7 +202,6 @@
     <Compile Include="Models\USUARIO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.1.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +289,10 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ImgNoticias\00bc9c02-b15b-4bf9-af42-b38c4c5e58a4.png" />
+    <Content Include="ImgNoticias\2e71da75-b7dc-4541-ae24-e7eeaedc416f.jpg" />
+    <Content Include="ImgNoticias\757fc6c8-9663-4c19-845e-5df2dcd7a51c.jpg" />
+    <Content Include="ImgNoticias\89592aa3-cd54-4e0f-81d4-1d382ddec14e.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -2286,7 +2293,7 @@
     <Content Include="Views\Expedientes\GestionExpedientes.cshtml" />
     <Content Include="Views\Expedientes\DetalleExpediente.cshtml" />
     <Content Include="Views\Formularios\EnvioFormulario.cshtml" />
-    <Content Include="Views\Noticias\GestionNoticias.cshtml" />
+    <Content Include="Views\Noticias\Noticias.cshtml" />
     <Content Include="Views\Calendario\Calendario.cshtml" />
     <Content Include="Views\Login\IniciarSesion.cshtml" />
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
@@ -2309,9 +2316,13 @@
     <Content Include="Views\Empleado\ConsultarEmpleados.cshtml" />
     <Content Include="Views\Planillas\CrearNuevaPlanilla.cshtml" />
     <Content Include="Views\Planillas\EditarPlanilla.cshtml" />
+    <Content Include="Views\Calendario\ConsultarCalendario.cshtml" />
+    <Content Include="Views\Noticias\CrearNoticia.cshtml" />
+    <Content Include="Views\Noticias\EditarNoticia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
