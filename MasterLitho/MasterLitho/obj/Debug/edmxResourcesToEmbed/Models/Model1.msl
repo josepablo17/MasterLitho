@@ -22,13 +22,13 @@
     <EntitySetMapping Name="EMPLEADO">
       <EntityTypeMapping TypeName="LithoManagerModel.EMPLEADO">
         <MappingFragment StoreEntitySet="EMPLEADO">
-          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
           <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
           <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
           <ScalarProperty Name="DIAS_VACACIONES_DISPONIBLES" ColumnName="DIAS_VACACIONES_DISPONIBLES" />
           <ScalarProperty Name="FECHA_CONTRATACION" ColumnName="FECHA_CONTRATACION" />
           <ScalarProperty Name="ID_DEPARTAMENTO" ColumnName="ID_DEPARTAMENTO" />
           <ScalarProperty Name="ES_EMPLEADO" ColumnName="ES_EMPLEADO" />
+          <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -43,13 +43,13 @@
     <EntitySetMapping Name="EVENTOS">
       <EntityTypeMapping TypeName="LithoManagerModel.EVENTOS">
         <MappingFragment StoreEntitySet="EVENTOS">
+          <ScalarProperty Name="invitados" ColumnName="invitados" />
           <ScalarProperty Name="ID_EVENTO" ColumnName="ID_EVENTO" />
           <ScalarProperty Name="NOMBRE_EVENTO" ColumnName="NOMBRE_EVENTO" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
           <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
           <ScalarProperty Name="FECHA_FINAL" ColumnName="FECHA_FINAL" />
           <ScalarProperty Name="COLOR" ColumnName="COLOR" />
-          <ScalarProperty Name="invitados" ColumnName="invitados" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -63,16 +63,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="NOTICIAS">
+      <EntityTypeMapping TypeName="LithoManagerModel.NOTICIAS">
+        <MappingFragment StoreEntitySet="NOTICIAS">
+          <ScalarProperty Name="ID_NOTICIA" ColumnName="ID_NOTICIA" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="FECHA_PUBLICACION" ColumnName="FECHA_PUBLICACION" />
+          <ScalarProperty Name="ID_ADMINISTRADOR" ColumnName="ID_ADMINISTRADOR" />
+          <ScalarProperty Name="IMAGEN_RUTA" ColumnName="IMAGEN_RUTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="PLANILLA">
       <EntityTypeMapping TypeName="LithoManagerModel.PLANILLA">
         <MappingFragment StoreEntitySet="PLANILLA">
           <ScalarProperty Name="ID_PLANILLA" ColumnName="ID_PLANILLA" />
           <ScalarProperty Name="ID_EMPLEADO" ColumnName="ID_EMPLEADO" />
           <ScalarProperty Name="FECHA_PAGO" ColumnName="FECHA_PAGO" />
-          <ScalarProperty Name="SALARIO_BRUTO" ColumnName="SALARIO_BRUTO" />
           <ScalarProperty Name="DEDUCCIONES" ColumnName="DEDUCCIONES" />
           <ScalarProperty Name="BONOS" ColumnName="BONOS" />
+          <ScalarProperty Name="DIAS_VACACIONES_TOMADOS" ColumnName="DIAS_VACACIONES_TOMADOS" />
+          <ScalarProperty Name="HORAS_EXTRAS" ColumnName="HORAS_EXTRAS" />
+          <ScalarProperty Name="OTROS_BENEFICIOS" ColumnName="OTROS_BENEFICIOS" />
+          <ScalarProperty Name="APORTE_SEGURIDAD_SOCIAL" ColumnName="APORTE_SEGURIDAD_SOCIAL" />
+          <ScalarProperty Name="IMPUESTOS" ColumnName="IMPUESTOS" />
+          <ScalarProperty Name="PERIODO_INICIO" ColumnName="PERIODO_INICIO" />
+          <ScalarProperty Name="PERIODO_FIN" ColumnName="PERIODO_FIN" />
+          <ScalarProperty Name="SALARIO_BRUTO" ColumnName="SALARIO_BRUTO" />
           <ScalarProperty Name="SALARIO_NETO" ColumnName="SALARIO_NETO" />
+          <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -124,18 +144,6 @@
           <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
           <ScalarProperty Name="ESTADO_CONTRASENA_TEMPORAL" ColumnName="ESTADO_CONTRASENA_TEMPORAL" />
           <ScalarProperty Name="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" ColumnName="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="NOTICIAS">
-      <EntityTypeMapping TypeName="LithoManagerModel.NOTICIAS">
-        <MappingFragment StoreEntitySet="NOTICIAS">
-          <ScalarProperty Name="IMAGEN_RUTA" ColumnName="IMAGEN_RUTA" />
-          <ScalarProperty Name="ID_ADMINISTRADOR" ColumnName="ID_ADMINISTRADOR" />
-          <ScalarProperty Name="FECHA_PUBLICACION" ColumnName="FECHA_PUBLICACION" />
-          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
-          <ScalarProperty Name="ID_NOTICIA" ColumnName="ID_NOTICIA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

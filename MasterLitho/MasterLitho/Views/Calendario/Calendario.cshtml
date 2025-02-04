@@ -3,8 +3,8 @@
 }
 
 @{
-    var rolUsuario = Session["rolUsuario"];
-    var correoUsuario = Session["correoUsuario"];
+    var rolUsuario = Session["rolUsuario"] != null ? Session["rolUsuario"].ToString() : "";
+    var correoUsuario = Session["correoUsuario"] != null ? Session["correoUsuario"].ToString() : "";
 }
 
 <!DOCTYPE html>
@@ -23,6 +23,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+
+    
 </head>
 
 <body id="page-top">
@@ -85,93 +87,22 @@
                     </div>
                 </div>
 
-                <!-- Modal Detalles Evento -->
-                <div class="modal fade" id="eventoDetallesModal" tabindex="-1" role="dialog" aria-labelledby="eventoDetallesModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content rounded-3 shadow-lg">
-                            <div class="modal-header bg-primary text-white">
-                                <h5 class="modal-title"><i class="bi bi-calendar-event"></i> Detalles del Evento</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Título:</strong></div>
-                                    <div class="col-sm-8"><span id="eventoDetallesTitulo" class="fw-bold"></span></div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Descripción:</strong></div>
-                                    <div class="col-sm-8"><span id="eventoDetallesDescripcion"></span></div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Fecha de Inicio:</strong></div>
-                                    <div class="col-sm-8"><span id="eventoDetallesFechaInicio"></span></div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-4"><strong>Fecha Final:</strong></div>
-                                    <div class="col-sm-8"><span id="eventoDetallesFechaFinal"></span></div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal Editar Evento -->
-                <div class="modal fade" id="editarEventoModal" tabindex="-1" role="dialog" aria-labelledby="editarEventoModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Editar Evento</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formEditarEvento">
-                                    <input type="hidden" id="editarEventoId" />
-                                    <div class="form-group">
-                                        <label for="editarEventoTitulo">Título del Evento</label>
-                                        <input type="text" class="form-control" id="editarEventoTitulo" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editarEventoDescripcion">Descripción</label>
-                                        <textarea class="form-control" id="editarEventoDescripcion"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editarEventoFechaInicio">Fecha de Inicio</label>
-                                        <input type="date" class="form-control" id="editarEventoFechaInicio" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="editarEventoFechaFinal">Fecha de Finalización</label>
-                                        <input type="date" class="form-control" id="editarEventoFechaFinal" />
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-danger" id="eliminarEvento">Eliminar</button>
-                                <button type="button" class="btn btn-primary" id="editarEvento">Editar Evento</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
-
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <script src="~/Styles/FuncionesJS/FuncionesCalendario.js"></script>
+    <script src="@Url.Content("~/Styles/FuncionesJS/FuncionesCalendario.js")"></script>
+
+
+    
     <script>
-
-        var rolUsuario = "@Session["rolUsuario"]";
-        var correoUsuario = "@Session["correoUsuario"]";
-
+        var rolUsuario = "@Html.Raw(rolUsuario)";
+        var correoUsuario = "@Html.Raw(correoUsuario)";
     </script>
 </body>
 </html>

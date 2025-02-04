@@ -18,8 +18,9 @@ namespace MasterLitho.Models
         public USUARIO()
         {
             this.EMPLEADO = new HashSet<EMPLEADO>();
-            this.SOLICITUD_VACACIONES = new HashSet<SOLICITUD_VACACIONES>();
             this.NOTICIAS = new HashSet<NOTICIAS>();
+            this.NOTICIAS1 = new HashSet<NOTICIAS>();
+            this.SOLICITUD_VACACIONES = new HashSet<SOLICITUD_VACACIONES>();
         }
     
         public int ID_USUARIO { get; set; }
@@ -35,10 +36,12 @@ namespace MasterLitho.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NOTICIAS> NOTICIAS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NOTICIAS> NOTICIAS1 { get; set; }
         public virtual ROL ROL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NOTICIAS> NOTICIAS { get; set; }
     }
 }
