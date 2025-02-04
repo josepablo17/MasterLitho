@@ -187,9 +187,6 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tEventos.cs" />
     <Compile Include="Models\tPlanilla.cs" />
     <Compile Include="Models\tUsuario.cs" />
@@ -2233,7 +2230,8 @@
     <Content Include="Views\Login\CambiarContrasena.cshtml" />
     <Content Include="Views\SolicitudVacaciones\ConsultarMisSolicitudes.cshtml" />
     <Content Include="Views\Login\RecuperarAcceso.cshtml" />
-    <Content Include="Views\Planillas\CrearPlanilla.cshtml" />
+    <Content Include="Views\Planillas\CrearNuevaPlanilla.cshtml" />
+    <Content Include="Views\Planillas\EditarPlanilla.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

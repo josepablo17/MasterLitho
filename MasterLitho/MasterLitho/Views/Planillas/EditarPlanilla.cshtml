@@ -1,0 +1,92 @@
+﻿@model MasterLitho.Models.tPlanilla
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("EditarPlanilla", "Planillas", FormMethod.Post, new { @class = "form-horizontal", id = "editarPlanillaForm" }))
+{
+    @Html.HiddenFor(m => m.idEmpleado)
+    @Html.HiddenFor(m => m.idPlanilla)
+
+    <ul class="nav nav-tabs" id="planillaTabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#infoEmpleado">Empleado</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#detallesPago">Detalles de Pago</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#otrosDatos">Otros Datos</a>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-3">
+        <!-- Información del empleado -->
+        <div class="tab-pane fade show active" id="infoEmpleado">
+            <div class="form-group">
+                <label>Fecha de Pago</label>
+                @Html.TextBoxFor(m => m.fechaPago, "{0:yyyy-MM-dd}",
+                    new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
+            </div>
+            <div class="form-group">
+                <label>Inicio</label>
+                @Html.TextBoxFor(m => m.periodoInicio, "{0:yyyy-MM-dd}",
+                    new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
+            </div>
+            <div class="form-group">
+                <label>Fin</label>
+                @Html.TextBoxFor(m => m.periodoFin, "{0:yyyy-MM-dd}",
+                    new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
+            </div>
+        </div>
+
+
+        <!-- Detalles del pago -->
+        <div class="tab-pane fade" id="detallesPago">
+            <div class="form-group">
+                <label>Salario Bruto</label>
+                @Html.TextBoxFor(m => m.salarioBruto, new { @class = "form-control", required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Días de Vacaciones Tomados</label>
+                @Html.TextBoxFor(m => m.diasVacacionesTomados, new { @class = "form-control", required = "required" })
+            </div>
+        </div>
+
+        <!-- Otros datos -->
+        <div class="tab-pane fade" id="otrosDatos">
+            <div class="form-group">
+                <label>Bonos</label>
+                @Html.TextBoxFor(m => m.bonos, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Deducciones</label>
+                @Html.TextBoxFor(m => m.deducciones, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Horas Extras</label>
+                @Html.TextBoxFor(m => m.horasExtra, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Aporte Seguridad Social</label>
+                @Html.TextBoxFor(m => m.aporteSeguridadSocial, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Impuestos</label>
+                @Html.TextBoxFor(m => m.impuestos, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="form-group">
+                <label>Otros beneficios</label>
+                @Html.TextBoxFor(m => m.otrosBeneficios, new { @class = "form-control", @required = "required" })
+            </div>
+        </div>
+    </div>
+    <!-- Botón de envío -->
+    <div class="text-center mt-3">
+        <button type="submit" id="btnGuardarPlanilla" class="btn btn-primary">Guardar Planilla</button>
+    </div>
+}
+
+

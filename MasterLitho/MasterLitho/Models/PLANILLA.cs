@@ -17,21 +17,19 @@ namespace MasterLitho.Models
         public int ID_PLANILLA { get; set; }
         public int ID_EMPLEADO { get; set; }
         public System.DateTime FECHA_PAGO { get; set; }
-        public decimal SALARIO_BRUTO { get; set; }
         public decimal DEDUCCIONES { get; set; }
-        public decimal BONOS { get; set; }
-        public decimal SALARIO_NETO { get; set; }
+        public Nullable<decimal> BONOS { get; set; }
         public int DIAS_VACACIONES_TOMADOS { get; set; }
         public Nullable<int> HORAS_EXTRAS { get; set; }
-        public Nullable<decimal> MONTO_HORAS_EXTRAS { get; set; }
         public Nullable<decimal> OTROS_BENEFICIOS { get; set; }
-        public decimal APORTE_SEGURIDAD_SOCIAL { get; set; }
-        public decimal IMPUESTOS { get; set; }
+        public Nullable<decimal> APORTE_SEGURIDAD_SOCIAL { get; set; }
+        public Nullable<decimal> IMPUESTOS { get; set; }
         public System.DateTime PERIODO_INICIO { get; set; }
         public System.DateTime PERIODO_FIN { get; set; }
-        public Nullable<int> ID_ESTADO { get; set; }
+        public decimal SALARIO_BRUTO { get; set; }
+        public decimal SALARIO_NETO { get; set; }
+        public System.DateTime FECHA_CREACION { get; set; }
     
         public virtual EMPLEADO EMPLEADO { get; set; }
-        public virtual ESTADO_SOLICITUD ESTADO_SOLICITUD { get; set; }
     }
 }
