@@ -167,10 +167,6 @@ namespace MasterLitho.Controllers
             }
         }
 
-
-
-
-
         [HttpPost]
         public JsonResult EliminarEvento(int id)
         {

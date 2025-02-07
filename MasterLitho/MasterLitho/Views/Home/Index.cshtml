@@ -1,58 +1,51 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@{
     var noticias = ViewBag.Noticias as List<MasterLitho.Models.NOTICIAS> ?? new List<MasterLitho.Models.NOTICIAS>();
 }
 
+<h1 class="text-center my-4 text-primary fw-bold">Bienvenido a MasterLitho</h1>
 
-<h1 class="text-center my-10 text-dark">Bienvenido a MasterLitho</h1>
-
-<h2 class="text-center mt-5">Sección de Noticias</h2>
-
-<div class="container mt-5">
-    <div class="d-flex flex-column align-items-center">
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @foreach (var noticia in noticias)
         {
-            <div class="card mb-3 shadow cursor-pointer w-100" data-toggle="modal" data-target="#noticiaModal-@noticia.ID_NOTICIA" style="max-width: 800px;">
-                @if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA))
-                {
-                    <img src="@Url.Content(noticia.IMAGEN_RUTA)" class="card-img-top" alt="Imagen de @noticia.TITULO" style="height: 300px; object-fit: cover;">
-                }
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold">@noticia.TITULO</h5>
-                    <p class="card-text">@noticia.DESCRIPCION</p>
-                    <p class="card-text"><small class="text-muted">Publicado el: @noticia.FECHA_PUBLICACION.ToString("dd/MM/yyyy")</small></p>
+            <div class="col">
+                <div class="card shadow-sm h-100 border-0 rounded-4 overflow-hidden cursor-pointer" data-toggle="modal" data-target="#noticiaModal-@noticia.ID_NOTICIA">
+                    @if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA))
+                    {
+                        <img src="@Url.Content(noticia.IMAGEN_RUTA)" class="card-img-top" alt="Imagen de @noticia.TITULO" style="height: 200px; object-fit: cover;">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-dark">@noticia.TITULO</h5>
+                        <p class="card-text text-muted text-truncate" style="max-height: 3em; overflow: hidden;">@noticia.DESCRIPCION</p>
+                        <p class="card-text"><small class="text-muted">Publicado el: @noticia.FECHA_PUBLICACION.ToString("dd/MM/yyyy")</small></p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Modal -->
+            <!-- Modal de Noticia -->
             <div class="modal fade" id="noticiaModal-@noticia.ID_NOTICIA" tabindex="-1" role="dialog" aria-labelledby="modelTitleId-@noticia.ID_NOTICIA" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title font-weight-bold">@noticia.TITULO</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                <div class="modal-dialog modal-lg modal-dialog-centered d-flex justify-content-center" role="document">
+                    <div class="modal-content rounded-4">
+                        <div class="modal-header bg-primary text-white">
+                            <h5 class="modal-title fw-bold">@noticia.TITULO</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-center">
                             @if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA))
                             {
-                                <img src="@Url.Content(noticia.IMAGEN_RUTA)" class="img-fluid mb-3" alt="Imagen de @noticia.TITULO">
+                                <img src="@Url.Content(noticia.IMAGEN_RUTA)" class="img-fluid mb-3 rounded-3 shadow-sm" alt="Imagen de @noticia.TITULO">
                             }
-                            <p>@noticia.DESCRIPCION</p>
+                            <p class="fs-5">@noticia.DESCRIPCION</p>
                             <p><small class="text-muted">Publicado el: @noticia.FECHA_PUBLICACION.ToString("dd/MM/yyyy")</small></p>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
             </div>
+
         }
     </div>
 </div>
-
-
