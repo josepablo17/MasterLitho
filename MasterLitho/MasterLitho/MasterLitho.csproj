@@ -2224,6 +2224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImgNoticias\" />
     <Folder Include="Views\MetodosComunes\" />
   </ItemGroup>
   <ItemGroup>
