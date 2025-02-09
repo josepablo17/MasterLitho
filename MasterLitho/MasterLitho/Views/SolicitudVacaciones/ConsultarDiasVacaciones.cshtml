@@ -1,103 +1,35 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
+@{
+    ViewBag.Title = "Consultar Saldo de Vacaciones";
+}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Consulta de Saldo de Vacaciones</title>
-
-    <!-- Bootstrap CSS (Asegúrate de tener el link correcto) -->
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body id="page-top">
-    <div id="content-wrapper" class="container mt-4">
-        <h1 class="mb-4">Consulta de Saldo de Vacaciones</h1>
-
-        <!-- Sección de Saldo Actualizado -->
-        <div class="card mb-4">
-            <div class="card-header">Saldo Actual de Vacaciones</div>
-            <div class="card-body">
-                <h3 id="vacationBalance" class="text-success">15 días</h3>
-                <button class="btn btn-primary" onclick="simulateBalanceUpdate()">Actualizar Saldo</button>
-            </div>
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white text-center">
+            <h2>Consultar Saldo de Vacaciones</h2>
         </div>
-
-        <!-- Historial de Uso de Vacaciones -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Historial de Uso de Vacaciones</h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Fecha de Solicitud</th>
-                                <th>Fecha de Inicio</th>
-                                <th>Fecha de Fin</th>
-                                <th>Días Utilizados</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2024-06-01</td>
-                                <td>2024-07-15</td>
-                                <td>2024-07-20</td>
-                                <td>5</td>
-                                <td><span class="badge badge-success">Aprobado</span></td>
-                            </tr>
-                            <tr>
-                                <td>2024-08-05</td>
-                                <td>2024-09-10</td>
-                                <td>2024-09-12</td>
-                                <td>2</td>
-                                <td><span class="badge badge-warning">Pendiente</span></td>
-                            </tr>
-                            <!-- Más filas aquí -->
-                        </tbody>
-                    </table>
+        <div class="card-body text-center">
+            @if (ViewBag.SaldoVacaciones != null)
+            {
+                <div class="my-4">
+                    <h3 class="text-success">Saldo de Vacaciones</h3>
+                    <p class="fs-4">
+                        Tienes disponibles:
+                        <strong class="text-primary">@ViewBag.SaldoVacaciones días</strong>
+                    </p>
+                    <i class="bi bi-calendar-check text-success" style="font-size: 4rem;"></i>
                 </div>
-            </div>
-        </div>
+            }
+            else if (ViewBag.MensajeError != null)
+            {
+                <div class="alert alert-danger my-4" role="alert">
+                    <p class="fs-5">@ViewBag.MensajeError</p>
+                </div>
+            }
 
-        <!-- Notificación de Incremento Automático -->
-        <div class="alert alert-info" role="alert">
-            Tu saldo de vacaciones ha sido incrementado automáticamente.
-        </div>
-
-        <!-- Error de Consulta -->
-        <div class="alert alert-danger d-none" role="alert" id="errorAlert">
-            Hubo un error al consultar el saldo de vacaciones. Inténtalo de nuevo más tarde.
         </div>
     </div>
-
-    <!-- Botón para subir al inicio -->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Scripts de Bootstrap y JavaScript -->
-    <script src="~/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function simulateBalanceUpdate() {
-            const balanceElement = document.getElementById('vacationBalance');
-            balanceElement.textContent = '14 días'; // Simula la actualización del saldo
-            alert('Saldo de vacaciones actualizado.');
-        }
-    </script>
-</body>
-
-</html>
-
-
-
+</div>

@@ -16,8 +16,17 @@ namespace MasterLitho
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "IniciarSesion", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Noticias",
+                url: "Noticias",
+                defaults: new { controller = "Noticias", action = "GestionNoticias" }
+            );
+
+
+
         }
     }
 }

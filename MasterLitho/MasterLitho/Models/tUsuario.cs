@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MasterLitho.Models
 {
@@ -19,5 +20,7 @@ namespace MasterLitho.Models
         public int idRol { get; set; }
         public string NombreRol { get; set; }
 
+
+        public virtual ICollection<Noticia> Noticias { get; set; } 
     }
 }

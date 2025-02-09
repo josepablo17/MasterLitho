@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MasterLitho.Models.NOTICIAS>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Lista de Noticias";
+}
+
+
+<div id="content-wrapper" class="container">
+    <div id="content">
+        <h1 class="my-4">Gestión de noticias</h1>
+
+        <div class="container-fluid">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de noticias</h5>
+                    <div class="table-responsive">
+                        <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Titulo de la noticia</th>
+                                    <th>Fecha publicación</th>
+                                    <th>Imagen</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var noticia in Model)
+                                {
+                                    <tr>
+                                        <td>@noticia.TITULO</td>
+                                        <td>@noticia.FECHA_PUBLICACION.ToString("yyyy-MM-dd HH:mm")</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA))
+                                            {
+                                                <img src="@Url.Content(noticia.IMAGEN_RUTA)" alt="Imagen Noticia" width="100" />
+                                            }
+                                            else
+                                            {
+                                                <span>No disponible</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a class="btn" href="@Url.Action("EditarNoticia","Noticias", new { id = noticia.ID_NOTICIA })">
+                                                <i class="fas fa-pencil"></i>
+                                            </a>
+                                            <a class="btn" href="@Url.Action("EliminarNoticia","Noticias", new { id = noticia.ID_NOTICIA })">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-3">
+                <a href="@Url.Action("CrearNoticia", "Noticias")" class="btn btn-outline-primary">+ Crear noticia</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        inicializarDataTable('#solicitudesTable');
+    });
+</script>

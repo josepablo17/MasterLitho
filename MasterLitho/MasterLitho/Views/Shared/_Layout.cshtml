@@ -9,14 +9,19 @@
     <meta name="author" content="">
     <title>MasterLitho</title>
 
-    <!-- Custom fonts for this template -->
     <link href="~/Styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!-- Custom styles for this template -->
+    <link href="~/Styles/css/sb-admin-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.0/css/buttons.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link href="~/Styles/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
@@ -26,29 +31,21 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class=""></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">MasterLithoADMIN</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
+        <ul class="navbar-nav sidebar @((Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1") ? "sidebar-admin" : "sidebar-employee") accordion" id="accordionSidebar">
 
             @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1")
             {
-                <!-- Heading -->
-                <div class="sidebar-heading">Gestión Administrativa</div>
+                <li class="nav-item">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
+                        <div class="sidebar-brand-icon rotate-n-15">
+                            <i class=""></i>
+                        </div>
+                        <div class="sidebar-brand-text mx-3">MasterLithoADMIN</div>
+                    </a>
+                </li>
+
+                <li><hr class="sidebar-divider my-0"></li>
+                <li><hr class="sidebar-divider"></li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("GestionarVacaciones", "SolicitudVacaciones")">
@@ -93,7 +90,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("GestionNoticias", "Noticias")">
+                    <a class="nav-link" href="@Url.Action("Noticias", "Noticias")">
                         <i class="fas fa-fw fa-newspaper"></i>
                         <span>Gestión de Noticias</span>
                     </a>
@@ -105,15 +102,32 @@
                         <span>Calendario</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("GestionUsuarios", "Usuarios")">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Gestion Usuarios</span>
+                    </a>
+                </li>
 
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
+                <li class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
+                </li>
             }
 
             @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "2")
             {
+                <li class="nav-item">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
+                        <div class="sidebar-brand-icon rotate-n-15">
+                            <i class=""></i>
+                        </div>
+                        <div class="sidebar-brand-text mx-3">MasterLitho</div>
+                    </a>
+                </li>
+
+                <li><hr class="sidebar-divider my-0"></li>
+                <li><hr class="sidebar-divider"></li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("SolicitarVacaciones","SolicitudVacaciones")">
                         <i class="fas fa-fw fa-calendar-check"></i>
@@ -164,24 +178,16 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ConsultarNoticias","Noticias")">
-                        <i class="fas fa-fw fa-calendar-alt"></i>
-                        <span>Noticias</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ConsultarCalendario","Calendario")">
+                    <a class="nav-link" href="@Url.Action("Calendario", "Calendario")">
                         <i class="fas fa-fw fa-calendar-alt"></i>
                         <span>Calendario</span>
                     </a>
                 </li>
             }
 
-
-
-
         </ul>
+
+
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -197,18 +203,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
 
-                        <!-- Topbar Search -->
-                        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                       aria-label="Search" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
@@ -300,10 +295,9 @@
                                     <h6 class="dropdown-header">Message Center</h6>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" <img src="~/~/Styles/img/undraw_profile_1.svg" /> alt="...">
                                             <div class="status-indicator bg-success"></div>
                                         </div>
-                                        <img src="~/~/Styles/img/undraw_profile_1.svg" />
+
                                         <div class="font-weight-bold">
                                             <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
                                             <div class="small text-gray-500">Emily Fowler · 58m</div>
@@ -331,36 +325,36 @@
                                     </a>
                                     <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                                 </div>
+
+
+                            </li>
+                            <li>
+                                <div class="topbar-divider d-none d-sm-block"></div>
                             </li>
 
-                            <div class="topbar-divider d-none d-sm-block"></div>
 
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@Session["NOMBRE_USUARIO"]</span>
                                     <img class="img-profile rounded-circle" src="~/Styles/img/undraw_profile.svg">
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                      aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="@Url.Action("modificarPerfil","Usuarios")">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                         Perfil
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Configuración
-                                    </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="@Url.Action("ConsultarMisSolicitudes","SolicitudVacaciones")">
                                         <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Registro de actividad
+                                        Mis solicitudes
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Log out
+                                        Cerrar Sesion
                                     </a>
                                 </div>
                             </li>
@@ -368,6 +362,7 @@
                         </ul>
 
                     </nav>
+
                 </header>
 
 
@@ -405,18 +400,21 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-body">Seguro que quieres cerrar sesion?.</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="@Url.Action("IniciarSesion", "Login")">Logout</a>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-primary" href="@Url.Action("IniciarSesion", "Login")">Cerrar Sesion</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Bootstrap core JavaScript -->
-        <script src="~/Styles/vendor/jquery/jquery.min.js"></script>
-        <script src="~/Styles/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.0/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.print.min.js"></script>
+        <script src="~/Styles/FuncionesJS/DataTables.js"></script>
 
         <!-- Core plugin JavaScript -->
         <script src="~/Styles/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -424,11 +422,6 @@
         <!-- Custom scripts for all pages -->
         <script src="~/Styles/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <!-- Page level custom scripts -->
-
-        <link href="~/~/Styles/css/sb-admin-2.min.css" rel="stylesheet" />
-        <link href="~/~/Styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
 
 </body>
 </html>

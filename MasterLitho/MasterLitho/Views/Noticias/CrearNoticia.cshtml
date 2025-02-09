@@ -1,0 +1,55 @@
+﻿@model MasterLitho.Models.Noticia
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Crear Noticia</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("CrearNoticia", "Noticias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.Titulo, new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el título de la noticia" } })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.Descripcion, new { @class = "form-label" })
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = 4, placeholder = "Ingrese la descripción de la noticia" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="ImagenNoticia" class="form-label">Imagen de la Noticia</label>
+                    <input type="file" name="ImagenNoticia" class="form-control" id="ImagenNoticia" accept="image/*" onchange="previewImage(event)">
+                    <div class="mt-3">
+                        <img id="imagePreview" src="#" alt="Vista previa de la imagen" class="img-fluid d-none" style="max-height: 200px;" />
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("Noticias", "Noticias")" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function () {
+            var img = document.getElementById("imagePreview");
+            img.src = reader.result;
+            img.classList.remove("d-none");
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

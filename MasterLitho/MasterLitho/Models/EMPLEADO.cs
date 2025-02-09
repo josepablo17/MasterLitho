@@ -28,6 +28,8 @@ namespace MasterLitho.Models
         public int DIAS_VACACIONES_DISPONIBLES { get; set; }
         public System.DateTime FECHA_CONTRATACION { get; set; }
         public int ID_DEPARTAMENTO { get; set; }
+        public bool ES_EMPLEADO { get; set; }
+        public bool ESTADO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONSTANCIA_LABORAL> CONSTANCIA_LABORAL { get; set; }

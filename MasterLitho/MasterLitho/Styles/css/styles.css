@@ -1,0 +1,49 @@
+﻿/* Estilo para el campo de autocompletado */
+.autocomplete-container {
+    position: relative;
+}
+
+#autocomplete {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+}
+
+#suggestions-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+}
+
+    #suggestions-list li {
+        padding: 8px;
+        cursor: pointer;
+    }
+
+        #suggestions-list li:hover {
+            background-color: #f1f1f1;
+        }
+
+/* Estilo para los usuarios seleccionados */
+.selected-users {
+    margin-top: 20px;
+}
+
+    .selected-users ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .selected-users li {
+        margin-bottom: 5px;
+        padding: 5px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }

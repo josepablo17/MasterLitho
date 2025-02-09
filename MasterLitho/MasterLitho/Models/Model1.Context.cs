@@ -29,12 +29,13 @@ namespace MasterLitho.Models
         public virtual DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
         public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
         public virtual DbSet<ESTADO_SOLICITUD> ESTADO_SOLICITUD { get; set; }
+        public virtual DbSet<EVENTOS> EVENTOS { get; set; }
         public virtual DbSet<FORMULARIO> FORMULARIO { get; set; }
+        public virtual DbSet<NOTICIAS> NOTICIAS { get; set; }
         public virtual DbSet<PLANILLA> PLANILLA { get; set; }
         public virtual DbSet<QUEJAS_REPORTES> QUEJAS_REPORTES { get; set; }
         public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
     }
 }
