@@ -22,7 +22,7 @@
     <Key>
       <PropertyRef Name="ID_EMPLEADO" />
     </Key>
-    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
     <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
     <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="Int32" Nullable="false" />
     <Property Name="FECHA_CONTRATACION" Type="DateTime" Nullable="false" Precision="3" />

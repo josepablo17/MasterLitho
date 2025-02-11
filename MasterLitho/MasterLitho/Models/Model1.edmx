@@ -25,7 +25,7 @@
           <Key>
             <PropertyRef Name="ID_EMPLEADO" />
           </Key>
-          <Property Name="ID_EMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
           <Property Name="ID_USUARIO" Type="int" Nullable="false" />
           <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="int" Nullable="false" />
           <Property Name="FECHA_CONTRATACION" Type="datetime" Nullable="false" />
@@ -388,7 +388,7 @@
           <Key>
             <PropertyRef Name="ID_EMPLEADO" />
           </Key>
-          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EMPLEADO" Type="Int32" Nullable="false" />
           <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
           <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="Int32" Nullable="false" />
           <Property Name="FECHA_CONTRATACION" Type="DateTime" Nullable="false" Precision="3" />
@@ -917,7 +917,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

@@ -273,6 +273,7 @@ namespace MasterLitho.Controllers
             {
                 var tabla = new USUARIO
                 {
+                    
                     IDENTIFICACION = modelUsuario.identificacion,
                     NOMBRE_USUARIO = modelUsuario.nombreUsuario,
                     APELLIDO_USUARIO = modelUsuario.apellidoUsuario,
