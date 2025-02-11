@@ -65,20 +65,26 @@ namespace MasterLitho.Controllers
             using (var context = new LithoManagerEntities())
             {
                 var usuario = context.USUARIO.Find(idUsuario);
-                if (usuario == null)
+                if (usuario == null || usuario.ID_USUARIO == 0)
                 {
+                    Console.WriteLine("El usuario no existe o su ID no es válido.");
                     return RedirectToAction("GestionUsuarios", "Usuarios");
                 }
 
+                Console.WriteLine($"ID_USUARIO obtenido: {usuario.ID_USUARIO}");
+
                 var tabla = new EMPLEADO
                 {
-                    ID_USUARIO = usuario.ID_USUARIO, 
-                    DIAS_VACACIONES_DISPONIBLES = 14, 
-                    FECHA_CONTRATACION = empleado.FECHA_CONTRATACION, 
-                    ID_DEPARTAMENTO = empleado.ID_DEPARTAMENTO, 
+                    ID_EMPLEADO = usuario.ID_USUARIO,
+                    ID_USUARIO = usuario.ID_USUARIO,
+                    DIAS_VACACIONES_DISPONIBLES = 14,
+                    FECHA_CONTRATACION = empleado.FECHA_CONTRATACION,
+                    ID_DEPARTAMENTO = empleado.ID_DEPARTAMENTO,
                     ES_EMPLEADO = true,
                     ESTADO = true,
                 };
+
+                Console.WriteLine($"ID_EMPLEADO a insertar: {tabla.ID_EMPLEADO}");
 
                 context.EMPLEADO.Add(tabla);
                 context.SaveChanges();

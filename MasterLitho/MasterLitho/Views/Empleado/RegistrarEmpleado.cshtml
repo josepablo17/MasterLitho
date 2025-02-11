@@ -22,9 +22,9 @@
                             </div>
                         }
 
-                        @using (Html.BeginForm("RegistrarEmpleado", "Empleado", new { idUsuario = Model.ID_EMPLEADO }, FormMethod.Post))
+                        @using (Html.BeginForm("RegistrarEmpleado", "Empleado", new { idUsuario = Model.ID_USUARIO }, FormMethod.Post))
                         {
-                            @Html.Hidden("idUsuario", Model.ID_EMPLEADO)
+                            @Html.Hidden("idUsuario", Model.ID_USUARIO)
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold"><i class="fas fa-id-card me-2"></i> Fecha de contratacion</label>
@@ -33,7 +33,7 @@
 
                             <div class="mb-4">
                                 <label class="form-label fw-semibold"><i class="fas fa-envelope me-2"></i> Departamento</label>
-                                @Html.DropDownListFor(m => m.ID_DEPARTAMENTO, ViewBag.Departamentos as List<SelectListItem>, "Seleccione", new { @class = "form-control" })
+                                @Html.DropDownListFor(m => m.ID_DEPARTAMENTO, ViewBag.Departamentos as List<SelectListItem>,  new { @class = "form-control" })
                             </div>
 
                             <div class="d-grid gap-3">

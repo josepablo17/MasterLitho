@@ -5,44 +5,55 @@
     ViewBag.Title = "Editar Noticia";
 }
 
-<h2>Editar Noticia</h2>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Editar Noticia</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("EditarNoticia", "Noticias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.ID_NOTICIA)
 
-@using (Html.BeginForm("EditarNoticia", "Noticias", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.ID_NOTICIA)
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.TITULO, new { @class = "form-label" })
+                    @Html.EditorFor(model => model.TITULO, new { htmlAttributes = new { @class = "form-control", placeholder = "Ingrese el título de la noticia" } })
+                </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.TITULO)
-        @Html.EditorFor(model => model.TITULO, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.DESCRIPCION, new { @class = "form-label" })
+                    @Html.TextAreaFor(model => model.DESCRIPCION, new { @class = "form-control", rows = 4, placeholder = "Ingrese la descripción de la noticia" })
+                </div>
+
+                <div class="mb-3">
+                    <label for="FECHA_PUBLICACION" class="form-label">Fecha de Publicación</label>
+                    <input type="datetime-local" id="FECHA_PUBLICACION" name="FECHA_PUBLICACION"
+                           value="@Model.FECHA_PUBLICACION.ToString("yyyy-MM-ddTHH:mm")" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Imagen Actual</label><br />
+                    @if (!string.IsNullOrEmpty(Model.IMAGEN_RUTA))
+                    {
+                        <img src="@Url.Content(Model.IMAGEN_RUTA)" alt="Imagen Noticia" class="img-fluid" style="max-height: 200px;" />
+                    }
+                    else
+                    {
+                        <span>No disponible</span>
+                    }
+                </div>
+
+                <div class="mb-3">
+                    <label for="ImagenNoticia" class="form-label">Actualizar Imagen</label>
+                    <input type="file" name="ImagenNoticia" class="form-control" id="ImagenNoticia" accept="image/*">
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("Noticias", "Noticias")" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            }
+        </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DESCRIPCION)
-        @Html.TextAreaFor(model => model.DESCRIPCION, new { @class = "form-control" })
-    </div>
-
-    <label for="FECHA_PUBLICACION">Fecha de Publicación</label>
-    <input type="datetime-local" id="FECHA_PUBLICACION" name="FECHA_PUBLICACION"
-           value="@Model.FECHA_PUBLICACION.ToString("yyyy-MM-ddTHH:mm")" class="form-control" />
-
-
-    <div class="form-group">
-        <label for="ImagenNoticia">Imagen Actual</label><br />
-        @if (!string.IsNullOrEmpty(Model.IMAGEN_RUTA))
-        {
-            <img src="@Url.Content(Model.IMAGEN_RUTA)" alt="Imagen Noticia" width="100" />
-        }
-        else
-        {
-            <span>No disponible</span>
-        }
-    </div>
-
-    <div class="form-group">
-        <label for="ImagenNoticia">Actualizar Imagen</label>
-        <input type="file" name="ImagenNoticia" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-}
+</div>

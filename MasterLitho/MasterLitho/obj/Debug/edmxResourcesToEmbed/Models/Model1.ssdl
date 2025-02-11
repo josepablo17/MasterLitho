@@ -20,7 +20,7 @@
     <Key>
       <PropertyRef Name="ID_EMPLEADO" />
     </Key>
-    <Property Name="ID_EMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
     <Property Name="ID_USUARIO" Type="int" Nullable="false" />
     <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="int" Nullable="false" />
     <Property Name="FECHA_CONTRATACION" Type="datetime" Nullable="false" />
