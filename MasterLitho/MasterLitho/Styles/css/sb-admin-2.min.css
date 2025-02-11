@@ -5645,10 +5645,10 @@ a.close.disabled {
 }
 
 .modal-dialog {
-    position: relative;
-    width: auto;
-    margin: .5rem;
-    pointer-events: none
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .modal.fade .modal-dialog {
