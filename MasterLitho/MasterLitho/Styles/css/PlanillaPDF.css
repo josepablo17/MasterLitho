@@ -1,0 +1,49 @@
+﻿body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: white;
+    margin: 0;
+    padding: 40px;
+}
+
+.invoice-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+    .invoice-header h2 {
+        color: #3a97d3;
+        font-size: 28px;
+    }
+
+.invoice-section {
+    margin-bottom: 20px;
+}
+
+    .invoice-section h3 {
+        background-color: #3a97d3;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+.invoice-details {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    font-size: 16px;
+}
+
+.invoice-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
