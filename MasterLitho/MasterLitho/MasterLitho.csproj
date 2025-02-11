@@ -437,7 +437,7 @@
     <Content Include="Styles\TemplateCorreoEventos.html" />
     <Content Include="Styles\TemplateCorreo.html" />
     <Content Include="Styles\TemplateCorreoRecuperarContrasena.html" />
-    <Content Include="Styles\TemplateCorreoSolicitudVacaciones - Copy.html" />
+    <Content Include="Styles\TemplateCorreoSolicitudVacaciones.html" />
     <Content Include="Styles\TemplateCorreoRegistroUser.html" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.min.js" />
@@ -2325,7 +2325,6 @@
     <Content Include="Views\Empleado\ConsultarEmpleados.cshtml" />
     <Content Include="Views\Planillas\CrearNuevaPlanilla.cshtml" />
     <Content Include="Views\Planillas\EditarPlanilla.cshtml" />
-    <Content Include="Views\Calendario\ConsultarCalendario.cshtml" />
     <Content Include="Views\Noticias\CrearNoticia.cshtml" />
     <Content Include="Views\Noticias\EditarNoticia.cshtml" />
     <Content Include="Views\Planillas\DetallePlanillaPDF.cshtml" />

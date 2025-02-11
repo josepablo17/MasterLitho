@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\planillas\\detalleplanillapdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\planillas\\detalleplanillapdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\calendario\\calendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\calendario\\calendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\views\\planillas\\consultarplanillas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\planillas\\consultarplanillas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\solicitudvacaciones\\gestionarvacaciones.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\solicitudvacaciones\\gestionarvacaciones.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\styles\\css\\planillapdf.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\css\\planillapdf.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\controllers\\planillascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\planillascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,54 +62,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlanillaPDF.css",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\css\\PlanillaPDF.css",
-              "RelativeDocumentMoniker": "MasterLitho\\Styles\\css\\PlanillaPDF.css",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\css\\PlanillaPDF.css",
-              "RelativeToolTip": "MasterLitho\\Styles\\css\\PlanillaPDF.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-02-10T21:41:39.737Z",
+              "DocumentIndex": 0,
+              "Title": "Calendario.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-11T05:28:20.754Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ConsultarPlanillas.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Planillas\\ConsultarPlanillas.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Planillas\\ConsultarPlanillas.cshtml",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Planillas\\ConsultarPlanillas.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Planillas\\ConsultarPlanillas.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "Title": "GestionarVacaciones.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-10T05:18:08.404Z",
+              "WhenOpened": "2025-02-11T05:00:27.886Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DetallePlanillaPDF.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Planillas\\DetallePlanillaPDF.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Planillas\\DetallePlanillaPDF.cshtml",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Planillas\\DetallePlanillaPDF.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Planillas\\DetallePlanillaPDF.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-10T04:42:53.152Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PlanillasController.cs",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\PlanillasController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\PlanillasController.cs",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\PlanillasController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\PlanillasController.cs",
-              "ViewState": "AgIAAHcBAAAAAAAAAAAqwNYBAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T03:42:21.93Z",
+              "WhenOpened": "2025-02-11T03:43:24.827Z",
               "EditorCaption": ""
             }
           ]
