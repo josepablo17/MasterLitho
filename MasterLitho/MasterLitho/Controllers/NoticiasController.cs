@@ -119,10 +119,10 @@ namespace MasterLitho.Controllers
                 var noticia = context.NOTICIAS.Find(id);
                 if (noticia == null)
                 {
-                    return HttpNotFound(); // Retorna 404 si no encuentra la noticia
+                    return HttpNotFound(); 
                 }
 
-                return View(noticia); // Devuelve la vista con la noticia a editar
+                return View(noticia);
             }
         }
 
@@ -149,13 +149,13 @@ namespace MasterLitho.Controllers
                     ? model.FECHA_PUBLICACION : noticia.FECHA_PUBLICACION;
 
 
-                    // Si hay una nueva imagen, actualizarla
+                   
                     if (ImagenNoticia != null)
                     {
-                        // Obtener ruta de la imagen anterior
+                       
                         string oldImagePath = Server.MapPath(noticia.IMAGEN_RUTA);
 
-                        // Eliminar imagen anterior si existe
+                        
                         if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA) && System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
@@ -174,11 +174,11 @@ namespace MasterLitho.Controllers
 
                     context.SaveChanges();
 
-                    return RedirectToAction("Noticias", "Noticias"); // Redirige a la lista de noticias
+                    return RedirectToAction("Noticias", "Noticias"); 
                 }
             }
 
-            return View(model); // Si el modelo no es válido, vuelve a la vista con errores
+            return View(model); 
         }
 
 

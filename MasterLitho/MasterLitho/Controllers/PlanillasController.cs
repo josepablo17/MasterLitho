@@ -382,7 +382,6 @@ namespace MasterLitho.Controllers
                         return View(model);
                     }
 
-                    // Calcular salario neto actualizado
                     decimal tarifaHoraExtra = (model.salarioBruto / 160) * 1.5m; // Asumiendo 160 horas mensuales
                     int horasExtra = model.horasExtra.HasValue ? model.horasExtra.Value : 0;
                     decimal montoHorasExtras = horasExtra * tarifaHoraExtra;
@@ -395,7 +394,6 @@ namespace MasterLitho.Controllers
                                           + model.otrosBeneficios
                                           + montoHorasExtras;
 
-                    // Actualizar la planilla existente
                     planillaExistente.FECHA_PAGO = model.fechaPago;
                     planillaExistente.SALARIO_BRUTO = model.salarioBruto;
                     planillaExistente.DEDUCCIONES = model.deducciones;

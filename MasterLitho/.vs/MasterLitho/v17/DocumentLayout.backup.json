@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\calendario\\calendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\calendario\\calendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\solicitudvacaciones\\gestionarvacaciones.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\solicitudvacaciones\\gestionarvacaciones.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -59,45 +46,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Calendario.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\Calendario.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Calendario\\Calendario.cshtml",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\Calendario.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Calendario\\Calendario.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-11T05:28:20.754Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GestionarVacaciones.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\SolicitudVacaciones\\GestionarVacaciones.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-11T05:00:27.886Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-11T03:43:24.827Z",
-              "EditorCaption": ""
             }
           ]
         }
