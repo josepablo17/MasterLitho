@@ -8,88 +8,104 @@
 @using (Html.BeginForm("CrearNuevaPlanilla", "Planillas", FormMethod.Post, new { @class = "form-horizontal", id = "crearPlanillaForm" }))
 {
 
-    <ul class="nav nav-tabs" id="planillaTabs">
-        <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#infoEmpleado">Empleado</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#detallesPago">Detalles de Pago</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#otrosDatos">Otros Datos</a>
-        </li>
-    </ul>
-
-    <div class="tab-content mt-3">
+    <div class="accordion" id="planillaAccordion">
         <!-- Información del empleado -->
-        <div class="tab-pane fade show active" id="infoEmpleado">
-
-            <div class="form-group">
-                <label for="Empleado" class="form-group">Empleado</label>
-                @Html.DropDownListFor(m => m.idEmpleado, ViewBag.listaEmpleados as List<SelectListItem>, new { @class = "form-control", id = "empleadoDropdown" })
-            </div>
-
-            <div class="form-group">
-                <label>Fecha de Pago</label>
-                @Html.TextBoxFor(m => m.fechaPago, "{0:yyyy-MM-dd}",
-                    new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
-            </div>
-            <div class="form-group">
-                <label>Inicio</label>
-                @Html.TextBoxFor(m => m.periodoInicio, "{0:yyyy-MM-dd}",
-                    new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
-            </div>
-            <div class="form-group">
-                <label>Fin</label>
-                @Html.TextBoxFor(m => m.periodoFin, "{0:yyyy-MM-dd}",
-                    new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
-            </div>
-        </div>
-
-        <!-- Detalles del pago -->
-        <div class="tab-pane fade" id="detallesPago">
-            <div class="form-group">
-                <label>Salario Bruto</label>
-                @Html.TextBoxFor(m => m.salarioBruto, new { @class = "form-control", required = "required" })
-            </div>
-            <div class="form-group">
-                <label>Días de Vacaciones Tomados</label>
-                @Html.TextBoxFor(m => m.diasVacacionesTomados, new { @class = "form-control", required = "required" })
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEmpleado">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#infoEmpleado" aria-expanded="true">
+                    <i class=""></i> Información del Empleado
+                </button>
+            </h2>
+            <div id="infoEmpleado" class="accordion-collapse collapse show" data-bs-parent="#planillaAccordion">
+                <div class="accordion-body">
+                    <div class="form-group">
+                        <label>Empleado</label>
+                        @Html.DropDownListFor(m => m.idEmpleado, ViewBag.listaEmpleados as List<SelectListItem>,
+                            new { @class = "form-control", id = "empleadoDropdown" })
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de Pago</label>
+                        @Html.TextBoxFor(m => m.fechaPago, "{0:yyyy-MM-dd}",
+                            new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
+                    </div>
+                    <div class="form-group">
+                        <label>Inicio</label>
+                        @Html.TextBoxFor(m => m.periodoInicio, "{0:yyyy-MM-dd}",
+                            new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
+                    </div>
+                    <div class="form-group">
+                        <label>Fin</label>
+                        @Html.TextBoxFor(m => m.periodoFin, "{0:yyyy-MM-dd}",
+                            new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Otros datos -->
-        <div class="tab-pane fade" id="otrosDatos">
-            <div class="form-group">
-                <label>Bonos</label>
-                @Html.TextBoxFor(m => m.bonos, new { @class = "form-control", @required = "required" })
+        <!-- Detalles del Pago -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPago">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#detallesPago" aria-expanded="false">
+                    <i class=""></i> Detalles del Pago
+                </button>
+            </h2>
+            <div id="detallesPago" class="accordion-collapse collapse" data-bs-parent="#planillaAccordion">
+                <div class="accordion-body">
+                    <div class="form-group">
+                        <label>Salario Bruto</label>
+                        @Html.TextBoxFor(m => m.salarioBruto, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div class="form-group">
+                        <label>Días de Vacaciones Tomados</label>
+                        @Html.TextBoxFor(m => m.diasVacacionesTomados, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Deducciones</label>
-                @Html.TextBoxFor(m => m.deducciones, new { @class = "form-control", @required = "required" })
-            </div>
-            <div class="form-group">
-                <label>Horas Extras</label>
-                @Html.TextBoxFor(m => m.horasExtra, new { @class = "form-control", @required = "required" })
-            </div>
-            <div class="form-group">
-                <label>Aporte Seguridad Social</label>
-                @Html.TextBoxFor(m => m.aporteSeguridadSocial, new { @class = "form-control", @required = "required" })
-            </div>
-            <div class="form-group">
-                <label>Impuestos</label>
-                @Html.TextBoxFor(m => m.impuestos, new { @class = "form-control", @required = "required" })
-            </div>
-            <div class="form-group">
-                <label>Otros beneficios</label>
-                @Html.TextBoxFor(m => m.otrosBeneficios, new { @class = "form-control", @required = "required" })
+        </div>
+
+        <!-- Otros Datos -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOtros">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#otrosDatos" aria-expanded="false">
+                    <i class=""></i> Otros Datos
+                </button>
+            </h2>
+            <div id="otrosDatos" class="accordion-collapse collapse" data-bs-parent="#planillaAccordion">
+                <div class="accordion-body">
+                    <div class="form-group">
+                        <label>Bonos</label>
+                        @Html.TextBoxFor(m => m.bonos, new { @class = "form-control", @required = "required" })
+                    </div>
+                    <div class="form-group">
+                        <label>Deducciones</label>
+                        @Html.TextBoxFor(m => m.deducciones, new { @class = "form-control", @required = "required" })
+                    </div>
+                    <div class="form-group">
+                        <label>Horas Extras</label>
+                        @Html.TextBoxFor(m => m.horasExtra, new { @class = "form-control", @required = "required" })
+                    </div>
+                    <div class="form-group">
+                        <label>Aporte Seguridad Social</label>
+                        @Html.TextBoxFor(m => m.aporteSeguridadSocial, new { @class = "form-control", @required = "required" })
+                    </div>
+                    <div class="form-group">
+                        <label>Impuestos</label>
+                        @Html.TextBoxFor(m => m.impuestos, new { @class = "form-control", @required = "required" })
+                    </div>
+                    <div class="form-group">
+                        <label>Otros beneficios</label>
+                        @Html.TextBoxFor(m => m.otrosBeneficios, new { @class = "form-control", @required = "required" })
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <!-- Botón de envío -->
     <div class="text-center mt-3">
         <button type="submit" id="btnCrearPlanilla" class="btn btn-primary" disabled>Crear Planilla</button>
     </div>
+
 }
 
 

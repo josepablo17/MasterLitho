@@ -1,0 +1,40 @@
+﻿@model List<MasterLitho.Models.tPlanilla>
+
+@{
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+}
+ <link href="~/Styles/css/PlanillaPDF.css" rel="stylesheet" />
+    <div class="invoice-container">
+        <div class="invoice-header">
+            <h2>Planilla #@Model.FirstOrDefault().idPlanilla</h2>
+            <p>Fecha: @DateTime.Now.ToString("yyyy/MM/dd")</p>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="invoice-section">
+                    <h3>Empleado: @item.nombreEmpleado @item.apellidoEmpleado</h3>
+                    <div class="invoice-details">
+                        <p><strong>Fecha de pago:</strong> @item.fechaPago.ToShortDateString()</p>
+                        <p><strong>Periodo inicio:</strong> @item.periodoInicio.ToShortDateString()</p>
+                        <p><strong>Periodo fin:</strong> @item.periodoFin.ToShortDateString()</p>
+                        <p><strong>Salario bruto:</strong> ¢@item.salarioBruto</p>
+                        <p><strong>Días vacaciones tomados:</strong> @item.diasVacacionesTomados</p>
+                        <p><strong>Bonos:</strong> ¢@item.bonos</p>
+                        <p><strong>Deducciones:</strong> ¢@item.deducciones</p>
+                        <p><strong>Horas extras:</strong> @item.horasExtra</p>
+                        <p><strong>Aporte seguridad social:</strong> ¢@item.aporteSeguridadSocial</p>
+                        <p><strong>Impuestos:</strong> ¢@item.impuestos</p>
+                        <p><strong>Otros beneficios:</strong> ¢@item.otrosBeneficios</p>
+                        <p class="salary-net"><strong>Salario Neto:</strong> ¢@item.salarioNeto</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No se encontraron detalles para mostrar.</p>
+        }
+    </div>

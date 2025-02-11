@@ -1,4 +1,5 @@
-﻿using MasterLitho.Models;
+﻿using Rotativa;
+using MasterLitho.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -60,6 +61,46 @@ namespace MasterLitho.Controllers
                 return View(planillas);
             }
         }
+
+        [HttpGet]
+        public ActionResult ConsultarPlanillasEmpleado()
+        {
+            int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+            using (var context = new LithoManagerEntities())
+            {
+                var datos = context.PLANILLA.Where(p => p.ID_EMPLEADO == idUsuario)
+                    .ToList();
+                var planillas = new List<tPlanilla>();
+                foreach (var item in datos)
+                {
+                    planillas.Add(new tPlanilla
+                    {
+                        idPlanilla = item.ID_PLANILLA,
+                        idEmpleado = item.ID_EMPLEADO,
+                        nombreEmpleado = item.EMPLEADO.USUARIO.NOMBRE_USUARIO,
+                        apellidoEmpleado = item.EMPLEADO.USUARIO.APELLIDO_USUARIO,
+                        fechaContratacion = item.EMPLEADO.FECHA_CONTRATACION,
+                        fechaPago = item.FECHA_PAGO,
+                        fechaCreacion = item.FECHA_CREACION,
+                        salarioNeto = item.SALARIO_NETO
+                    });
+                }
+                return View(planillas);
+            }
+        }
+
+        public ActionResult PrintDetallePlanilla(int q)
+        {
+
+            string fileName = "Planilla" + q + ".pdf";
+
+            return new ActionAsPdf("DetallePlanillaPDF", new { q })
+            {
+                FileName = fileName
+            };
+        }
+
+
 
         public void CargarEmpleados()
         {
@@ -416,5 +457,46 @@ namespace MasterLitho.Controllers
                 return View(model);
                 }
             }
+
+
+        [HttpGet]
+        public ActionResult DetallePlanillaPDF(int q)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var planilla = context.PLANILLA.FirstOrDefault(p => p.ID_PLANILLA == q);
+                if (planilla == null)
+                {
+                    ViewBag.MensajePantalla = "La planilla seleccionada no existe.";
+                    return RedirectToAction("ConsultarPlanillas","Planillas");
+                }
+
+                var model = new List<tPlanilla>
+        {
+            new tPlanilla
+            {
+                idPlanilla = planilla.ID_PLANILLA,
+                idEmpleado = planilla.ID_EMPLEADO,
+                nombreEmpleado = planilla.EMPLEADO.USUARIO.NOMBRE_USUARIO,
+                apellidoEmpleado = planilla.EMPLEADO.USUARIO.APELLIDO_USUARIO,
+                fechaPago = planilla.FECHA_PAGO,
+                salarioBruto = planilla.SALARIO_BRUTO,
+                bonos = planilla.BONOS ?? 0,
+                deducciones = planilla.DEDUCCIONES,
+                diasVacacionesTomados = planilla.DIAS_VACACIONES_TOMADOS,
+                otrosBeneficios = planilla.OTROS_BENEFICIOS ?? 0,
+                aporteSeguridadSocial = planilla.APORTE_SEGURIDAD_SOCIAL ?? 0,
+                horasExtra = planilla.HORAS_EXTRAS,
+                impuestos = planilla.IMPUESTOS ?? 0,
+                periodoInicio = planilla.PERIODO_INICIO,
+                periodoFin = planilla.PERIODO_FIN,
+                fechaCreacion = planilla.FECHA_CREACION
+            }
+        };
+
+                return View(model);
+            }
+        }
+
     }
 }
