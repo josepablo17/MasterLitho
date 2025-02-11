@@ -68,7 +68,7 @@ namespace MasterLitho.Controllers
                 {
                     datos.CONTRASENA = CreatePassword();
                     datos.ESTADO_CONTRASENA_TEMPORAL = true;
-                    datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigencia"]));
+                    datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigenciaTemporal"]));
                     context.SaveChanges();
 
 
