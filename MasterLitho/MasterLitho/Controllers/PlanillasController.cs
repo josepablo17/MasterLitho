@@ -307,6 +307,7 @@ namespace MasterLitho.Controllers
                 {
                     idPlanilla = planilla.ID_PLANILLA,
                     idEmpleado = planilla.ID_EMPLEADO,
+                    nombreEmpleado= planilla.EMPLEADO.USUARIO.NOMBRE_USUARIO,
                     fechaPago = planilla.FECHA_PAGO,
                     salarioBruto = planilla.SALARIO_BRUTO,
                     bonos = planilla.BONOS ?? 0,

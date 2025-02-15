@@ -1,33 +1,38 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="~/Styles/css/EstilosCorreos.css" rel="stylesheet">
-    <title></title>
+    <title>Recuperar contraseña </title>
 </head>
-<body>
-
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f4f4; padding: 20px;">
         <tr>
-            <td style="background-color: #4CAF50; color: #ffffff;">
-                <h1>¡Bienvenido!</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>Hola: @@NOMBRE_USUARIO </p>
-                <p>Hemos recibido una solicitud para recuperar el acceso a tu cuenta. </p>
-                <p>Por lo cual hemos generado la siguiente contraseña temporal: <b>@@ESTADO_CONTRASENA_TEMPORAL</b> que expira: @@FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="background-color: #f4f4f4; color: #666666; font-size: 12px;">
-                <p>Este es un correo generado automáticamente, por favor no respondas.</p>
-                <p>&copy; 2025 MastherLitho. Todos los derechos reservados.</p>
-            </td>
+            <td align="center">
+                <table role="presentation" width="600px" cellspacing="0" cellpadding="0" border="0" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
+                    <!-- Encabezado -->
+                    <tr>
+                        <td style="background-color: #2017fc; padding: 20px; text-align: center; color: #ffffff; font-size: 24px;">
+                            <strong>Contraseña temporal</strong>
+                        </td>
+                    </tr>
+                    <!-- Cuerpo del mensaje -->
+                    <tr>
+                        <td style="padding: 20px; text-align: center; color: #000;">
+                            <p style="font-size: 18px;">Hola, <strong>@@Nombre_Usuario</strong></p>
+                            <p style="font-size: 16px; color: #555;">Hemos recibido tu solicitud para recuperar el acceso a tu cuenta, adjuntamos los detalles :</p>
+                            <p style="font-size: 16px; color: #555;">Por lo cual hemos generado la siguiente contraseña temporal: <b>@@ESTADO_CONTRASENA_TEMPORAL</b> que expira: @@FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL</p>
+                        </td>
+                    </tr>
+                    <!-- Pie de página -->
+                    <tr>
+                        <td style="background-color: #f4f4f4; color: #666666; font-size: 12px; text-align: center; padding: 15px;">
+                            <p>&copy; 2025 MastherLitho. Todos los derechos reservados.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>s
         </tr>
     </table>
 </body>

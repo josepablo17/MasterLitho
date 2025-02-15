@@ -11,8 +11,6 @@ using System.Web.Mvc;
 namespace MasterLitho.Controllers
 {
 
-
-
     public class CalendarioController : Controller
     {
         [HttpGet]
@@ -20,8 +18,6 @@ namespace MasterLitho.Controllers
         {
             return View();
         }
-
-
 
         [HttpPost]
         public JsonResult AgregarEvento(EVENTOS model)
@@ -67,10 +63,6 @@ namespace MasterLitho.Controllers
                 }
             }
         }
-
-
-
-
 
 
         [HttpGet]

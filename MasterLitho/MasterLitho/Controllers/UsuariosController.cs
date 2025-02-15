@@ -168,8 +168,6 @@ namespace MasterLitho.Controllers
         }
 
 
-
-
         [HttpGet]
         public ActionResult ActualizarUsuario(int q)
         {
@@ -197,8 +195,6 @@ namespace MasterLitho.Controllers
                 return View(usuario);
             }
         }
-
-
 
         [HttpPost]
         public ActionResult ActualizarUsuario(tUsuario modelUsuario, tEmpleado modelEmpleado)
@@ -255,10 +251,6 @@ namespace MasterLitho.Controllers
         }
 
 
-
-
-
-
         [HttpGet]
         public ActionResult RegistrarUsuario()
         {
@@ -273,7 +265,6 @@ namespace MasterLitho.Controllers
             {
                 var tabla = new USUARIO
                 {
-                    
                     IDENTIFICACION = modelUsuario.identificacion,
                     NOMBRE_USUARIO = modelUsuario.nombreUsuario,
                     APELLIDO_USUARIO = modelUsuario.apellidoUsuario,
@@ -314,7 +305,6 @@ namespace MasterLitho.Controllers
             CargarRoles();
             return View();
         }
-
 
 
 

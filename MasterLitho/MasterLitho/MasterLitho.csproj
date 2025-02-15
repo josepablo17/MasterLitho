@@ -433,6 +433,7 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Styles\css\EstilosCorreos.css" />
+    <Content Include="Styles\css\EstilosDataTables.css" />
     <Content Include="Styles\css\PlanillaPDF.css" />
     <Content Include="Styles\css\sb-admin-2.css" />
     <Content Include="Styles\css\sb-admin-2.min.css" />

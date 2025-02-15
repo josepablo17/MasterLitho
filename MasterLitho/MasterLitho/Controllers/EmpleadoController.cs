@@ -75,8 +75,8 @@ namespace MasterLitho.Controllers
 
                 var tabla = new EMPLEADO
                 {
-                    ID_EMPLEADO = usuario.ID_USUARIO,
                     ID_USUARIO = usuario.ID_USUARIO,
+                    ID_EMPLEADO = usuario.ID_USUARIO,
                     DIAS_VACACIONES_DISPONIBLES = 14,
                     FECHA_CONTRATACION = empleado.FECHA_CONTRATACION,
                     ID_DEPARTAMENTO = empleado.ID_DEPARTAMENTO,

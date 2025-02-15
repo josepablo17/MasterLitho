@@ -1,18 +1,49 @@
 ﻿@model List<MasterLitho.Models.tPlanilla>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@{
     ViewBag.Title = "Consultar Planillas";
 }
 
+<style>
+
+    .card {
+        width: 100%; /* Aumenta el ancho del card */
+        margin: auto; /* Centra el card */
+        padding: 15px; /* Añade un poco de espacio dentro del card */
+        overflow: hidden; /* Evita que haya espacios en blanco extraños */
+        height: auto;
+        max-width: 1200px; /* Evita que crezca demasiado en pantallas grandes */
+    }
+
+    .card-body {
+        padding: 10px 20px; /* Reduce el padding interno */
+    }
+
+    /* Ajuste opcional para que la tabla no colapse dentro del card */
+    .table-responsive {
+        max-height: none; /* Limita la altura de la tabla dentro del card */
+    }
+
+    .container-fluid, #content-wrapper {
+        min-height: 120vh; /* Asegura que el contenedor se expanda */
+        width: 110vh;
+        max-width: 100%; /* Reduce el desbordamiento a la derecha */
+        margin: auto; /* Centra el contenido */
+    }
+
+
+</style>
+
 <div id="content-wrapper" class="container">
     <div id="content">
-        <h1 class="my-4">Gestión de planillas</h1>
+        <div class="container text-left mb-4">
+            <h1 class="my-4">Gestión de planillas</h1>
+            <a href="@Url.Action("CrearNuevaPlanilla", "Planillas")" class="btn btn-success btn-lg">
+                <i class="fas fa-plus-circle" style="font-size: 1.4em;"></i> Crear Planilla
+            </a>
+        </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid text-left">
             <div class="card shadow-lg rounded">
                 <div class="card-body">
                     <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de planillas</h5>
@@ -54,13 +85,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="d-flex justify-content-between mt-3">
-                <a href="@Url.Action("CrearNuevaPlanilla", "Planillas")" class="btn btn-outline-primary">+ Crear planilla</a>
-            </div>
-        </div>
         </div>
     </div>
+</div>
 
 <script>
     $(document).ready(function () {

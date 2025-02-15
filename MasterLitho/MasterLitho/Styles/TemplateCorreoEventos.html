@@ -4,117 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Notificación de Evento</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        table {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            border-collapse: collapse;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        td {
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            color: #ffffff;
-            margin: 0;
-            font-size: 24px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #666666;
-            line-height: 1.6;
-            margin: 15px 0;
-        }
-
-        a {
-            color: #ffffff;
-            background-color: #D32F2F;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            font-size: 16px;
-            margin-top: 15px;
-        }
-
-        .header {
-            background-color: #D32F2F;
-            padding: 40px 0;
-        }
-
-        .footer {
-            background-color: #f4f4f4;
-            color: #666666;
-            font-size: 12px;
-            padding: 20px 0;
-        }
-
-        .content {
-            padding: 30px;
-            background-color: #ffffff;
-        }
-
-            .content img {
-                max-width: 150px;
-                height: auto;
-                margin: 20px 0;
-            }
-
-        .spacer {
-            height: 20px;
-        }
-    </style>
+    <title>Nuevo evento agregado</title>
 </head>
-<body>
-
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-        <!-- Encabezado -->
-        <tr class="header">
-            <td>
-                <h1>¡Un gusto saludarte!</h1>
-            </td>
-        </tr>
-
-        <!-- Espaciador -->
-        <tr class="spacer">
-            <td></td>
-        </tr>
-
-        <!-- Contenido -->
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f4f4f4; padding: 20px;">
         <tr>
-            <td class="content">
-                <img src="/Styles/img/martelithocr-logo (1).png" class="img-fluid rounded" alt="Logo" style="width: auto; height: auto; object-fit: contain;">
-                <p>Se ha agregado un evento en su calendario: <b>@@NombreEvento</b>. Por favor, revisa lo más pronto posible.</p>
-            </td>
-        </tr>
-
-        
-        <tr class="spacer">
-            <td></td>
-        </tr>
-
-       
-        <tr class="footer">
-            <td>
-                <p>¡Gracias!</p>
-                <p>Este es un correo generado automáticamente, por favor no respondas.</p>
+            <td align="center">
+                <table role="presentation" width="600px" cellspacing="0" cellpadding="0" border="0" style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); overflow: hidden;">
+                    <!-- Encabezado -->
+                    <tr>
+                        <td style="background-color: #2017fc; padding: 20px; text-align: center; color: #ffffff; font-size: 24px;">
+                            <strong>¡Nuevo eventro agregado!</strong>
+                        </td>
+                    </tr>
+                    <!-- Cuerpo del mensaje -->
+                    <tr>
+                        <td style="padding: 20px; text-align: center; color: #000;">
+                            <p style="font-size: 18px;">Hola</p>
+                            <p style="font-size: 16px; color: #555;">Nos complace informarte que un nuevo evento a sido agregado. A continuación, te compartimos los detalles:</p>
+                            <p style="font-size: 16px; margin: 10px 0;"><strong>Nombre del evento:</strong> @@NombreEvento</p>
+                        </td>
+                    </tr>
+                    <!-- Pie de página -->
+                    <tr>
+                        <td style="background-color: #f4f4f4; color: #666666; font-size: 12px; text-align: center; padding: 15px;">
+                            <p>&copy; 2025 MastherLitho. Todos los derechos reservados.</p>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
     </table>
-
 </body>
 </html>
+s
