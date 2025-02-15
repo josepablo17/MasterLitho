@@ -15,8 +15,13 @@ namespace MasterLitho.Models
         public int ID_DEPARTAMENTO { get; set; }
         public bool ES_EMPLEADO { get; set; }
 
+        public bool ESTADO { get; set; }
+
         public string NOMBRE_USUARIO { get; set; }
 
         public string NOMBRE_DEPARTAMENTO { get; set; }
+
+        public List<tEmpleado> EmpleadosActivos { get; set; }
+        public List<tEmpleado> EmpleadosInactivos { get; set; }
     }
 }
