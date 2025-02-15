@@ -14,24 +14,43 @@ namespace MasterLitho.Controllers
         {
             using (var context = new LithoManagerEntities())
             {
-                var empleados = from empleado in context.EMPLEADO
-                                join departamento in context.DEPARTAMENTO
-                                    on empleado.ID_DEPARTAMENTO equals departamento.ID_DEPARTAMENTO
-                                join usuario in context.USUARIO
-                                    on empleado.ID_USUARIO equals usuario.ID_USUARIO
-                                where empleado.ES_EMPLEADO == true
-                                select new tEmpleado
-                                {
-                                    ID_EMPLEADO = empleado.ID_EMPLEADO,
-                                    NOMBRE_USUARIO = usuario.NOMBRE_USUARIO,
-                                    DIAS_VACACIONES_DISPONIBLES = empleado.DIAS_VACACIONES_DISPONIBLES,
-                                    FECHA_CONTRATACION = empleado.FECHA_CONTRATACION,
-                                    NOMBRE_DEPARTAMENTO = departamento.NOMBRE_DEPARTAMENTO
-                                };
+                var empleadosActivos = (from empleado in context.EMPLEADO
+                                        join departamento in context.DEPARTAMENTO
+                                            on empleado.ID_DEPARTAMENTO equals departamento.ID_DEPARTAMENTO
+                                        join usuario in context.USUARIO
+                                            on empleado.ID_USUARIO equals usuario.ID_USUARIO
+                                        where empleado.ES_EMPLEADO == true && empleado.ESTADO == true
+                                        select new tEmpleado
+                                        {
+                                            ID_EMPLEADO = empleado.ID_EMPLEADO,
+                                            NOMBRE_USUARIO = usuario.NOMBRE_USUARIO,
+                                            DIAS_VACACIONES_DISPONIBLES = empleado.DIAS_VACACIONES_DISPONIBLES,
+                                            FECHA_CONTRATACION = empleado.FECHA_CONTRATACION,
+                                            NOMBRE_DEPARTAMENTO = departamento.NOMBRE_DEPARTAMENTO
+                                        }).ToList();
 
-                var listaEmpleados = empleados.ToList();
+                var empleadosInactivos = (from empleado in context.EMPLEADO
+                                          join departamento in context.DEPARTAMENTO
+                                              on empleado.ID_DEPARTAMENTO equals departamento.ID_DEPARTAMENTO
+                                          join usuario in context.USUARIO
+                                              on empleado.ID_USUARIO equals usuario.ID_USUARIO
+                                          where empleado.ES_EMPLEADO == true && empleado.ESTADO == false
+                                          select new tEmpleado
+                                          {
+                                              ID_EMPLEADO = empleado.ID_EMPLEADO,
+                                              NOMBRE_USUARIO = usuario.NOMBRE_USUARIO,
+                                              DIAS_VACACIONES_DISPONIBLES = empleado.DIAS_VACACIONES_DISPONIBLES,
+                                              FECHA_CONTRATACION = empleado.FECHA_CONTRATACION,
+                                              NOMBRE_DEPARTAMENTO = departamento.NOMBRE_DEPARTAMENTO
+                                          }).ToList();
 
-                return View(listaEmpleados);
+                var viewModel = new tEmpleado
+                {
+                    EmpleadosActivos = empleadosActivos,
+                    EmpleadosInactivos = empleadosInactivos
+                };
+
+                return View(viewModel);
             }
         }
 
@@ -93,7 +112,7 @@ namespace MasterLitho.Controllers
             }
         }
 
-
+        
         private void CargarDepartamentos()
         {
             using (var context = new LithoManagerEntities())

@@ -1,40 +1,84 @@
-﻿<div id="content-wrapper" class="container">
-    <div id="content">
-        <h1 class="my-4">Consulta empleados</h1>
-        <div class="container mb-4">
-            <div class="d-flex justify-content-start">
+﻿@model MasterLitho.Models.tEmpleado
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="my-4">Consulta empleados</h1>
+
+<ul class="nav nav-tabs" id="empleadoTabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#activos">Empleados Activos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#inactivos">Empleados Inactivos</a>
+    </li>
+</ul>
+
+<div class="tab-content mt-3">
+    <!-- Empleados Activos -->
+    <div class="tab-pane fade show active" id="activos">
+        <div class="card shadow-lg rounded">
+            <div class="card-body">
+                <h5 class="card-title text-center text-primary font-weight-bold mb-4">Empleados Activos</h5>
+                <div class="table-responsive">
+                    <table id="EmpleadosActivosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre usuario</th>
+                                <th>Días de vacaciones</th>
+                                <th>Fecha de contratación</th>
+                                <th>Departamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.EmpleadosActivos)
+                            {
+                                <tr>
+                                    <td>@item.ID_EMPLEADO</td>
+                                    <td>@item.NOMBRE_USUARIO</td>
+                                    <td>@item.DIAS_VACACIONES_DISPONIBLES</td>
+                                    <td>@item.FECHA_CONTRATACION.ToString("yyyy-MM-dd")</td>
+                                    <td>@item.NOMBRE_DEPARTAMENTO</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Empleados</h5>
-                    <div class="table-responsive">
-                        <table id="UsuariosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                            <thead class="table-dark">
+    </div>
+
+    <!-- Empleados Inactivos -->
+    <div class="tab-pane fade" id="inactivos">
+        <div class="card shadow-lg rounded">
+            <div class="card-body">
+                <h5 class="card-title text-center text-danger font-weight-bold mb-4">Empleados Inactivos</h5>
+                <div class="table-responsive">
+                    <table id="EmpleadosInactivosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre usuario</th>
+                                <th>Días de vacaciones</th>
+                                <th>Fecha de contratación</th>
+                                <th>Departamento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.EmpleadosInactivos)
+                            {
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nombre usuario</th>
-                                    <th>Dias de vacaciones</th>
-                                    <th>Fecha de contratacion</th>
-                                    <th>Departamento</th>
+                                    <td>@item.ID_EMPLEADO</td>
+                                    <td>@item.NOMBRE_USUARIO</td>
+                                    <td>@item.DIAS_VACACIONES_DISPONIBLES</td>
+                                    <td>@item.FECHA_CONTRATACION.ToString("yyyy-MM-dd")</td>
+                                    <td>@item.NOMBRE_DEPARTAMENTO</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>@item.ID_EMPLEADO</td>
-                                        <td>@item.NOMBRE_USUARIO</td>
-                                        <td>@item.DIAS_VACACIONES_DISPONIBLES</td>
-                                        <td>@item.FECHA_CONTRATACION</td>
-                                        <td>@item.NOMBRE_DEPARTAMENTO</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -51,7 +95,7 @@
 <!-- Script para inicializar DataTables -->
 <script>
     $(document).ready(function () {
-        $('#UsuariosTable').DataTable({
+        $('#EmpleadosActivosTable, #EmpleadosInactivosTable').DataTable({
             "paging": true,
             "searching": true,
             "ordering": true,
