@@ -12,13 +12,14 @@ namespace MasterLitho.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CONSTANCIA_LABORAL
+    public partial class CONSTANCIA
     {
         public int ID_CONSTANCIA { get; set; }
         public int ID_EMPLEADO { get; set; }
         public System.DateTime FECHA_EMISION { get; set; }
-        public string DETALLE_ADICIONAL { get; set; }
+        public int ID_TIPO_CONSTANCIA { get; set; }
     
         public virtual EMPLEADO EMPLEADO { get; set; }
+        public virtual TIPOS_CONSTANCIA TIPOS_CONSTANCIA { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace MasterLitho.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CONSTANCIA_LABORAL> CONSTANCIA_LABORAL { get; set; }
+        public virtual DbSet<CONSTANCIA> CONSTANCIA { get; set; }
         public virtual DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
         public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
         public virtual DbSet<ESTADO_SOLICITUD> ESTADO_SOLICITUD { get; set; }
@@ -36,6 +36,7 @@ namespace MasterLitho.Models
         public virtual DbSet<QUEJAS_REPORTES> QUEJAS_REPORTES { get; set; }
         public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
+        public virtual DbSet<TIPOS_CONSTANCIA> TIPOS_CONSTANCIA { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
     }
 }

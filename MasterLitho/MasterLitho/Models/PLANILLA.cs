@@ -26,7 +26,6 @@ namespace MasterLitho.Models
         public Nullable<decimal> IMPUESTOS { get; set; }
         public System.DateTime PERIODO_INICIO { get; set; }
         public System.DateTime PERIODO_FIN { get; set; }
-        public decimal SALARIO_BRUTO { get; set; }
         public decimal SALARIO_NETO { get; set; }
         public System.DateTime FECHA_CREACION { get; set; }
     

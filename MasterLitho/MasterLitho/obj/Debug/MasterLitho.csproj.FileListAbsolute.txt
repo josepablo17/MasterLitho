@@ -59,8 +59,6 @@ C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y 
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Rotativa.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll.config
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.pdb
@@ -117,6 +115,8 @@ D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Rotativa.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLi.E9F2EFE4.Up2Date
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb

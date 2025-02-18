@@ -33,7 +33,12 @@
 
                             <div class="mb-4">
                                 <label class="form-label fw-semibold"><i class="fas fa-envelope me-2"></i> Departamento</label>
-                                @Html.DropDownListFor(m => m.ID_DEPARTAMENTO, ViewBag.Departamentos as List<SelectListItem>,  new { @class = "form-control" })
+                                @Html.DropDownListFor(m => m.ID_DEPARTAMENTO, ViewBag.Departamentos as List<SelectListItem>, new { @class = "form-control" })
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold"><i class="fas fa-id-card me-2"></i>Salario</label>
+                                @Html.TextBoxFor(m => m.SALARIO, new { @class = "form-control border-primary", @type = "number", @placeholder = "Ingrese el salario bruto del empleado" })
                             </div>
 
                             <div class="d-grid gap-3">

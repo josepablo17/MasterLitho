@@ -260,7 +260,6 @@ namespace MasterLitho.Controllers
                     {
                         ID_EMPLEADO = model.idEmpleado,
                         FECHA_PAGO = model.fechaPago,
-                        SALARIO_BRUTO = model.salarioBruto,
                         DEDUCCIONES = model.deducciones,
                         BONOS = model.bonos,
                         DIAS_VACACIONES_TOMADOS = model.diasVacacionesTomados,
@@ -309,7 +308,6 @@ namespace MasterLitho.Controllers
                     idEmpleado = planilla.ID_EMPLEADO,
                     nombreEmpleado= planilla.EMPLEADO.USUARIO.NOMBRE_USUARIO,
                     fechaPago = planilla.FECHA_PAGO,
-                    salarioBruto = planilla.SALARIO_BRUTO,
                     bonos = planilla.BONOS ?? 0,
                     deducciones = planilla.DEDUCCIONES,
                     diasVacacionesTomados = planilla.DIAS_VACACIONES_TOMADOS,
@@ -396,7 +394,6 @@ namespace MasterLitho.Controllers
                                           + montoHorasExtras;
 
                     planillaExistente.FECHA_PAGO = model.fechaPago;
-                    planillaExistente.SALARIO_BRUTO = model.salarioBruto;
                     planillaExistente.DEDUCCIONES = model.deducciones;
                     planillaExistente.BONOS = model.bonos ;
                     planillaExistente.DIAS_VACACIONES_TOMADOS = model.diasVacacionesTomados;
@@ -440,7 +437,6 @@ namespace MasterLitho.Controllers
                     idEmpleado = planilla.ID_EMPLEADO,
                     nombreEmpleado = planilla.EMPLEADO.USUARIO.NOMBRE_USUARIO,
                     fechaPago = planilla.FECHA_PAGO,
-                    salarioBruto = planilla.SALARIO_BRUTO,
                     bonos = planilla.BONOS ?? 0,
                     deducciones = planilla.DEDUCCIONES,
                     diasVacacionesTomados = planilla.DIAS_VACACIONES_TOMADOS,
@@ -479,7 +475,6 @@ namespace MasterLitho.Controllers
                 nombreEmpleado = planilla.EMPLEADO.USUARIO.NOMBRE_USUARIO,
                 apellidoEmpleado = planilla.EMPLEADO.USUARIO.APELLIDO_USUARIO,
                 fechaPago = planilla.FECHA_PAGO,
-                salarioBruto = planilla.SALARIO_BRUTO,
                 bonos = planilla.BONOS ?? 0,
                 deducciones = planilla.DEDUCCIONES,
                 diasVacacionesTomados = planilla.DIAS_VACACIONES_TOMADOS,

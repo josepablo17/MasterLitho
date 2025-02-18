@@ -147,7 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CONSTANCIA_LABORAL.cs">
+    <Compile Include="Models\CONSTANCIA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DEPARTAMENTO.cs">
@@ -195,8 +195,12 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tConstancia.cs" />
     <Compile Include="Models\tEmpleado.cs" />
     <Compile Include="Models\tEventos.cs" />
+    <Compile Include="Models\TIPOS_CONSTANCIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tNoticias.cs" />
     <Compile Include="Models\tPlanilla.cs" />
     <Compile Include="Models\tRol.cs" />
@@ -438,6 +442,7 @@
     <Content Include="Styles\css\sb-admin-2.css" />
     <Content Include="Styles\css\sb-admin-2.min.css" />
     <Content Include="Styles\css\styles.css" />
+    <Content Include="Styles\css\ConstanciaPDF.css" />
     <Content Include="Styles\FuncionesJS\CambiarContrasena.js" />
     <Content Include="Styles\FuncionesJS\DataTables.js" />
     <Content Include="Styles\FuncionesJS\FuncionesCalendario.js" />
@@ -2319,7 +2324,6 @@
     <Content Include="Styles\scss\_utilities.scss" />
     <Content Include="Styles\scss\_variables.scss" />
     <Content Include="Views\Constancias\EnvioConstancia.cshtml" />
-    <Content Include="Views\Constancias\detallesConstancia.cshtml" />
     <Content Include="Views\QuejasReportes\GestionQuejasReportes.cshtml" />
     <Content Include="Views\QuejasReportes\DetallesReporte.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillas.cshtml" />
@@ -2332,7 +2336,6 @@
     <Content Include="Views\Login\IniciarSesion.cshtml" />
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
     <Content Include="Views\SolicitudVacaciones\SolicitarVacaciones.cshtml" />
-    <Content Include="Views\Constancias\SolicitarConstanciaEmpleado.cshtml" />
     <Content Include="Views\Expedientes\consultaExpedientes.cshtml" />
     <Content Include="Views\QuejasReportes\EnviarQuejas.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillasEmpleado.cshtml" />
@@ -2354,6 +2357,8 @@
     <Content Include="Views\Noticias\CrearNoticia.cshtml" />
     <Content Include="Views\Noticias\EditarNoticia.cshtml" />
     <Content Include="Views\Planillas\DetallePlanillaPDF.cshtml" />
+    <Content Include="Views\Constancias\DetalleConstanciaPDF.cshtml" />
+    <Content Include="Views\Constancias\DetalleConstanciaSalarialPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

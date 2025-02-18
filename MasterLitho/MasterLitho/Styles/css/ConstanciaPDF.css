@@ -1,0 +1,92 @@
+﻿/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #ffffff;
+    padding: 50px 0;
+    color: #333;
+    margin: 0;
+}
+
+.invoice-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-section {
+    margin-bottom: 20px;
+}
+
+.invoice-header {
+    text-align: center;
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+    .invoice-header h2 {
+        font-size: 36px;
+        color: #000;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .invoice-header p {
+        font-size: 1.1rem;
+        color: #555;
+        margin: 0;
+    }
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.content p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #444;
+    line-height: 1.6;
+}
+
+    .content p strong {
+        font-weight: 700;
+        color: #333;
+    }
+
+.firma {
+    margin-top: 40px;
+    text-align: center;
+}
+
+    .firma p {
+        font-size: 1.1rem;
+        margin: 5px 0;
+    }
+
+    .firma .signature-line {
+        border-top: 2px solid #333;
+        width: 250px;
+        margin: 20px auto;
+    }
+
+hr {
+    margin-top: 40px;
+    border: 1px solid #ddd;
+}
+
+.footer {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
+    margin-top: 40px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
