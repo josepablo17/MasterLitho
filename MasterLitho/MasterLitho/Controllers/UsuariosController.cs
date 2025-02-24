@@ -263,48 +263,72 @@ namespace MasterLitho.Controllers
         {
             using (var context = new LithoManagerEntities())
             {
-                var tabla = new USUARIO
+                try
                 {
-                    IDENTIFICACION = modelUsuario.identificacion,
-                    NOMBRE_USUARIO = modelUsuario.nombreUsuario,
-                    APELLIDO_USUARIO = modelUsuario.apellidoUsuario,
-                    CORREO_USUARIO = CreateEmail(modelUsuario.nombreUsuario, modelUsuario.apellidoUsuario),
-                    CONTRASENA = CreatePassword(),
-                    ID_ROL = modelUsuario.idRol,
-                    ESTADO = true,
-                    ESTADO_CONTRASENA_TEMPORAL = true,
-                    FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigenciaTemporal"]))
-                };
+                    CargarRoles();
+                    var usuarioExistente = context.USUARIO
+                                          .FirstOrDefault(u => u.IDENTIFICACION == modelUsuario.identificacion);
 
-                context.USUARIO.Add(tabla);
-                var respuesta = context.SaveChanges();
-
-                if (respuesta > 0)
-                {
-                    int nuevoIdUsuario = tabla.ID_USUARIO;
-
-                    string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Styles\\TemplateCorreoRegistroUser.html";
-                    string contenido = System.IO.File.ReadAllText(ruta)
-                        .Replace("@@Nombre", modelUsuario.nombreUsuario)
-                        .Replace("@@Correo", tabla.CORREO_USUARIO)
-                        .Replace("@@Contraseña", tabla.CONTRASENA);
-
-                    var metodosComunes = new MetodosComunesController();
-                    metodosComunes.EnviarCorreo(modelUsuario.correoUsuario, "Credenciales Temporales", contenido);
-
-
-                    if (modelUsuario.idRol == 2)
+                    if (usuarioExistente != null)
                     {
-                        return RedirectToAction("RegistrarEmpleado", "Empleado", new { idUsuario = nuevoIdUsuario });
+                        ViewBag.MensajePantalla = "La identificación ya está registrada. Por favor, ingrese una identificación diferente.";
+                        return View();
                     }
 
-                    return RedirectToAction("GestionUsuarios", "Usuarios");
+
+                    var tabla = new USUARIO
+                    {
+                        IDENTIFICACION = modelUsuario.identificacion,
+                        NOMBRE_USUARIO = modelUsuario.nombreUsuario,
+                        APELLIDO_USUARIO = modelUsuario.apellidoUsuario,
+                        CORREO_USUARIO = CreateEmail(modelUsuario.nombreUsuario, modelUsuario.apellidoUsuario),
+                        CONTRASENA = CreatePassword(),
+                        ID_ROL = modelUsuario.idRol,
+                        ESTADO = true,
+                        ESTADO_CONTRASENA_TEMPORAL = true,
+                        FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigenciaTemporal"]))
+                    };
+
+                    context.USUARIO.Add(tabla);
+                    var respuesta = context.SaveChanges();
+
+                    if (respuesta > 0)
+                    {
+                        int nuevoIdUsuario = tabla.ID_USUARIO;
+
+                        string ruta = AppDomain.CurrentDomain.BaseDirectory + "\\Styles\\TemplateCorreoRegistroUser.html";
+                        string contenido = System.IO.File.ReadAllText(ruta)
+                            .Replace("@@Nombre", modelUsuario.nombreUsuario)
+                            .Replace("@@Correo", tabla.CORREO_USUARIO)
+                            .Replace("@@Contraseña", tabla.CONTRASENA);
+
+                        var metodosComunes = new MetodosComunesController();
+                        metodosComunes.EnviarCorreo(modelUsuario.correoUsuario, "Credenciales Temporales", contenido);
+
+                        ViewBag.MensajePantalla = "Usuario registrado exitosamente.";
+
+                        if (modelUsuario.idRol == 2)
+                        {
+                            return RedirectToAction("RegistrarEmpleado", "Empleado", new { idUsuario = nuevoIdUsuario });
+                        }
+
+                        return RedirectToAction("GestionUsuarios", "Usuarios");
+                    }
+                    else
+                    {
+                        ViewBag.MensajePantalla = "Ocurrió un error al registrar el usuario.";
+                    }
+                }
+                catch 
+                {
+                    ViewBag.MensajePantalla = "Ha ocurrido un error al registrar el usuario, intente de nuevo";
                 }
             }
 
             CargarRoles();
             return View();
         }
+
 
 
 

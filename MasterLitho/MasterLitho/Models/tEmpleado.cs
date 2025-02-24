@@ -20,6 +20,8 @@ namespace MasterLitho.Models
         public string NOMBRE_USUARIO { get; set; }
 
         public string NOMBRE_DEPARTAMENTO { get; set; }
+        public decimal SALARIO { get; set; }
+       
 
         public List<tEmpleado> EmpleadosActivos { get; set; }
         public List<tEmpleado> EmpleadosInactivos { get; set; }
