@@ -1,0 +1,35 @@
+﻿@model MasterLitho.Models.EXPEDIENTE
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Expediente";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Crear Expediente</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("CrearExpediente", "Expedientes", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="mb-3">
+                    <label for="ID_USUARIO" class="form-label">ID Usuario</label>
+                    <input type="number" name="ID_USUARIO" class="form-control" placeholder="Ingrese el ID del usuario" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="NOMBRE_EXPEDIENTE" class="form-label">Nombre del Expediente</label>
+                    <input type="text" name="NOMBRE_EXPEDIENTE" class="form-control" placeholder="Ingrese un nombre descriptivo para el expediente" required />
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("IndexExpedientes", "Expedientes")" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

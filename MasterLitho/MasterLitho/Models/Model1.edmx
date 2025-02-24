@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LithoManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LithoManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CONSTANCIA_LABORAL">
           <Key>
             <PropertyRef Name="ID_CONSTANCIA" />
@@ -21,11 +21,23 @@
           <Property Name="ID_DEPARTAMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_DEPARTAMENTO" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="DOCUMENTO_EXPEDIENTE">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_DOCUMENTO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TIPO_DOCUMENTO" Type="varchar" MaxLength="50" />
+          <Property Name="RUTA" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FECHA_CARGA" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_ACTUALIZACION" Type="datetime" />
+        </EntityType>
         <EntityType Name="EMPLEADO">
           <Key>
             <PropertyRef Name="ID_EMPLEADO" />
           </Key>
-          <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+          <Property Name="ID_EMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_USUARIO" Type="int" Nullable="false" />
           <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="int" Nullable="false" />
           <Property Name="FECHA_CONTRATACION" Type="datetime" Nullable="false" />
@@ -58,6 +70,15 @@
           <Property Name="FECHA_FINAL" Type="datetime" Nullable="false" />
           <Property Name="COLOR" Type="varchar" MaxLength="7" Nullable="false" />
           <Property Name="invitados" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EXPEDIENTE">
+          <Key>
+            <PropertyRef Name="ID_EXPEDIENTE" />
+          </Key>
+          <Property Name="ID_EXPEDIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="datetime" Nullable="false" />
+          <Property Name="NOMBRE_EXPEDIENTE" Type="varchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <EntityType Name="FORMULARIO">
           <Key>
@@ -356,6 +377,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DOCUMENTO_EXPEDIENTE">
+          <End Role="EXPEDIENTE" Type="Self.EXPEDIENTE" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DOCUMENTO_EXPEDIENTE" Type="Self.DOCUMENTO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXPEDIENTE">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Principal>
+            <Dependent Role="DOCUMENTO_EXPEDIENTE">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXPEDIENTE_USUARIO">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="EXPEDIENTE" Type="Self.EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="EXPEDIENTE">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NOTICIAS_ID_ADMINISTRADOR">
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
           <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
@@ -383,10 +430,12 @@
         <EntityContainer Name="LithoManagerModelStoreContainer">
           <EntitySet Name="CONSTANCIA_LABORAL" EntityType="Self.CONSTANCIA_LABORAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCUMENTO_EXPEDIENTE" EntityType="Self.DOCUMENTO_EXPEDIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTADO_QUEJA" EntityType="Self.ESTADO_QUEJA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ESTADO_SOLICITUD" EntityType="Self.ESTADO_SOLICITUD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EVENTOS" EntityType="Self.EVENTOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXPEDIENTE" EntityType="Self.EXPEDIENTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FORMULARIO" EntityType="Self.FORMULARIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NOTICIAS" EntityType="Self.NOTICIAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PLANILLA" EntityType="Self.PLANILLA" Schema="dbo" store:Type="Tables" />
@@ -460,6 +509,14 @@
             <End Role="ROL" EntitySet="ROL" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
+          <AssociationSet Name="FK_DOCUMENTO_EXPEDIENTE" Association="Self.FK_DOCUMENTO_EXPEDIENTE">
+            <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+            <End Role="DOCUMENTO_EXPEDIENTE" EntitySet="DOCUMENTO_EXPEDIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXPEDIENTE_USUARIO" Association="Self.FK_EXPEDIENTE_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+          </AssociationSet>
           <AssociationSet Name="FK_NOTICIAS_ID_ADMINISTRADOR" Association="Self.FK_NOTICIAS_ID_ADMINISTRADOR">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="NOTICIAS" EntitySet="NOTICIAS" />
@@ -469,8 +526,7 @@
             <End Role="SOLICITUD_VACACIONES1" EntitySet="SOLICITUD_VACACIONES" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LithoManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -668,6 +724,7 @@
           <NavigationProperty Name="ROL" Relationship="Self.FK__USUARIO__ID_ROL__5DCAEF64" FromRole="USUARIO" ToRole="ROL" />
           <NavigationProperty Name="ROL1" Relationship="Self.FK__USUARIO__ID_ROL__787EE5A0" FromRole="USUARIO" ToRole="ROL" />
           <NavigationProperty Name="SOLICITUD_VACACIONES" Relationship="Self.FK__SOLICITUD__ID_EM__5070F446" FromRole="USUARIO" ToRole="SOLICITUD_VACACIONES" />
+          <NavigationProperty Name="EXPEDIENTE" Relationship="LithoManagerModel.FK_EXPEDIENTE_USUARIO" FromRole="USUARIO" ToRole="EXPEDIENTE" />
         </EntityType>
         <Association Name="FK__CONSTANCI__ID_EM__5070F446">
           <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
@@ -973,7 +1030,65 @@
             <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
             <End Role="SOLICITUD_VACACIONES1" EntitySet="SOLICITUD_VACACIONES" />
           </AssociationSet>
+          <EntitySet Name="DOCUMENTO_EXPEDIENTE" EntityType="LithoManagerModel.DOCUMENTO_EXPEDIENTE" />
+          <EntitySet Name="EXPEDIENTE" EntityType="LithoManagerModel.EXPEDIENTE" />
+          <AssociationSet Name="FK_DOCUMENTO_EXPEDIENTE" Association="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE">
+            <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+            <End Role="DOCUMENTO_EXPEDIENTE" EntitySet="DOCUMENTO_EXPEDIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EXPEDIENTE_USUARIO" Association="LithoManagerModel.FK_EXPEDIENTE_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DOCUMENTO_EXPEDIENTE">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_DOCUMENTO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_DOCUMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RUTA" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CARGA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EXPEDIENTE" Relationship="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE" FromRole="DOCUMENTO_EXPEDIENTE" ToRole="EXPEDIENTE" />
+        </EntityType>
+        <EntityType Name="EXPEDIENTE">
+          <Key>
+            <PropertyRef Name="ID_EXPEDIENTE" />
+          </Key>
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DOCUMENTO_EXPEDIENTE" Relationship="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE" FromRole="EXPEDIENTE" ToRole="DOCUMENTO_EXPEDIENTE" />
+          <NavigationProperty Name="USUARIO" Relationship="LithoManagerModel.FK_EXPEDIENTE_USUARIO" FromRole="EXPEDIENTE" ToRole="USUARIO" />
+          <Property Name="NOMBRE_EXPEDIENTE" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_DOCUMENTO_EXPEDIENTE">
+          <End Type="LithoManagerModel.EXPEDIENTE" Role="EXPEDIENTE" Multiplicity="1" />
+          <End Type="LithoManagerModel.DOCUMENTO_EXPEDIENTE" Role="DOCUMENTO_EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXPEDIENTE">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Principal>
+            <Dependent Role="DOCUMENTO_EXPEDIENTE">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EXPEDIENTE_USUARIO">
+          <End Type="LithoManagerModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="LithoManagerModel.EXPEDIENTE" Role="EXPEDIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Principal>
+            <Dependent Role="EXPEDIENTE">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1151,6 +1266,29 @@
                 <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
                 <ScalarProperty Name="ESTADO_CONTRASENA_TEMPORAL" ColumnName="ESTADO_CONTRASENA_TEMPORAL" />
                 <ScalarProperty Name="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" ColumnName="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCUMENTO_EXPEDIENTE">
+            <EntityTypeMapping TypeName="LithoManagerModel.DOCUMENTO_EXPEDIENTE">
+              <MappingFragment StoreEntitySet="DOCUMENTO_EXPEDIENTE">
+                <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+                <ScalarProperty Name="FECHA_CARGA" ColumnName="FECHA_CARGA" />
+                <ScalarProperty Name="RUTA" ColumnName="RUTA" />
+                <ScalarProperty Name="TIPO_DOCUMENTO" ColumnName="TIPO_DOCUMENTO" />
+                <ScalarProperty Name="NOMBRE_DOCUMENTO" ColumnName="NOMBRE_DOCUMENTO" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXPEDIENTE">
+            <EntityTypeMapping TypeName="LithoManagerModel.EXPEDIENTE">
+              <MappingFragment StoreEntitySet="EXPEDIENTE">
+                <ScalarProperty Name="NOMBRE_EXPEDIENTE" ColumnName="NOMBRE_EXPEDIENTE" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

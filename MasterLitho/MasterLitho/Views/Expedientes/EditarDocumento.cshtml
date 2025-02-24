@@ -1,0 +1,44 @@
+﻿@model MasterLitho.Models.DOCUMENTO_EXPEDIENTE
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Editar Documento";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Editar Documento</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("EditarDocumento", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.HiddenFor(model => model.ID_DOCUMENTO)
+
+                <!-- Muestra información actual -->
+                <div class="mb-3">
+                    <label class="form-label">Nombre Actual</label>
+                    <p>@Model.NOMBRE_DOCUMENTO</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Documento</label>
+                    <input type="text" name="TIPO_DOCUMENTO" value="@Model.TIPO_DOCUMENTO" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Subir Nuevo Archivo (Opcional)</label>
+                    <input type="file" name="nuevoArchivo" class="form-control" />
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = Model.ID_EXPEDIENTE })"
+                       class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

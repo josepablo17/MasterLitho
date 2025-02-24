@@ -175,5 +175,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTO_EXPEDIENTE">
+      <EntityTypeMapping TypeName="LithoManagerModel.DOCUMENTO_EXPEDIENTE">
+        <MappingFragment StoreEntitySet="DOCUMENTO_EXPEDIENTE">
+          <ScalarProperty Name="FECHA_ACTUALIZACION" ColumnName="FECHA_ACTUALIZACION" />
+          <ScalarProperty Name="FECHA_CARGA" ColumnName="FECHA_CARGA" />
+          <ScalarProperty Name="RUTA" ColumnName="RUTA" />
+          <ScalarProperty Name="TIPO_DOCUMENTO" ColumnName="TIPO_DOCUMENTO" />
+          <ScalarProperty Name="NOMBRE_DOCUMENTO" ColumnName="NOMBRE_DOCUMENTO" />
+          <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+          <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXPEDIENTE">
+      <EntityTypeMapping TypeName="LithoManagerModel.EXPEDIENTE">
+        <MappingFragment StoreEntitySet="EXPEDIENTE">
+          <ScalarProperty Name="NOMBRE_EXPEDIENTE" ColumnName="NOMBRE_EXPEDIENTE" />
+          <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

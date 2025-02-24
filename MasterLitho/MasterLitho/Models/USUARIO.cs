@@ -22,6 +22,7 @@ namespace MasterLitho.Models
             this.NOTICIAS1 = new HashSet<NOTICIAS>();
             this.NOTICIAS2 = new HashSet<NOTICIAS>();
             this.SOLICITUD_VACACIONES = new HashSet<SOLICITUD_VACACIONES>();
+            this.EXPEDIENTE = new HashSet<EXPEDIENTE>();
         }
     
         public int ID_USUARIO { get; set; }
@@ -47,5 +48,7 @@ namespace MasterLitho.Models
         public virtual ROL ROL1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EXPEDIENTE> EXPEDIENTE { get; set; }
     }
 }

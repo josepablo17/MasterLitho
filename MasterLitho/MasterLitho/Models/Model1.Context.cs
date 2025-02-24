@@ -40,5 +40,7 @@ namespace MasterLitho.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TIPO_QUEJA> TIPO_QUEJA { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
+        public virtual DbSet<DOCUMENTO_EXPEDIENTE> DOCUMENTO_EXPEDIENTE { get; set; }
+        public virtual DbSet<EXPEDIENTE> EXPEDIENTE { get; set; }
     }
 }
