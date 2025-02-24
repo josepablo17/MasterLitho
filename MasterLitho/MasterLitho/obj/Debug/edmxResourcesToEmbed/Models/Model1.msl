@@ -32,6 +32,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ESTADO_QUEJA">
+      <EntityTypeMapping TypeName="LithoManagerModel.ESTADO_QUEJA">
+        <MappingFragment StoreEntitySet="ESTADO_QUEJA">
+          <ScalarProperty Name="ID_ESTADO_QUEJA" ColumnName="ID_ESTADO_QUEJA" />
+          <ScalarProperty Name="TIPO_ESTADO" ColumnName="TIPO_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ESTADO_SOLICITUD">
       <EntityTypeMapping TypeName="LithoManagerModel.ESTADO_SOLICITUD">
         <MappingFragment StoreEntitySet="ESTADO_SOLICITUD">
@@ -105,7 +113,8 @@
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
           <ScalarProperty Name="FECHA_RESOLUCION" ColumnName="FECHA_RESOLUCION" />
           <ScalarProperty Name="COMENTARIO_ADMIN" ColumnName="COMENTARIO_ADMIN" />
-          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+          <ScalarProperty Name="ID_ESTADO_QUEJA" ColumnName="ID_ESTADO_QUEJA" />
+          <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -128,6 +137,25 @@
           <ScalarProperty Name="DIAS_SOLICITADOS" ColumnName="DIAS_SOLICITADOS" />
           <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
           <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="LithoManagerModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_QUEJA">
+      <EntityTypeMapping TypeName="LithoManagerModel.TIPO_QUEJA">
+        <MappingFragment StoreEntitySet="TIPO_QUEJA">
+          <ScalarProperty Name="ID_TIPO" ColumnName="ID_TIPO" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

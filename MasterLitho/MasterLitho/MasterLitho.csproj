@@ -156,6 +156,9 @@
     <Compile Include="Models\EMPLEADO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ESTADO_QUEJA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ESTADO_SOLICITUD.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -195,10 +198,17 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tEmpleado.cs" />
     <Compile Include="Models\tEventos.cs" />
+    <Compile Include="Models\TIPO_QUEJA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tNoticias.cs" />
     <Compile Include="Models\tPlanilla.cs" />
+    <Compile Include="Models\tQuejasReportes.cs" />
     <Compile Include="Models\tRol.cs" />
     <Compile Include="Models\tUsuario.cs" />
     <Compile Include="Models\tVacaciones.cs" />
@@ -462,6 +472,7 @@
     <Content Include="Styles\TemplateCorreoEventos.html" />
     <Content Include="Styles\TemplateCorreo.html" />
     <Content Include="Styles\TemplateCorreoRecuperarContrasena.html" />
+    <Content Include="Styles\TemplateCorreoQuejasReportes.html" />
     <Content Include="Styles\TemplateCorreoSolicitudVacaciones.html" />
     <Content Include="Styles\TemplateCorreoRegistroUser.html" />
     <Content Include="Styles\vendor\bootstrap\js\bootstrap.bundle.js" />
@@ -2321,7 +2332,6 @@
     <Content Include="Views\Constancias\EnvioConstancia.cshtml" />
     <Content Include="Views\Constancias\detallesConstancia.cshtml" />
     <Content Include="Views\QuejasReportes\GestionQuejasReportes.cshtml" />
-    <Content Include="Views\QuejasReportes\DetallesReporte.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillas.cshtml" />
     <Content Include="Views\Planillas\DetallePlanilla.cshtml" />
     <Content Include="Views\Expedientes\GestionExpedientes.cshtml" />
@@ -2334,7 +2344,6 @@
     <Content Include="Views\SolicitudVacaciones\SolicitarVacaciones.cshtml" />
     <Content Include="Views\Constancias\SolicitarConstanciaEmpleado.cshtml" />
     <Content Include="Views\Expedientes\consultaExpedientes.cshtml" />
-    <Content Include="Views\QuejasReportes\EnviarQuejas.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillasEmpleado.cshtml" />
     <Content Include="Views\SolicitudVacaciones\ConsultarDiasVacaciones.cshtml" />
     <Content Include="Views\Formularios\ConsultarFormularios.cshtml" />
@@ -2354,6 +2363,7 @@
     <Content Include="Views\Noticias\CrearNoticia.cshtml" />
     <Content Include="Views\Noticias\EditarNoticia.cshtml" />
     <Content Include="Views\Planillas\DetallePlanillaPDF.cshtml" />
+    <Content Include="Views\QuejasReportes\EnviarQueja.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

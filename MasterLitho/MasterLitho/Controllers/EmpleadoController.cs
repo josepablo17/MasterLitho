@@ -55,8 +55,6 @@ namespace MasterLitho.Controllers
         }
 
 
-
-
         [HttpGet]
         public ActionResult RegistrarEmpleado(int idUsuario)
         {
