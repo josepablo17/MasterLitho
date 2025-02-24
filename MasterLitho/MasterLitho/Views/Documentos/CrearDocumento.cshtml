@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Crear Documento";
+    int idExpediente = ViewBag.IdExpediente != null ? (int)ViewBag.IdExpediente : 0;
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Crear Documento para Expediente #@idExpediente</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("CrearDocumento", "Documentos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="idExpediente" value="@idExpediente" />
+
+                <div class="mb-3">
+                    <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                    <select name="tipoDocumento" class="form-control" required>
+                        <option value="">Seleccione...</option>
+                        <option value="PDF">PDF</option>
+                        <option value="Excel">Excel (.xlsx)</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título</label>
+                    <input type="text" name="titulo" class="form-control" placeholder="Ingrese el título del documento" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="contenido" class="form-label">Contenido</label>
+                    <textarea name="contenido" class="form-control" rows="6" placeholder="Ingrese el contenido del documento" required></textarea>
+                </div>
+
+                if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        @Html.ValidationSummary()
+                    </div>
+                }
+
+                <div class="text-end">
+                    <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = idExpediente })" class="btn btn-secondary">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-primary">Crear Documento</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

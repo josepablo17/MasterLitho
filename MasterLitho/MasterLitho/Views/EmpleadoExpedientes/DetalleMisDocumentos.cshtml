@@ -1,0 +1,66 @@
+﻿@model MasterLitho.Models.EXPEDIENTE
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Documentos del Expediente";
+}
+
+<div class="container mt-4">
+    <h2><strong>Documentos de Expediente:</strong> @Model.NOMBRE_EXPEDIENTE</h2>
+
+    <p><strong>Fecha Creación:</strong> @Model.FECHA_CREACION.ToString("yyyy-MM-dd HH:mm")</p>
+
+    <!-- Botón para subir documento -->
+    <!--   <div class="mb-3"> -->
+    <!--  <a href="@Url.Action("SubirDocumentoEmpleado", "EmpleadoExpedientes", new { idExpediente = Model.ID_EXPEDIENTE })" -->
+    <!--     class="btn btn-success"> -->
+    <!--   + Subir Documento -->
+    <!--   </a>-->
+    <!-- </div>-->
+
+    <div class="row">
+        @if (!Model.DOCUMENTO_EXPEDIENTE.Any())
+        {
+            <div class="col-12">
+                <div class="alert alert-info">
+                    No hay documentos en este expediente.
+                </div>
+            </div>
+        }
+        else
+        {
+            foreach (var doc in Model.DOCUMENTO_EXPEDIENTE)
+            {
+                <div class="col-md-4 col-sm-6 my-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@doc.NOMBRE_DOCUMENTO</h5>
+                            <p>
+                                <strong>Tipo:</strong> @doc.TIPO_DOCUMENTO <br />
+                                <strong>Fecha Carga:</strong> @doc.FECHA_CARGA.ToString("yyyy-MM-dd HH:mm")
+                            </p>
+                            @if (doc.FECHA_ACTUALIZACION.HasValue)
+                            {
+                                <p><strong>Últ. Actualización:</strong> @doc.FECHA_ACTUALIZACION.Value.ToString("yyyy-MM-dd HH:mm")</p>
+                            }
+                        </div>
+                        <div class="card-footer text-right">
+                            <!-- Botón Descargar -->
+                            <a class="btn btn-primary btn-sm"
+                               href="@Url.Action("DescargarDocumento", "EmpleadoExpedientes", new { idDocumento = doc.ID_DOCUMENTO })">
+                                <i class="fas fa-download"></i> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+    <!-- Botón para regresar a lista de expedientes -->
+    <div class="mt-3">
+        <a href="@Url.Action("Expedientes", "EmpleadoExpedientes")" class="btn btn-secondary">
+            Volver a mis Expedientes
+        </a>
+    </div>
+</div>

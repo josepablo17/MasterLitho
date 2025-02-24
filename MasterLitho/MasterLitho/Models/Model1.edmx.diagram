@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4b662fdce6bc424b9c668f3c0d04eda0" Name="Diagram1">
+      <Diagram DiagramId="4b662fdce6bc424b9c668f3c0d04eda0" Name="Diagram1" ZoomLevel="62">
         <EntityTypeShape EntityType="LithoManagerModel.CONSTANCIA_LABORAL" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.DEPARTAMENTO" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.EMPLEADO" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
@@ -30,6 +30,10 @@
         <AssociationConnector Association="LithoManagerModel.FK__USUARIO__ID_ROL__5BE2A6F2" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__SOLICITUD__ID_EM__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LithoManagerModel.DOCUMENTO_EXPEDIENTE" Width="1.5" PointX="5.375" PointY="1.125" />
+        <EntityTypeShape EntityType="LithoManagerModel.EXPEDIENTE" Width="1.5" PointX="5.375" PointY="3.625" />
+        <AssociationConnector Association="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE" />
+        <AssociationConnector Association="LithoManagerModel.FK_EXPEDIENTE_USUARIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

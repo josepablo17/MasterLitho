@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Subir Documento";
+    var idExpediente = ViewBag.IdExpediente;
+    var nombreExpediente = ViewBag.NombreExpediente;
+}
+
+<div class="container mt-4">
+    <h2>Subir Documento al Expediente: @nombreExpediente</h2>
+
+    @using (Html.BeginForm("SubirDocumentoEmpleado", "EmpleadoExpedientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <!-- Se envía el id del expediente de forma oculta -->
+        <input type="hidden" name="idExpediente" value="@idExpediente" />
+
+        <div class="mb-3">
+            <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+            <input type="text" name="tipoDocumento" class="form-control" placeholder="Ej: CV, Diploma, etc." />
+        </div>
+
+        <div class="mb-3">
+            <label for="archivo" class="form-label">Archivo</label>
+            <input type="file" name="archivo" class="form-control" required />
+        </div>
+
+        if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Error
+            </div>
+        }
+
+        <div class="text-end">
+            <a href="@Url.Action("DetalleMisDocumentos", "EmpleadoExpedientes", new { id = idExpediente })" class="btn btn-secondary">
+                Cancelar
+            </a>
+            <button type="submit" class="btn btn-primary">Subir</button>
+        </div>
+    }
+</div>

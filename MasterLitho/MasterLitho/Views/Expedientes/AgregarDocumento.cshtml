@@ -1,0 +1,39 @@
+﻿@model MasterLitho.Models.DOCUMENTO_EXPEDIENTE
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Agregar Documento";
+    var idExpediente = Request["id"];
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Agregar Documento</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("AgregarDocumento", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <!-- Campo oculto para pasar el ID_EXPEDIENTE al controller -->
+                @Html.Hidden("id", idExpediente)
+
+                <div class="mb-3">
+                    <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                    <input type="text" name="tipoDocumento" class="form-control" placeholder="Ej: Contrato, Adendo..." />
+                </div>
+
+                <div class="mb-3">
+                    <label for="archivo" class="form-label">Archivo</label>
+                    <input type="file" name="archivo" class="form-control" required />
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = idExpediente })" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Subir</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

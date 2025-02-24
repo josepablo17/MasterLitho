@@ -159,6 +159,7 @@
     <NavigationProperty Name="NOTICIAS1" Relationship="Self.FK_NOTICIAS_ID_ADMINISTRADOR" FromRole="USUARIO" ToRole="NOTICIAS" />
     <NavigationProperty Name="ROL" Relationship="Self.FK__USUARIO__ID_ROL__5BE2A6F2" FromRole="USUARIO" ToRole="ROL" />
     <NavigationProperty Name="SOLICITUD_VACACIONES" Relationship="Self.FK__SOLICITUD__ID_EM__5070F446" FromRole="USUARIO" ToRole="SOLICITUD_VACACIONES" />
+    <NavigationProperty Name="EXPEDIENTE" Relationship="LithoManagerModel.FK_EXPEDIENTE_USUARIO" FromRole="USUARIO" ToRole="EXPEDIENTE" />
   </EntityType>
   <Association Name="FK__CONSTANCI__ID_EM__5070F446">
     <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
@@ -381,5 +382,63 @@
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
       <End Role="SOLICITUD_VACACIONES1" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
+    <EntitySet Name="DOCUMENTO_EXPEDIENTE" EntityType="LithoManagerModel.DOCUMENTO_EXPEDIENTE" />
+    <EntitySet Name="EXPEDIENTE" EntityType="LithoManagerModel.EXPEDIENTE" />
+    <AssociationSet Name="FK_DOCUMENTO_EXPEDIENTE" Association="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE">
+      <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+      <End Role="DOCUMENTO_EXPEDIENTE" EntitySet="DOCUMENTO_EXPEDIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EXPEDIENTE_USUARIO" Association="LithoManagerModel.FK_EXPEDIENTE_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="DOCUMENTO_EXPEDIENTE">
+    <Key>
+      <PropertyRef Name="ID_DOCUMENTO" />
+    </Key>
+    <Property Name="ID_DOCUMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+    <Property Name="NOMBRE_DOCUMENTO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TIPO_DOCUMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RUTA" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FECHA_CARGA" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_ACTUALIZACION" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="EXPEDIENTE" Relationship="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE" FromRole="DOCUMENTO_EXPEDIENTE" ToRole="EXPEDIENTE" />
+  </EntityType>
+  <EntityType Name="EXPEDIENTE">
+    <Key>
+      <PropertyRef Name="ID_EXPEDIENTE" />
+    </Key>
+    <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+    <Property Name="FECHA_CREACION" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="DOCUMENTO_EXPEDIENTE" Relationship="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE" FromRole="EXPEDIENTE" ToRole="DOCUMENTO_EXPEDIENTE" />
+    <NavigationProperty Name="USUARIO" Relationship="LithoManagerModel.FK_EXPEDIENTE_USUARIO" FromRole="EXPEDIENTE" ToRole="USUARIO" />
+    <Property Name="NOMBRE_EXPEDIENTE" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_DOCUMENTO_EXPEDIENTE">
+    <End Type="LithoManagerModel.EXPEDIENTE" Role="EXPEDIENTE" Multiplicity="1" />
+    <End Type="LithoManagerModel.DOCUMENTO_EXPEDIENTE" Role="DOCUMENTO_EXPEDIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXPEDIENTE">
+        <PropertyRef Name="ID_EXPEDIENTE" />
+      </Principal>
+      <Dependent Role="DOCUMENTO_EXPEDIENTE">
+        <PropertyRef Name="ID_EXPEDIENTE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EXPEDIENTE_USUARIO">
+    <End Type="LithoManagerModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+    <End Type="LithoManagerModel.EXPEDIENTE" Role="EXPEDIENTE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="EXPEDIENTE">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

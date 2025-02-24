@@ -1,0 +1,23 @@
+﻿@model MasterLitho.Models.EXPEDIENTE
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Eliminar Expediente";
+}
+
+<div class="container mt-4">
+    <h2>Eliminar Expediente</h2>
+    <div class="alert alert-warning">
+        ¿Está seguro que desea eliminar el expediente "<strong>@Model.NOMBRE_EXPEDIENTE</strong>" (ID: @Model.ID_EXPEDIENTE)? Esta acción no se puede deshacer.
+    </div>
+
+    @using (Html.BeginForm("EliminarExpedienteConfirmed", "Expedientes", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ID_EXPEDIENTE)
+        <div class="text-end">
+            <a href="@Url.Action("IndexExpedientes", "Expedientes")" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+    }
+</div>
