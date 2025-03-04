@@ -4,6 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    #ReportesTable {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+        #ReportesTable th, #ReportesTable td {
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis; 
+        }
+</style>
+
 <div id="content-wrapper" class="container">
     <div id="content">
         <h1 class="my-4">Gestión de Quejas y Reportes</h1>
@@ -43,7 +56,7 @@
                                             <td class="estado-columna">@item.nombreEstado</td>
                                             <td>
                                                 <button class="btn btn-primary btn-sm" onclick="abrirModal(@item.idQueja)">Cambiar Estado</button>
-                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModal(this)">Ver información</button>
+                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">Ver información</button>
                                             </td>
                                         </tr>
                                     }
@@ -171,7 +184,7 @@
         }
 
         function abrirModalInfo(button) {
-            const data = $(button).data('solicitud'); // Obtén los datos del atributo JSON
+            const data = $(button).data('solicitud'); 
 
             // Formatear las fechas al formato deseado
             const fechaEnvio = new Date(data.fechaEnvio).toLocaleDateString('es-ES');

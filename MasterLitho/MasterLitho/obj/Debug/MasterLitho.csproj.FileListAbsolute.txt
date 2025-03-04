@@ -49,16 +49,11 @@ C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y 
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.rsp
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLi.E9F2EFE4.Up2Date
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
 C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Rotativa.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll.config
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.pdb
@@ -219,3 +214,13 @@ C:\Users\yeray\source\repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffe
 C:\Users\yeray\source\repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.xml
 C:\Users\yeray\source\repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.xml
 C:\Users\yeray\source\repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\libSkiaSharp.dylib
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.xml

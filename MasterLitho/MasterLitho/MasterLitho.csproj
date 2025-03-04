@@ -198,6 +198,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CONSTANCIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CONSTANCIA_LABORAL.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -208,6 +211,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EMPLEADO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ESTADO_QUEJA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ESTADO_SOLICITUD.cs">
@@ -252,10 +258,21 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tConstancia.cs" />
     <Compile Include="Models\tEmpleado.cs" />
     <Compile Include="Models\tEventos.cs" />
+    <Compile Include="Models\TIPOS_CONSTANCIA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TIPO_QUEJA.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tNoticias.cs" />
     <Compile Include="Models\tPlanilla.cs" />
+    <Compile Include="Models\tQuejasReportes.cs" />
     <Compile Include="Models\tRol.cs" />
     <Compile Include="Models\tUsuario.cs" />
     <Compile Include="Models\tVacaciones.cs" />
@@ -267,6 +284,8 @@
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\MasterLitho.dll" />
     <Content Include="bin\MasterLitho.pdb" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
@@ -313,6 +332,7 @@
     <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
     <Content Include="bin\roslyn\vbc.exe" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\Rotativa.dll" />
     <Content Include="bin\System.Web.Helpers.dll" />
     <Content Include="bin\System.Web.Helpers.xml" />
     <Content Include="bin\System.Web.Mvc.dll" />
@@ -466,6 +486,7 @@
     <Content Include="Scripts\i18n\vi.js" />
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
+    <Content Include="App_Browsers\qt.browser" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -473,7 +494,6 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -489,6 +509,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Styles\css\ConstanciaPDF.css" />
     <Content Include="Styles\css\EstilosCorreos.css" />
     <Content Include="Styles\css\EstilosDataTables.css" />
     <Content Include="Styles\css\PlanillaPDF.css" />
@@ -518,6 +539,7 @@
     <Content Include="Styles\js\sb-admin-2.min.js" />
     <Content Include="Styles\TemplateCorreoEventos.html" />
     <Content Include="Styles\TemplateCorreo.html" />
+    <Content Include="Styles\TemplateCorreoQuejasReportes.html" />
     <Content Include="Styles\TemplateCorreoRecuperarContrasena.html" />
     <Content Include="Styles\TemplateCorreoSolicitudVacaciones.html" />
     <Content Include="Styles\TemplateCorreoRegistroUser.html" />
@@ -2418,6 +2440,13 @@
     <Content Include="Views\EmpleadoExpedientes\SubirDocumentoEmpleado.cshtml" />
     <Content Include="Views\EmpleadoExpedientes\EliminarExpediente.cshtml" />
     <Content Include="Views\Documentos\CrearDocumento.cshtml" />
+    <Content Include="UploadedFiles\Expedientes\1a0278e7-731d-4acb-9e7e-a2c7d5273975.pdf" />
+    <Content Include="UploadedFiles\Expedientes\788d794e-b2c8-416b-86ae-4b423e845e52.pdf" />
+    <Content Include="UploadedFiles\Expedientes\a17edb28-7205-47ee-9330-bb9cd5f67d2a.xlsx" />
+    <Content Include="UploadedFiles\Expedientes\bdef363a-8151-4b56-9c62-e6896e67343b.pdf" />
+    <Content Include="Views\QuejasReportes\EnviarQueja.cshtml" />
+    <Content Include="Views\Constancias\DetalleConstanciaPDF.cshtml" />
+    <Content Include="Views\Constancias\DetalleConstanciaSalarialPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

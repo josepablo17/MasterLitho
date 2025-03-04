@@ -65,10 +65,8 @@ namespace MasterLitho.Controllers
             {
                 CargarEstadosQuejas();
 
-                // Obtener todos los registros de QUEJAS_REPORTES
                 var datos = context.QUEJAS_REPORTES.ToList();
 
-                // Filtrar reportes (ID_TIPO == 1)
                 var reportes = (from item in datos
                                 where item.ID_TIPO == 1
                                 select new tQuejasReportes
@@ -84,7 +82,6 @@ namespace MasterLitho.Controllers
                                     idTipo = item.ID_TIPO ?? 0
                                 }).ToList();
 
-                // Filtrar quejas (ID_TIPO == 2)
                 var quejas = (from item in datos
                               where item.ID_TIPO == 2
                               select new tQuejasReportes
@@ -118,14 +115,14 @@ namespace MasterLitho.Controllers
                 try
                 {
                     CargarEstadosQuejas();
-                    // Buscar la solicitud de vacaciones
+                    
                     var queja = context.QUEJAS_REPORTES.FirstOrDefault(s => s.ID_QUEJA == idQueja);
                     if (queja == null)
                     {
                         return Json(new { success = false, message = "Queja o reporte no encontrado." });
                     }
 
-                    // Obtener el estado actual de la solicitud
+                   
                     int estadoActual = queja.ID_ESTADO_QUEJA;
 
                     var usuario = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == queja.ID_EMPLEADO);
@@ -173,17 +170,17 @@ namespace MasterLitho.Controllers
                     throw new Exception("Queja o reporte no encontrado.");
                 }
 
-                // Buscar el empleado asociado a la solicitud
+
                 var usuario = context.USUARIO.FirstOrDefault(e => e.ID_USUARIO == queja.ID_EMPLEADO);
                 if (usuario == null)
                 {
                     throw new Exception("Empleado no encontrado.");
                 }
 
-                // Leer la plantilla de correo
+          
                 string contenido = System.IO.File.ReadAllText(Server.MapPath("~/Styles/TemplateCorreoQuejasReportes.html"));
 
-                // Reemplazar los marcadores con los datos obtenidos de la base de datos
+      
                 contenido = contenido.Replace("@@Nombre_Empleado", usuario.NOMBRE_USUARIO);
                 contenido = contenido.Replace("@@FechaEnvio", queja.FECHA_ENVIO.ToString("dd/MM/yyyy"));
                 contenido = contenido.Replace("@@Comentario", queja.COMENTARIO_ADMIN);
@@ -209,10 +206,8 @@ namespace MasterLitho.Controllers
                     ViewBag.MostrarAlerta = true;
                     return View();
                 }
-                // Buscar al empleado asociado al usuario
                 var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == idUsuario);
 
-                // Validar si el empleado existe
                 if (empleado == null)
                 {
                     ViewBag.MensajePantalla = "No se encontró información del empleado.";
@@ -239,7 +234,6 @@ namespace MasterLitho.Controllers
 
                 using (var context = new LithoManagerEntities())
                 {
-                    // Buscar al empleado asociado al usuario
                     var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == idUsuario);
 
                     if (empleado == null)
@@ -248,7 +242,6 @@ namespace MasterLitho.Controllers
                         return View(model);
                     }
 
-                    // Crear el nuevo registro de queja
                     var nuevaQueja = new QUEJAS_REPORTES
                     {
                         ID_EMPLEADO = empleado.ID_EMPLEADO,

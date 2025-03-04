@@ -57,8 +57,6 @@ namespace MasterLitho.Controllers
         }
 
 
-
-
         [HttpGet]
         public ActionResult detallesConstancia()
         {
@@ -154,10 +152,6 @@ namespace MasterLitho.Controllers
         {
             using (var context = new LithoManagerEntities())
             {
-
-
-
-
                 var planilla = context.CONSTANCIA.FirstOrDefault(p => p.ID_CONSTANCIA == q);
                 if (planilla == null)
                 {

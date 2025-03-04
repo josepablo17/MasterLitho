@@ -3,38 +3,53 @@
 @{
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
 }
- <link href="~/Styles/css/PlanillaPDF.css" rel="stylesheet" />
-    <div class="invoice-container">
-        <div class="invoice-header">
-            <h2>Planilla #@Model.FirstOrDefault().idPlanilla</h2>
-            <p>Fecha: @DateTime.Now.ToString("yyyy/MM/dd")</p>
-        </div>
 
-        @if (Model != null && Model.Any())
-        {
-            foreach (var item in Model)
-            {
-                <div class="invoice-section">
-                    <h3>Empleado: @item.nombreEmpleado @item.apellidoEmpleado</h3>
-                    <div class="invoice-details">
-                        <p><strong>Fecha de pago:</strong> @item.fechaPago.ToShortDateString()</p>
-                        <p><strong>Periodo inicio:</strong> @item.periodoInicio.ToShortDateString()</p>
-                        <p><strong>Periodo fin:</strong> @item.periodoFin.ToShortDateString()</p>
-                        <p><strong>Salario bruto:</strong> ¢@item.salarioBruto</p>
-                        <p><strong>Días vacaciones tomados:</strong> @item.diasVacacionesTomados</p>
-                        <p><strong>Bonos:</strong> ¢@item.bonos</p>
-                        <p><strong>Deducciones:</strong> ¢@item.deducciones</p>
-                        <p><strong>Horas extras:</strong> @item.horasExtra</p>
-                        <p><strong>Aporte seguridad social:</strong> ¢@item.aporteSeguridadSocial</p>
-                        <p><strong>Impuestos:</strong> ¢@item.impuestos</p>
-                        <p><strong>Otros beneficios:</strong> ¢@item.otrosBeneficios</p>
-                        <p class="salary-net"><strong>Salario Neto:</strong> ¢@item.salarioNeto</p>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <p>No se encontraron detalles para mostrar.</p>
-        }
+<link href="~/Styles/css/PlanillaPDF.css" rel="stylesheet" />
+
+<div class="invoice-container">
+    <div class="invoice-header">
+        <div class="header-info">
+            <h2>Planilla de Pago</h2>
+            <p class="date">Fecha de generación: @DateTime.Now.ToString("yyyy/MM/dd")</p>
+        </div>
     </div>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="invoice-section">
+                <h3 class="employee-name">Empleado: @item.nombreEmpleado @item.apellidoEmpleado</h3>
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Fecha de pago</td><td>@item.fechaPago.ToShortDateString()</td></tr>
+                        <tr><td>Periodo inicio</td><td>@item.periodoInicio.ToShortDateString()</td></tr>
+                        <tr><td>Periodo fin</td><td>@item.periodoFin.ToShortDateString()</td></tr>
+                        <tr><td>Salario bruto</td><td>¢@item.salarioBruto.ToString("N2")</td></tr>
+                        <tr><td>Días vacaciones tomados</td><td>@item.diasVacacionesTomados</td></tr>
+                        <tr><td>Bonos</td><td>¢@item.bonos.ToString("N2")</td></tr>
+                        <tr><td>Deducciones</td><td>¢@item.deducciones.ToString("N2")</td></tr>
+                        <tr><td>Horas extras</td><td>@item.horasExtra</td></tr>
+                        <tr><td>Aporte seguridad social</td><td>¢@item.aporteSeguridadSocial.ToString("N2")</td></tr>
+                        <tr><td>Impuestos</td><td>¢@item.impuestos.ToString("N2")</td></tr>
+                        <tr><td>Otros beneficios</td><td>¢@item.otrosBeneficios.ToString("N2")</td></tr>
+                        <tr class="net-salary">
+                            <td><strong>Salario Neto</strong></td>
+                            <td><strong>¢@item.salarioNeto.ToString("N2")</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="no-data">No se encontraron detalles para mostrar.</p>
+    }
+</div>
