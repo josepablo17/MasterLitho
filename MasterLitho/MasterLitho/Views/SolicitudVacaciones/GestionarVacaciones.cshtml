@@ -28,6 +28,9 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    // Verifica si la solicitud ya está aprobada o rechazada para deshabilitar el botón
+                                    bool estadoFinalizado = item.nombreEstado == "Aprobado" || item.nombreEstado == "Rechazado";
+
                                     <tr data-id="@item.idSolicitud">
                                         <td>@item.nombreUsuario</td>
                                         <td>@item.fechaSolicitud.ToString("dd-MM-yyyy")</td>
@@ -36,7 +39,11 @@
                                         <td>@item.diasSolicitados</td>
                                         <td class="estado-columna">@item.nombreEstado</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm" onclick="abrirModal(@item.idSolicitud)">Cambiar Estado</button>
+                                            <button class="btn btn-primary btn-sm cambiar-estado-btn"
+                                                    onclick="abrirModal(@item.idSolicitud)"
+                                                    @(estadoFinalizado ? "disabled" : "")>
+                                                Cambiar Estado
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -83,27 +90,27 @@
     </div>
 </div>
 
-
 <script>
     $(document).ready(function () {
         inicializarDataTable('#solicitudesTable');
     });
-
 
     function abrirModal(id) {
         $('#solicitudId').val(id);
         $('#cambiarEstadoModal').modal('show');
     }
 
-    function guardarEstado() {
-        const idSolicitud = $('#solicitudId').val();
-        const idEstado = $('#nuevoEstado').val();
-        const comentario = $('#comentario').val();
-        if (!idEstado) {
-            alert('Por favor, seleccione un estado válido.');
-            return;
-        }
+   function guardarEstado() {
+    const idSolicitud = $('#solicitudId').val();
+    const idEstado = $('#nuevoEstado').val();
+    const comentario = $('#comentario').val();
 
+    if (!idEstado) {
+        alertaError("Por favor, seleccione un estado válido.");
+        return;
+    }
+
+    confirmarEnvio("¿Seguro que deseas cambiar el estado de la solicitud?", null, function () {
         $.ajax({
             url: '@Url.Action("EditarEstado", "SolicitudVacaciones")',
             type: 'POST',
@@ -114,12 +121,22 @@
             },
             success: function (response) {
                 if (response.success) {
-                    location.reload();
+                    // Deshabilitar el botón si el estado es "Aprobado" o "Rechazado"
+                    if (idEstado === "Aprobado" || idEstado === "Rechazado") {
+                        $('tr[data-id="' + idSolicitud + '"] .cambiar-estado-btn').prop('disabled', true);
+                    }
+                    alertaExito("El estado se actualizó correctamente.");
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                } else {
+                    alertaError("Hubo un problema al actualizar el estado.");
                 }
             },
             error: function () {
-                console.error('Ocurrió un error al intentar actualizar el estado.');
+                alertaError("Ocurrió un error al intentar actualizar el estado.");
             }
         });
-    }
+    });
+}
 </script>

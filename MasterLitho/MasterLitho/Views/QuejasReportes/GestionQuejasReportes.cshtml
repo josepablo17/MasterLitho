@@ -55,8 +55,14 @@
                                             <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
                                             <td class="estado-columna">@item.nombreEstado</td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm" onclick="abrirModal(@item.idQueja)">Cambiar Estado</button>
-                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">Ver información</button>
+                                                <button class="btn btn-primary btn-sm cambiar-estado-btn"
+                                                        onclick="abrirModal(@item.idQueja)"
+                                                        @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
+                                                    Cambiar Estado
+                                                </button>
+                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
+                                                    Ver información
+                                                </button>
                                             </td>
                                         </tr>
                                     }
@@ -90,9 +96,16 @@
                                             <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
                                             <td class="estado-columna">@item.nombreEstado</td>
                                             <td>
-                                                <button class="btn btn-primary btn-sm" onclick="abrirModal(@item.idQueja)">Cambiar Estado</button>
-                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">Ver información</button>
+                                                <button class="btn btn-primary btn-sm cambiar-estado-btn"
+                                                        onclick="abrirModal(@item.idQueja)"
+                                                        @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
+                                                    Cambiar Estado
+                                                </button>
+                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
+                                                    Ver información
+                                                </button>
                                             </td>
+
                                         </tr>
                                     }
                                 </tbody>
@@ -172,7 +185,7 @@
 </div>
 
 
-    <script>
+<script>
         $(document).ready(function () {
             inicializarDataTable('#ReportesTable');
             inicializarDataTable('#QuejasTable');
@@ -184,7 +197,7 @@
         }
 
         function abrirModalInfo(button) {
-            const data = $(button).data('solicitud'); 
+            const data = $(button).data('solicitud');
 
             // Formatear las fechas al formato deseado
             const fechaEnvio = new Date(data.fechaEnvio).toLocaleDateString('es-ES');
@@ -198,31 +211,41 @@
             $('#detalleQuejaModal').modal('show');
         }
 
-        function guardarEstado() {
-            const idQueja = $('#quejaId').val();
-            const idEstado = $('#nuevoEstado').val();
-            const comentario = $('#comentario').val();
-            if (!idEstado) {
-                alert('Por favor, seleccione un estado válido.');
-                return;
-            }
+function guardarEstado() {
+    const idQueja = $('#quejaId').val();
+    const idEstado = $('#nuevoEstado').val();
+    const comentario = $('#comentario').val();
 
-            $.ajax({
-                url: '@Url.Action("EditarEstadoQueja", "QuejasReportes")',
-                type: 'POST',
-                data: {
-                    idQueja: idQueja,
-                    idEstado: idEstado,
-                    comentario: comentario
-                },
-                success: function (response) {
-                    if (response.success) {
-                        location.reload();
-                    }
-                },
-                error: function () {
-                    console.error('Ocurrió un error al intentar actualizar el estado.');
+    if (!idEstado) {
+        alertaError("Por favor, seleccione un estado válido.");
+        return;
+    }
+
+    confirmarEnvio("¿Seguro que deseas cambiar el estado de esta queja o reporte?", null, function () {
+        $.ajax({
+            url: '@Url.Action("EditarEstadoQueja", "QuejasReportes")',
+            type: 'POST',
+            data: {
+                idQueja: idQueja,
+                idEstado: idEstado,
+                comentario: comentario
+            },
+            success: function (response) {
+                if (response.success) {
+                    // Deshabilitar el botón de cambio de estado
+                    $('tr[data-id="' + idQueja + '"] .cambiar-estado-btn').prop('disabled', true);
+
+                    alertaExito("El estado se actualizó correctamente.");
+                    setTimeout(() => { location.reload(); }, 1500);
+                } else {
+                    alertaError("Hubo un problema al actualizar el estado.");
                 }
-            });
-        }
-    </script>
+            },
+            error: function () {
+                alertaError("Ocurrió un error inesperado.");
+            }
+        });
+    });
+}
+
+</script>

@@ -12,7 +12,7 @@
                     <h3 class="fw-bold mb-0">Solicitud de Vacaciones</h3>
                 </div>
                 <div class="card-body p-4">
-                    @using (Html.BeginForm("SolicitarVacaciones", "SolicitudVacaciones"))
+                    @using (Html.BeginForm("SolicitarVacaciones", "SolicitudVacaciones", FormMethod.Post, new { id = "formSolicitud" }))
                     {
                         @Html.HiddenFor(m => m.idUsuario)
 
@@ -40,8 +40,11 @@
                             </div>
                         </div>
 
-                        <!-- Botón de envío -->
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fs-5">Enviar Solicitud</button>
+                        <!-- Botón de envío con confirmación -->
+                        <button type="button" class="btn btn-primary w-100 rounded-pill py-2 fs-5"
+                                onclick="confirmarEnvio('¿Estás seguro de enviar la solicitud?', 'formSolicitud')">
+                            Enviar Solicitud
+                        </button>
                     }
 
                     <!-- Mensaje de error -->
@@ -56,17 +59,19 @@
                     @if (ViewBag.MostrarAlerta != null && (bool)ViewBag.MostrarAlerta)
                     {
                         <script>
-                            Swal.fire({
-                                icon: 'warning',
-                                title: '¡Solicitud pendiente!',
-                                text: 'No puedes realizar una nueva solicitud mientras tienes una en estado pendiente.',
-                                confirmButtonText: 'Entendido',
-                                customClass: {
-                                    confirmButton: 'btn btn-primary'
-                                },
-                                buttonsStyling: false
-                            }).then(() => {
-                                window.location.href = '@Url.Action("Index", "Home")';
+                            document.addEventListener("DOMContentLoaded", function () {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: '¡Solicitud pendiente!',
+                                    text: 'No puedes realizar una nueva solicitud mientras tienes una en estado pendiente.',
+                                    confirmButtonText: 'Entendido',
+                                    customClass: {
+                                        confirmButton: 'btn btn-primary'
+                                    },
+                                    buttonsStyling: false
+                                }).then(() => {
+                                    window.location.href = '@Url.Action("Index", "Home")';
+                                });
                             });
                         </script>
                     }
@@ -75,5 +80,3 @@
         </div>
     </div>
 </div>
-
-

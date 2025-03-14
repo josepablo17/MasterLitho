@@ -1,0 +1,54 @@
+﻿@model List<MasterLitho.Models.tFormulariosAsignados>
+
+@{
+    ViewBag.Title = "Formularios Asignados";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h2><i class="fas fa-clipboard-list"></i> Formularios Asignados</h2>
+        </div>
+
+        <div class="container-fluid text-left">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de planillas</h5>
+                    <div class="table-responsive">
+                        <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Nombre del formulario</th>
+                                    <th>Fecha de envío</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var formulario in Model)
+                                {
+                                    <tr>
+                                        <td>@formulario.nombreFormulario</td>
+                                        <td>@formulario.fechaAsignacion.ToShortDateString()</td>
+                                        <td class="text-center">
+
+                                            <a href="@Url.Action("ResponderFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
+                                               class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="Responder formulario">
+                                                <i class="fas fa-edit"></i> Responder
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        inicializarDataTable('#solicitudesTable');
+    });
+</script>

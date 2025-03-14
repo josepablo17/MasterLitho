@@ -1,5 +1,8 @@
 ﻿@model MasterLitho.Models.USUARIO
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="page-wrapper d-flex align-items-start justify-content-center min-vh-100" style="background-color: #f9f9f9; padding-top: 5vh;">
     <div class="container">
@@ -46,20 +49,22 @@
                             </div>
 
                             <!-- Botones -->
-                            <div class="d-grid gap-3">
-                                
-                                    <button type="submit" class="btn btn-primary btn-lg shadow" id="cambiarPass">
-                                        <i class="fas fa-save me-2"></i> Realizar Cambio
-                                    </button>
-                                
+                    <div class="d-grid gap-3">
 
-                                <a class="btn btn-secondary btn-lg shadow" href="@Url.Action("CambiarContrasena", "Usuarios")">
-                                    <i class="fas fa-key me-2"></i>
-                                    <span>Cambiar Contraseña</span>
-                                </a>
+                        <button type="button" class="btn btn-primary btn-lg shadow" id="cambiarPass"
+                                onclick="confirmarEnvio('¿Estás seguro de modificar tu perfil?', 'formActualizarPerfil')">
+                            <i class="fas fa-save me-2"></i> Realizar Cambio
+                        </button>
 
 
-                            </div>
+
+                        <a class="btn btn-secondary btn-lg shadow" href="@Url.Action("CambiarContrasena", "Usuarios")">
+                            <i class="fas fa-key me-2"></i>
+                            <span>Cambiar Contraseña</span>
+                        </a>
+
+
+                    </div>
                         }
 
                     </div>

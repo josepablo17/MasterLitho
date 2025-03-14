@@ -12,12 +12,14 @@ namespace MasterLitho.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class FORMULARIO_EMPLEADO
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int ID { get; set; }
+        public int ID_FORMULARIO { get; set; }
+        public int ID_EMPLEADO { get; set; }
+        public Nullable<System.DateTime> FECHA_ASIGNACION { get; set; }
+    
+        public virtual EMPLEADO EMPLEADO { get; set; }
+        public virtual FORMULARIO FORMULARIO { get; set; }
     }
 }

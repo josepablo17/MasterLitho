@@ -19,7 +19,7 @@ namespace MasterLitho.Models
         {
             this.CONSTANCIA = new HashSet<CONSTANCIA>();
             this.CONSTANCIA_LABORAL = new HashSet<CONSTANCIA_LABORAL>();
-            this.FORMULARIO = new HashSet<FORMULARIO>();
+            this.FORMULARIO_EMPLEADO = new HashSet<FORMULARIO_EMPLEADO>();
             this.PLANILLA = new HashSet<PLANILLA>();
             this.QUEJAS_REPORTES = new HashSet<QUEJAS_REPORTES>();
         }
@@ -40,7 +40,7 @@ namespace MasterLitho.Models
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FORMULARIO> FORMULARIO { get; set; }
+        public virtual ICollection<FORMULARIO_EMPLEADO> FORMULARIO_EMPLEADO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLANILLA> PLANILLA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

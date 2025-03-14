@@ -1,0 +1,123 @@
+﻿@model MasterLitho.Models.tRespuestaFormulario
+
+@{
+    ViewBag.Title = "Responder Formulario";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h2><i class="fas fa-edit"></i> Responder Formulario</h2>
+        </div>
+
+        <div class="card-body">
+            <h4 class="text-center text-secondary">@Model.nombreFormulario</h4>
+            <hr>
+
+            @using (Html.BeginForm("ResponderFormulario", "Formularios", FormMethod.Post, new { id = "formRespuestas" }))
+            {
+                @Html.HiddenFor(m => m.idFormulario)
+                @Html.HiddenFor(m => m.idEmpleado)
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="thead-dark text-center">
+                            <tr>
+                                <th>Pregunta</th>
+                                <th>Respuesta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.campos.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@Model.campos[i].nombreCampo</strong>
+                                        @if (Model.campos[i].esRequerido)
+                                        {
+                                            <span class="text-danger">*</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.HiddenFor(m => m.campos[i].idCampo)
+
+                                        @if (Model.campos[i].tipoCampo == "Texto")
+                                        {
+                                            @Html.TextBoxFor(m => m.campos[i].respuesta, new { @class = "form-control", required = Model.campos[i].esRequerido ? "required" : null, data_val_required = "Este campo es obligatorio" })
+                                        }
+                                        else if (Model.campos[i].tipoCampo == "Número")
+                                        {
+                                            @Html.TextBoxFor(m => m.campos[i].respuesta, new { @class = "form-control", type = "number", required = Model.campos[i].esRequerido ? "required" : null, data_val_required = "Este campo es obligatorio" })
+                                        }
+                                        else if (Model.campos[i].tipoCampo == "Fecha")
+                                        {
+                                            @Html.TextBoxFor(m => m.campos[i].respuesta, new { @class = "form-control", type = "date", required = Model.campos[i].esRequerido ? "required" : null, data_val_required = "Este campo es obligatorio" })
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-success btn-lg px-4" onclick="confirmarEnvio()">
+                        <i class="fas fa-paper-plane"></i> Enviar Respuestas
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- SweetAlert2 para confirmación -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function confirmarEnvio() {
+        let camposInvalidos = [];
+        document.querySelectorAll("input[required]").forEach(input => {
+            if (!input.value.trim()) {
+                camposInvalidos.push(input);
+            }
+        });
+
+        if (camposInvalidos.length > 0) {
+            Swal.fire({
+                title: "Error",
+                text: "Por favor, completa todos los campos obligatorios.",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+
+            camposInvalidos[0].focus(); // Enfocar el primer campo vacío
+            return;
+        }
+
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Una vez enviado, no podrás modificar tus respuestas.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28a745",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, enviar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Enviado",
+                    text: "Tus respuestas han sido enviadas correctamente.",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                setTimeout(() => {
+                    document.getElementById("formRespuestas").submit();
+                }, 1500);
+            }
+        });
+    }
+</script>
+

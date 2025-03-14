@@ -198,6 +198,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CAMPOS_FORMULARIO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CONSTANCIA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -228,6 +231,9 @@
     <Compile Include="Models\FORMULARIO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\FORMULARIO_EMPLEADO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -252,18 +258,23 @@
     <Compile Include="Models\QUEJAS_REPORTES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RESPUESTAS_FORMULARIO.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ROL.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\tCampoFormulario.cs" />
+    <Compile Include="Models\tCampoFormularioRespuesta.cs" />
     <Compile Include="Models\tConstancia.cs" />
     <Compile Include="Models\tEmpleado.cs" />
     <Compile Include="Models\tEventos.cs" />
+    <Compile Include="Models\tFormulario.cs" />
+    <Compile Include="Models\tFormularioEmpleado.cs" />
+    <Compile Include="Models\tFormulariosAsignados.cs" />
     <Compile Include="Models\TIPOS_CONSTANCIA.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -273,6 +284,7 @@
     <Compile Include="Models\tNoticias.cs" />
     <Compile Include="Models\tPlanilla.cs" />
     <Compile Include="Models\tQuejasReportes.cs" />
+    <Compile Include="Models\tRespuestaFormulario.cs" />
     <Compile Include="Models\tRol.cs" />
     <Compile Include="Models\tUsuario.cs" />
     <Compile Include="Models\tVacaciones.cs" />
@@ -521,6 +533,7 @@
     <Content Include="Styles\FuncionesJS\FuncionesCalendario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesGestioUsuario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesModificarUsuario.js" />
+    <Content Include="Styles\FuncionesJS\FuncionesSweetAlert.js" />
     <Content Include="Styles\img\martelithocr-logo %281%29.png" />
     <Content Include="Styles\img\martelithocr-logo.png" />
     <Content Include="Styles\img\MasterlithoFondo.png" />
@@ -2405,7 +2418,6 @@
     <Content Include="Views\Planillas\DetallePlanilla.cshtml" />
     <Content Include="Views\Expedientes\IndexExpedientes.cshtml" />
     <Content Include="Views\Expedientes\DetalleExpediente.cshtml" />
-    <Content Include="Views\Formularios\EnvioFormulario.cshtml" />
     <Content Include="Views\Noticias\Noticias.cshtml" />
     <Content Include="Views\Calendario\Calendario.cshtml" />
     <Content Include="Views\Login\IniciarSesion.cshtml" />
@@ -2447,6 +2459,10 @@
     <Content Include="Views\QuejasReportes\EnviarQueja.cshtml" />
     <Content Include="Views\Constancias\DetalleConstanciaPDF.cshtml" />
     <Content Include="Views\Constancias\DetalleConstanciaSalarialPDF.cshtml" />
+    <Content Include="Views\Formularios\CrearFormulario.cshtml" />
+    <Content Include="Views\Formularios\AsignarFormulario.cshtml" />
+    <Content Include="Views\Formularios\ResponderFormulario.cshtml" />
+    <Content Include="Views\Formularios\FormulariosAsignados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -99,9 +99,6 @@ namespace MasterLitho.Controllers
                 FileName = fileName
             };
         }
-
-
-
         public void CargarEmpleados()
         {
             using (var context = new LithoManagerEntities())

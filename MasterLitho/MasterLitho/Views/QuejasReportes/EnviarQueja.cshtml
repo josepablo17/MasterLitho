@@ -32,9 +32,11 @@
                         </div>
 
                         <!-- Botón de envío -->
-                        <button type="submit" id="btnEnviar" class="btn btn-primary w-100 rounded-pill py-2 fs-5">
+                        <button type="button" id="btnEnviar" class="btn btn-primary w-100 rounded-pill py-2 fs-5"
+                                onclick="confirmarEnvio('¿Estás seguro de enviar esta queja o reporte?', 'quejaForm')">
                             <i class="fas fa-paper-plane"></i> Enviar queja o reporte
                         </button>
+
                     }
 
                     <!-- Mensaje de error -->
@@ -69,33 +71,4 @@
     </div>
 </div>
 
-<!-- Mejoras en la UX con JavaScript -->
-<script>
-    document.getElementById("quejaForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita el envío inmediato
-
-        // Deshabilita el botón para evitar múltiples envíos
-        document.getElementById("btnEnviar").disabled = true;
-
-        Swal.fire({
-            icon: 'question',
-            title: '¿Estás seguro?',
-            text: '¿Quieres enviar esta queja o reporte?',
-            showCancelButton: true,
-            confirmButtonText: 'Sí, enviar',
-            cancelButtonText: 'Cancelar',
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById("quejaForm").submit(); // Enviar el formulario
-            } else {
-                document.getElementById("btnEnviar").disabled = false; // Reactivar botón si cancela
-            }
-        });
-    });
-</script>
 
