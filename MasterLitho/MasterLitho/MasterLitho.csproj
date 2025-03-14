@@ -180,8 +180,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="ChatHub.cs" />
-    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\DocumentosController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\ConstanciasController.cs" />
@@ -236,7 +234,6 @@
     <Compile Include="Models\FORMULARIO_EMPLEADO.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Mensajes.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -295,7 +292,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -389,9 +385,6 @@
     <Content Include="ImgNoticias\2e71da75-b7dc-4541-ae24-e7eeaedc416f.jpg" />
     <Content Include="ImgNoticias\757fc6c8-9663-4c19-845e-5df2dcd7a51c.jpg" />
     <Content Include="ImgNoticias\89592aa3-cd54-4e0f-81d4-1d382ddec14e.jpg" />
-    <Content Include="ImgUsuarios\1.png" />
-    <Content Include="ImgUsuarios\1Sebastian.png" />
-    <Content Include="ImgUsuarios\2Laura.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -541,7 +534,6 @@
     <Content Include="Styles\FuncionesJS\FuncionesGestioUsuario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesModificarUsuario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesSweetAlert.js" />
-    <Content Include="Styles\FuncionesJS\InitSignalR.js" />
     <Content Include="Styles\img\martelithocr-logo %281%29.png" />
     <Content Include="Styles\img\martelithocr-logo.png" />
     <Content Include="Styles\img\MasterlithoFondo.png" />
@@ -2471,11 +2463,12 @@
     <Content Include="Views\Formularios\AsignarFormulario.cshtml" />
     <Content Include="Views\Formularios\ResponderFormulario.cshtml" />
     <Content Include="Views\Formularios\FormulariosAsignados.cshtml" />
-    <Content Include="Views\Chat\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImgUsuarios\" />
     <Folder Include="obj\Debug\" />
+    <Folder Include="Views\Chat\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
