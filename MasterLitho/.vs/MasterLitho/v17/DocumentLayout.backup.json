@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\controllers\\constanciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\constanciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\constancias\\detalleconstanciasalarialpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\constancias\\detalleconstanciasalarialpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\constancias\\envioconstancia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\constancias\\envioconstancia.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\constancias\\detalleconstanciapdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\constancias\\detalleconstanciapdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\constancias\\detalleconstanciasalarialpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\constancias\\detalleconstanciasalarialpdf.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,54 +38,28 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DetalleConstanciaSalarialPDF.cshtml",
+              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
+              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-18T23:33:47.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "EnvioConstancia.cshtml",
               "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
               "RelativeDocumentMoniker": "MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
               "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
               "RelativeToolTip": "MasterLitho\\Views\\Constancias\\EnvioConstancia.cshtml",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAABYAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAIsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-02-18T22:21:35.95Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DetalleConstanciaSalarialPDF.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Constancias\\DetalleConstanciaSalarialPDF.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-18T19:45:16.029Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DetalleConstanciaPDF.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\DetalleConstanciaPDF.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Constancias\\DetalleConstanciaPDF.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Views\\Constancias\\DetalleConstanciaPDF.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Constancias\\DetalleConstanciaPDF.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-18T18:45:07.087Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ConstanciasController.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\ConstanciasController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\ConstanciasController.cs",
-              "ToolTip": "D:\\Ufidelitas\\Masterlitho\\MasterLitho\\MasterLitho\\Controllers\\ConstanciasController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\ConstanciasController.cs",
-              "ViewState": "AgIAAMQAAAAAAAAAAAAQwM4AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-18T17:59:04.724Z",
               "EditorCaption": ""
             }
           ]
