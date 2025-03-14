@@ -35,6 +35,8 @@ namespace MasterLitho.Models
         public bool ESTADO { get; set; }
         public bool ESTADO_CONTRASENA_TEMPORAL { get; set; }
         public System.DateTime FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL { get; set; }
+        public string CONNECTION_ID { get; set; }
+        public string IMAGEN_USUARIO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }

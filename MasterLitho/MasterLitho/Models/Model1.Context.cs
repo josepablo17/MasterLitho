@@ -37,6 +37,7 @@ namespace MasterLitho.Models
         public virtual DbSet<EXPEDIENTE> EXPEDIENTE { get; set; }
         public virtual DbSet<FORMULARIO> FORMULARIO { get; set; }
         public virtual DbSet<FORMULARIO_EMPLEADO> FORMULARIO_EMPLEADO { get; set; }
+        public virtual DbSet<Mensajes> Mensajes { get; set; }
         public virtual DbSet<NOTICIAS> NOTICIAS { get; set; }
         public virtual DbSet<PLANILLA> PLANILLA { get; set; }
         public virtual DbSet<QUEJAS_REPORTES> QUEJAS_REPORTES { get; set; }

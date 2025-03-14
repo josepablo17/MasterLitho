@@ -126,6 +126,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Mensajes">
+      <EntityTypeMapping TypeName="LithoManagerModel.Mensajes">
+        <MappingFragment StoreEntitySet="Mensajes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="FechaEnvio" ColumnName="FechaEnvio" />
+          <ScalarProperty Name="Leido" ColumnName="Leido" />
+          <ScalarProperty Name="UsuarioEmisor" ColumnName="UsuarioEmisor" />
+          <ScalarProperty Name="UsuarioReceptor" ColumnName="UsuarioReceptor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="NOTICIAS">
       <EntityTypeMapping TypeName="LithoManagerModel.NOTICIAS">
         <MappingFragment StoreEntitySet="NOTICIAS">
@@ -235,6 +247,8 @@
           <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
           <ScalarProperty Name="ESTADO_CONTRASENA_TEMPORAL" ColumnName="ESTADO_CONTRASENA_TEMPORAL" />
           <ScalarProperty Name="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" ColumnName="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" />
+          <ScalarProperty Name="CONNECTION_ID" ColumnName="CONNECTION_ID" />
+          <ScalarProperty Name="IMAGEN_USUARIO" ColumnName="IMAGEN_USUARIO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
