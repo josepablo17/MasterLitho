@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -27,39 +28,93 @@ namespace MasterLitho.Controllers
                     usuario.NOMBRE_USUARIO = datos.NOMBRE_USUARIO;
                     usuario.APELLIDO_USUARIO = datos.APELLIDO_USUARIO;
                     usuario.CORREO_USUARIO = datos.CORREO_USUARIO;
+                    usuario.IMAGEN_USUARIO = datos.IMAGEN_USUARIO;
                 }
                 return View(usuario);
             }
         }
 
         [HttpPost]
-        public JsonResult modificarPerfil(USUARIO model)
+        public ActionResult modificarPerfil(USUARIO model, HttpPostedFileBase ImagenUsuario)
         {
-            using (var context = new LithoManagerEntities())
+            try
             {
-                int Consecutivo = int.Parse(Session["ID_USUARIO"].ToString());
-
-                var datos = context.USUARIO.Where(x => x.ID_USUARIO == Consecutivo).FirstOrDefault();
-
-                if (datos != null)
+                using (var context = new LithoManagerEntities())
                 {
-                    datos.IDENTIFICACION = model.IDENTIFICACION;
-                    datos.NOMBRE_USUARIO = model.NOMBRE_USUARIO;
-                    datos.APELLIDO_USUARIO = model.APELLIDO_USUARIO;
-                    datos.CORREO_USUARIO = model.CORREO_USUARIO;
+                    int Consecutivo = int.Parse(Session["ID_USUARIO"].ToString());
 
-                    var respuesta = context.SaveChanges();
+                    var datos = context.USUARIO.FirstOrDefault(x => x.ID_USUARIO == Consecutivo);
 
-                    if (respuesta > 0)
+                    if (datos != null)
                     {
-                        Session["NOMBRE_USUARIO"] = model.NOMBRE_USUARIO;
-                        return Json(new { success = true, message = "¡Se han realizado los cambios correctamente!" });
+                        if (datos.IDENTIFICACION != model.IDENTIFICACION)
+                            datos.IDENTIFICACION = model.IDENTIFICACION;
+
+                        if (datos.NOMBRE_USUARIO != model.NOMBRE_USUARIO)
+                            datos.NOMBRE_USUARIO = model.NOMBRE_USUARIO;
+
+                        if (datos.APELLIDO_USUARIO != model.APELLIDO_USUARIO)
+                            datos.APELLIDO_USUARIO = model.APELLIDO_USUARIO;
+
+                        if (ImagenUsuario != null && ImagenUsuario.ContentLength > 0)
+                        {
+                            Console.WriteLine("Imagen recibida: " + ImagenUsuario.FileName);
+                            string[] extensionesPermitidas = { ".jpg", ".jpeg", ".png", ".gif" };
+                            string extension = Path.GetExtension(ImagenUsuario.FileName).ToLower();
+
+                            if (extensionesPermitidas.Contains(extension))
+                            {
+                                string nombreArchivo = datos.ID_USUARIO + datos.NOMBRE_USUARIO + extension;
+                                string rutaDirectorio = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImgUsuarios");
+
+                                if (!Directory.Exists(rutaDirectorio))
+                                {
+                                    Directory.CreateDirectory(rutaDirectorio);
+                                }
+
+                                string rutaCompleta = Path.Combine(rutaDirectorio, nombreArchivo);
+                                ImagenUsuario.SaveAs(rutaCompleta);
+                                datos.IMAGEN_USUARIO = "/ImgUsuarios/" + nombreArchivo;
+
+                                Console.WriteLine("Imagen guardada en: " + rutaCompleta);
+                                Session["IMAGEN_USUARIO"] = datos.IMAGEN_USUARIO;
+
+                            }
+                            else
+                            {
+                                return Json(new { success = false, message = "El formato de la imagen no es permitido. Solo JPG, JPEG, PNG o GIF." });
+                            }
+                        }
+
+                        context.Entry(datos).State = System.Data.Entity.EntityState.Modified;
+
+                        int respuesta = context.SaveChanges();
+                        Console.WriteLine("Respuesta SaveChanges(): " + respuesta);
+
+                        if (respuesta > 0)
+                        {
+                            Session["NOMBRE_USUARIO"] = model.NOMBRE_USUARIO;
+                            return Json(new { success = true, message = "¡Se han realizado los cambios correctamente!" });
+                        }
+                        else
+                        {
+                            return Json(new { success = false, message = "No se realizaron cambios. Verifique si los datos son diferentes." });
+                        }
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "El usuario no existe." });
                     }
                 }
-
-                return Json(new { success = false, message = "El usuario no se ha podido actualizar correctamente" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return Json(new { success = false, message = "Ocurrió un error al actualizar el usuario." });
             }
         }
+
+
 
 
         [HttpGet]
@@ -216,7 +271,11 @@ namespace MasterLitho.Controllers
                     var respuesta = context.SaveChanges();
 
                     var empleadoExistente = context.EMPLEADO.Where(x => x.ID_USUARIO == modelUsuario.idUsuario).FirstOrDefault();
-
+                    if (empleadoExistente != null)
+                    {
+                        ViewBag.MensajePantalla = "La identificación ya está registrada. Por favor, ingrese una identificación diferente.";
+                        return View();
+                    }
                     if (rolAnterior == 1 && modelUsuario.idRol == 2)
                     {
                         if (empleadoExistente == null)

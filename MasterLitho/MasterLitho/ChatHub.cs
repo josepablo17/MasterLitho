@@ -1,12 +1,8 @@
 ﻿using MasterLitho.Models;
-using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Infrastructure;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNet.SignalR;
 
 namespace MasterLitho
 {
@@ -85,19 +81,16 @@ namespace MasterLitho
         {
             using (var context = new LithoManagerEntities())
             {
-                // Busca al usuario en la base de datos usando su UserId
                 var user = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == userId);
 
                 if (user != null)
                 {
-                    if(connectionId != null)
+                    if (connectionId != null)
                     {
                         user.CONNECTION_ID = string.Empty;
                     }
-                    // Actualiza el ConnectionId del usuario
                     user.CONNECTION_ID = connectionId;
 
-                    // Guarda los cambios en la base de datos
                     context.SaveChanges();
                 }
             }
@@ -116,7 +109,7 @@ namespace MasterLitho
             System.Diagnostics.Debug.WriteLine($"Enviando mensaje a ConnectionId: {receiverConnectionId}");
             System.Diagnostics.Debug.WriteLine($"Contenido del mensaje: {message}");
 
-           
+
             var receivers = receiverConnectionId.Split(',');
 
             foreach (var receiver in receivers)
@@ -153,7 +146,7 @@ namespace MasterLitho
 
                 try
                 {
-                    await context.SaveChangesAsync();  
+                    await context.SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {

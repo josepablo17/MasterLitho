@@ -41,6 +41,11 @@ namespace MasterLitho.Controllers
                         Session["rolUsuario"] = datos.ID_ROL;
                         Session["correoUsuario"] = datos.CORREO_USUARIO;
 
+                        if(datos.IMAGEN_USUARIO != null)
+                        {
+                            Session["IMAGEN_USUARIO"] = datos.IMAGEN_USUARIO;
+                        }
+
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -89,7 +94,16 @@ namespace MasterLitho.Controllers
             }
         }
 
-        
+        [HttpGet]
+        public ActionResult CerrarSesion()
+        {
+            Session.Clear();
+            Session.Abandon();
+
+
+            return RedirectToAction("IniciarSesion", "Login");
+
+        }
 
         private string CreatePassword()
         {

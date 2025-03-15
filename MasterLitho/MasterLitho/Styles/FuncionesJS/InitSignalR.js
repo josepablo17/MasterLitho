@@ -1,23 +1,14 @@
-﻿
-$(document).ready(function () {
-   
-
+﻿$(document).ready(function () {
+    console.log("userId:", userId);  
     if (userId) {
         if ($.connection.hub.state === $.signalR.connectionState.disconnected) {
-
             $.connection.hub.qs = { "userId": userId };
-
-
-            var chat = $.connection.chatHub;
-
-
-           
-
 
             $.connection.hub.start().done(function () {
                 console.log("Conexión SignalR establecida para el usuario: " + userId);
+            }).fail(function (err) {
+                console.error("Error al iniciar la conexión SignalR: " + err);
             });
-
 
             $('#logoutButton').click(function (e) {
                 $.connection.hub.stop();
