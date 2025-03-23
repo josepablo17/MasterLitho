@@ -3,30 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\yeray\\source\\repos\\masterlitho\\masterlitho\\masterlitho\\views\\documentos\\creardocumento.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\documentos\\creardocumento.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\yeray\\source\\repos\\masterlitho\\masterlitho\\masterlitho\\controllers\\documentoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\documentoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\expedientes\\detalleexpediente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\expedientes\\detalleexpediente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\expedientes\\indexexpedientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\expedientes\\indexexpedientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\yeray\\source\\repos\\masterlitho\\masterlitho\\masterlitho\\views\\empleadoexpedientes\\detallemisdocumentos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\empleadoexpedientes\\detallemisdocumentos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\empleadoexpedientes\\eliminarexpediente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\empleadoexpedientes\\eliminarexpediente.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\controllers\\expedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\expedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,16 +11,28 @@
       "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\controllers\\empleadoexpedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\empleadoexpedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\expedientes\\agregardocumento.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\expedientes\\agregardocumento.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\empleadoexpedientes\\subirdocumentoempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\empleadoexpedientes\\subirdocumentoempleado.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\app_start\\signalruseridprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\app_start\\signalruseridprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\empleadoexpedientes\\expedientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\empleadoexpedientes\\expedientes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\yeray\\source\\repos\\masterlitho\\masterlitho\\masterlitho\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\hubs\\notificationhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\masterlitho\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
@@ -67,10 +55,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -94,145 +78,106 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DocumentosController.cs",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\DocumentosController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\DocumentosController.cs",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\DocumentosController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\DocumentosController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwCYAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T00:58:39.992Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DetalleExpediente.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Expedientes\\DetalleExpediente.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Expedientes\\DetalleExpediente.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Expedientes\\DetalleExpediente.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Expedientes\\DetalleExpediente.cshtml",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFoAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-21T00:38:57.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CrearDocumento.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Documentos\\CrearDocumento.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Documentos\\CrearDocumento.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Documentos\\CrearDocumento.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Documentos\\CrearDocumento.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAwAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-21T01:31:18.753Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IndexExpedientes.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Expedientes\\IndexExpedientes.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Expedientes\\IndexExpedientes.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Expedientes\\IndexExpedientes.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Expedientes\\IndexExpedientes.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-20T18:42:05.229Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EliminarExpediente.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\EliminarExpediente.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\EmpleadoExpedientes\\EliminarExpediente.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\EliminarExpediente.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\EmpleadoExpedientes\\EliminarExpediente.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-20T18:47:31.5Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DetalleMisDocumentos.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\DetalleMisDocumentos.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\EmpleadoExpedientes\\DetalleMisDocumentos.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\DetalleMisDocumentos.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\EmpleadoExpedientes\\DetalleMisDocumentos.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-20T18:16:23.644Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAC8AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-20T19:22:16.207Z",
+              "Title": "Global.asax.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Global.asax.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Global.asax.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Global.asax.cs",
+              "RelativeToolTip": "MasterLitho\\Global.asax.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T20:19:48.266Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Startup.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Startup.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Startup.cs",
+              "RelativeToolTip": "MasterLitho\\Startup.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T20:19:29.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NotificationHub.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Hubs\\NotificationHub.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Hubs\\NotificationHub.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Hubs\\NotificationHub.cs",
+              "RelativeToolTip": "MasterLitho\\Hubs\\NotificationHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T20:18:07.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SignalRUserIdProvider.cs",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\App_Start\\SignalRUserIdProvider.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\App_Start\\SignalRUserIdProvider.cs",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\App_Start\\SignalRUserIdProvider.cs",
+              "RelativeToolTip": "MasterLitho\\App_Start\\SignalRUserIdProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T20:17:36.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AgregarDocumento.cshtml",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Expedientes\\AgregarDocumento.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Expedientes\\AgregarDocumento.cshtml",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Expedientes\\AgregarDocumento.cshtml*",
+              "RelativeToolTip": "MasterLitho\\Views\\Expedientes\\AgregarDocumento.cshtml*",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAABMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-16T02:44:49.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANIBAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-16T02:28:29.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "ExpedientesController.cs",
               "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\ExpedientesController.cs",
               "RelativeDocumentMoniker": "MasterLitho\\Controllers\\ExpedientesController.cs",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\ExpedientesController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\ExpedientesController.cs",
-              "ViewState": "AgIAANQAAAAAAAAAAAAswO8AAAAJAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\ExpedientesController.cs*",
+              "RelativeToolTip": "MasterLitho\\Controllers\\ExpedientesController.cs*",
+              "ViewState": "AgIAAH0BAAAAAAAAAAD4v6MBAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T18:42:30.404Z",
+              "WhenOpened": "2025-03-16T02:20:38.284Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "EmpleadoExpedientesController.cs",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAYwJAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T18:28:43.33Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SubirDocumentoEmpleado.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\SubirDocumentoEmpleado.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\EmpleadoExpedientes\\SubirDocumentoEmpleado.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\SubirDocumentoEmpleado.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\EmpleadoExpedientes\\SubirDocumentoEmpleado.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-20T18:16:32.644Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Expedientes.cshtml",
-              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\Expedientes.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\EmpleadoExpedientes\\Expedientes.cshtml",
-              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\EmpleadoExpedientes\\Expedientes.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\EmpleadoExpedientes\\Expedientes.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-02-20T18:16:24.92Z",
+              "DocumentIndex": 4,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Web.config",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Web.config",
+              "ToolTip": "C:\\Users\\yeray\\source\\repos\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Web.config",
+              "RelativeToolTip": "MasterLitho\\Views\\Web.config",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-16T02:05:24.851Z",
               "EditorCaption": ""
             }
           ]

@@ -444,12 +444,36 @@
         <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.html5.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/2.4.0/js/buttons.print.min.js"></script>
         <script src="~/Styles/FuncionesJS/DataTables.js"></script>
+        <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+        <script src="~/signalr/hubs"></script>
 
         <!-- Core plugin JavaScript -->
         <script src="~/Styles/vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages -->
         <script src="~/Styles/js/sb-admin-2.min.js"></script>
+
+        <script>
+    $(function () {
+        var userId = '@ViewBag.IdUsuario'; // Obtener el ID del usuario logueado
+        var hub = $.connection.notificationHub;
+
+        // Función que recibe notificaciones
+        hub.client.receiveNotification = function (message) {
+            Swal.fire({
+                icon: 'info',
+                title: 'Nueva Notificación',
+                text: message,
+                confirmButtonText: 'OK'
+            });
+        };
+
+        // Conectar al Hub de SignalR
+        $.connection.hub.start().done(function () {
+            console.log("Conectado a SignalR");
+        });
+    });
+        </script>
 
 
 </body>

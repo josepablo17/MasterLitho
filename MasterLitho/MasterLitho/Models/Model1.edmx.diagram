@@ -31,7 +31,7 @@
         <AssociationConnector Association="LithoManagerModel.FK__SOLICITUD__ID_EM__5070F446" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" ManuallyRouted="false" />
         <EntityTypeShape EntityType="LithoManagerModel.DOCUMENTO_EXPEDIENTE" Width="1.5" PointX="5.375" PointY="1.125" />
-        <EntityTypeShape EntityType="LithoManagerModel.EXPEDIENTE" Width="1.5" PointX="5.375" PointY="3.625" />
+        <EntityTypeShape EntityType="LithoManagerModel.EXPEDIENTE" Width="1.5" PointX="4.125" PointY="4.25" />
         <AssociationConnector Association="LithoManagerModel.FK_DOCUMENTO_EXPEDIENTE" />
         <AssociationConnector Association="LithoManagerModel.FK_EXPEDIENTE_USUARIO" />
       </Diagram>

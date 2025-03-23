@@ -34,6 +34,8 @@ namespace MasterLitho.Controllers
         }
 
 
+
+
         public void CargarEstados()
         {
             using (var context = new LithoManagerEntities())

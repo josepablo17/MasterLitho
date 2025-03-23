@@ -44,8 +44,14 @@
                                             <button type="button" class="btn" onclick="confirmDelete(@exp.ID_EXPEDIENTE, '@(exp.NOMBRE_EXPEDIENTE ?? "Sin nombre")')">
                                                 <i class="fas fa-trash"></i>
                                             </button>
+
+                                            <a href="@Url.Action("EnviarDocCorreo", "Expedientes", new { idUsuario = exp.ID_USUARIO })"
+                                               class="btn bg-success">
+                                                Enviar Documento
+                                            </a>
                                         </td>
                                     </tr>
+                                    
                                 }
                             </tbody>
                         </table>
