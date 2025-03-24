@@ -5,26 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\styles\\funcionesjs\\initsignalr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\funcionesjs\\initsignalr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\chat\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\chat\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,11 +18,11 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -80,71 +60,10 @@
               "RelativeDocumentMoniker": "MasterLitho\\Controllers\\UsuariosController.cs",
               "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\UsuariosController.cs",
               "RelativeToolTip": "MasterLitho\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAIwCYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAEABAAAAAAAAAAAYwKgBAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T01:59:09.478Z",
+              "WhenOpened": "2025-03-24T21:35:20.249Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "InitSignalR.js",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "RelativeDocumentMoniker": "MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "RelativeToolTip": "MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-14T23:44:28.753Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Chat.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "ViewState": "AgIAADkAAAAAAAAAAAAuwGsAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T23:15:55.832Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T23:11:30.439Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ChatHub.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\ChatHub.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\ChatHub.cs",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\ChatHub.cs",
-              "RelativeToolTip": "MasterLitho\\ChatHub.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAowF0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T23:10:17.996Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADABAAAAAAAAAAAwwOIAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T21:30:13.342Z"
             }
           ]
         }

@@ -530,6 +530,7 @@
     <Content Include="Styles\css\sb-admin-2.min.css" />
     <Content Include="Styles\css\styles.css" />
     <Content Include="Styles\FuncionesJS\CambiarContrasena.js" />
+    <Content Include="Styles\FuncionesJS\Chat.js" />
     <Content Include="Styles\FuncionesJS\DataTables.js" />
     <Content Include="Styles\FuncionesJS\FuncionesCalendario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesGestioUsuario.js" />

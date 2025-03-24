@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
 
     var idUser = Session["ID_USUARIO"] != null ? Session["ID_USUARIO"].ToString() : "";
     var nombreUsuario = Session["NOMBRE_USUARIO"] != null ? Session["NOMBRE_USUARIO"].ToString() : "";
@@ -482,24 +483,27 @@
         <!-- Core plugin JavaScript -->
         <script src="~/Styles/vendor/jquery-easing/jquery.easing.min.js"></script>
         <script>
-    var userId = "@Html.Raw(idUser)";
-    var nombreUser = "@Html.Raw(nombreUsuario)"
+            var userId = "@Html.Raw(idUser)";
+            var nombreUser = "@Html.Raw(nombreUsuario)"
 
 
-    if (userId) {
-        sessionStorage.setItem("userId", userId);
-        sessionStorage.setItem("nombreUser", nombreUser);
-    } else {
-        console.log("No se encontró un UserId en la sesión.");
-    }
+            if (userId) {
+                sessionStorage.setItem("userId", userId);
+                sessionStorage.setItem("nombreUser", nombreUser);
+            } else {
+                console.log("No se encontró un UserId en la sesión.");
+            }
         </script>
 
         <!-- Custom scripts for all pages -->
         <script src="~/Styles/js/sb-admin-2.min.js"></script>
         <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
         <script src="~/signalr/hubs"></script>
+        <script src="https://cdn.jsdelivr.net/npm/signalr@3.1.17/dist/browser/signalr.min.js"></script>
+        <script>  window.chat = null;</script>
         <script src="~/Styles/FuncionesJS/InitSignalR.js"></script>
         <script>
+
             function confirmarCerrarSesion(event) {
                 event.preventDefault();
 

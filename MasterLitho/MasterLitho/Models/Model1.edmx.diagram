@@ -25,7 +25,7 @@
         <EntityTypeShape EntityType="LithoManagerModel.ROL" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.SOLICITUD_VACACIONES" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.TIPO_QUEJA" Width="1.5" PointX="8.25" PointY="32.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LithoManagerModel.TIPOS_CONSTANCIA" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LithoManagerModel.TIPOS_CONSTANCIA" Width="1.5" PointX="8.625" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="LithoManagerModel.USUARIO" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
         <AssociationConnector Association="LithoManagerModel.FK__CamposFor__ID_FO__02FC7413" ManuallyRouted="false" />
         <AssociationConnector Association="LithoManagerModel.FK__RESPUESTA__ID_CA__787EE5A0" ManuallyRouted="false" />

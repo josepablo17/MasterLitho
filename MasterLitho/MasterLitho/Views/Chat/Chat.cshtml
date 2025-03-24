@@ -1,4 +1,4 @@
-﻿@model List<MasterLitho.Models.USUARIO>
+﻿﻿@model List<MasterLitho.Models.USUARIO>
 
 @{
     var idUsuario = Session["ID_USUARIO"] != null ? Session["ID_USUARIO"].ToString() : "";
@@ -25,12 +25,17 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Search...">
+                            <input type="text" class="form-control" id="myInput" onkeyup="searchByName()" placeholder="Search...">
                         </div>
-                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                        <ul class="list-unstyled chat-list mt-2 mb-0" id="myUl">
                             @foreach (var usuario in Model)
                             {
-                                <li class="clearfix user-item" data-id="@usuario.CONNECTION_ID" data-name="@usuario.NOMBRE_USUARIO" data-img="@usuario.IMAGEN_USUARIO">
+                                <li class="clearfix user-item"
+                                    data-id="@usuario.ID_USUARIO"
+                                    data-connection-id="@usuario.CONNECTION_ID"
+                                    data-name="@usuario.NOMBRE_USUARIO"
+                                    data-img="@usuario.IMAGEN_USUARIO">
+
                                     @if (usuario.IMAGEN_USUARIO == null || string.IsNullOrEmpty(usuario.IMAGEN_USUARIO))
                                     {
                                         <img class="img-profile rounded-circle user-img" src="~/Styles/img/undraw_profile.svg">
@@ -56,6 +61,7 @@
                                     </div>
                                 </li>
 
+
                             }
                         </ul>
                     </div>
@@ -75,13 +81,12 @@
 
                         <div class="chat-history">
                             <ul class="m-b-0" id="discussion">
-                               
                             </ul>
                         </div>
                         <div class="chat-message clearfix">
                             <div class="input-group mb-0">
                                 <div class="input-group-prepend">
-                                    <span  id="sendButton" class="input-group-text"><i class="fa fa-send"></i></span>
+                                    <span id="sendButton" class="input-group-text"><i class="fa fa-send"></i></span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="Enter text here..." id="message">
                             </div>
@@ -96,46 +101,84 @@
     <!-- Script references -->
     <script src="~/Scripts/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
-    
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
 
     <script>
         $(document).ready(function () {
             var chat = $.connection.chatHub;
             var usuarioActual = "@Html.Raw(nombreUsuario)";
+            var idUsuarioActual = "@Html.Raw(idUsuario)";
             var usuarioSeleccionado = null;
+            var idUsuarioSeleccionado = null;
             var nombreUsuarioSeleccionado = "";
+            var btnSendActive = false;
 
-           
+
             $(".user-item").click(function () {
-                usuarioSeleccionado = $(this).data("id");
-                nombreUsuarioSeleccionado = $(this).data("name");
-                var imagenUsuarioSeleccionado = $(this).data("img") || "/Styles/img/undraw_profile.svg"; 
 
-                
+                idUsuarioSeleccionado = $(this).data("id");
+                usuarioSeleccionado = $(this).data("connection-id");
+                nombreUsuarioSeleccionado = $(this).data("name");
+                var imagenUsuarioSeleccionado = $(this).data("img") || "/Styles/img/undraw_profile.svg";
+
+                roomName = [idUsuarioActual, idUsuarioSeleccionado].sort().join("_");
+
                 $("#chatWith").text(nombreUsuarioSeleccionado);
                 $("#chatUserImage").attr("src", imagenUsuarioSeleccionado);
+
+                $.ajax({
+                    url: "/Chat/ObtenerMensajes",
+                    type: "GET",
+                    data: { roomName: roomName },
+                    success: function (data) {
+                        $("#discussion").empty();
+                        if (data.length === 0) {
+                            $("#discussion").append(`<li class="text-center text-muted">No hay mensajes. ¡Envía el primero!</li>`);
+                        } else {
+                            data.forEach(function (message) {
+                                chat.client.receiveMessage(message.Emisor, message.Mensaje, message.Hora, false);
+                            });
+                        }
+                    }
+                });
+
+
+                chat.server.joinRoom(roomName);
             });
 
 
-            chat.client.receiveMessage = function (user, message) {
-                console.log("Mensaje recibido de " + user + ": " + message);
-                let alignClass = (user === usuarioActual) ? "text-right" : "";
-                let messageClass = (user === usuarioActual) ? "my-message" : "other-message";
 
-                            var messageHtml = `<li class="clearfix">
-                 <div class="message-data ${alignClass}">
-                     <span class="message-data-time">${new Date().toLocaleTimeString()}</span>
-                     <strong>${user}</strong>
-                 </div>
-                 <div class="message ${messageClass}">${message}</div>
-                    </li>`;
+
+            chat.client.receiveMessage = function (user, message, time, isRealTime, idReceptor) {
+                console.log("Mensaje recibido de " + user + ": " + message);
+
+                if (isRealTime === true && idUsuarioActual != idReceptor) {
+                    return;
+                }
+
+                let alignClass = (user === usuarioActual) ? "text-right" : "";
+                let messageClass = (user === usuarioActual) ? "my-message float-right" : "other-message";
+
+                var messageHtml = `<li class="clearfix">
+                    <div class="message-data ${alignClass}">
+                        <span class="message-data-time">${time}</span>
+                        <strong>${user}</strong>
+                    </div>
+                    <div class="message ${messageClass}">${message}</div>
+                </li>`;
 
                 $("#discussion").append(messageHtml);
             };
 
 
 
-            
+
+
+
+
+
+
             $("#sendButton").click(function () {
                 var message = $("#message").val().trim();
                 if (!usuarioSeleccionado) {
@@ -149,17 +192,39 @@
 
                 let messageHtml = `<li class="clearfix">
                     <div class="message-data text-right">
-                        <span class="message-data-time">${new Date().toLocaleTimeString()}</span>
+                        <span class="message-data-time">${new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", hour12: true }).replace("a. m.", "a. m.").replace("p. m.", "p. m.")}</span>
                         <strong>${usuarioActual}</strong>
                     </div>
-                    <div class="message other-message float-right">${message}</div>
+                    <div class="message my-message float-right">${message}</div>
                 </li>`;
 
                 $("#discussion").append(messageHtml);
-                chat.server.sendToUser(usuarioActual, usuarioSeleccionado, message);
-                $("#message").val("");  
+
+                chat.server.sendMessageToRoom(roomName, usuarioActual, message, idUsuarioSeleccionado);
+                $("#message").val("");
             });
+
+
+          
+
         });
+
+        function searchByName() {
+            var input, filter, ul, li, div, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUl");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+                div = li[i].getElementsByClassName("name")[0]; 
+                if (div) {
+                    txtValue = div.textContent || div.innerText;
+                    li[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+                }
+            }
+        }
+
     </script>
 </body>
 </html>

@@ -40,6 +40,7 @@ namespace MasterLitho.Controllers
                         Session["NOMBRE_USUARIO"] = datos.NOMBRE_USUARIO;
                         Session["rolUsuario"] = datos.ID_ROL;
                         Session["correoUsuario"] = datos.CORREO_USUARIO;
+                        Session["CONNECTION_ID"] = null;
 
                         if(datos.IMAGEN_USUARIO != null)
                         {
