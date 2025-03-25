@@ -19,52 +19,63 @@
                 @Html.HiddenFor(m => m.idFormulario)
                 @Html.HiddenFor(m => m.idEmpleado)
 
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark text-center">
-                            <tr>
-                                <th>Pregunta</th>
-                                <th>Respuesta</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int i = 0; i < Model.campos.Count; i++)
-                            {
-                                <tr>
-                                    <td>
-                                        <strong>@Model.campos[i].nombreCampo</strong>
-                                        @if (Model.campos[i].esRequerido)
-                                        {
-                                            <span class="text-danger">*</span>
-                                        }
-                                    </td>
-                                    <td>
-                                        @Html.HiddenFor(m => m.campos[i].idCampo)
+                <div class="row g-4">
+                    @for (int i = 0; i < Model.campos.Count; i++)
+                    {
+                        var campo = Model.campos[i];
+                        <div class="col-12">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
+                                    <label class="form-label fw-semibold">
+                                        <i class="fas fa-question-circle text-primary me-1"></i>
+                                        @campo.nombreCampo
+                                        @if (campo.esRequerido)
+                                        {<span class="text-danger">*</span>}
+                                    </label>
 
-                                        @if (Model.campos[i].tipoCampo == "Texto")
+                                    @Html.HiddenFor(m => m.campos[i].idCampo)
+
+                                    @if (campo.tipoCampo == "Texto")
+                                    {
+                                        @Html.TextBoxFor(m => m.campos[i].respuesta, new
                                         {
-                                            @Html.TextBoxFor(m => m.campos[i].respuesta, new { @class = "form-control", required = Model.campos[i].esRequerido ? "required" : null, data_val_required = "Este campo es obligatorio" })
-                                        }
-                                        else if (Model.campos[i].tipoCampo == "Número")
+                                            @class = "form-control rounded-pill",
+                                            required = campo.esRequerido ? "required" : null,
+                                            placeholder = "Escribe tu respuesta..."
+                                        })
+                                    }
+                                    else if (campo.tipoCampo == "Número")
+                                    {
+                                        @Html.TextBoxFor(m => m.campos[i].respuesta, new
                                         {
-                                            @Html.TextBoxFor(m => m.campos[i].respuesta, new { @class = "form-control", type = "number", required = Model.campos[i].esRequerido ? "required" : null, data_val_required = "Este campo es obligatorio" })
-                                        }
-                                        else if (Model.campos[i].tipoCampo == "Fecha")
+                                            @class = "form-control rounded-pill",
+                                            type = "number",
+                                            required = campo.esRequerido ? "required" : null,
+                                            placeholder = "Ingresa un número"
+                                        })
+                                    }
+                                    else if (campo.tipoCampo == "Fecha")
+                                    {
+                                        @Html.TextBoxFor(m => m.campos[i].respuesta, new
                                         {
-                                            @Html.TextBoxFor(m => m.campos[i].respuesta, new { @class = "form-control", type = "date", required = Model.campos[i].esRequerido ? "required" : null, data_val_required = "Este campo es obligatorio" })
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                                            @class = "form-control rounded-pill",
+                                            type = "date",
+                                            required = campo.esRequerido ? "required" : null
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
 
-                <div class="text-center">
-                    <button type="button" class="btn btn-success btn-lg px-4" onclick="validarYConfirmarEnvio()">
-                        <i class="fas fa-paper-plane"></i> Enviar Respuestas
+                <div class="text-center mt-4">
+                    <button type="button" class="btn btn-primary btn-lg rounded-pill px-5 shadow"
+                            onclick="validarYConfirmarEnvio()">
+                        <i class="fas fa-paper-plane me-2"></i> Enviar Respuestas
                     </button>
                 </div>
+
             }
         </div>
     </div>
@@ -72,7 +83,7 @@
 
 <!-- SweetAlert2 para confirmación -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    
 <script>
     function validarYConfirmarEnvio() {
         let camposInvalidos = [];

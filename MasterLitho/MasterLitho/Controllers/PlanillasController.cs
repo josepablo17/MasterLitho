@@ -154,6 +154,8 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
 
+            model.salarioNeto = CalcularSalarioNeto(model);
+
             var mensajeValidacion = ValidarPlanilla(model);
             if (mensajeValidacion != null)
             {
@@ -174,7 +176,6 @@ namespace MasterLitho.Controllers
                         return View(model);
                     }
 
-                    decimal salarioNeto = CalcularSalarioNeto(model);
                     int horasExtra = model.horasExtra ?? 0;
 
                     var nuevaPlanilla = new PLANILLA
@@ -191,7 +192,7 @@ namespace MasterLitho.Controllers
                         PERIODO_INICIO = model.periodoInicio,
                         PERIODO_FIN = model.periodoFin,
                         FECHA_CREACION = DateTime.Now,
-                        SALARIO_NETO = salarioNeto
+                        SALARIO_NETO = model.salarioNeto // 👈 ya fue calculado
                     };
 
                     context.PLANILLA.Add(nuevaPlanilla);
@@ -208,7 +209,6 @@ namespace MasterLitho.Controllers
                 }
             }
         }
-
 
         #endregion
 

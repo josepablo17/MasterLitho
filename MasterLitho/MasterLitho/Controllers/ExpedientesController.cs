@@ -18,11 +18,6 @@ namespace MasterLitho.Controllers
             _correoService = new CorreoService();
         }
 
-
-        // =============== VISTAS PRINCIPALES ===============
-
-        // GET: Expedientes/IndexExpedientes
-        // Muestra lista de todos los expedientes existentes.
         [HttpGet]
         public ActionResult IndexExpedientes()
         {
@@ -43,8 +38,7 @@ namespace MasterLitho.Controllers
             }
         }
 
-        // GET: Expedientes/CrearExpediente
-        // Muestra formulario para crear un expediente nuevo
+
         [HttpGet]
         public ActionResult CrearExpediente()
         {

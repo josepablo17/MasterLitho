@@ -4,48 +4,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="content-wrapper" class="container">
-    <div id="content">
-        <h1 class="my-4">Mis solicitudes</h1>
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-dark fw-bold mb-4">
+        <i class="fas fa-calendar-check me-2 text-primary"></i> Mis Solicitudes de Vacaciones
+    </h2>
 
-        <div class="container-fluid">
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de solicitudes</h5>
-                    <div class="table-responsive">
-                        <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Fecha de la solicitud</th>
-                                    <th>Fecha inicio</th>
-                                    <th>Fecha fin</th>
-                                    <th>Días solicitados</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr data-id="@item.idSolicitud">
-                                        <td>@item.fechaSolicitud.ToString("dd-MM-yyyy")</td>
-                                        <td>@item.fechaInicio.ToString("dd-MM-yyyy")</td>
-                                        <td>@item.fechaFin.ToString("dd-MM-yyyy")</td>
-                                        <td>@item.diasSolicitados</td>
-                                        <td class="estado-columna">@item.nombreEstado</td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModal(this)">Ver información</button>
-                                        </td>
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                string badgeClass = "bg-secondary";
 
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                if (item.nombreEstado == "Pendiente")
+                {
+                    badgeClass = "bg-warning text-dark";
+                }
+                else if (item.nombreEstado == "Aceptado")
+                {
+                    badgeClass = "bg-success";
+                }
+                else if (item.nombreEstado == "Rechazado")
+                {
+                    badgeClass = "bg-danger";
+                }
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold text-muted">
+                                <i class="far fa-calendar-alt me-1"></i> @item.fechaSolicitud.ToString("dd MMM yyyy")
+                            </span>
+                            <span class="badge @badgeClass">@item.nombreEstado</span>
+                        </div>
+
+                        <div class="card-body">
+                            <p class="mb-2"><strong>Desde:</strong> @item.fechaInicio.ToString("dd MMM yyyy")</p>
+                            <p class="mb-2"><strong>Hasta:</strong> @item.fechaFin.ToString("dd MMM yyyy")</p>
+                            <p class="mb-3"><strong>Días solicitados:</strong> @item.diasSolicitados</p>
+
+                            <button class="btn btn-outline-primary w-100"
+                                    data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))'
+                                    onclick="abrirModal(this)">
+                                <i class="fas fa-eye me-1"></i> Ver información
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center mt-4">
+            <i class="fas fa-info-circle me-2"></i> Aún no has enviado ninguna solicitud de vacaciones.
+        </div>
+    }
 </div>
 
 <!-- Modal -->
@@ -96,10 +110,6 @@
 
 
 <script>
-    $(document).ready(function () {
-        inicializarDataTable('#solicitudesTable');
-    });
-
     function abrirModal(button) {
         const data = $(button).data('solicitud'); // Obtén los datos del atributo JSON
 

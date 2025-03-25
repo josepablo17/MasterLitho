@@ -37,7 +37,10 @@
 <div id="content-wrapper" class="container">
     <div id="content">
         <div class="container text-left mb-4">
-            <h1 class="my-4">Gestión de planillas</h1>
+            <h1 class="my-4 text-center text-dark fw-bold">
+                <i class="fas fa-file-invoice-dollar text-primary me-2"></i> Gestión de Planillas
+            </h1>
+
             <a href="@Url.Action("CrearNuevaPlanilla", "Planillas")" class="btn btn-success btn-lg">
                 <i class="fas fa-plus-circle" style="font-size: 1.4em;"></i> Crear Planilla
             </a>
@@ -71,12 +74,18 @@
                                         <td>@planilla.fechaPago.ToShortDateString()</td>
                                         <td>@planilla.salarioNeto</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="@Url.Action("EditarPlanilla","Planillas", new { q = planilla.idPlanilla })">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-primary btn-sm" href="@Url.Action("DetallePlanilla","Planillas", new { q = planilla.idPlanilla })">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
+                                            <div class="btn-group" role="group">
+                                                <a class="btn btn-outline-primary btn-sm"
+                                                   href="@Url.Action("DetallePlanilla", "Planillas", new { q = planilla.idPlanilla })"
+                                                   data-bs-toggle="tooltip" title="Ver Detalles">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a class="btn btn-outline-secondary btn-sm"
+                                                   href="@Url.Action("EditarPlanilla", "Planillas", new { q = planilla.idPlanilla })"
+                                                   data-bs-toggle="tooltip" title="Editar Planilla">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 }
