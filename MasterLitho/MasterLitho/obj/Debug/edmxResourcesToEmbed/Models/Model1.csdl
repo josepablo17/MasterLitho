@@ -148,6 +148,7 @@
     <Property Name="Leido" Type="Boolean" Nullable="false" />
     <Property Name="UsuarioEmisor" Type="Int32" Nullable="false" />
     <Property Name="UsuarioReceptor" Type="Int32" Nullable="false" />
+    <Property Name="roomName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="NOTICIAS">
     <Key>

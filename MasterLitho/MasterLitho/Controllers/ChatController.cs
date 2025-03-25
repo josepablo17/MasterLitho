@@ -50,21 +50,50 @@ namespace MasterLitho.Controllers
             }
         }
 
-        public ActionResult ObtenerMensajes(int receptorId)
+        [HttpGet]
+        public ActionResult ObtenerMensajes(string roomName)
         {
-            int emisorId = 1; // Obtener el ID del usuario logueado
-
             using (var context = new LithoManagerEntities())
             {
                 var mensajes = context.Mensajes
-                                      .Where(m => (m.UsuarioEmisor == emisorId && m.UsuarioReceptor == receptorId) ||
-                                                  (m.UsuarioEmisor == receptorId && m.UsuarioReceptor == emisorId))
-                                      .OrderBy(m => m.FechaEnvio)
-                                      .ToList();
+                      .Where(m => m.roomName == roomName) 
+                      .Join(context.USUARIO,
+                            m => m.UsuarioEmisor,
+                            u => u.ID_USUARIO,
+                            (m, u) => new  
+                            {
+                                Emisor = u.NOMBRE_USUARIO,  
+                                m.UsuarioReceptor, 
+                                m.Mensaje,
+                                m.FechaEnvio
+                            })
+                      .Join(context.USUARIO,
+                            m => m.UsuarioReceptor,
+                            u => u.ID_USUARIO,
+                            (m, u) => new 
+                            {
+                                Emisor = m.Emisor,  
+                                Receptor = u.NOMBRE_USUARIO, 
+                                Mensaje = m.Mensaje,
+                                FechaEnvio = m.FechaEnvio
+                            })
+                      .OrderBy(m => m.FechaEnvio) 
+                      .AsEnumerable() 
+                      .Select(m => new
+                      {
+                          Emisor = m.Emisor,
+                          Receptor = m.Receptor,
+                          Mensaje = m.Mensaje,
+                          Hora = m.FechaEnvio.ToString("hh:mm tt") // Ahora puedes usar ToString aquí
+                      })
+                      .ToList();
 
                 return Json(mensajes, JsonRequestBehavior.AllowGet);
             }
         }
+
+
+
 
 
 

@@ -129,6 +129,7 @@
     <EntitySetMapping Name="Mensajes">
       <EntityTypeMapping TypeName="LithoManagerModel.Mensajes">
         <MappingFragment StoreEntitySet="Mensajes">
+          <ScalarProperty Name="roomName" ColumnName="roomName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
           <ScalarProperty Name="FechaEnvio" ColumnName="FechaEnvio" />

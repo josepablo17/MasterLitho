@@ -123,6 +123,7 @@
     <Property Name="Leido" Type="bit" Nullable="false" />
     <Property Name="UsuarioEmisor" Type="int" Nullable="false" />
     <Property Name="UsuarioReceptor" Type="int" Nullable="false" />
+    <Property Name="roomName" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="NOTICIAS">
     <Key>
@@ -253,7 +254,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CONSTANCI__ID_EM__68487DD7">
+  <Association Name="FK__CONSTANCI__ID_EM__66603565">
     <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
     <End Role="CONSTANCIA" Type="Self.CONSTANCIA" Multiplicity="*" />
     <ReferentialConstraint>
@@ -265,7 +266,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CONSTANCI__ID_TI__693CA210">
+  <Association Name="FK__CONSTANCI__ID_TI__6754599E">
     <End Role="TIPOS_CONSTANCIA" Type="Self.TIPOS_CONSTANCIA" Multiplicity="1" />
     <End Role="CONSTANCIA" Type="Self.CONSTANCIA" Multiplicity="*" />
     <ReferentialConstraint>
@@ -301,7 +302,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__FORMULARI__ID_EM__6EF57B66">
+  <Association Name="FK__FORMULARI__ID_EM__6D0D32F4">
     <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -315,7 +316,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__FORMULARI__ID_FO__6FE99F9F">
+  <Association Name="FK__FORMULARI__ID_FO__6E01572D">
     <End Role="FORMULARIO" Type="Self.FORMULARIO" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -329,7 +330,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NOTICIAS__ID_ADM__70DDC3D8">
+  <Association Name="FK__NOTICIAS__ID_ADM__6EF57B66">
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
     <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
     <ReferentialConstraint>
@@ -341,7 +342,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NOTICIAS__ID_ADM__71D1E811">
+  <Association Name="FK__NOTICIAS__ID_ADM__6FE99F9F">
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
     <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
     <ReferentialConstraint>
@@ -377,7 +378,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QUEJAS_RE__ID_ES__75A278F5">
+  <Association Name="FK__QUEJAS_RE__ID_ES__73BA3083">
     <End Role="ESTADO_QUEJA" Type="Self.ESTADO_QUEJA" Multiplicity="1" />
     <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
     <ReferentialConstraint>
@@ -389,7 +390,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QUEJAS_RE__ID_ES__76969D2E">
+  <Association Name="FK__QUEJAS_RE__ID_ES__74AE54BC">
     <End Role="ESTADO_QUEJA" Type="Self.ESTADO_QUEJA" Multiplicity="1" />
     <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
     <ReferentialConstraint>
@@ -401,7 +402,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QUEJAS_RE__ID_TI__778AC167">
+  <Association Name="FK__QUEJAS_RE__ID_TI__75A278F5">
     <End Role="TIPO_QUEJA" Type="Self.TIPO_QUEJA" Multiplicity="0..1" />
     <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
     <ReferentialConstraint>
@@ -413,7 +414,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__RESPUESTA__ID_CA__787EE5A0">
+  <Association Name="FK__RESPUESTA__ID_CA__76969D2E">
     <End Role="CAMPOS_FORMULARIO" Type="Self.CAMPOS_FORMULARIO" Multiplicity="0..1" />
     <End Role="RESPUESTAS_FORMULARIO" Type="Self.RESPUESTAS_FORMULARIO" Multiplicity="*" />
     <ReferentialConstraint>
@@ -449,7 +450,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SOLICITUD__ID_ES__7B5B524B">
+  <Association Name="FK__SOLICITUD__ID_ES__797309D9">
     <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="1" />
     <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="*" />
     <ReferentialConstraint>
@@ -461,7 +462,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SOLICITUD__ID_ES__7C4F7684">
+  <Association Name="FK__SOLICITUD__ID_ES__7A672E12">
     <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="1" />
     <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="*" />
     <ReferentialConstraint>
@@ -473,7 +474,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__USUARIO__ID_ROL__7E37BEF6">
+  <Association Name="FK__USUARIO__ID_ROL__7C4F7684">
     <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
     <ReferentialConstraint>
@@ -485,7 +486,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__USUARIO__ID_ROL__7F2BE32F">
+  <Association Name="FK__USUARIO__ID_ROL__7D439ABD">
     <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
     <ReferentialConstraint>
@@ -578,11 +579,11 @@
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
       <End Role="CONSTANCIA_LABORAL" EntitySet="CONSTANCIA_LABORAL" />
     </AssociationSet>
-    <AssociationSet Name="FK__CONSTANCI__ID_EM__68487DD7" Association="Self.FK__CONSTANCI__ID_EM__68487DD7">
+    <AssociationSet Name="FK__CONSTANCI__ID_EM__66603565" Association="Self.FK__CONSTANCI__ID_EM__66603565">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
       <End Role="CONSTANCIA" EntitySet="CONSTANCIA" />
     </AssociationSet>
-    <AssociationSet Name="FK__CONSTANCI__ID_TI__693CA210" Association="Self.FK__CONSTANCI__ID_TI__693CA210">
+    <AssociationSet Name="FK__CONSTANCI__ID_TI__6754599E" Association="Self.FK__CONSTANCI__ID_TI__6754599E">
       <End Role="TIPOS_CONSTANCIA" EntitySet="TIPOS_CONSTANCIA" />
       <End Role="CONSTANCIA" EntitySet="CONSTANCIA" />
     </AssociationSet>
@@ -594,19 +595,19 @@
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
     </AssociationSet>
-    <AssociationSet Name="FK__FORMULARI__ID_EM__6EF57B66" Association="Self.FK__FORMULARI__ID_EM__6EF57B66">
+    <AssociationSet Name="FK__FORMULARI__ID_EM__6D0D32F4" Association="Self.FK__FORMULARI__ID_EM__6D0D32F4">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
       <End Role="FORMULARIO_EMPLEADO" EntitySet="FORMULARIO_EMPLEADO" />
     </AssociationSet>
-    <AssociationSet Name="FK__FORMULARI__ID_FO__6FE99F9F" Association="Self.FK__FORMULARI__ID_FO__6FE99F9F">
+    <AssociationSet Name="FK__FORMULARI__ID_FO__6E01572D" Association="Self.FK__FORMULARI__ID_FO__6E01572D">
       <End Role="FORMULARIO" EntitySet="FORMULARIO" />
       <End Role="FORMULARIO_EMPLEADO" EntitySet="FORMULARIO_EMPLEADO" />
     </AssociationSet>
-    <AssociationSet Name="FK__NOTICIAS__ID_ADM__70DDC3D8" Association="Self.FK__NOTICIAS__ID_ADM__70DDC3D8">
+    <AssociationSet Name="FK__NOTICIAS__ID_ADM__6EF57B66" Association="Self.FK__NOTICIAS__ID_ADM__6EF57B66">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="NOTICIAS" EntitySet="NOTICIAS" />
     </AssociationSet>
-    <AssociationSet Name="FK__NOTICIAS__ID_ADM__71D1E811" Association="Self.FK__NOTICIAS__ID_ADM__71D1E811">
+    <AssociationSet Name="FK__NOTICIAS__ID_ADM__6FE99F9F" Association="Self.FK__NOTICIAS__ID_ADM__6FE99F9F">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="NOTICIAS" EntitySet="NOTICIAS" />
     </AssociationSet>
@@ -618,19 +619,19 @@
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
       <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
     </AssociationSet>
-    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__75A278F5" Association="Self.FK__QUEJAS_RE__ID_ES__75A278F5">
+    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__73BA3083" Association="Self.FK__QUEJAS_RE__ID_ES__73BA3083">
       <End Role="ESTADO_QUEJA" EntitySet="ESTADO_QUEJA" />
       <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
     </AssociationSet>
-    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__76969D2E" Association="Self.FK__QUEJAS_RE__ID_ES__76969D2E">
+    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__74AE54BC" Association="Self.FK__QUEJAS_RE__ID_ES__74AE54BC">
       <End Role="ESTADO_QUEJA" EntitySet="ESTADO_QUEJA" />
       <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
     </AssociationSet>
-    <AssociationSet Name="FK__QUEJAS_RE__ID_TI__778AC167" Association="Self.FK__QUEJAS_RE__ID_TI__778AC167">
+    <AssociationSet Name="FK__QUEJAS_RE__ID_TI__75A278F5" Association="Self.FK__QUEJAS_RE__ID_TI__75A278F5">
       <End Role="TIPO_QUEJA" EntitySet="TIPO_QUEJA" />
       <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
     </AssociationSet>
-    <AssociationSet Name="FK__RESPUESTA__ID_CA__787EE5A0" Association="Self.FK__RESPUESTA__ID_CA__787EE5A0">
+    <AssociationSet Name="FK__RESPUESTA__ID_CA__76969D2E" Association="Self.FK__RESPUESTA__ID_CA__76969D2E">
       <End Role="CAMPOS_FORMULARIO" EntitySet="CAMPOS_FORMULARIO" />
       <End Role="RESPUESTAS_FORMULARIO" EntitySet="RESPUESTAS_FORMULARIO" />
     </AssociationSet>
@@ -642,19 +643,19 @@
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
-    <AssociationSet Name="FK__SOLICITUD__ID_ES__7B5B524B" Association="Self.FK__SOLICITUD__ID_ES__7B5B524B">
+    <AssociationSet Name="FK__SOLICITUD__ID_ES__797309D9" Association="Self.FK__SOLICITUD__ID_ES__797309D9">
       <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
-    <AssociationSet Name="FK__SOLICITUD__ID_ES__7C4F7684" Association="Self.FK__SOLICITUD__ID_ES__7C4F7684">
+    <AssociationSet Name="FK__SOLICITUD__ID_ES__7A672E12" Association="Self.FK__SOLICITUD__ID_ES__7A672E12">
       <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
-    <AssociationSet Name="FK__USUARIO__ID_ROL__7E37BEF6" Association="Self.FK__USUARIO__ID_ROL__7E37BEF6">
+    <AssociationSet Name="FK__USUARIO__ID_ROL__7C4F7684" Association="Self.FK__USUARIO__ID_ROL__7C4F7684">
       <End Role="ROL" EntitySet="ROL" />
       <End Role="USUARIO" EntitySet="USUARIO" />
     </AssociationSet>
-    <AssociationSet Name="FK__USUARIO__ID_ROL__7F2BE32F" Association="Self.FK__USUARIO__ID_ROL__7F2BE32F">
+    <AssociationSet Name="FK__USUARIO__ID_ROL__7D439ABD" Association="Self.FK__USUARIO__ID_ROL__7D439ABD">
       <End Role="ROL" EntitySet="ROL" />
       <End Role="USUARIO" EntitySet="USUARIO" />
     </AssociationSet>
