@@ -20,7 +20,6 @@
 
             setTimeout(() => {
                 if (formId) {
-                    // Si se pasó un ID de formulario, lo envía
                     document.getElementById(formId).submit();
                 } else if (typeof callback === "function") {
                     callback();

@@ -28,7 +28,7 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    // Verifica si la solicitud ya está aprobada o rechazada para deshabilitar el botón
+                                    
                                     bool estadoFinalizado = item.nombreEstado == "Aprobado" || item.nombreEstado == "Rechazado";
 
                                     <tr data-id="@item.idSolicitud">
@@ -122,7 +122,7 @@
             success: function (response) {
                 if (response.success) {
                     // Deshabilitar el botón si el estado es "Aprobado" o "Rechazado"
-                    if (idEstado === "Aprobado" || idEstado === "Rechazado") {
+                    if (idEstado === "Aceptado" || idEstado === "Rechazado") {
                         $('tr[data-id="' + idSolicitud + '"] .cambiar-estado-btn').prop('disabled', true);
                     }
                     alertaExito("El estado se actualizó correctamente.");

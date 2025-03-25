@@ -1,4 +1,5 @@
 ﻿using MasterLitho.Models;
+using MasterLitho.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,13 @@ namespace MasterLitho.Controllers
 {
     public class QuejasReportesController : Controller
     {
+
+        private readonly ICorreo _correoService;
+
+        public QuejasReportesController()
+        {
+            _correoService = new CorreoService();
+        }
 
         public void CargarEstadosQuejas()
         {
@@ -56,8 +64,39 @@ namespace MasterLitho.Controllers
                 ViewBag.listaTiposQuejas = tipos;
             }
         }
+        private string GenerarContenidoCorreo(int idQueja)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                // Buscar la solicitud
+                var queja = context.QUEJAS_REPORTES.FirstOrDefault(s => s.ID_QUEJA == idQueja);
+                if (queja == null)
+                {
+                    throw new Exception("Queja o reporte no encontrado.");
+                }
 
 
+                var usuario = context.USUARIO.FirstOrDefault(e => e.ID_USUARIO == queja.ID_EMPLEADO);
+                if (usuario == null)
+                {
+                    throw new Exception("Empleado no encontrado.");
+                }
+
+
+                string contenido = System.IO.File.ReadAllText(Server.MapPath("~/Styles/TemplateCorreoQuejasReportes.html"));
+
+
+                contenido = contenido.Replace("@@Nombre_Empleado", usuario.NOMBRE_USUARIO);
+                contenido = contenido.Replace("@@FechaEnvio", queja.FECHA_ENVIO.ToString("dd/MM/yyyy"));
+                contenido = contenido.Replace("@@Comentario", queja.COMENTARIO_ADMIN);
+                contenido = contenido.Replace("@@Estado", queja.ESTADO_QUEJA.TIPO_ESTADO);
+
+                return contenido;
+            }
+        }
+
+
+        #region GestionQuejasReportes
         [HttpGet]
         public ActionResult GestionQuejasReportes()
         {
@@ -68,7 +107,7 @@ namespace MasterLitho.Controllers
                 var datos = context.QUEJAS_REPORTES.ToList();
 
                 var reportes = (from item in datos
-                                where item.ID_TIPO == 1
+                                where item.TIPO_QUEJA.DESCRIPCION == "Reporte"
                                 select new tQuejasReportes
                                 {
                                     idQueja = item.ID_QUEJA,
@@ -83,7 +122,7 @@ namespace MasterLitho.Controllers
                                 }).ToList();
 
                 var quejas = (from item in datos
-                              where item.ID_TIPO == 2
+                              where item.TIPO_QUEJA.DESCRIPCION == "Queja"
                               select new tQuejasReportes
                               {
                                   idQueja = item.ID_QUEJA,
@@ -106,7 +145,9 @@ namespace MasterLitho.Controllers
                 return View(viewModel);
             }
         }
+        #endregion
 
+        #region EditarEstadoQueja
         [HttpPost]
         public JsonResult EditarEstadoQueja(int idQueja, int idEstado, string comentario)
         {
@@ -145,9 +186,8 @@ namespace MasterLitho.Controllers
 
                     if (idEstado != 1)
                     {
-                        var metodosComunes = new MetodosComunesController();
                         string contenidoCorreo = GenerarContenidoCorreo(idQueja);
-                        metodosComunes.EnviarCorreo(usuario.CORREO_USUARIO, "Cambio de estado en su reporte o queja", contenidoCorreo);
+                       _correoService.EnviarCorreo(usuario.CORREO_USUARIO, "Cambio de estado en su reporte o queja", contenidoCorreo);
                     }
 
                     return Json(new { success = true });
@@ -158,54 +198,38 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+        #endregion
 
-        private string GenerarContenidoCorreo(int idQueja)
-        {
-            using (var context = new LithoManagerEntities())
-            {
-                // Buscar la solicitud
-                var queja = context.QUEJAS_REPORTES.FirstOrDefault(s => s.ID_QUEJA == idQueja);
-                if (queja == null)
-                {
-                    throw new Exception("Queja o reporte no encontrado.");
-                }
-
-
-                var usuario = context.USUARIO.FirstOrDefault(e => e.ID_USUARIO == queja.ID_EMPLEADO);
-                if (usuario == null)
-                {
-                    throw new Exception("Empleado no encontrado.");
-                }
-
-          
-                string contenido = System.IO.File.ReadAllText(Server.MapPath("~/Styles/TemplateCorreoQuejasReportes.html"));
-
-      
-                contenido = contenido.Replace("@@Nombre_Empleado", usuario.NOMBRE_USUARIO);
-                contenido = contenido.Replace("@@FechaEnvio", queja.FECHA_ENVIO.ToString("dd/MM/yyyy"));
-                contenido = contenido.Replace("@@Comentario", queja.COMENTARIO_ADMIN);
-                contenido = contenido.Replace("@@Estado", queja.ESTADO_QUEJA.TIPO_ESTADO);
-
-                return contenido;
-            }
-        }
-
+        #region EnviarQueja
         [HttpGet]
         public ActionResult EnviarQueja()
         {
+            if (Session["ID_USUARIO"] == null || !int.TryParse(Session["ID_USUARIO"].ToString(), out int idUsuario))
+            {
+                return RedirectToAction("Login", "Acceso");
+            }
 
             CargarTiposQuejas();
-            int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
 
             using (var context = new LithoManagerEntities())
             {
-                bool tienePendiente = context.QUEJAS_REPORTES.Any(s => s.ID_EMPLEADO == idUsuario && s.ID_ESTADO_QUEJA == 1);
+                var estadoPendiente = context.ESTADO_SOLICITUD.FirstOrDefault(e => e.TIPO_ESTADO == "Pendiente");
+
+                if (estadoPendiente == null)
+                {
+                    ViewBag.MensajePantalla = "No se encontró el estado 'Pendiente'. Contacte al administrador.";
+                    return View();
+                }
+
+                bool tienePendiente = context.QUEJAS_REPORTES
+                    .Any(s => s.ID_EMPLEADO == idUsuario && s.ID_ESTADO_QUEJA == estadoPendiente.ID_ESTADO);
 
                 if (tienePendiente)
                 {
                     ViewBag.MostrarAlerta = true;
                     return View();
                 }
+
                 var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == idUsuario);
 
                 if (empleado == null)
@@ -226,19 +250,34 @@ namespace MasterLitho.Controllers
         [HttpPost]
         public ActionResult EnviarQueja(tQuejasReportes model)
         {
-
             CargarTiposQuejas();
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.MensajePantalla = "El formulario tiene errores de validación.";
+                return View(model);
+            }
+
+            if (Session["ID_USUARIO"] == null || !int.TryParse(Session["ID_USUARIO"].ToString(), out int idUsuario))
+            {
+                return RedirectToAction("IniciarSesion", "Login");
+            }
+
             try
             {
-                int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
-
                 using (var context = new LithoManagerEntities())
                 {
                     var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == idUsuario);
-
                     if (empleado == null)
                     {
                         ViewBag.MensajePantalla = "No se encontró información del empleado.";
+                        return View(model);
+                    }
+
+                    var estadoPendiente = context.ESTADO_QUEJA.FirstOrDefault(e => e.TIPO_ESTADO == "Pendiente");
+                    if (estadoPendiente == null)
+                    {
+                        ViewBag.MensajePantalla = "No se encontró el estado 'Pendiente'.";
                         return View(model);
                     }
 
@@ -247,22 +286,25 @@ namespace MasterLitho.Controllers
                         ID_EMPLEADO = empleado.ID_EMPLEADO,
                         FECHA_ENVIO = DateTime.Now,
                         DESCRIPCION = model.descripcion,
-                        ID_ESTADO_QUEJA = 1,
+                        ID_ESTADO_QUEJA = estadoPendiente.ID_ESTADO_QUEJA,
                         ID_TIPO = model.idTipo
                     };
 
                     context.QUEJAS_REPORTES.Add(nuevaQueja);
                     context.SaveChanges();
-                    return RedirectToAction("Index","Home");
+
+                    TempData["MensajeExito"] = "La queja ha sido enviada correctamente.";
+                    return RedirectToAction("Index", "Home");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                ViewBag.ErrorMensaje = "Ocurrió un error al enviar la queja.";
+                ViewBag.ErrorMensaje = "Ocurrió un error al enviar la queja. Intente nuevamente.";
                 return View(model);
             }
         }
 
+        #endregion
 
     }
 }

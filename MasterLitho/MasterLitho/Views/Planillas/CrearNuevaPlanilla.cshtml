@@ -7,6 +7,12 @@
 
 @using (Html.BeginForm("CrearNuevaPlanilla", "Planillas", FormMethod.Post, new { @class = "form-horizontal", id = "crearPlanillaForm" }))
 {
+    if (ViewBag.MensajePantalla != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.MensajePantalla
+        </div>
+    }
 
     <div class="accordion" id="planillaAccordion">
         <!-- Información del empleado -->
@@ -102,9 +108,10 @@
     </div>
 
     <!-- Botón de envío -->
-    <div class="text-center mt-3">
-        <button type="submit" id="btnCrearPlanilla" class="btn btn-primary" disabled>Crear Planilla</button>
-    </div>
+<div class="text-center mt-3">
+    <button type="submit" id="btnCrearPlanilla" class="btn btn-primary" disabled>Crear Planilla</button>
+    <a class="btn btn-primary" href="@Url.Action("ConsultarPlanillas", "Planillas")">Atrás</a>
+</div>
 
 }
 

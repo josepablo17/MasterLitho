@@ -9,12 +9,12 @@
         @using (Html.BeginForm("CrearFormulario", "Formularios", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
         {
             <div class="mb-4">
-                <label class="font-weight-bold">📌 Nombre del Formulario:</label>
+                <label class="font-weight-bold"> Nombre del Formulario:</label>
                 @Html.TextBoxFor(m => m.nombreFormulario, new { @class = "form-control form-control-lg", required = "required", placeholder = "Ej. Encuesta de satisfacción" })
                 <div class="invalid-feedback">Este campo es obligatorio.</div>
             </div>
 
-            <h3 class="mb-3 text-secondary">📝 Definir Campos</h3>
+            <h3 class="mb-3 text-secondary"> Definir Campos</h3>
 
             <div class="table-responsive">
                 <table id="camposTabla" class="table table-hover table-bordered">
@@ -50,26 +50,35 @@
     function agregarCampo() {
         var index = $("#camposTabla tbody tr").length;
         var fila = `<tr class="align-middle text-center">
-            <td><input type="text" name="campos[${index}].NombreCampo" class="form-control" required placeholder="Ej. Nombre, Fecha de Nacimiento" /></td>
-            <td>
-                <select name="campos[${index}].TipoCampo" class="form-control">
-                    <option value="Texto">Texto</option>
-                    <option value="Número">Número</option>
-                    <option value="Fecha">Fecha</option>
-                    <option value="Checkbox">Checkbox</option>
-                </select>
-            </td>
-            <td class="text-center">
-                <input type="checkbox" name="campos[${index}].EsRequerido" class="form-check-input">
-            </td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm" onclick="eliminarCampo(this)">
-                    <i class="fas fa-trash-alt"></i> Eliminar
-                </button>
-            </td>
-        </tr>`;
+        <td><input type="text" name="campos[${index}].NombreCampo" class="form-control" required placeholder="Ej. Nombre, Fecha de Nacimiento" /></td>
+        <td>
+            <select name="campos[${index}].TipoCampo" class="form-control">
+                <option value="Texto">Texto</option>
+                <option value="Número">Número</option>
+                <option value="Fecha">Fecha</option>
+            </select>
+        </td>
+        <td class="text-center">
+            <input type="hidden" name="campos[${index}].EsRequerido" value="false">
+            <input type="checkbox" name="campos[${index}].EsRequerido" value="true" class="form-check-input" onchange="actualizarCheckbox(this)">
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarCampo(this)">
+                <i class="fas fa-trash-alt"></i> Eliminar
+            </button>
+        </td>
+    </tr>`;
         $("#camposTabla tbody").append(fila);
     }
+
+    function actualizarCheckbox(checkbox) {
+        if (checkbox.checked) {
+            checkbox.previousElementSibling.disabled = true; 
+        } else {
+            checkbox.previousElementSibling.disabled = false;
+        }
+    }
+
 
     function eliminarCampo(btn) {
         Swal.fire({

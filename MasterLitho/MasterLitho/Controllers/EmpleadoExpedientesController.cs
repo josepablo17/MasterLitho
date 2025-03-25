@@ -144,9 +144,6 @@ namespace MasterLitho.Controllers
         }
 
 
-
-
-
         // GET: EmpleadoExpedientes/DescargarDocumento/10
         [HttpGet]
         public FileResult DescargarDocumento(int idDocumento)

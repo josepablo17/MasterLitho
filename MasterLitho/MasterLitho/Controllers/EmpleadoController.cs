@@ -9,6 +9,8 @@ namespace MasterLitho.Controllers
 {
     public class EmpleadoController : Controller
     {
+
+        #region ConsultarEmpleados
         [HttpGet]
         public ActionResult ConsultarEmpleados()
         {
@@ -53,8 +55,9 @@ namespace MasterLitho.Controllers
                 return View(viewModel);
             }
         }
+        #endregion
 
-
+        #region RegistrarEmpleado
         [HttpGet]
         public ActionResult RegistrarEmpleado(int idUsuario)
         {
@@ -110,8 +113,10 @@ namespace MasterLitho.Controllers
                 return RedirectToAction("GestionUsuarios", "Usuarios");
             }
         }
+        #endregion
 
-        
+        #region CargarDepartamentos
+
         private void CargarDepartamentos()
         {
             using (var context = new LithoManagerEntities())
@@ -138,6 +143,7 @@ namespace MasterLitho.Controllers
                 ViewBag.Departamentos = departamento;
             }
         }
+        #endregion
 
     }
 }

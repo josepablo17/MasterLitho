@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using MasterLitho.Models;
+using MasterLitho.Servicios;
 
 
 namespace MasterLitho.Controllers
@@ -15,6 +16,16 @@ namespace MasterLitho.Controllers
     public class LoginController : Controller
     {
 
+        private readonly ICorreo _correoService;
+        private readonly IContrasena _contrasenaService;
+
+        public LoginController()
+        {
+            _correoService = new CorreoService();
+            _contrasenaService = new ContrasenaService();
+        }
+
+        #region IniciarSesion
         [HttpGet]
         public ActionResult IniciarSesion()
         {
@@ -54,7 +65,9 @@ namespace MasterLitho.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region RecuperarAcceso
         [HttpGet]
         public ActionResult RecuperarAcceso()
         {
@@ -71,7 +84,7 @@ namespace MasterLitho.Controllers
 
                 if (datos != null)
                 {
-                    datos.CONTRASENA = CreatePassword();
+                    datos.CONTRASENA = _contrasenaService.GenerarContrasena();
                     datos.ESTADO_CONTRASENA_TEMPORAL = true;
                     datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigenciaTemporal"]));
                     context.SaveChanges();
@@ -84,16 +97,16 @@ namespace MasterLitho.Controllers
                     contenido = contenido.Replace("@@ESTADO_CONTRASENA_TEMPORAL", datos.CONTRASENA);
                     contenido = contenido.Replace("@@FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL", datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL.ToString("dd/MM/yyyy HH:mm"));
 
-                    var metodosComunes = new MetodosComunesController();
-
-                    metodosComunes.EnviarCorreo(datos.CORREO_USUARIO, "Contraseña Temporal", contenido);
+                    _correoService.EnviarCorreo(datos.CORREO_USUARIO, "Contraseña Temporal", contenido);
                     return RedirectToAction("IniciarSesion", "Login");
                 }
                 ViewBag.MensajePantalla = "Su información no se ha podido validar correctamente";
                 return View();
             }
         }
+        #endregion
 
+        #region CerrarSesion
         [HttpGet]
         public ActionResult CerrarSesion()
         {
@@ -104,18 +117,7 @@ namespace MasterLitho.Controllers
             return RedirectToAction("IniciarSesion", "Login");
 
         }
-
-        private string CreatePassword()
-        {
-            int length = 10;
-            const string valid = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            StringBuilder res = new StringBuilder();
-            Random rnd = new Random();
-            while (0 < length--)
-            {
-                res.Append(valid[rnd.Next(valid.Length)]);
-            }
-            return res.ToString();
-        }       
+        #endregion
+      
     }
 }

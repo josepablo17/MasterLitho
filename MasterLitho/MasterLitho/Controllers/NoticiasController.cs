@@ -106,10 +106,6 @@ namespace MasterLitho.Controllers
             }
         }
 
-
-
-
-
         // Editar Noticia (GET)
         [HttpGet]
         public ActionResult EditarNoticia(int id)

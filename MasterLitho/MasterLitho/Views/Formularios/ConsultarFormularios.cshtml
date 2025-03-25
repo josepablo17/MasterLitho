@@ -1,4 +1,4 @@
-﻿@model List<MasterLitho.Models.tFormulario>
+﻿@model List<MasterLitho.Models.tFormularioConRespuesta>
 
 @{
     ViewBag.Title = "Consultar Formularios";
@@ -40,7 +40,7 @@
         <div class="container-fluid text-left">
             <div class="card shadow-lg rounded">
                 <div class="card-body">
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de planillas</h5>
+                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de formularios</h5>
                     <div class="table-responsive">
                         <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
                             <thead class="table-dark">
@@ -57,15 +57,43 @@
                                         <td>@formulario.nombreFormulario</td>
                                         <td>@formulario.fechaEnvio.ToShortDateString()</td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="@Url.Action("DetalleFormulario","Formulario", new { q = formulario.idFormulario })">
-                                                <i class="fas fa-eye"></i>
+                                            <a href="@Url.Action("ConsultarDetallesFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
+                                               class="btn btn-info btn-sm" title="Ver detalles">
+                                                <i class="fas fa-eye"></i> Ver
                                             </a>
-                                            <a href="@Url.Action("AsignarFormulario", new { idFormulario = formulario.idFormulario })" class="btn btn-warning">Asignar</a>
+
+                                            <a href="@Url.Action("AsignarFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
+                                               class="btn btn-warning btn-sm" title="Asignar">
+                                                <i class="fas fa-user-plus"></i> Asignar
+                                            </a>
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
+                        <!-- FIN DE LA TABLA, no se agregan más filas -->
+                        <!-- NUEVA SECCIÓN: respuestas por formulario -->
+                        @foreach (var formulario in Model)
+                        {
+                            if (formulario.respuestas != null && formulario.respuestas.Any())
+                            {
+                                <div class="mt-3 mb-4">
+                                    <strong>Respuestas para <u>@formulario.nombreFormulario</u>:</strong>
+                                    <ul class="mb-0">
+                                        @foreach (var empleado in formulario.respuestas)
+                                        {
+                                            <li>
+                                                @empleado.nombreEmpleado
+                                                <a href="@Url.Action("ConsultarRespuestasFormulario", "Formularios", new { idFormulario = formulario.idFormulario, idEmpleado = empleado.idEmpleado })"
+                                                   class="btn btn-sm btn-secondary ms-2" title="Ver respuestas">
+                                                    <i class="fas fa-eye"></i> Ver Respuestas
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        }
                     </div>
                 </div>
             </div>

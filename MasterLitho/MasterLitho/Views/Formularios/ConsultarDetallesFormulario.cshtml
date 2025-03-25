@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "ConsultarDetallesFormulario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model MasterLitho.Models.tRespuestaFormulario
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-info text-white text-center">
+            <h3>Detalles del Formulario</h3>
+            <p class="mb-0">@Model.nombreFormulario</p>
+        </div>
+        <div class="card-body">
+            @foreach (var campo in Model.campos)
+            {
+                <div class="mb-3">
+                    <label class="form-label fw-bold">@campo.nombreCampo</label>
+
+                    @switch (campo.tipoCampo)
+                    {
+                        case "texto":
+                            <input type="text" class="form-control" value="@campo.respuesta" readonly />
+                            break;
+
+                        case "numero":
+                            <input type="number" class="form-control" value="@campo.respuesta" readonly />
+                            break;
+
+                        case "fecha":
+                            <input type="date" class="form-control" value="@campo.respuesta" readonly />
+                            break;
+
+                        case "textarea":
+                            <textarea class="form-control" rows="3" readonly>@campo.respuesta</textarea>
+                            break;
+
+                        default:
+                            <input type="text" class="form-control" value="@campo.respuesta" readonly />
+                            break;
+                    }
+                </div>
+            }
+
+            <div class="text-center mt-4">
+                <a href="@Url.Action("ConsultarFormularios", "Formularios")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

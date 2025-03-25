@@ -11,7 +11,7 @@ namespace MasterLitho.Models
         public int idFormulario { get; set; }
         public string nombreCampo { get; set; }
         public string tipoCampo { get; set; }
-        public bool esRequerido { get; set; }
+        public bool? esRequerido { get; set; }
         public virtual tFormulario formulario { get; set; }
     }
 }

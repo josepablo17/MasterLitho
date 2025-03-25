@@ -1,4 +1,5 @@
 ﻿using MasterLitho.Models;
+using MasterLitho.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,49 +10,54 @@ namespace MasterLitho.Controllers
 {
     public class FormulariosController : Controller
     {
-        public void CargarEmpleados()
-        {
-            using (var context = new LithoManagerEntities())
-            {
-                var datos = context.EMPLEADO.ToList();
-                var empleados = new List<SelectListItem>();
+        private readonly IGeneral _generalService;
 
-                empleados.Add(new SelectListItem
-                {
-                    Text = "Seleccione",
-                    Value = string.Empty
-                });
-                foreach (var item in datos)
-                {
-                    empleados.Add(new SelectListItem
-                    {
-                        Text = item.USUARIO.NOMBRE_USUARIO,
-                        Value = item.ID_EMPLEADO.ToString()
-                    });
-                }
-                ViewBag.listaEmpleados = empleados;
-            }
+        public FormulariosController()
+        {
+            _generalService = new GeneralService();
         }
+        private void CargarListaEmpleados()
+        {
+            ViewBag.listaEmpleados = _generalService.ObtenerEmpleados();
+        }
+
+        #region ConsultarFormularios
         [HttpGet]
         public ActionResult ConsultarFormularios()
         {
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.FORMULARIO.ToList();
-                var formularios = new List<tFormulario>();
-                foreach (var item in datos)
-                {
-                    formularios.Add(new tFormulario
+                var formularios = context.FORMULARIO
+                    .Select(f => new tFormularioConRespuesta
                     {
-                        idFormulario = item.ID_FORMULARIO,
-                        nombreFormulario = item.NOMBRE_FORMULARIO,
-                        fechaEnvio = item.FECHA_ENVIO
-                    });
-                }
+                        idFormulario = f.ID_FORMULARIO,
+                        nombreFormulario = f.NOMBRE_FORMULARIO,
+                        fechaEnvio = f.FECHA_ENVIO,
+                        respuestas = context.RESPUESTAS_FORMULARIO
+                            .Where(r => r.ID_FORMULARIO == f.ID_FORMULARIO)
+                            .GroupBy(r => r.ID_EMPLEADO) 
+                            .Select(g => new tEmpleadoRespuesta
+                            {
+                                idEmpleado = g.Key ?? 0,
+                                nombreEmpleado = context.USUARIO
+                                    .Where(u => u.ID_USUARIO == context.EMPLEADO
+                                        .Where(emp => emp.ID_EMPLEADO == g.Key)
+                                        .Select(emp => emp.ID_USUARIO)
+                                        .FirstOrDefault())
+                                    .Select(u => u.NOMBRE_USUARIO)
+                                    .FirstOrDefault()
+                            })
+                            .ToList()
+                    })
+                    .ToList();
+
                 return View(formularios);
             }
         }
 
+        #endregion
+
+        #region CrearFormulario
         [HttpGet]
         public ActionResult CrearFormulario()
         {
@@ -80,7 +86,7 @@ namespace MasterLitho.Controllers
                         ID_FORMULARIO = nuevoFormulario.ID_FORMULARIO,
                         NOMBRE_CAMPO = campo.nombreCampo,
                         TIPO_CAMPO = campo.tipoCampo,
-                        ES_REQUERIDO = campo.esRequerido
+                        ES_REQUERIDO = campo.esRequerido ?? null
                     };
 
                     context.CAMPOS_FORMULARIO.Add(nuevoCampo);
@@ -92,13 +98,15 @@ namespace MasterLitho.Controllers
             TempData["Mensaje"] = "Formulario creado exitosamente.";
             return RedirectToAction("ConsultarFormularios");
         }
+        #endregion
 
+        #region AsignarFormulario
         [HttpGet]
         public ActionResult AsignarFormulario(int idFormulario)
         {
             using (var context = new LithoManagerEntities())
             {
-                CargarEmpleados();
+                CargarListaEmpleados();
                 var formulario = context.FORMULARIO.FirstOrDefault(f => f.ID_FORMULARIO == idFormulario);
                 if (formulario == null)
                 {
@@ -109,6 +117,7 @@ namespace MasterLitho.Controllers
                 return View(formulario);
             }
         }
+
 
         [HttpPost]
         public ActionResult AsignarFormulario(int idFormulario, List<int> empleadosSeleccionados)
@@ -123,7 +132,6 @@ namespace MasterLitho.Controllers
             {
                 foreach (var empleadoId in empleadosSeleccionados)
                 {
-                    // Verificar si el formulario ya fue asignado al empleado
                     var existe = context.FORMULARIO_EMPLEADO
                         .Any(fe => fe.ID_FORMULARIO == idFormulario && fe.ID_EMPLEADO == empleadoId);
 
@@ -146,28 +154,40 @@ namespace MasterLitho.Controllers
             TempData["Mensaje"] = "Formulario asignado exitosamente.";
             return RedirectToAction("ConsultarFormularios");
         }
+        #endregion
 
-
+        #region ResponderFormulario
         [HttpGet]
         public ActionResult ResponderFormulario(int idFormulario)
         {
+            int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+
             using (var context = new LithoManagerEntities())
             {
-                var formulario = context.FORMULARIO
-                .FirstOrDefault(f => f.ID_FORMULARIO == idFormulario);
+                bool yaRespondido = context.RESPUESTAS_FORMULARIO
+                    .Any(r => r.ID_FORMULARIO == idFormulario && r.ID_EMPLEADO == idUsuario);
 
-                if (formulario != null)
+                if (yaRespondido)
                 {
-                    formulario.CAMPOS_FORMULARIO = context.CAMPOS_FORMULARIO
-                        .Where(c => c.ID_FORMULARIO == idFormulario)
-                        .ToList();
+                    TempData["Error"] = "Ya has respondido este formulario anteriormente.";
+                    return RedirectToAction("FormulariosAsignados");
                 }
+
+                var formulario = context.FORMULARIO.FirstOrDefault(f => f.ID_FORMULARIO == idFormulario);
+                if (formulario == null)
+                {
+                    return HttpNotFound("Formulario no encontrado.");
+                }
+
+                formulario.CAMPOS_FORMULARIO = context.CAMPOS_FORMULARIO
+                    .Where(c => c.ID_FORMULARIO == idFormulario)
+                    .ToList();
 
                 var modelo = new tRespuestaFormulario
                 {
                     idFormulario = formulario.ID_FORMULARIO,
                     nombreFormulario = formulario.NOMBRE_FORMULARIO,
-                    idEmpleado = (int)Session["ID_USUARIO"], 
+                    idEmpleado = idUsuario,
                     campos = formulario.CAMPOS_FORMULARIO.Select(c => new tCampoFormularioRespuesta
                     {
                         idCampo = c.ID_CAMPO,
@@ -193,6 +213,16 @@ namespace MasterLitho.Controllers
 
             using (var context = new LithoManagerEntities())
             {
+                // ✅ Validar si ya respondió (seguridad del lado servidor)
+                bool yaRespondido = context.RESPUESTAS_FORMULARIO
+                    .Any(r => r.ID_FORMULARIO == modelo.idFormulario && r.ID_EMPLEADO == modelo.idEmpleado);
+
+                if (yaRespondido)
+                {
+                    TempData["Error"] = "Ya has respondido este formulario anteriormente.";
+                    return RedirectToAction("FormulariosAsignados");
+                }
+
                 var asignacion = context.FORMULARIO_EMPLEADO
                     .FirstOrDefault(fe => fe.ID_FORMULARIO == modelo.idFormulario && fe.ID_EMPLEADO == modelo.idEmpleado);
 
@@ -227,11 +257,13 @@ namespace MasterLitho.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        #endregion
 
-        [HttpGet]
+        #region FormulariosAsignados
         public ActionResult FormulariosAsignados()
         {
             int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+
             using (var context = new LithoManagerEntities())
             {
                 var formularios = context.FORMULARIO_EMPLEADO
@@ -241,14 +273,98 @@ namespace MasterLitho.Controllers
                         idAsignacion = fe.ID,
                         idFormulario = fe.ID_FORMULARIO,
                         nombreFormulario = fe.FORMULARIO.NOMBRE_FORMULARIO,
-                        fechaAsignacion = fe.FECHA_ASIGNACION.Value
+                        fechaAsignacion = fe.FECHA_ASIGNACION.Value,
+                        yaRespondido = context.RESPUESTAS_FORMULARIO
+                            .Any(r => r.ID_FORMULARIO == fe.ID_FORMULARIO && r.ID_EMPLEADO == idUsuario)
                     })
                     .ToList();
 
                 return View(formularios);
             }
         }
+        #endregion
 
+        #region ConsultarDetallesFormulario
+
+        [HttpGet]
+        public ActionResult ConsultarDetallesFormulario(int idFormulario)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var formulario = context.FORMULARIO
+                    .FirstOrDefault(f => f.ID_FORMULARIO == idFormulario);
+
+                if (formulario == null)
+                {
+                    return HttpNotFound("Formulario no encontrado.");
+                }
+
+                var campos = context.CAMPOS_FORMULARIO
+                    .Where(c => c.ID_FORMULARIO == idFormulario)
+                    .ToList();
+
+                var modelo = new tRespuestaFormulario
+                {
+                    idFormulario = formulario.ID_FORMULARIO,
+                    nombreFormulario = formulario.NOMBRE_FORMULARIO,
+                    campos = campos.Select(c => new tCampoFormularioRespuesta
+                    {
+                        idCampo = c.ID_CAMPO,
+                        nombreCampo = c.NOMBRE_CAMPO,
+                        tipoCampo = c.TIPO_CAMPO,
+                        respuesta = "", 
+                        esRequerido = c.ES_REQUERIDO ?? false
+                    }).ToList()
+                };
+
+                return View(modelo);
+            }
+        }
+
+        #endregion
+
+        #region ConsultarRespuestasFormulario
+        [HttpGet]
+        public ActionResult ConsultarRespuestasFormulario(int idFormulario, int idEmpleado)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var formulario = context.FORMULARIO
+                    .FirstOrDefault(f => f.ID_FORMULARIO == idFormulario);
+
+                if (formulario == null)
+                {
+                    return HttpNotFound("Formulario no encontrado.");
+                }
+
+                var campos = context.CAMPOS_FORMULARIO
+                    .Where(c => c.ID_FORMULARIO == idFormulario)
+                    .ToList();
+
+                var respuestas = context.RESPUESTAS_FORMULARIO
+                    .Where(r => r.ID_FORMULARIO == idFormulario && r.ID_EMPLEADO == idEmpleado)
+                    .ToList();
+
+                var modelo = new tRespuestaFormulario
+                {
+                    idFormulario = formulario.ID_FORMULARIO,
+                    nombreFormulario = formulario.NOMBRE_FORMULARIO,
+                    idEmpleado = idEmpleado,
+                    campos = campos.Select(c => new tCampoFormularioRespuesta
+                    {
+                        idCampo = c.ID_CAMPO,
+                        nombreCampo = c.NOMBRE_CAMPO,
+                        tipoCampo = c.TIPO_CAMPO,
+                        respuesta = respuestas.FirstOrDefault(r => r.ID_CAMPO == c.ID_CAMPO)?.RESPUESTA ?? "",
+                        esRequerido = c.ES_REQUERIDO ?? false
+                    }).ToList()
+                };
+
+                return View(modelo);
+            }
+        }
+
+        #endregion
 
     }
 }

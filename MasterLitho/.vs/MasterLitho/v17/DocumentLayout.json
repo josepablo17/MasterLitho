@@ -1,30 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\",
+  "WorkspaceRootPath": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\views\\formularios\\consultarrespuestasformulario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\formularios\\consultarrespuestasformulario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\styles\\funcionesjs\\initsignalr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\funcionesjs\\initsignalr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\views\\formularios\\consultarformularios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\formularios\\consultarformularios.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\views\\formularios\\formulariosasignados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\formularios\\formulariosasignados.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\models\\tformulariosasignados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\models\\tformulariosasignados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\views\\formularios\\crearformulario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\formularios\\crearformulario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|D:\\Ufidelitas\\MasterLitho\\MasterLitho\\masterlitho\\views\\chat\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\chat\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\models\\templeadorespuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\models\\templeadorespuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\models\\tformularioconrespuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\models\\tformularioconrespuesta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\formularioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\masterlitho\\views\\formularios\\consultardetallesformulario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\formularios\\consultardetallesformulario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,12 +46,8 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 10,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -74,77 +82,119 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\UsuariosController.cs",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAIwCYAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "tEmpleadoRespuesta.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tEmpleadoRespuesta.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Models\\tEmpleadoRespuesta.cs",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tEmpleadoRespuesta.cs",
+              "RelativeToolTip": "MasterLitho\\Models\\tEmpleadoRespuesta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T01:59:09.478Z",
+              "WhenOpened": "2025-03-24T19:23:06.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "tFormularioConRespuesta.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tFormularioConRespuesta.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Models\\tFormularioConRespuesta.cs",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tFormularioConRespuesta.cs",
+              "RelativeToolTip": "MasterLitho\\Models\\tFormularioConRespuesta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T19:22:47.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConsultarRespuestasFormulario.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarRespuestasFormulario.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Formularios\\ConsultarRespuestasFormulario.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarRespuestasFormulario.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Formularios\\ConsultarRespuestasFormulario.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-24T17:35:28.356Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InitSignalR.js",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "RelativeDocumentMoniker": "MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "RelativeToolTip": "MasterLitho\\Styles\\FuncionesJS\\InitSignalR.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-03-14T23:44:28.753Z",
+              "Title": "ConsultarFormularios.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Formularios\\ConsultarFormularios.cshtml",
+              "ViewState": "AgIAACkAAAAAAAAAAAAqwF8AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-24T17:30:35.072Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Chat.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "ViewState": "AgIAADkAAAAAAAAAAAAuwGsAAAALAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "ConsultarDetallesFormulario.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarDetallesFormulario.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Formularios\\ConsultarDetallesFormulario.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\ConsultarDetallesFormulario.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Formularios\\ConsultarDetallesFormulario.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAIwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T23:15:55.832Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T23:11:30.439Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ChatHub.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\ChatHub.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\ChatHub.cs",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\ChatHub.cs",
-              "RelativeToolTip": "MasterLitho\\ChatHub.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAowF0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T23:10:17.996Z"
+              "WhenOpened": "2025-03-24T17:29:25.098Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADABAAAAAAAAAAAwwOIAAAAzAAAAAAAAAA==",
+              "Title": "FormulariosAsignados.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\FormulariosAsignados.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Formularios\\FormulariosAsignados.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\FormulariosAsignados.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Formularios\\FormulariosAsignados.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-14T21:30:13.342Z"
+              "WhenOpened": "2025-03-24T17:20:13.868Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "tFormulariosAsignados.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tFormulariosAsignados.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Models\\tFormulariosAsignados.cs",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Models\\tFormulariosAsignados.cs",
+              "RelativeToolTip": "MasterLitho\\Models\\tFormulariosAsignados.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T17:19:46.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FormulariosController.cs",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\FormulariosController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\FormulariosController.cs",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\FormulariosController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\FormulariosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T17:08:57.911Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CrearFormulario.cshtml",
+              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\CrearFormulario.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Formularios\\CrearFormulario.cshtml",
+              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Formularios\\CrearFormulario.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Formularios\\CrearFormulario.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-24T17:08:25.953Z",
+              "EditorCaption": ""
             }
           ]
         }

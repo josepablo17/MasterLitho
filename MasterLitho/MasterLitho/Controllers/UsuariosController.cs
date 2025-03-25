@@ -1,4 +1,5 @@
 ﻿using MasterLitho.Models;
+using MasterLitho.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,6 +13,35 @@ namespace MasterLitho.Controllers
 {
     public class UsuariosController : Controller
     {
+        private readonly IGeneral _generalService;
+        private readonly ICorreo _correoService;
+        private readonly IContrasena _contrasenaService;
+
+        public UsuariosController()
+        {
+            _generalService = new GeneralService();
+            _correoService = new CorreoService();
+            _contrasenaService = new ContrasenaService();
+        }
+
+        private void CargarListaRoles()
+        {
+            ViewBag.listaRoles = _generalService.ObtenerRoles();
+        }
+
+
+        private string CreateEmail(string nombre, string apellidos)
+        {
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(apellidos))
+                return "usuario@litho.com";
+
+            char inicialNombre = char.ToLower(nombre[0]);
+            string primerApellido = apellidos.Split(' ')[0].ToLower();
+
+            return $"{inicialNombre}{primerApellido}@litho.com";
+        }
+
+        #region ModificarPerfil
         [HttpGet]
         public ActionResult modificarPerfil()
         {
@@ -113,10 +143,9 @@ namespace MasterLitho.Controllers
                 return Json(new { success = false, message = "Ocurrió un error al actualizar el usuario." });
             }
         }
+        #endregion
 
-
-
-
+        #region CambiarContrasena
         [HttpGet]
         public ActionResult CambiarContrasena()
         {
@@ -159,8 +188,9 @@ namespace MasterLitho.Controllers
                 return Json(new { success = false, message = "Sus credenciales no se han podido actualizar correctamente" });
             }
         }
+        #endregion
 
-
+        #region GestionUsuarios
         [HttpGet]
         public ActionResult GestionUsuarios()
         {
@@ -186,8 +216,9 @@ namespace MasterLitho.Controllers
                 return View(usuarios);
             }
         }
+        #endregion
 
-
+        #region ActualizarEstadoUsuario
         [HttpPost]
         public ActionResult ActualizarEstadoUsuario(tUsuario model)
         {
@@ -221,12 +252,13 @@ namespace MasterLitho.Controllers
                 return View();
             }
         }
+        #endregion
 
-
+        #region ActualizarUsuario
         [HttpGet]
         public ActionResult ActualizarUsuario(int q)
         {
-            CargarRoles();
+            CargarListaRoles();
 
             using (var context = new LithoManagerEntities())
             {
@@ -304,16 +336,17 @@ namespace MasterLitho.Controllers
                 }
 
                 ViewBag.MensajePantalla = "El usuario no se ha podido actualizar correctamente";
-                CargarRoles();
+                CargarListaRoles();
                 return View(modelUsuario);
             }
         }
+        #endregion
 
-
+        #region RegistrarUsuario
         [HttpGet]
         public ActionResult RegistrarUsuario()
         {
-            CargarRoles();
+            CargarListaRoles();
             return View();
         }
 
@@ -324,7 +357,7 @@ namespace MasterLitho.Controllers
             {
                 try
                 {
-                    CargarRoles();
+                    CargarListaRoles();
                     var usuarioExistente = context.USUARIO
                                           .FirstOrDefault(u => u.IDENTIFICACION == modelUsuario.identificacion);
 
@@ -341,7 +374,7 @@ namespace MasterLitho.Controllers
                         NOMBRE_USUARIO = modelUsuario.nombreUsuario,
                         APELLIDO_USUARIO = modelUsuario.apellidoUsuario,
                         CORREO_USUARIO = CreateEmail(modelUsuario.nombreUsuario, modelUsuario.apellidoUsuario),
-                        CONTRASENA = CreatePassword(),
+                        CONTRASENA = _contrasenaService.GenerarContrasena(),
                         ID_ROL = modelUsuario.idRol,
                         ESTADO = true,
                         ESTADO_CONTRASENA_TEMPORAL = true,
@@ -361,8 +394,7 @@ namespace MasterLitho.Controllers
                             .Replace("@@Correo", tabla.CORREO_USUARIO)
                             .Replace("@@Contraseña", tabla.CONTRASENA);
 
-                        var metodosComunes = new MetodosComunesController();
-                        metodosComunes.EnviarCorreo(modelUsuario.correoUsuario, "Credenciales Temporales", contenido);
+                        _correoService.EnviarCorreo(modelUsuario.correoUsuario, "Credenciales Temporales", contenido);
 
                         ViewBag.MensajePantalla = "Usuario registrado exitosamente.";
 
@@ -384,64 +416,11 @@ namespace MasterLitho.Controllers
                 }
             }
 
-            CargarRoles();
+            CargarListaRoles();
             return View();
         }
+        #endregion
 
-
-
-
-        private void CargarRoles()
-        {
-            using (var context = new LithoManagerEntities())
-            {
-                var datos = context.ROL.ToList();
-
-                var roles = new List<SelectListItem>();
-
-                roles.Add(new SelectListItem
-                {
-                    Text = "Seleccione",
-                    Value = string.Empty
-                });
-
-                foreach (var item in datos)
-                {
-                    roles.Add(new SelectListItem
-                    {
-                        Text = item.NOMBRE_ROL,
-                        Value = item.ID_ROL.ToString()
-                    });
-                }
-
-                ViewBag.listaRoles = roles;
-            }
-        }
-
-
-        private string CreatePassword()
-        {
-            int length = 10;
-            const string valid = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            StringBuilder res = new StringBuilder();
-            Random rnd = new Random();
-            while (0 < length--)
-            {
-                res.Append(valid[rnd.Next(valid.Length)]);
-            }
-            return res.ToString();
-        }
-
-        private string CreateEmail(string nombre, string apellidos)
-        {
-            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(apellidos))
-                return "usuario@litho.com";
-
-            char inicialNombre = char.ToLower(nombre[0]);
-            string primerApellido = apellidos.Split(' ')[0].ToLower();
-
-            return $"{inicialNombre}{primerApellido}@litho.com";
-        }
 
 
     }

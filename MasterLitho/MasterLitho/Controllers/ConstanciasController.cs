@@ -12,6 +12,7 @@ namespace MasterLitho.Controllers
 {
     public class ConstanciasController : Controller
     {
+        #region EnvioConstancia
         [HttpGet]
         public ActionResult EnvioConstancia()
         {
@@ -39,15 +40,9 @@ namespace MasterLitho.Controllers
                         FECHA_EMISION = dato.FECHA_EMISION
                     }).ToList();
 
-
-
-
                 bool isAdmin = (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1");
-
-
                 var model = new tConstancia
                 {
-
                     Constancias = isAdmin ? constancias : constanciasLogueado
                 };
 
@@ -55,15 +50,9 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
         }
+        #endregion
 
-
-        [HttpGet]
-        public ActionResult detallesConstancia()
-        {
-            return View();
-        }
-
-
+        #region MostrarConstancia
         public ActionResult PrintConstancia(int q)
         {
             string fileName = "Constancia" + q + ".pdf";
@@ -107,9 +96,9 @@ namespace MasterLitho.Controllers
                 FileName = fileName
             };
         }
+        #endregion
 
-
-
+        #region DetalleConstanciaPDF
         [HttpGet]
         public ActionResult DetalleConstanciaPDF(int q)
         {
@@ -145,8 +134,9 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
         }
+        #endregion
 
-
+        #region DetalleConstanciaSalarialPDF
         [HttpGet]
         public ActionResult DetalleConstanciaSalarialPDF(int q)
         {
@@ -178,7 +168,9 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
         }
+        #endregion
 
+        #region GenerarConstanciaEmpleado
         [HttpPost]
         public ActionResult GenerarConstanciaEmpleado(tConstancia constancia)
         {
@@ -219,11 +211,9 @@ namespace MasterLitho.Controllers
             TempData["MensajePantallaExito"] = "Constancia generada exitosamente.";
             return RedirectToAction("EnvioConstancia", "Constancias");
         }
+        #endregion
 
-
-
-
-
+        #region CargarTiposContancia
         private void CargarTiposConstancia()
         {
             using (var context = new LithoManagerEntities())
@@ -250,5 +240,6 @@ namespace MasterLitho.Controllers
                 ViewBag.tiposConstancias = tiposConstancia;
             }
         }
+        #endregion
     }
 }

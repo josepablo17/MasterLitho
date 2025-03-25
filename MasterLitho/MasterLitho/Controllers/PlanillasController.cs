@@ -6,37 +6,68 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MasterLitho.Servicios;
 
 namespace MasterLitho.Controllers
 {
     public class PlanillasController : Controller
     {
+        private readonly IGeneral _generalService;
 
-        public void CargarEstados()
+        public PlanillasController()
         {
-            using (var context = new LithoManagerEntities())
-            {
-                var datos = context.ESTADO_SOLICITUD.ToList();
-                var estados = new List<SelectListItem>();
+            _generalService = new GeneralService();
+        }
 
-                estados.Add(new SelectListItem
-                {
-                    Text = "Seleccione",
-                    Value = string.Empty
-                });
-                foreach (var item in datos)
-                {
-                    estados.Add(new SelectListItem
-                    {
-                        Text = item.TIPO_ESTADO,
-                        Value = item.ID_ESTADO.ToString()
-                    });
-                }
-                ViewBag.listaEstados = estados;
-            }
+        private string ValidarPlanilla(tPlanilla model)
+        {
+            DateTime minDate = new DateTime(1980, 1, 1);
+
+            if (model.fechaPago < minDate || model.periodoInicio < minDate || model.periodoFin < minDate)
+                return "Las fechas no pueden ser anteriores al 1 de enero de 1980.";
+
+            if (model.periodoInicio > model.periodoFin)
+                return "La fecha de inicio no puede ser mayor que la fecha de fin.";
+
+            if (model.salarioNeto <= 0)
+                return "Revise los datos ingresados.";
+
+            if (model.deducciones < 0 || model.bonos < 0 || model.horasExtra < 0 || model.aporteSeguridadSocial < 0 || model.impuestos < 0)
+                return "Los valores numéricos no pueden ser negativos.";
+
+            return null; // Sin errores
+        }
+
+        private void CargarListaEmpleados()
+        {
+            ViewBag.listaEmpleados = _generalService.ObtenerEmpleados();
+        }
+
+        private decimal CalcularSalarioNeto(tPlanilla model)
+        {
+            // Valor de la hora ordinaria según ley: salario mensual ÷ 30 días ÷ 8 horas
+            decimal horaOrdinaria = model.salarioBruto / 30m / 8m;
+
+            // Valor de la hora extra (150% de la hora ordinaria)
+            decimal tarifaHoraExtra = horaOrdinaria * 1.5m;
+
+            int horasExtra = model.horasExtra ?? 0;
+
+            decimal montoHorasExtras = horasExtra * tarifaHoraExtra;
+
+            decimal salarioNeto = model.salarioBruto
+                                - model.deducciones
+                                - model.impuestos
+                                - model.aporteSeguridadSocial
+                                + model.bonos
+                                + model.otrosBeneficios
+                                + montoHorasExtras;
+
+            return salarioNeto;
         }
 
 
+        #region ConsultarPlanillas
         [HttpGet]
         public ActionResult ConsultarPlanillas()
         {
@@ -61,7 +92,9 @@ namespace MasterLitho.Controllers
                 return View(planillas);
             }
         }
+        #endregion
 
+        #region ConsultarPlanillasEmpleado
         [HttpGet]
         public ActionResult ConsultarPlanillasEmpleado()
         {
@@ -88,7 +121,9 @@ namespace MasterLitho.Controllers
                 return View(planillas);
             }
         }
+        #endregion
 
+        #region PrintDetallePlanilla
         public ActionResult PrintDetallePlanilla(int q)
         {
 
@@ -99,34 +134,13 @@ namespace MasterLitho.Controllers
                 FileName = fileName
             };
         }
-        public void CargarEmpleados()
-        {
-            using (var context = new LithoManagerEntities())
-            {
-                var datos = context.EMPLEADO.ToList();
-                var empleados = new List<SelectListItem>();
+        #endregion
 
-                empleados.Add(new SelectListItem
-                {
-                    Text = "Seleccione",
-                    Value = string.Empty
-                });
-                foreach (var item in datos)
-                {
-                    empleados.Add(new SelectListItem
-                    {
-                        Text = item.USUARIO.NOMBRE_USUARIO,
-                        Value = item.ID_EMPLEADO.ToString()
-                    });
-                }
-                ViewBag.listaEmpleados = empleados;
-            }
-        }
-
+        #region CrearNuevaPlanilla
         [HttpGet]
         public ActionResult CrearNuevaPlanilla()
-        {       
-            CargarEmpleados();
+        {
+            CargarListaEmpleados();
             return View();
         }
 
@@ -136,7 +150,15 @@ namespace MasterLitho.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.MensajePantalla = "El formulario tiene errores de validación.";
-                CargarEstados();
+                CargarListaEmpleados();
+                return View(model);
+            }
+
+            var mensajeValidacion = ValidarPlanilla(model);
+            if (mensajeValidacion != null)
+            {
+                ViewBag.MensajePantalla = mensajeValidacion;
+                CargarListaEmpleados();
                 return View(model);
             }
 
@@ -144,115 +166,17 @@ namespace MasterLitho.Controllers
             {
                 try
                 {
-                    DateTime minDate = new DateTime(1980, 1, 1);
-
-                    if (model.fechaPago < minDate)
-                    {
-                        ViewBag.MensajePantalla = "La fecha de pago no puede ser anterior al 1 de enero de 1980.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.periodoInicio < minDate)
-                    {
-                        ViewBag.MensajePantalla = "La fecha de inicio no puede ser anterior al 1 de enero de 1980.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.periodoFin < minDate)
-                    {
-                        ViewBag.MensajePantalla = "La fecha de fin no puede ser anterior al 1 de enero de 1980.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.periodoInicio > model.periodoFin)
-                    {
-                        ViewBag.MensajePantalla = "La fecha de inicio no puede ser mayor que la fecha de fin.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.salarioBruto <= 0)
-                    {
-                        ViewBag.MensajePantalla = "El salario bruto debe ser mayor a 0.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.deducciones < 0)
-                    {
-                        ViewBag.MensajePantalla = "Las deducciones no pueden ser negativas.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.bonos < 0)
-                    {
-                        ViewBag.MensajePantalla = "Los bonos no pueden ser negativos.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.horasExtra < 0)
-                    {
-                        ViewBag.MensajePantalla = "Las horas extras no pueden ser negativas.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.aporteSeguridadSocial < 0)
-                    {
-                        ViewBag.MensajePantalla = "El aporte a la seguridad social no puede ser negativo.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.impuestos < 0)
-                    {
-                        ViewBag.MensajePantalla = "Los impuestos no pueden ser negativos.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    // Validar que el empleado exista
                     var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_EMPLEADO == model.idEmpleado);
                     if (empleado == null)
                     {
                         ViewBag.MensajePantalla = "El empleado seleccionado no existe.";
-                        CargarEmpleados();
-                        CargarEstados();
+                        CargarListaEmpleados();
                         return View(model);
                     }
 
-                    // Definir la tarifa por hora extra (Ejemplo: 1.5x del salario por hora)
-                    decimal tarifaHoraExtra = (model.salarioBruto / 160) * 1.5m; // Asumiendo 160 horas mensuales
+                    decimal salarioNeto = CalcularSalarioNeto(model);
+                    int horasExtra = model.horasExtra ?? 0;
 
-                    // Asignar 0 a horasExtra si es null
-                    int horasExtra = model.horasExtra.HasValue ? model.horasExtra.Value : 0;
-                    decimal montoHorasExtras = horasExtra * tarifaHoraExtra;
-
-                    // Calcular el salario neto
-                    decimal salarioNeto = model.salarioBruto
-                                          - model.deducciones
-                                          - model.impuestos
-                                          - model.aporteSeguridadSocial
-                                          + model.bonos
-                                          + model.otrosBeneficios
-                                          + montoHorasExtras; // Se suman las horas extras
-
-                    // Crear la entidad PLANILLA
                     var nuevaPlanilla = new PLANILLA
                     {
                         ID_EMPLEADO = model.idEmpleado,
@@ -262,31 +186,33 @@ namespace MasterLitho.Controllers
                         DIAS_VACACIONES_TOMADOS = model.diasVacacionesTomados,
                         OTROS_BENEFICIOS = model.otrosBeneficios,
                         APORTE_SEGURIDAD_SOCIAL = model.aporteSeguridadSocial,
-                        HORAS_EXTRAS = horasExtra, // Se guarda la cantidad de horas extras
+                        HORAS_EXTRAS = horasExtra,
                         IMPUESTOS = model.impuestos,
                         PERIODO_INICIO = model.periodoInicio,
                         PERIODO_FIN = model.periodoFin,
                         FECHA_CREACION = DateTime.Now,
-                        SALARIO_NETO = salarioNeto // Se asigna el salario neto calculado
+                        SALARIO_NETO = salarioNeto
                     };
 
-                    // Guardar en la base de datos
                     context.PLANILLA.Add(nuevaPlanilla);
                     context.SaveChanges();
 
-                    ViewBag.MensajePantalla = "Planilla creada correctamente.";
+                    TempData["MensajeExito"] = "Planilla creada correctamente.";
                     return RedirectToAction("ConsultarPlanillas", "Planillas");
                 }
                 catch (Exception ex)
                 {
                     ViewBag.MensajePantalla = "Ocurrió un error al procesar la planilla: " + ex.Message;
-                    CargarEmpleados();
-                    CargarEstados();
+                    CargarListaEmpleados();
                     return View(model);
                 }
             }
         }
 
+
+        #endregion
+
+        #region EditarPlanilla
         [HttpGet]
         public ActionResult EditarPlanilla(int q)
         {
@@ -303,22 +229,21 @@ namespace MasterLitho.Controllers
                 {
                     idPlanilla = planilla.ID_PLANILLA,
                     idEmpleado = planilla.ID_EMPLEADO,
-                    nombreEmpleado= planilla.EMPLEADO.USUARIO.NOMBRE_USUARIO,
+                    nombreEmpleado = planilla.EMPLEADO.USUARIO.NOMBRE_USUARIO,
                     fechaPago = planilla.FECHA_PAGO,
                     bonos = planilla.BONOS ?? 0,
                     deducciones = planilla.DEDUCCIONES,
                     diasVacacionesTomados = planilla.DIAS_VACACIONES_TOMADOS,
-                    otrosBeneficios = planilla.OTROS_BENEFICIOS ??0,
+                    otrosBeneficios = planilla.OTROS_BENEFICIOS ?? 0,
                     aporteSeguridadSocial = planilla.APORTE_SEGURIDAD_SOCIAL ?? 0,
                     horasExtra = planilla.HORAS_EXTRAS,
-                    impuestos = planilla.IMPUESTOS ??0,
+                    impuestos = planilla.IMPUESTOS ?? 0,
                     periodoInicio = planilla.PERIODO_INICIO,
                     periodoFin = planilla.PERIODO_FIN,
                     fechaCreacion = planilla.FECHA_CREACION
                 };
 
-                CargarEmpleados();
-                CargarEstados();
+                CargarListaEmpleados();
                 return View(model);
             }
         }
@@ -329,7 +254,15 @@ namespace MasterLitho.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.MensajePantalla = "El formulario tiene errores de validación.";
-                CargarEstados();
+                CargarListaEmpleados();
+                return View(model);
+            }
+
+            var mensajeValidacion = ValidarPlanilla(model);
+            if (mensajeValidacion != null)
+            {
+                ViewBag.MensajePantalla = mensajeValidacion;
+                CargarListaEmpleados();
                 return View(model);
             }
 
@@ -340,59 +273,17 @@ namespace MasterLitho.Controllers
                     var planillaExistente = context.PLANILLA.FirstOrDefault(p => p.ID_PLANILLA == model.idPlanilla);
                     if (planillaExistente == null)
                     {
-                        ViewBag.MensajePantalla = "La planilla no existe.";
+                        TempData["MensajePantalla"] = "La planilla no existe.";
                         return RedirectToAction("ConsultarPlanillas");
                     }
 
-                    DateTime minDate = new DateTime(1980, 1, 1);
-
-                    if (model.fechaPago < minDate || model.periodoInicio < minDate || model.periodoFin < minDate)
-                    {
-                        ViewBag.MensajePantalla = "Las fechas no pueden ser anteriores al 1 de enero de 1980.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.periodoInicio > model.periodoFin)
-                    {
-                        ViewBag.MensajePantalla = "La fecha de inicio no puede ser mayor que la fecha de fin.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.salarioBruto <= 0)
-                    {
-                        ViewBag.MensajePantalla = "El salario bruto debe ser mayor a 0.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    if (model.deducciones < 0 || model.bonos < 0 || model.horasExtra < 0 || model.aporteSeguridadSocial < 0 || model.impuestos < 0)
-                    {
-                        ViewBag.MensajePantalla = "Los valores numéricos no pueden ser negativos.";
-                        CargarEmpleados();
-                        CargarEstados();
-                        return View(model);
-                    }
-
-                    decimal tarifaHoraExtra = (model.salarioBruto / 160) * 1.5m; // Asumiendo 160 horas mensuales
-                    int horasExtra = model.horasExtra.HasValue ? model.horasExtra.Value : 0;
-                    decimal montoHorasExtras = horasExtra * tarifaHoraExtra;
-
-                    decimal salarioNeto = model.salarioBruto
-                                          - model.deducciones
-                                          - model.impuestos
-                                          - model.aporteSeguridadSocial
-                                          + model.bonos
-                                          + model.otrosBeneficios
-                                          + montoHorasExtras;
-
+                    decimal salarioNeto = CalcularSalarioNeto(model);
+                    int horasExtra = model.horasExtra ?? 0;
+  
+                    // Actualizar campos
                     planillaExistente.FECHA_PAGO = model.fechaPago;
                     planillaExistente.DEDUCCIONES = model.deducciones;
-                    planillaExistente.BONOS = model.bonos ;
+                    planillaExistente.BONOS = model.bonos;
                     planillaExistente.DIAS_VACACIONES_TOMADOS = model.diasVacacionesTomados;
                     planillaExistente.OTROS_BENEFICIOS = model.otrosBeneficios;
                     planillaExistente.APORTE_SEGURIDAD_SOCIAL = model.aporteSeguridadSocial;
@@ -400,22 +291,25 @@ namespace MasterLitho.Controllers
                     planillaExistente.IMPUESTOS = model.impuestos;
                     planillaExistente.PERIODO_INICIO = model.periodoInicio;
                     planillaExistente.PERIODO_FIN = model.periodoFin;
-                    planillaExistente.SALARIO_NETO = salarioNeto; // Actualizar salario neto
+                    planillaExistente.SALARIO_NETO = salarioNeto;
+
                     context.SaveChanges();
 
-                    ViewBag.MensajePantalla = "Planilla actualizada correctamente.";
+                    TempData["MensajeExito"] = "Planilla actualizada correctamente.";
                     return RedirectToAction("ConsultarPlanillas");
                 }
                 catch (Exception ex)
                 {
                     ViewBag.MensajePantalla = "Ocurrió un error al actualizar la planilla: " + ex.Message;
-                    CargarEmpleados();
-                    CargarEstados();
+                    CargarListaEmpleados();
                     return View(model);
                 }
             }
         }
 
+        #endregion
+
+        #region DetallePlanilla
         [HttpGet]
         public ActionResult DetallePlanilla(int q)
         {
@@ -449,8 +343,9 @@ namespace MasterLitho.Controllers
                 return View(model);
                 }
             }
+        #endregion
 
-
+        #region DetallePlanillaPDF
         [HttpGet]
         public ActionResult DetallePlanillaPDF(int q)
         {
@@ -488,6 +383,6 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
         }
-
+        #endregion
     }
 }

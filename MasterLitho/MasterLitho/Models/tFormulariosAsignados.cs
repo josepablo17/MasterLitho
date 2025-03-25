@@ -11,5 +11,6 @@ namespace MasterLitho.Models
         public int idFormulario { get; set; }
         public string nombreFormulario { get; set; }
         public DateTime fechaAsignacion { get; set; }
+        public bool yaRespondido { get; set; }
     }
 }
