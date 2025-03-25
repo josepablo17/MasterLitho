@@ -16,9 +16,10 @@
                 @Html.AntiForgeryToken()
 
                 <div class="mb-3">
-                    <label for="ID_USUARIO" class="form-label">ID Usuario</label>
-                    <input type="number" name="ID_USUARIO" class="form-control" placeholder="Ingrese el ID del usuario" required />
+                    <label for="ID_USUARIO" class="form-label">Seleccione el Usuario</label>
+                    @Html.DropDownList("ID_USUARIO", ViewBag.Usuarios as List<SelectListItem>, "Seleccione un usuario", new { @class = "form-control", required = "required" })
                 </div>
+
 
                 <div class="mb-3">
                     <label for="NOMBRE_EXPEDIENTE" class="form-label">Nombre del Expediente</label>

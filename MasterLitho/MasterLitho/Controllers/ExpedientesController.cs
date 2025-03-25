@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MasterLitho.Hubs; 
 
 namespace MasterLitho.Controllers
 {
@@ -44,8 +45,19 @@ namespace MasterLitho.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            using (var context = new LithoManagerEntities())
+            {
+                ViewBag.Usuarios = context.USUARIO
+                    .Select(u => new SelectListItem
+                    {
+                        Value = u.ID_USUARIO.ToString(),
+                        Text = u.NOMBRE_USUARIO + " " + u.APELLIDO_USUARIO
+                    }).ToList();
+            }
+
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -390,5 +402,111 @@ namespace MasterLitho.Controllers
             }
             return 0;
         }
+
+
+
+        [HttpGet]
+        public ActionResult EnviarDocCorreo(int idUsuario)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var usuario = context.USUARIO.Find(idUsuario);
+                if (usuario == null) return RedirectToAction("IndexExpedientes");
+
+                return View("EnviarDocCorreo", usuario); 
+            }
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EnviarDocCorreo(int idUsuario, string titulo, string descripcion, HttpPostedFileBase archivo)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var usuario = context.USUARIO.Find(idUsuario);
+                if (usuario == null) return RedirectToAction("IndexExpedientes");
+
+                try
+                {
+                    if (archivo != null && archivo.ContentLength > 0)
+                    {
+                        string carpetaDestino = Server.MapPath("~/UploadedFiles/Expedientes/");
+                        if (!Directory.Exists(carpetaDestino))
+                        {
+                            Directory.CreateDirectory(carpetaDestino);
+                        }
+
+                        string rutaArchivo = Path.Combine(carpetaDestino, archivo.FileName);
+                        archivo.SaveAs(rutaArchivo);
+
+                        string urlArchivo = Url.Action("DescargarArchivo", "Expedientes", new { nombreArchivo = archivo.FileName }, Request.Url.Scheme);
+
+                        string rutaCss = Server.MapPath("~/Styles/css/EstilosCorreos.css");
+                        string estilosCss = System.IO.File.Exists(rutaCss) ? System.IO.File.ReadAllText(rutaCss) : "";
+
+                        string mensajeHtml = $@"
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                         <meta charset='UTF-8'>
+                         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                         <style>
+                          {estilosCss} /* Se inserta el CSS aquí */
+                        </style>
+                        </head>
+                        <body>
+                         <table>
+                         <tr>
+                         <td>
+                        <h1>📎 Nuevo Documento Recibido por parte del Administrador</h1>
+                         <p>{descripcion}</p>
+                        <p><strong>Documento adjunto:</strong> {archivo.FileName}</p>
+                         <a href='{urlArchivo}' download='{archivo.FileName}'>📥 Descargar archivo</a>
+                         </td>
+                        </tr>
+                        </table>
+                        </body>
+                        </html>";
+
+                        MetodosComunesController metodos = new MetodosComunesController();
+                        metodos.EnviarCorreo(usuario.CORREO_USUARIO, titulo, mensajeHtml);
+
+                        TempData["Mensaje"] = "Correo enviado correctamente.";
+                    }
+                    else
+                    {
+                        TempData["Error"] = "Debe seleccionar un archivo.";
+                    }
+
+                    return RedirectToAction("IndexExpedientes");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Error = "Error al enviar el correo: " + ex.Message;
+                    usuario = context.USUARIO.Find(idUsuario); 
+                    return View("EnviarDocCorreo", usuario);
+                }
+            }
+        }
+
+
+        public ActionResult DescargarArchivo(string nombreArchivo)
+        {
+            string rutaArchivo = Server.MapPath("~/UploadedFiles/Expedientes/" + nombreArchivo);
+
+            if (!System.IO.File.Exists(rutaArchivo))
+            {
+                return HttpNotFound("Archivo no encontrado.");
+            }
+
+            return File(rutaArchivo, "application/octet-stream", nombreArchivo);
+        }
+
+
+
+
+
     }
 }

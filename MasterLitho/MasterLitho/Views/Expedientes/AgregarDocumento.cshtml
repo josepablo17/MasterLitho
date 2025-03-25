@@ -1,5 +1,6 @@
 ﻿@model MasterLitho.Models.DOCUMENTO_EXPEDIENTE
 
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Agregar Documento";
@@ -16,8 +17,11 @@
             {
                 @Html.AntiForgeryToken()
 
-                <!-- Campo oculto para pasar el ID_EXPEDIENTE al controller -->
+                
                 @Html.Hidden("id", idExpediente)
+
+      
+
 
                 <div class="mb-3">
                     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>

@@ -15,6 +15,7 @@ namespace MasterLitho
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            // Activa SignalR en la aplicación
             app.MapSignalR();
         }
 

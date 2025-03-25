@@ -1,0 +1,85 @@
+#!/bin/bash
+# Script con los comandos clave para la exposición del proyecto
+
+# 1️⃣ Verificar la estructura del proyecto
+ls -R
+
+# 2️⃣ Activar entorno virtual (si se usa uno)
+# source venv/bin/activate  # En Linux/macOS
+# venv\Scripts\activate     # En Windows
+
+# 3️⃣ Instalar dependencias necesarias (si es necesario)
+pip install -r requirements.txt
+
+# 4️⃣ Ejecutar limpieza de datos
+python scripts/limpieza.py
+
+# 5️⃣ Ejecutar análisis exploratorio
+python scripts/exploracion.py
+
+# 6️⃣ Ejecutar visualizaciones avanzadas
+python scripts/visualizaciones.py
+
+# 7️⃣ Entrenar el modelo predictivo
+python model/prediccion.py
+
+# 8️⃣ Ejecutar el dashboard interactivo
+cd dashboard
+python app.py
+
+# 9️⃣ (Opcional) Si el puerto 8050 está ocupado, ejecutar en otro puerto
+# python app.py --port=8080
+
+# 1️⃣0️⃣ Verificar que el servidor esté corriendo
+# Abrir en el navegador: http://127.0.0.1:8050
+
+# 1️⃣1️⃣ (Opcional) Detener el servidor si es necesario
+# ctrl + c  # Para detener en la terminal
+
+
+
+Dividimos el proyecto en varias carpetas para mantener el código ordenado y modular:
+
+1️⃣ data/ - Datos del proyecto
+📌 Contiene los archivos CSV con los datos de accidentes.
+
+accidentes_2017_2023.csv → Dataset original con los datos crudos.
+accidentes_2017_2023_limpio.csv → Dataset procesado después de la limpieza de datos.
+2️⃣ scripts/ - Análisis y procesamiento de datos
+📌 Aquí están los scripts que ejecutan los análisis principales:
+
+limpieza.py → Elimina valores nulos, duplicados y limpia los datos.
+exploracion.py → Genera gráficos de tendencias generales (año, mes, día de la semana).
+visualizaciones.py → Muestra análisis detallados por provincia y clima.
+🔹 Explicación de gráficos generados:
+
+Accidentes por año → Identifica cómo han variado los accidentes con el tiempo.
+Accidentes por mes → Muestra los meses con mayor incidencia.
+Accidentes por día de la semana → Permite ver si hay más accidentes en días laborales o fines de semana.
+Accidentes por provincia → Indica qué zonas tienen mayor riesgo de siniestralidad.
+Accidentes según el clima → Analiza cómo influyen las condiciones meteorológicas en los accidentes.
+Los gráficos generados se guardan en outputs/.
+
+3️⃣ model/ - Modelo de predicción de accidentes
+📌 Aquí se implementa la inteligencia artificial para predecir accidentes:
+
+prediccion.py → Entrena un modelo Random Forest con datos históricos para identificar patrones de accidentes.
+modelo_entrenado.pkl → Archivo donde se guarda el modelo entrenado para hacer predicciones sin necesidad de reentrenarlo.
+🔹 ¿Qué hace el modelo?
+
+Aprende de datos históricos para predecir la probabilidad de un accidente según el día de la semana y el estado del clima.
+Usa Machine Learning para encontrar patrones ocultos en los datos.
+Precisión: 85%, lo que significa que tiene una buena capacidad de predicción.
+4️⃣ dashboard/ - Interfaz interactiva
+📌 Contiene el código del dashboard en Dash (Python):
+
+app.py → Código del dashboard interactivo.
+Visualiza datos históricos en gráficos.
+Permite hacer predicciones en tiempo real sobre el riesgo de accidentes según el clima y el día.
+🔹 ¿Cómo funciona el dashboard?
+
+Permite seleccionar una provincia para ver su distribución de accidentes.
+Muestra gráficos dinámicos con los datos.
+Tiene un botón de predicción que usa el modelo de Machine Learning para indicar el riesgo de accidente en función de las condiciones seleccionadas.
+📌 Acceso: Se ejecuta con python app.py y se abre en http://127.0.0.1:8050.
+

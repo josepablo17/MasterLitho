@@ -1,0 +1,41 @@
+﻿@model MasterLitho.Models.USUARIO
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Enviar Documento por Correo";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Enviar Documento</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("EnviarDocCorreo", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="idUsuario" value="@Model.ID_USUARIO" />
+
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Asunto</label>
+                    <input type="text" name="titulo" class="form-control" placeholder="Ingrese el asunto del correo" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea name="descripcion" class="form-control" rows="4" placeholder="Ingrese un mensaje para el usuario" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="archivo" class="form-label">Adjuntar Documento</label>
+                    <input type="file" name="archivo" class="form-control" required />
+                </div>
+
+                <div class="text-end">
+                    <a href="@Url.Action("IndexExpedientes", "Expedientes")" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
