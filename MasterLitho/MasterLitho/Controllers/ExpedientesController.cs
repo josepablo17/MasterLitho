@@ -4,12 +4,21 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MasterLitho.Hubs; 
+using MasterLitho.Hubs;
+using MasterLitho.Servicios;
 
 namespace MasterLitho.Controllers
 {
     public class ExpedientesController : Controller
     {
+        private readonly ICorreo _correoService;
+
+        public ExpedientesController()
+        {
+            _correoService = new CorreoService();
+        }
+
+
         // =============== VISTAS PRINCIPALES ===============
 
         // GET: Expedientes/IndexExpedientes
@@ -470,8 +479,7 @@ namespace MasterLitho.Controllers
                         </body>
                         </html>";
 
-                        MetodosComunesController metodos = new MetodosComunesController();
-                        metodos.EnviarCorreo(usuario.CORREO_USUARIO, titulo, mensajeHtml);
+                        _correoService.EnviarCorreo(usuario.CORREO_USUARIO, titulo, mensajeHtml);
 
                         TempData["Mensaje"] = "Correo enviado correctamente.";
                     }
