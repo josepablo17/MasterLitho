@@ -1,4 +1,4 @@
-﻿@model MasterLitho.Models.DOCUMENTO_EXPEDIENTE
+﻿@model MasterLitho.Models.tDocumentoExpediente
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,17 +15,18 @@
             {
                 @Html.AntiForgeryToken()
 
-                @Html.HiddenFor(model => model.ID_DOCUMENTO)
+                @Html.HiddenFor(model => model.idDocumento)
+                @Html.HiddenFor(model => model.idExpediente)
 
                 <!-- Muestra información actual -->
                 <div class="mb-3">
                     <label class="form-label">Nombre Actual</label>
-                    <p>@Model.NOMBRE_DOCUMENTO</p>
+                    <p>@Model.nombreDocumento</p>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Tipo de Documento</label>
-                    <input type="text" name="TIPO_DOCUMENTO" value="@Model.TIPO_DOCUMENTO" class="form-control" />
+                    @Html.TextBoxFor(model => model.tipoDocumento, new { @class = "form-control", placeholder = "Ej: Contrato, Permiso..." })
                 </div>
 
                 <div class="mb-3">
@@ -34,7 +35,7 @@
                 </div>
 
                 <div class="text-end">
-                    <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = Model.ID_EXPEDIENTE })"
+                    <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = Model.idExpediente })"
                        class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                 </div>

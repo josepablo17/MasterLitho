@@ -84,18 +84,32 @@ namespace MasterLitho.Controllers
 
         #region ConsultarMisSolicitudes
         [HttpGet]
-        public ActionResult ConsultarMisSolicitudes()
+        public ActionResult ConsultarMisSolicitudes(string estado = "todos")
         {
             int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
 
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.SOLICITUD_VACACIONES.Where(s => s.ID_USUARIO == idUsuario)
-                    .ToList();
+                var datos = context.SOLICITUD_VACACIONES
+                    .Where(s => s.ID_USUARIO == idUsuario);
+
+                if (estado == "pendiente")
+                {
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Pendiente");
+                }
+                else if (estado == "aceptado")
+                {
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Aceptado");
+                }
+                else if (estado == "rechazado")
+                {
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Rechazado");
+                }
+                var lista = datos.OrderByDescending(s => s.FECHA_SOLICITUD).ToList();
 
                 var solicitudes = new List<tVacaciones>();
 
-                foreach (var item in datos)
+                foreach (var item in lista)
                 {
                     solicitudes.Add(new tVacaciones
                     {
@@ -108,11 +122,14 @@ namespace MasterLitho.Controllers
                         estado = item.ID_ESTADO,
                         nombreEstado = item.ESTADO_SOLICITUD.TIPO_ESTADO,
                         comentario = item.COMENTARIO
-                    });    
+                    });
                 }
+                ViewBag.EstadoActual = estado; 
+
                 return View(solicitudes);
             }
         }
+
         #endregion
 
         #region EditarEstado

@@ -1,71 +1,99 @@
-﻿@model IEnumerable<MasterLitho.Models.EXPEDIENTE>
+﻿@model List<MasterLitho.Models.tExpediente>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Lista de Expedientes";
 }
 
-<div id="content-wrapper" class="container">
-    <div id="content">
-        <h1 class="my-4">Gestión de expedientes</h1>
-        <div class="container-fluid">
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">
-                        Lista de expedientes
-                    </h5>
-                    <div class="table-responsive">
-                        <table id="expedientesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                            <thead class="table-dark">
+<div class="container mt-4 mb-5">
+    <i class="fas fa-folder-open text-primary me-2"></i> Gestión de Expedientes
+    <h2 class="text-center text-dark fw-bold mb-4">
+    </h2>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="@Url.Action("CrearExpediente", "Expedientes")"
+           class="btn btn-success btn-lg rounded-pill shadow-sm">
+            <i class="fas fa-plus-circle me-1"></i> Crear nuevo expediente
+        </a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="card shadow-lg rounded">
+            <div class="card-body">
+                <h5 class="card-title text-center text-primary fw-bold mb-4">Lista de expedientes</h5>
+
+                <div class="table-responsive">
+                    <table id="expedientesTable" class="table table-hover table-striped align-middle w-100">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Identificación</th>
+                                <th>Fecha Creación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var exp in Model)
+                            {
                                 <tr>
-                                    <th>ID Expediente</th>
-                                    <th>Nombre Expediente</th>
-                                    <th>Nombre Usuario</th>
-                                    <th>Identificación</th>
-                                    <th>Fecha Creación</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var exp in Model)
-                                {
-                                    <tr>
-                                        <td>@exp.ID_EXPEDIENTE</td>
-                                        <td>@(exp.NOMBRE_EXPEDIENTE ?? "Sin nombre")</td>
-                                        <td>@(exp.USUARIO == null ? "NULL" : exp.USUARIO.NOMBRE_USUARIO)</td>
-                                        <td>@(exp.USUARIO == null ? "NULL" : exp.USUARIO.IDENTIFICACION)</td>
-                                        <td>@exp.FECHA_CREACION.ToString("yyyy-MM-dd HH:mm")</td>
-                                        <td>
-                                            <!-- Botón para ver detalle (documentos) -->
-                                            <a class="btn" href="@Url.Action("DetalleExpediente", "Expedientes", new { id = exp.ID_EXPEDIENTE })">
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(exp.nombreExpediente))
+                                        {
+                                            @exp.nombreExpediente
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Sin nombre</span>
+                                        }
+                                    </td>
+                                    <td>   
+                                     @exp.nombreUsuario
+                                    </td>
+                                    <td>
+                                        @exp.identificacion
+                                    </td>
+                                    <td class="text-nowrap">@exp.fechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group">
+
+                                            <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = exp.idExpediente })"
+                                               class="btn btn-primary"
+                                               title="Ver detalles" data-bs-toggle="tooltip">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <!-- Botón para eliminar expediente que llama a la función confirmDelete -->
-                                            <button type="button" class="btn" onclick="confirmDelete(@exp.ID_EXPEDIENTE, '@(exp.NOMBRE_EXPEDIENTE ?? "Sin nombre")')">
-                                                <i class="fas fa-trash"></i>
+                                            <button type="button"
+                                                    class="btn btn-danger"
+                                                    onclick="confirmDelete(@exp.idExpediente, '@(exp.nombreExpediente ?? "Sin nombre")')"
+                                                    title="Eliminar expediente" data-bs-toggle="tooltip">
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
 
-                                            <a href="@Url.Action("EnviarDocCorreo", "Expedientes", new { idUsuario = exp.ID_USUARIO })"
-                                               class="btn bg-success">
-                                                Enviar Documento
+                                            <a href="@Url.Action("EnviarDocCorreo", "Expedientes", new { idUsuario = exp.idUsuario })"
+                                               class="btn btn-success"
+                                               title="Enviar documento por correo" data-bs-toggle="tooltip">
+                                                <i class="fas fa-paper-plane"></i>
                                             </a>
-                                        </td>
-                                    </tr>
-                                    
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>    
                 </div>
             </div>
-            <div class="d-flex justify-content-between mt-3">
-                <a href="@Url.Action("CrearExpediente", "Expedientes")" class="btn btn-outline-primary">
-                    + Crear expediente
-                </a>
-            </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center shadow-sm mt-5">
+            <i class="fas fa-info-circle me-2"></i> No hay expedientes registrados actualmente.
+        </div>
+    }
 </div>
+
 
 <!-- Modal de confirmación para eliminar expediente -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

@@ -312,9 +312,13 @@
     <Compile Include="Models\tCampoFormulario.cs" />
     <Compile Include="Models\tCampoFormularioRespuesta.cs" />
     <Compile Include="Models\tConstancia.cs" />
+    <Compile Include="Models\tDetalleExpediente.cs" />
+    <Compile Include="Models\tDocumentoExpediente.cs" />
     <Compile Include="Models\tEmpleado.cs" />
     <Compile Include="Models\tEmpleadoRespuesta.cs" />
+    <Compile Include="Models\tEnvioDocumento.cs" />
     <Compile Include="Models\tEventos.cs" />
+    <Compile Include="Models\tExpediente.cs" />
     <Compile Include="Models\tFormulario.cs" />
     <Compile Include="Models\tFormularioConRespuesta.cs" />
     <Compile Include="Models\tFormularioEmpleado.cs" />
@@ -2518,6 +2522,7 @@
     <Content Include="Views\Formularios\ConsultarDetallesFormulario.cshtml" />
     <Content Include="Views\Formularios\ConsultarRespuestasFormulario.cshtml" />
     <Content Include="Views\Expedientes\EnviarDocCorreo.cshtml" />
+    <Content Include="Views\QuejasReportes\MisQuejasYReportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,34 +6,49 @@ using System.Web;
 using System.Web.Mvc;
 using MasterLitho.Hubs;
 using MasterLitho.Servicios;
+using System.Data.Entity;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using System.Collections.Generic;
 
 namespace MasterLitho.Controllers
 {
     public class ExpedientesController : Controller
     {
         private readonly ICorreo _correoService;
+        private readonly IGeneral _generalService;
 
         public ExpedientesController()
         {
             _correoService = new CorreoService();
+            _generalService = new GeneralService();
         }
+
+        private void CargarListaEmpleados()
+        {
+            ViewBag.listaEmpleados = _generalService.ObtenerEmpleados();
+        }
+
 
         [HttpGet]
         public ActionResult IndexExpedientes()
         {
-            // Validar rol (ejemplo) si lo deseas
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1) // 1 = Admin
-            {
-                // Si no es administrador, redirigir
-                return RedirectToAction("Index", "Home");
-            }
-
             using (var context = new LithoManagerEntities())
             {
-                var expedientes = context.EXPEDIENTE
-                .Include("USUARIO") 
-                .ToList();
+                var datos = context.EXPEDIENTE.ToList();
+                var expedientes = new List<tExpediente>();
+                foreach (var item in datos)
+                {
+                    expedientes.Add(new tExpediente
+                    {
+                        idExpediente = item.ID_EXPEDIENTE,
+                        nombreExpediente = item.NOMBRE_EXPEDIENTE,
+                        fechaCreacion = item.FECHA_CREACION,
+                        idUsuario = item.ID_USUARIO,
+                        nombreUsuario = item.USUARIO.NOMBRE_USUARIO,
+                        correoUsuario = item.USUARIO.CORREO_USUARIO,
+                        identificacion = item.USUARIO.IDENTIFICACION
+                    });
+                }
                 return View(expedientes);
             }
         }
@@ -42,255 +57,261 @@ namespace MasterLitho.Controllers
         [HttpGet]
         public ActionResult CrearExpediente()
         {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                return RedirectToAction("Index", "Home");
-            }
 
-            using (var context = new LithoManagerEntities())
-            {
-                ViewBag.Usuarios = context.USUARIO
-                    .Select(u => new SelectListItem
-                    {
-                        Value = u.ID_USUARIO.ToString(),
-                        Text = u.NOMBRE_USUARIO + " " + u.APELLIDO_USUARIO
-                    }).ToList();
-            }
+            CargarListaEmpleados();
 
             return View();
         }
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CrearExpediente(int ID_USUARIO, string NOMBRE_EXPEDIENTE)
+        public ActionResult CrearExpediente(tExpediente model)
         {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
+            if (!ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                CargarListaEmpleados();
+                ViewBag.Error = "Complete todos los campos requeridos.";
+                return View(model);
             }
 
             using (var context = new LithoManagerEntities())
             {
                 try
                 {
-                    // Creamos el expediente asignándole también el nombre
                     var nuevoExpediente = new EXPEDIENTE
                     {
-                        ID_USUARIO = ID_USUARIO,
-                        FECHA_CREACION = DateTime.Now,
-                        NOMBRE_EXPEDIENTE = NOMBRE_EXPEDIENTE
+                        ID_USUARIO = model.idUsuario,
+                        NOMBRE_EXPEDIENTE = model.nombreExpediente,
+                        FECHA_CREACION = DateTime.Now
                     };
 
                     context.EXPEDIENTE.Add(nuevoExpediente);
                     context.SaveChanges();
 
+                    TempData["MensajeExito"] = "Expediente creado correctamente.";
                     return RedirectToAction("IndexExpedientes");
                 }
                 catch (Exception ex)
                 {
                     ViewBag.Error = "Error al crear expediente: " + ex.Message;
-                    return View();
+                    CargarListaEmpleados();
+                    return View(model);
                 }
             }
         }
 
 
-        // GET: Expedientes/DetalleExpediente/5
-        // Muestra los documentos de un expediente específico
         [HttpGet]
         public ActionResult DetalleExpediente(int id)
         {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             using (var context = new LithoManagerEntities())
             {
                 var expediente = context.EXPEDIENTE
-                    .Include("USUARIO")
+                    .Include(e => e.USUARIO)
                     .FirstOrDefault(e => e.ID_EXPEDIENTE == id);
+
                 if (expediente == null)
-                {
                     return HttpNotFound();
-                }
 
                 var documentos = context.DOCUMENTO_EXPEDIENTE
-                    .Where(d => d.ID_EXPEDIENTE == id)
-                    .ToList();
+                        .Where(d => d.ID_EXPEDIENTE == id)
+                        .Select(d => new tDocumentoExpediente
+                        {
+                            idDocumento = d.ID_DOCUMENTO,
+                            nombreDocumento = d.NOMBRE_DOCUMENTO,
+                            tipoDocumento = d.TIPO_DOCUMENTO,
+                            ruta = d.RUTA,
+                            fechaCarga = d.FECHA_CARGA,
+                            fechaActualizacion = d.FECHA_ACTUALIZACION
+                        }).ToList();
 
-                ViewBag.Expediente = expediente;
-                return View(documentos);
+                var modelo = new tDetalleExpediente
+                {
+                    idExpediente = expediente.ID_EXPEDIENTE,
+                    nombreExpediente = expediente.NOMBRE_EXPEDIENTE,
+                    fechaCreacion = expediente.FECHA_CREACION,
+                    nombreUsuario = expediente.USUARIO?.NOMBRE_USUARIO,
+                    correoUsuario = expediente.USUARIO?.CORREO_USUARIO,
+                    identificacion = expediente.USUARIO?.IDENTIFICACION,
+                    documentos = documentos
+                };
+
+                return View(modelo);
             }
         }
 
 
-        // =============== GESTIÓN DE DOCUMENTOS ===============
 
-        // GET: Expedientes/AgregarDocumento/5
+
         [HttpGet]
         public ActionResult AgregarDocumento(int id)
         {
-            // id => ID_EXPEDIENTE
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
+            var modelo = new tDocumentoExpediente
             {
-                return RedirectToAction("Index", "Home");
-            }
+                idExpediente = id 
+            };
 
-            ViewBag.IdExpediente = id;
-            return View();
+            return View(modelo);
         }
 
-        // POST: Expedientes/AgregarDocumento/5
+
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult AgregarDocumento(int id, HttpPostedFileBase archivo, string tipoDocumento)
         {
-            // id => ID_EXPEDIENTE
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
+            if (archivo == null || archivo.ContentLength == 0)
             {
-                return RedirectToAction("Index", "Home");
+                ViewBag.Error = "Debe seleccionar un archivo.";
+                ViewBag.IdExpediente = id;
+                return View();
             }
 
-            using (var context = new LithoManagerEntities())
+            if (string.IsNullOrWhiteSpace(tipoDocumento))
             {
-                if (archivo != null && archivo.ContentLength > 0)
+                ViewBag.Error = "Debe seleccionar un tipo de documento.";
+                ViewBag.IdExpediente = id;
+                return View();
+            }
+
+            try
+            {
+                string extension = Path.GetExtension(archivo.FileName);
+                string nombreArchivo = Guid.NewGuid() + extension;
+                string carpeta = Server.MapPath("~/UploadedFiles/Expedientes/");
+
+                if (!Directory.Exists(carpeta))
                 {
-                    try
-                    {
-                        // Nombre original del archivo
-                        string extension = Path.GetExtension(archivo.FileName);
-                        string nombreArchivo = Guid.NewGuid() + extension;
-
-                        // Carpeta física donde guardar
-                        string carpeta = Server.MapPath("~/UploadedFiles/Expedientes/");
-                        if (!Directory.Exists(carpeta))
-                        {
-                            Directory.CreateDirectory(carpeta);
-                        }
-
-                        // Ruta completa
-                        string rutaFisica = Path.Combine(carpeta, nombreArchivo);
-
-                        // Guardar archivo
-                        archivo.SaveAs(rutaFisica);
-
-                        // Registrar en la BD
-                        var doc = new DOCUMENTO_EXPEDIENTE
-                        {
-                            ID_EXPEDIENTE = id,
-                            NOMBRE_DOCUMENTO = archivo.FileName, // o el nombre "amigable"
-                            TIPO_DOCUMENTO = tipoDocumento,
-                            RUTA = "/UploadedFiles/Expedientes/" + nombreArchivo,
-                            FECHA_CARGA = DateTime.Now
-                        };
-
-                        context.DOCUMENTO_EXPEDIENTE.Add(doc);
-                        context.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        ViewBag.Error = "Error al subir documento: " + ex.Message;
-                    }
+                    Directory.CreateDirectory(carpeta);
                 }
-            }
 
-            return RedirectToAction("DetalleExpediente", new { id = id });
+                string rutaFisica = Path.Combine(carpeta, nombreArchivo);
+                archivo.SaveAs(rutaFisica);
+
+                using (var context = new LithoManagerEntities())
+                {
+                    var doc = new DOCUMENTO_EXPEDIENTE
+                    {
+                        ID_EXPEDIENTE = id,
+                        NOMBRE_DOCUMENTO = Path.GetFileNameWithoutExtension(archivo.FileName),
+                        TIPO_DOCUMENTO = tipoDocumento,
+                        RUTA = "/UploadedFiles/Expedientes/" + nombreArchivo,
+                        FECHA_CARGA = DateTime.Now
+                    };
+
+                    context.DOCUMENTO_EXPEDIENTE.Add(doc);
+                    context.SaveChanges();
+                }
+
+                TempData["MensajeExito"] = "Documento cargado correctamente.";
+                return RedirectToAction("DetalleExpediente", new { id });
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error al subir documento: " + ex.Message;
+                ViewBag.IdExpediente = id;
+                return View();
+            }
         }
 
-        // GET: Expedientes/DescargarDocumento/10
-        public FileResult DescargarDocumento(int idDocumento)
-        {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                // Podrías verificar si es el dueño del expediente, etc.
-                // Retornamos null o un FileNotFound si no hay permiso
-            }
 
+        [HttpGet]
+        public ActionResult DescargarDocumento(int idDocumento)
+        {
             using (var context = new LithoManagerEntities())
             {
                 var doc = context.DOCUMENTO_EXPEDIENTE.Find(idDocumento);
-                if (doc == null)
+
+                if (doc == null || string.IsNullOrEmpty(doc.RUTA))
                 {
-                    // Manejar error
-                    return null;
+                    TempData["Error"] = "Documento no encontrado.";
+                    return RedirectToAction("IndexExpedientes");
                 }
 
                 string rutaFisica = Server.MapPath(doc.RUTA);
+
+                if (!System.IO.File.Exists(rutaFisica))
+                {
+                    TempData["Error"] = "El archivo físico no se encuentra en el servidor.";
+                    return RedirectToAction("IndexExpedientes");
+                }
+
                 string contentType = MimeMapping.GetMimeMapping(rutaFisica);
-                // Nombre de descarga
-                string nombreDescarga = doc.NOMBRE_DOCUMENTO;
+                string nombreDescarga = doc.NOMBRE_DOCUMENTO + Path.GetExtension(rutaFisica);
 
                 return File(rutaFisica, contentType, nombreDescarga);
             }
         }
 
 
-        // GET: Expedientes/EliminarExpediente/5
+
         [HttpGet]
         public ActionResult EliminarExpediente(int id)
         {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             using (var context = new LithoManagerEntities())
             {
-                var exp = context.EXPEDIENTE.Find(id);
-                if (exp == null)
+                var expediente = context.EXPEDIENTE
+                    .Include(e => e.USUARIO)
+                    .FirstOrDefault(e => e.ID_EXPEDIENTE == id);
+
+                if (expediente == null)
                 {
                     return HttpNotFound();
                 }
-                return View(exp); // Vista de confirmación: EliminarExpediente.cshtml
+
+                var model = new tExpediente
+                {
+                    idExpediente = expediente.ID_EXPEDIENTE,
+                    nombreExpediente = expediente.NOMBRE_EXPEDIENTE,
+                    fechaCreacion = expediente.FECHA_CREACION
+                };
+
+                return View(model); 
             }
         }
 
-        // POST: Expedientes/EliminarExpedienteConfirmed/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult EliminarExpedienteConfirmed(int id)
         {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             using (var context = new LithoManagerEntities())
             {
-                var exp = context.EXPEDIENTE.Find(id);
-                if (exp == null)
+                var expediente = context.EXPEDIENTE
+                    .Include("DOCUMENTO_EXPEDIENTE")
+                    .FirstOrDefault(e => e.ID_EXPEDIENTE == id);
+
+                if (expediente == null)
                 {
-                    return HttpNotFound();
+                    TempData["Error"] = "Expediente no encontrado.";
+                    return RedirectToAction("IndexExpedientes");
                 }
 
-                // Opcional: Si tienes documentos asociados y no se elimina en cascada, deberás eliminarlos aquí.
-                context.EXPEDIENTE.Remove(exp);
+                // Eliminar documentos asociados si existen
+                var documentos = context.DOCUMENTO_EXPEDIENTE
+                    .Where(d => d.ID_EXPEDIENTE == id)
+                    .ToList();
+
+                foreach (var doc in documentos)
+                {
+
+                    string rutaFisica = Server.MapPath(doc.RUTA);
+                    if (System.IO.File.Exists(rutaFisica))
+                    {
+                        System.IO.File.Delete(rutaFisica);
+                    }
+
+                    context.DOCUMENTO_EXPEDIENTE.Remove(doc);
+                }
+
+                context.EXPEDIENTE.Remove(expediente);
                 context.SaveChanges();
+
+                TempData["MensajeExito"] = "Expediente y sus documentos eliminados correctamente.";
                 return RedirectToAction("IndexExpedientes");
             }
         }
 
-
-        // GET: Expedientes/EditarDocumento/10
         [HttpGet]
         public ActionResult EditarDocumento(int idDocumento)
         {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             using (var context = new LithoManagerEntities())
             {
                 var doc = context.DOCUMENTO_EXPEDIENTE.Find(idDocumento);
@@ -298,115 +319,99 @@ namespace MasterLitho.Controllers
                 {
                     return HttpNotFound();
                 }
-                return View(doc);
+
+                var modelo = new tDocumentoExpediente
+                {
+                    idDocumento = doc.ID_DOCUMENTO,
+                    idExpediente = doc.ID_EXPEDIENTE,
+                    nombreDocumento = doc.NOMBRE_DOCUMENTO,
+                    tipoDocumento = doc.TIPO_DOCUMENTO,
+                    ruta = doc.RUTA,
+                    fechaCarga = doc.FECHA_CARGA,
+                    fechaActualizacion = doc.FECHA_ACTUALIZACION
+                };
+
+                return View(modelo);
             }
         }
 
-        // POST: Expedientes/EditarDocumento/10
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditarDocumento(DOCUMENTO_EXPEDIENTE model, HttpPostedFileBase nuevoArchivo)
-        {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                return RedirectToAction("Index", "Home");
-            }
 
+        [HttpPost]
+        public ActionResult EditarDocumento(tDocumentoExpediente model, HttpPostedFileBase nuevoArchivo)
+        {
             using (var context = new LithoManagerEntities())
             {
-                var doc = context.DOCUMENTO_EXPEDIENTE.Find(model.ID_DOCUMENTO);
+                var doc = context.DOCUMENTO_EXPEDIENTE.Find(model.idDocumento);
                 if (doc == null)
                 {
-                    return HttpNotFound();
+                    TempData["Error"] = "Documento no encontrado.";
+                    return RedirectToAction("IndexExpedientes");
                 }
 
-                // Actualizamos campos
-                doc.TIPO_DOCUMENTO = model.TIPO_DOCUMENTO ?? doc.TIPO_DOCUMENTO;
+                doc.TIPO_DOCUMENTO = model.tipoDocumento ?? doc.TIPO_DOCUMENTO;
 
                 if (nuevoArchivo != null && nuevoArchivo.ContentLength > 0)
                 {
-                    // Eliminar el archivo anterior
-                    string oldPath = Server.MapPath(doc.RUTA);
-                    if (System.IO.File.Exists(oldPath))
-                    {
-                        System.IO.File.Delete(oldPath);
-                    }
+                    string rutaAntigua = Server.MapPath(doc.RUTA);
+                    if (System.IO.File.Exists(rutaAntigua))
+                        System.IO.File.Delete(rutaAntigua);
 
-                    // Guardar nuevo archivo
                     string extension = Path.GetExtension(nuevoArchivo.FileName);
                     string nuevoNombre = Guid.NewGuid() + extension;
                     string carpeta = Server.MapPath("~/UploadedFiles/Expedientes/");
-                    string nuevaRutaFisica = Path.Combine(carpeta, nuevoNombre);
-                    nuevoArchivo.SaveAs(nuevaRutaFisica);
+                    string nuevaRuta = Path.Combine(carpeta, nuevoNombre);
 
-                    // Actualizar la ruta y nombre
+                    if (!Directory.Exists(carpeta))
+                        Directory.CreateDirectory(carpeta);
+
+                    nuevoArchivo.SaveAs(nuevaRuta);
                     doc.NOMBRE_DOCUMENTO = nuevoArchivo.FileName;
                     doc.RUTA = "/UploadedFiles/Expedientes/" + nuevoNombre;
                 }
 
                 doc.FECHA_ACTUALIZACION = DateTime.Now;
-
                 context.SaveChanges();
+
+                TempData["MensajeExito"] = "Documento actualizado correctamente.";
                 return RedirectToAction("DetalleExpediente", new { id = doc.ID_EXPEDIENTE });
             }
         }
 
-        // GET: Expedientes/EliminarDocumento/10
+
         [HttpGet]
         public ActionResult EliminarDocumento(int idDocumento)
         {
-            int rolUsuario = ObtenerRolActual();
-            if (rolUsuario != 1)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             using (var context = new LithoManagerEntities())
             {
                 var doc = context.DOCUMENTO_EXPEDIENTE.Find(idDocumento);
                 if (doc == null)
                 {
-                    return HttpNotFound();
+                    TempData["Error"] = "Documento no encontrado.";
+                    return RedirectToAction("IndexExpedientes");
                 }
 
-                // Borrar el archivo físico
-                string rutaFisica = Server.MapPath(doc.RUTA);
-                if (System.IO.File.Exists(rutaFisica))
+                try
                 {
-                    System.IO.File.Delete(rutaFisica);
+                    string rutaFisica = Server.MapPath(doc.RUTA);
+                    if (System.IO.File.Exists(rutaFisica))
+                    {
+                        System.IO.File.Delete(rutaFisica);
+                    }
+                    int idExpediente = doc.ID_EXPEDIENTE;
+
+                    context.DOCUMENTO_EXPEDIENTE.Remove(doc);
+                    context.SaveChanges();
+
+                    TempData["MensajeExito"] = "Documento eliminado correctamente.";
+                    return RedirectToAction("DetalleExpediente", new { id = idExpediente });
                 }
-
-                // Borrar de la BD
-                context.DOCUMENTO_EXPEDIENTE.Remove(doc);
-                context.SaveChanges();
-
-                return RedirectToAction("DetalleExpediente", new { id = doc.ID_EXPEDIENTE });
+                catch (Exception ex)
+                {
+                    TempData["Error"] = "Ocurrió un error al eliminar el documento: " + ex.Message;
+                    return RedirectToAction("DetalleExpediente", new { id = doc.ID_EXPEDIENTE });
+                }
             }
         }
-
-        // =============== MÉTODO DE APOYO (ROLE) ===============
-        public int ObtenerRolActual()
-        {
-            // Ajusta a tu lógica real de sesión
-            // Por ejemplo, Session["ID_USUARIO"] 
-            if (Session["ID_USUARIO"] == null)
-                return 0;
-
-            int idUsuario = Convert.ToInt32(Session["ID_USUARIO"]);
-
-            using (var context = new LithoManagerEntities())
-            {
-                var usuario = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == idUsuario);
-                if (usuario != null)
-                {
-                    return usuario.ID_ROL;
-                }
-            }
-            return 0;
-        }
-
-
 
         [HttpGet]
         public ActionResult EnviarDocCorreo(int idUsuario)
@@ -414,97 +419,112 @@ namespace MasterLitho.Controllers
             using (var context = new LithoManagerEntities())
             {
                 var usuario = context.USUARIO.Find(idUsuario);
-                if (usuario == null) return RedirectToAction("IndexExpedientes");
+                if (usuario == null)
+                {
+                    TempData["Error"] = "Usuario no encontrado.";
+                    return RedirectToAction("IndexExpedientes");
+                }
 
-                return View("EnviarDocCorreo", usuario); 
+                var modelo = new tEnvioDocumento
+                {
+                    idUsuario = usuario.ID_USUARIO,
+                    correoUsuario = usuario.CORREO_USUARIO
+                };
+
+                return View(modelo);
             }
         }
 
-
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EnviarDocCorreo(int idUsuario, string titulo, string descripcion, HttpPostedFileBase archivo)
+        public ActionResult EnviarDocCorreo(tEnvioDocumento modelo, HttpPostedFileBase archivo)
         {
             using (var context = new LithoManagerEntities())
             {
-                var usuario = context.USUARIO.Find(idUsuario);
-                if (usuario == null) return RedirectToAction("IndexExpedientes");
+                var usuario = context.USUARIO.Find(modelo.idUsuario);
+                if (usuario == null)
+                {
+                    TempData["Error"] = "Usuario no encontrado.";
+                    return RedirectToAction("IndexExpedientes");
+                }
+
+                if (archivo == null || archivo.ContentLength <= 0)
+                {
+                    ModelState.AddModelError("", "Debe seleccionar un archivo válido.");
+                    modelo.correoUsuario = usuario.CORREO_USUARIO;
+                    return View(modelo);
+                }
 
                 try
                 {
-                    if (archivo != null && archivo.ContentLength > 0)
-                    {
-                        string carpetaDestino = Server.MapPath("~/UploadedFiles/Expedientes/");
-                        if (!Directory.Exists(carpetaDestino))
-                        {
-                            Directory.CreateDirectory(carpetaDestino);
-                        }
+                    string extension = Path.GetExtension(archivo.FileName);
+                    string nombreUnico = Guid.NewGuid() + extension;
 
-                        string rutaArchivo = Path.Combine(carpetaDestino, archivo.FileName);
-                        archivo.SaveAs(rutaArchivo);
+                    string carpeta = Server.MapPath("~/UploadedFiles/Expedientes/");
+                    if (!Directory.Exists(carpeta)) Directory.CreateDirectory(carpeta);
 
-                        string urlArchivo = Url.Action("DescargarArchivo", "Expedientes", new { nombreArchivo = archivo.FileName }, Request.Url.Scheme);
+                    string rutaFisica = Path.Combine(carpeta, nombreUnico);
+                    archivo.SaveAs(rutaFisica);
 
-                        string rutaCss = Server.MapPath("~/Styles/css/EstilosCorreos.css");
-                        string estilosCss = System.IO.File.Exists(rutaCss) ? System.IO.File.ReadAllText(rutaCss) : "";
+                    string urlArchivo = Url.Action("DescargarArchivo", "Expedientes", new { nombreArchivo = nombreUnico }, Request.Url.Scheme);
+                    string estilosCss = System.IO.File.Exists(Server.MapPath("~/Styles/css/EstilosCorreos.css"))
+                        ? System.IO.File.ReadAllText(Server.MapPath("~/Styles/css/EstilosCorreos.css"))
+                        : "";
 
-                        string mensajeHtml = $@"
-                        <!DOCTYPE html>
-                        <html>
-                        <head>
-                         <meta charset='UTF-8'>
-                         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                         <style>
-                          {estilosCss} /* Se inserta el CSS aquí */
-                        </style>
-                        </head>
-                        <body>
-                         <table>
-                         <tr>
-                         <td>
-                        <h1>📎 Nuevo Documento Recibido por parte del Administrador</h1>
-                         <p>{descripcion}</p>
-                        <p><strong>Documento adjunto:</strong> {archivo.FileName}</p>
-                         <a href='{urlArchivo}' download='{archivo.FileName}'>📥 Descargar archivo</a>
-                         </td>
-                        </tr>
-                        </table>
-                        </body>
-                        </html>";
+                    string mensajeHtml = ConstruirHtmlCorreo(modelo.descripcion, archivo.FileName, urlArchivo, estilosCss);
 
-                        _correoService.EnviarCorreo(usuario.CORREO_USUARIO, titulo, mensajeHtml);
-
-                        TempData["Mensaje"] = "Correo enviado correctamente.";
-                    }
-                    else
-                    {
-                        TempData["Error"] = "Debe seleccionar un archivo.";
-                    }
+                    _correoService.EnviarCorreo(usuario.CORREO_USUARIO, modelo.titulo, mensajeHtml);
+                    TempData["Mensaje"] = "📧 Correo enviado correctamente.";
 
                     return RedirectToAction("IndexExpedientes");
                 }
                 catch (Exception ex)
                 {
-                    ViewBag.Error = "Error al enviar el correo: " + ex.Message;
-                    usuario = context.USUARIO.Find(idUsuario); 
-                    return View("EnviarDocCorreo", usuario);
+                    TempData["Error"] = "Error al enviar el correo: " + ex.Message;
+                    modelo.correoUsuario = usuario.CORREO_USUARIO;
+                    return View(modelo);
                 }
             }
         }
 
 
-        public ActionResult DescargarArchivo(string nombreArchivo)
+        private string ConstruirHtmlCorreo(string descripcion, string nombreArchivo, string urlArchivo, string css)
         {
-            string rutaArchivo = Server.MapPath("~/UploadedFiles/Expedientes/" + nombreArchivo);
-
-            if (!System.IO.File.Exists(rutaArchivo))
-            {
-                return HttpNotFound("Archivo no encontrado.");
-            }
-
-            return File(rutaArchivo, "application/octet-stream", nombreArchivo);
+            return $@"
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <style>{css}</style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <h1>📎 Nuevo Documento Recibido</h1>
+                    <p>{descripcion}</p>
+                    <p><strong>Documento:</strong> {nombreArchivo}</p>
+                    <a href='{urlArchivo}' download='{nombreArchivo}'>📥 Descargar archivo</a>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>";
         }
+
+          public ActionResult DescargarArchivo(string nombreArchivo)
+        {
+            if (string.IsNullOrEmpty(nombreArchivo))
+                return HttpNotFound("Nombre de archivo inválido.");
+
+            string rutaArchivo = Server.MapPath("~/UploadedFiles/Expedientes/" + nombreArchivo);
+            if (!System.IO.File.Exists(rutaArchivo))
+                return HttpNotFound("Archivo no encontrado.");
+
+            string tipoContenido = MimeMapping.GetMimeMapping(rutaArchivo);
+            return File(rutaArchivo, tipoContenido, nombreArchivo);
+        }
+
 
 
 

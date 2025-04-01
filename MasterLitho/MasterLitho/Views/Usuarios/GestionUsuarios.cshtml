@@ -2,14 +2,14 @@
     <div id="content">
         <h1 class="my-4">Gestión de usuarios</h1>
         <div class="container mb-4">
-            <div class="d-flex justify-content-start">
+            <div class="d-flex justify-content-end mb-3">
                 <!-- Botón para agregar usuario -->
-                <a href="@Url.Action("RegistrarUsuario", "Usuarios")" class="btn btn-success btn-lg me-3">
-                    <i class="fas fa-plus-circle" style="font-size: 1.4em;"></i> Agregar Usuario
+                <a href="@Url.Action("RegistrarUsuario", "Usuarios")" class="btn btn-success btn-lg rounded-pill shadow-sm me-2">
+                    <i class="fas fa-plus-circle me-1"></i> Agregar Usuario
                 </a>
 
                 <!-- Botón para ver empleados -->
-                <a href="@Url.Action("ConsultarEmpleados", "Empleado")" class="btn btn-info btn-lg">
+                <a href="@Url.Action("ConsultarEmpleados", "Empleado")" class="btn btn-info btn-lg rounded-pill shadow-sm">
                     <i class="fas fa-users" style="font-size: 1.4em;"></i> Ver Empleados
                 </a>
             </div>
@@ -42,16 +42,18 @@
                                         <td>@item.NombreRol</td>
                                         <td>@item.estado</td>
                                         <td>
-                                            <a href="@Url.Action("ActualizarUsuario", "Usuarios", new {q = item.idUsuario})" class="btn btn-primary btn-sm">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
+                                            <div class="btn-group" role="group">
+                                                <a href="@Url.Action("ActualizarUsuario", "Usuarios", new {q = item.idUsuario})" class="btn btn-primary btn">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
 
-                                            <button type="button" class="btn btn-danger btn-sm abrirModal"
-                                                    data-id="@item.idUsuario"
-                                                    data-name="@item.nombreUsuario"
-                                                    data-bs-toggle="modal" data-bs-target="#modalUsuarios">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
+                                                <button type="button" class="btn btn-danger btn abrirModal"
+                                                        data-id="@item.idUsuario"
+                                                        data-name="@item.nombreUsuario"
+                                                        data-bs-toggle="modal" data-bs-target="#modalUsuarios">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                                </div>
                                         </td>
                                     </tr>
                                 }

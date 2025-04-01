@@ -260,14 +260,16 @@ namespace MasterLitho.Controllers
         #endregion
 
         #region FormulariosAsignados
-        public ActionResult FormulariosAsignados()
+        public ActionResult FormulariosAsignados(string estado = "todos")
         {
             int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
 
             using (var context = new LithoManagerEntities())
             {
-                var formularios = context.FORMULARIO_EMPLEADO
-                    .Where(fe => fe.ID_EMPLEADO == idUsuario)
+
+                var query = context.FORMULARIO_EMPLEADO
+                    .Where(fe => fe.ID_EMPLEADO == idUsuario);
+                var formularioList = query
                     .Select(fe => new tFormulariosAsignados
                     {
                         idAsignacion = fe.ID,
@@ -276,12 +278,27 @@ namespace MasterLitho.Controllers
                         fechaAsignacion = fe.FECHA_ASIGNACION.Value,
                         yaRespondido = context.RESPUESTAS_FORMULARIO
                             .Any(r => r.ID_FORMULARIO == fe.ID_FORMULARIO && r.ID_EMPLEADO == idUsuario)
-                    })
+                    });
+
+                if (estado == "pendiente")
+                {
+                    formularioList = formularioList.Where(f => !f.yaRespondido);
+                }
+                else if (estado == "respondido")
+                {
+                    formularioList = formularioList.Where(f => f.yaRespondido);
+                }
+
+                var listaFinal = formularioList
+                    .OrderByDescending(f => f.fechaAsignacion)
                     .ToList();
 
-                return View(formularios);
+                ViewBag.EstadoActual = estado;
+
+                return View(listaFinal);
             }
         }
+
         #endregion
 
         #region ConsultarDetallesFormulario

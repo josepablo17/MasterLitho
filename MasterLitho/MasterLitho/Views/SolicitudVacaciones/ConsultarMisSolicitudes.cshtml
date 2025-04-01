@@ -9,6 +9,19 @@
         <i class="fas fa-calendar-check me-2 text-primary"></i> Mis Solicitudes de Vacaciones
     </h2>
 
+    <form method="get" action="@Url.Action("ConsultarMisSolicitudes", "SolicitudVacaciones")" class="row mb-4">
+        <div class="col-md-4 offset-md-4">
+            <label for="estado" class="form-label">Filtrar por estado:</label>
+            <select name="estado" id="estado" class="form-select" onchange="this.form.submit()">
+                <option value="todos" @(ViewBag.EstadoActual == "todos" ? "selected" : "")>Todos</option>
+                <option value="pendiente" @(ViewBag.EstadoActual == "pendiente" ? "selected" : "")>Pendientes</option>
+                <option value="aceptado" @(ViewBag.EstadoActual == "aceptado" ? "selected" : "")>Aceptados</option>
+                <option value="rechazado" @(ViewBag.EstadoActual == "rechazado" ? "selected" : "")>Rechazados</option>
+            </select>
+        </div>
+    </form>
+
+
     @if (Model != null && Model.Any())
     {
         <div class="row g-4">

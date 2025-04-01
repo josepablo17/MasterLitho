@@ -306,5 +306,59 @@ namespace MasterLitho.Controllers
 
         #endregion
 
+        #region MisQuejasYReportes
+        [HttpGet]
+        public ActionResult MisQuejasYReportes()
+        {
+            int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+
+            using (var context = new LithoManagerEntities())
+            {
+                var datos = context.QUEJAS_REPORTES
+                    .Where(q => q.ID_EMPLEADO == idUsuario)
+                    .ToList();
+
+                var reportes = (from item in datos
+                                where item.TIPO_QUEJA.DESCRIPCION == "Reporte"
+                                select new tQuejasReportes
+                                {
+                                    idQueja = item.ID_QUEJA,
+                                    idEmpleado = item.ID_EMPLEADO,
+                                    nombreEmpleado = item.EMPLEADO.USUARIO.NOMBRE_USUARIO,
+                                    fechaEnvio = item.FECHA_ENVIO,
+                                    descripcion = item.DESCRIPCION,
+                                    comentarioAdmin = item.COMENTARIO_ADMIN,
+                                    estado = item.ID_ESTADO_QUEJA,
+                                    nombreEstado = item.ESTADO_QUEJA.TIPO_ESTADO,
+                                    idTipo = item.ID_TIPO ?? 0
+                                }).ToList();
+
+                var quejas = (from item in datos
+                              where item.TIPO_QUEJA.DESCRIPCION == "Queja"
+                              select new tQuejasReportes
+                              {
+                                  idQueja = item.ID_QUEJA,
+                                  idEmpleado = item.ID_EMPLEADO,
+                                  nombreEmpleado = item.EMPLEADO.USUARIO.NOMBRE_USUARIO,
+                                  fechaEnvio = item.FECHA_ENVIO,
+                                  descripcion = item.DESCRIPCION,
+                                  comentarioAdmin = item.COMENTARIO_ADMIN,
+                                  estado = item.ID_ESTADO_QUEJA,
+                                  nombreEstado = item.ESTADO_QUEJA.TIPO_ESTADO,
+                                  idTipo = item.ID_TIPO ?? 0
+                              }).ToList();
+
+                var viewModel = new tQuejasReportes
+                {
+                    Reportes = reportes,
+                    Quejas = quejas
+                };
+
+                return View(viewModel);
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -1,8 +1,4 @@
-﻿
-.dataTable thead th {
-    background-color: #092cfe;
-    color: white !important;
+﻿.custom-datatable thead {
+    background-color: #455A64;
+    color: white;
 }
-
-
-

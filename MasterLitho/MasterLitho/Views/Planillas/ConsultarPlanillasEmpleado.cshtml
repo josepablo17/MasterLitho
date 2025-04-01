@@ -10,6 +10,31 @@
         <i class="fas fa-money-check-alt text-primary me-2"></i> Mis Planillas
     </h2>
 
+    <form method="get" action="@Url.Action("ConsultarPlanillasEmpleado", "Planillas")" class="row g-3 mb-4">
+        <div class="col-md-5">
+            <label for="fechaInicio" class="form-label">Desde:</label>
+            <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" value="@Request["fechaInicio"]" />
+        </div>
+        <div class="col-md-5">
+            <label for="fechaFin" class="form-label">Hasta:</label>
+            <input type="date" name="fechaFin" id="fechaFin" class="form-control" value="@Request["fechaFin"]" />
+        </div>
+
+        <div class="col-md-1 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-search me-1"></i>
+            </button>
+        </div>
+
+        <div class="col-md-1 d-flex align-items-end">
+            <a href="@Url.Action("ConsultarPlanillasEmpleado", "Planillas")" class="btn btn-secondary w-100" title="Limpiar filtros">
+                <i class="fas fa-times me-1"></i>
+            </a>
+        </div>
+    </form>
+
+
+
     @if (Model != null && Model.Any())
     {
         <div class="row g-4">

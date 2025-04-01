@@ -10,6 +10,14 @@
     <div id="content">
         <h1 class="my-4">Gestión de noticias</h1>
 
+        <div class="d-flex justify-content-end mb-3">
+            <a href="@Url.Action("CrearNoticia", "Noticias")"
+               class="btn btn-success btn-lg rounded-pill shadow-sm">
+                <i class="fas fa-plus-circle me-1"></i> Crear nueva noticia
+            </a>
+        </div>
+
+
         <div class="container-fluid">
             <div class="card shadow-lg rounded">
                 <div class="card-body">
@@ -42,12 +50,19 @@
                                             }
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="@Url.Action("EditarNoticia","Noticias", new { id = noticia.ID_NOTICIA })">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="@Url.Action("EliminarNoticia","Noticias", new { id = noticia.ID_NOTICIA })">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
+                                            <div class="btn-group" role="group">
+                                                <a class="btn btn-primary"
+                                                   href="@Url.Action("EditarNoticia", "Noticias", new { id = noticia.ID_NOTICIA })"
+                                                   data-bs-toggle="tooltip" title="Editar Noticia">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+
+                                                <a class="btn btn-danger"
+                                                   href="@Url.Action("EliminarNoticia", "Noticias", new { id = noticia.ID_NOTICIA })"
+                                                   data-bs-toggle="tooltip" title="Eliminar Noticia">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 }
@@ -55,10 +70,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-
-            <div class="d-flex justify-content-between mt-3">
-                <a href="@Url.Action("CrearNoticia", "Noticias")" class="btn btn-outline-primary">+ Crear noticia</a>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-﻿@model MasterLitho.Models.EXPEDIENTE
+﻿@model MasterLitho.Models.tExpediente
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -16,14 +16,16 @@
                 @Html.AntiForgeryToken()
 
                 <div class="mb-3">
-                    <label for="ID_USUARIO" class="form-label">Seleccione el Usuario</label>
-                    @Html.DropDownList("ID_USUARIO", ViewBag.Usuarios as List<SelectListItem>, "Seleccione un usuario", new { @class = "form-control", required = "required" })
+                    <label class="form-label">Seleccione el Usuario</label>
+                    @Html.DropDownListFor(m => m.idUsuario,
+                        ViewBag.ListaEmpleados as List<SelectListItem>,
+                        new { @class = "form-control", required = "required" })
                 </div>
 
-
                 <div class="mb-3">
-                    <label for="NOMBRE_EXPEDIENTE" class="form-label">Nombre del Expediente</label>
-                    <input type="text" name="NOMBRE_EXPEDIENTE" class="form-control" placeholder="Ingrese un nombre descriptivo para el expediente" required />
+                    <label class="form-label">Nombre del Expediente</label>
+                    @Html.TextBoxFor(m => m.nombreExpediente,
+                        new { @class = "form-control", placeholder = "Ingrese un nombre descriptivo para el expediente", required = "required" })
                 </div>
 
                 <div class="text-end">

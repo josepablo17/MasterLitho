@@ -45,25 +45,41 @@ namespace MasterLitho.Controllers
 
         private decimal CalcularSalarioNeto(tPlanilla model)
         {
-            // Valor de la hora ordinaria según ley: salario mensual ÷ 30 días ÷ 8 horas
-            decimal horaOrdinaria = model.salarioBruto / 30m / 8m;
+            decimal salarioBruto = model.salarioBruto;
 
-            // Valor de la hora extra (150% de la hora ordinaria)
+            // Calcular Seguro Social (10.5%)
+            decimal aporteSeguridadSocial = salarioBruto * 0.105m;
+
+            decimal impuestoRenta = CalcularImpuestoRenta(salarioBruto);
+
+            // Hora ordinaria según ley
+            decimal horaOrdinaria = salarioBruto / 30m / 8m;
+
+            // Hora extra al 150%
             decimal tarifaHoraExtra = horaOrdinaria * 1.5m;
-
             int horasExtra = model.horasExtra ?? 0;
-
             decimal montoHorasExtras = horasExtra * tarifaHoraExtra;
 
-            decimal salarioNeto = model.salarioBruto
-                                - model.deducciones
-                                - model.impuestos
-                                - model.aporteSeguridadSocial
-                                + model.bonos
-                                + model.otrosBeneficios
-                                + montoHorasExtras;
+            // Salario neto
+            decimal salarioNeto = salarioBruto
+                - aporteSeguridadSocial
+                - impuestoRenta
+                - model.deducciones 
+                + model.bonos
+                + model.otrosBeneficios
+                + montoHorasExtras;
 
             return salarioNeto;
+        }
+
+        private decimal CalcularImpuestoRenta(decimal salario)
+        {
+            if (salario <= 941000)
+                return 0m;
+            else if (salario <= 1370000)
+                return (salario - 941000) * 0.10m;
+            else
+                return ((1370000 - 941000) * 0.10m) + ((salario - 1370000) * 0.15m);
         }
 
 
@@ -96,13 +112,26 @@ namespace MasterLitho.Controllers
 
         #region ConsultarPlanillasEmpleado
         [HttpGet]
-        public ActionResult ConsultarPlanillasEmpleado()
+        public ActionResult ConsultarPlanillasEmpleado(DateTime? fechaInicio, DateTime? fechaFin)
         {
             int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.PLANILLA.Where(p => p.ID_EMPLEADO == idUsuario)
-                    .ToList();
+                var query = context.PLANILLA.Where(p => p.ID_EMPLEADO == idUsuario);
+
+                if (fechaInicio.HasValue)
+                {
+                    query = query.Where(p => p.FECHA_PAGO >= fechaInicio.Value);
+                }
+
+                if (fechaFin.HasValue)
+                {
+                    query = query.Where(p => p.FECHA_PAGO <= fechaFin.Value);
+                }
+
+                var datos = query.OrderByDescending(p => p.FECHA_PAGO).ToList();
+
                 var planillas = new List<tPlanilla>();
                 foreach (var item in datos)
                 {
@@ -118,9 +147,11 @@ namespace MasterLitho.Controllers
                         salarioNeto = item.SALARIO_NETO
                     });
                 }
+
                 return View(planillas);
             }
         }
+
         #endregion
 
         #region PrintDetallePlanilla
@@ -178,6 +209,11 @@ namespace MasterLitho.Controllers
 
                     int horasExtra = model.horasExtra ?? 0;
 
+                    // Recalcular valores internos
+                    decimal salarioBruto = model.salarioBruto;
+                    decimal aporteSeguridadSocial = salarioBruto * 0.105m;
+                    decimal impuestoRenta = CalcularImpuestoRenta(salarioBruto);
+
                     var nuevaPlanilla = new PLANILLA
                     {
                         ID_EMPLEADO = model.idEmpleado,
@@ -186,13 +222,13 @@ namespace MasterLitho.Controllers
                         BONOS = model.bonos,
                         DIAS_VACACIONES_TOMADOS = model.diasVacacionesTomados,
                         OTROS_BENEFICIOS = model.otrosBeneficios,
-                        APORTE_SEGURIDAD_SOCIAL = model.aporteSeguridadSocial,
+                        APORTE_SEGURIDAD_SOCIAL = aporteSeguridadSocial,
                         HORAS_EXTRAS = horasExtra,
-                        IMPUESTOS = model.impuestos,
+                        IMPUESTOS = impuestoRenta,
                         PERIODO_INICIO = model.periodoInicio,
                         PERIODO_FIN = model.periodoFin,
                         FECHA_CREACION = DateTime.Now,
-                        SALARIO_NETO = model.salarioNeto // 👈 ya fue calculado
+                        SALARIO_NETO = model.salarioNeto
                     };
 
                     context.PLANILLA.Add(nuevaPlanilla);
@@ -209,6 +245,7 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+
 
         #endregion
 
