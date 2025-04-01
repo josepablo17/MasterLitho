@@ -19,6 +19,8 @@ namespace MasterLitho.Models
         {
             this.EMPLEADO = new HashSet<EMPLEADO>();
             this.EXPEDIENTE = new HashSet<EXPEDIENTE>();
+            this.Mensajes = new HashSet<Mensajes>();
+            this.Mensajes1 = new HashSet<Mensajes>();
             this.NOTICIAS = new HashSet<NOTICIAS>();
             this.NOTICIAS1 = new HashSet<NOTICIAS>();
             this.NOTICIAS2 = new HashSet<NOTICIAS>();
@@ -42,6 +44,10 @@ namespace MasterLitho.Models
         public virtual ICollection<EMPLEADO> EMPLEADO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EXPEDIENTE> EXPEDIENTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mensajes> Mensajes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mensajes> Mensajes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NOTICIAS> NOTICIAS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

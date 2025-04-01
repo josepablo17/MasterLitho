@@ -84,7 +84,7 @@ namespace MasterLitho.Controllers
                           Emisor = m.Emisor,
                           Receptor = m.Receptor,
                           Mensaje = m.Mensaje,
-                          Hora = m.FechaEnvio.ToString("hh:mm tt") // Ahora puedes usar ToString aquí
+                          Hora = m.FechaEnvio.ToString("hh:mm tt") 
                       })
                       .ToList();
 
@@ -96,6 +96,28 @@ namespace MasterLitho.Controllers
 
 
 
+        [HttpPost]
+        public ActionResult EliminarMensajes(string roomName)
+        {
+
+            using (var context = new LithoManagerEntities())
+            {
+               
+                var mensajes = context.Mensajes
+                      .Where(m => m.roomName == roomName )
+                      .ToList();
+
+                if (!mensajes.Any()) 
+                {
+                    return Json(new { success = false, message = "No se han encontrado mensajes." });
+                }
+
+
+                context.Mensajes.RemoveRange(mensajes);
+                context.SaveChanges();
+                return Json(new { success = true, message = "Mensajes eliminados correctamente." });
+            }
+        }
 
 
         public List<USUARIO> ObtenerUsuarios()

@@ -121,8 +121,8 @@
     <Property Name="Mensaje" Type="text" Nullable="false" />
     <Property Name="FechaEnvio" Type="datetime" Nullable="false" />
     <Property Name="Leido" Type="bit" Nullable="false" />
-    <Property Name="UsuarioEmisor" Type="int" Nullable="false" />
-    <Property Name="UsuarioReceptor" Type="int" Nullable="false" />
+    <Property Name="UsuarioEmisor" Type="int" />
+    <Property Name="UsuarioReceptor" Type="int" />
     <Property Name="roomName" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="NOTICIAS">
@@ -524,6 +524,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mensajes_MensajesReceptor">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="Mensajes">
+        <PropertyRef Name="UsuarioReceptor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mensajes_USUARIOEmisor">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="Mensajes">
+        <PropertyRef Name="UsuarioEmisor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_NOTICIAS_ID_ADMINISTRADOR">
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
     <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
@@ -666,6 +690,14 @@
     <AssociationSet Name="FK_EXPEDIENTE_USUARIO" Association="Self.FK_EXPEDIENTE_USUARIO">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mensajes_MensajesReceptor" Association="Self.FK_Mensajes_MensajesReceptor">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="Mensajes" EntitySet="Mensajes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mensajes_USUARIOEmisor" Association="Self.FK_Mensajes_USUARIOEmisor">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="Mensajes" EntitySet="Mensajes" />
     </AssociationSet>
     <AssociationSet Name="FK_NOTICIAS_ID_ADMINISTRADOR" Association="Self.FK_NOTICIAS_ID_ADMINISTRADOR">
       <End Role="USUARIO" EntitySet="USUARIO" />
