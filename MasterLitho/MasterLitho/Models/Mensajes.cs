@@ -18,8 +18,8 @@ namespace MasterLitho.Models
         public string Mensaje { get; set; }
         public System.DateTime FechaEnvio { get; set; }
         public bool Leido { get; set; }
-        public int UsuarioEmisor { get; set; }
-        public int UsuarioReceptor { get; set; }
+        public Nullable<int> UsuarioEmisor { get; set; }
+        public Nullable<int> UsuarioReceptor { get; set; }
         public string roomName { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }

@@ -164,16 +164,15 @@
             margin-left: -10px
         }
 
-.chat .chat-history .my-message {
-    background: #efefef;
-    text-align: right;
-}
+    .chat .chat-history .other-message {
+        background: #e8f1f3;
+        text-align: right
+    }
 
-.chat .chat-history .other-message {
-    background: #e8f1f3;
-    text-align: left;
-}
-
+        .chat .chat-history .other-message:after {
+            border-bottom-color: #e8f1f3;
+            left: 93%
+        }
 
 .chat .chat-message {
     padding: 20px

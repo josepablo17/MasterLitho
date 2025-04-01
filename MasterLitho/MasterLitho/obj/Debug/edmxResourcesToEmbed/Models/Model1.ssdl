@@ -121,8 +121,8 @@
     <Property Name="Mensaje" Type="text" Nullable="false" />
     <Property Name="FechaEnvio" Type="datetime" Nullable="false" />
     <Property Name="Leido" Type="bit" Nullable="false" />
-    <Property Name="UsuarioEmisor" Type="int" Nullable="false" />
-    <Property Name="UsuarioReceptor" Type="int" Nullable="false" />
+    <Property Name="UsuarioEmisor" Type="int" />
+    <Property Name="UsuarioReceptor" Type="int" />
     <Property Name="roomName" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="NOTICIAS">
@@ -525,7 +525,11 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Mensajes_MensajesReceptor">
+<<<<<<< HEAD
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+=======
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+>>>>>>> origin/sebas
     <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIO">
@@ -537,7 +541,11 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Mensajes_USUARIOEmisor">
+<<<<<<< HEAD
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+=======
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+>>>>>>> origin/sebas
     <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIO">

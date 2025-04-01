@@ -77,14 +77,25 @@ namespace MasterLitho.Controllers
 
                     if (datos != null)
                     {
+                        bool cambiosRealizados = false;
+
                         if (datos.IDENTIFICACION != model.IDENTIFICACION)
+                        {
                             datos.IDENTIFICACION = model.IDENTIFICACION;
+                            cambiosRealizados = true;
+                        }
 
                         if (datos.NOMBRE_USUARIO != model.NOMBRE_USUARIO)
+                        {
                             datos.NOMBRE_USUARIO = model.NOMBRE_USUARIO;
+                            cambiosRealizados = true;
+                        }
 
                         if (datos.APELLIDO_USUARIO != model.APELLIDO_USUARIO)
+                        {
                             datos.APELLIDO_USUARIO = model.APELLIDO_USUARIO;
+                            cambiosRealizados = true;
+                        }
 
                         if (ImagenUsuario != null && ImagenUsuario.ContentLength > 0)
                         {
@@ -108,7 +119,7 @@ namespace MasterLitho.Controllers
 
                                 Console.WriteLine("Imagen guardada en: " + rutaCompleta);
                                 Session["IMAGEN_USUARIO"] = datos.IMAGEN_USUARIO;
-
+                                cambiosRealizados = true;
                             }
                             else
                             {
@@ -116,19 +127,26 @@ namespace MasterLitho.Controllers
                             }
                         }
 
-                        context.Entry(datos).State = System.Data.Entity.EntityState.Modified;
-
-                        int respuesta = context.SaveChanges();
-                        Console.WriteLine("Respuesta SaveChanges(): " + respuesta);
-
-                        if (respuesta > 0)
+                        if (cambiosRealizados)
                         {
-                            Session["NOMBRE_USUARIO"] = model.NOMBRE_USUARIO;
-                            return Json(new { success = true, message = "¡Se han realizado los cambios correctamente!" });
+                            context.Entry(datos).State = System.Data.Entity.EntityState.Modified;
+
+                            int respuesta = context.SaveChanges();
+                            Console.WriteLine("Respuesta SaveChanges(): " + respuesta);
+
+                            if (respuesta > 0)
+                            {
+                                Session["NOMBRE_USUARIO"] = model.NOMBRE_USUARIO;
+                                return Json(new { success = true, message = "¡Se han realizado los cambios correctamente!" });
+                            }
+                            else
+                            {
+                                return Json(new { success = false, message = "No se realizaron cambios. Verifique si los datos son diferentes." });
+                            }
                         }
                         else
                         {
-                            return Json(new { success = false, message = "No se realizaron cambios. Verifique si los datos son diferentes." });
+                            return Json(new { success = false, message = "No se realizaron cambios. Los datos son los mismos." });
                         }
                     }
                     else
@@ -288,28 +306,64 @@ namespace MasterLitho.Controllers
         {
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.USUARIO.Where(x => x.ID_USUARIO == modelUsuario.idUsuario).FirstOrDefault();
+                var datos = context.USUARIO.FirstOrDefault(x => x.ID_USUARIO == modelUsuario.idUsuario);
 
-                if (datos != null)
+                if (datos == null)
                 {
-                    var rolAnterior = datos.ID_ROL;
+                    ViewBag.MensajePantalla = "El usuario no se ha encontrado.";
+                    CargarRoles();
+                    return View(modelUsuario);
+                }
 
-                    datos.IDENTIFICACION = modelUsuario.identificacion;
-                    datos.NOMBRE_USUARIO = modelUsuario.nombreUsuario;
-                    datos.APELLIDO_USUARIO = modelUsuario.apellidoUsuario;
-                    datos.CORREO_USUARIO = modelUsuario.correoUsuario;
-                    datos.ID_ROL = modelUsuario.idRol;
+                bool cambiosRealizados = false;
+                var rolAnterior = datos.ID_ROL;
 
-                    var respuesta = context.SaveChanges();
+                if (datos.IDENTIFICACION != modelUsuario.identificacion)
+                {
+                    var empleadoExistente = context.USUARIO.FirstOrDefault(x => x.ID_USUARIO != modelUsuario.idUsuario && x.IDENTIFICACION == modelUsuario.identificacion);
 
-                    var empleadoExistente = context.EMPLEADO.Where(x => x.ID_USUARIO == modelUsuario.idUsuario).FirstOrDefault();
                     if (empleadoExistente != null)
                     {
                         ViewBag.MensajePantalla = "La identificación ya está registrada. Por favor, ingrese una identificación diferente.";
-                        return View();
+                        CargarRoles();
+                        return View(modelUsuario);
                     }
+
+                    datos.IDENTIFICACION = modelUsuario.identificacion;
+                    cambiosRealizados = true;
+                }
+
+                if (datos.NOMBRE_USUARIO != modelUsuario.nombreUsuario)
+                {
+                    datos.NOMBRE_USUARIO = modelUsuario.nombreUsuario;
+                    cambiosRealizados = true;
+                }
+
+                if (datos.APELLIDO_USUARIO != modelUsuario.apellidoUsuario)
+                {
+                    datos.APELLIDO_USUARIO = modelUsuario.apellidoUsuario;
+                    cambiosRealizados = true;
+                }
+
+                if (datos.CORREO_USUARIO != modelUsuario.correoUsuario)
+                {
+                    datos.CORREO_USUARIO = modelUsuario.correoUsuario;
+                    cambiosRealizados = true;
+                }
+
+                if (datos.ID_ROL != modelUsuario.idRol)
+                {
+                    datos.ID_ROL = modelUsuario.idRol;
+                    cambiosRealizados = true;
+                }
+
+                if (cambiosRealizados)
+                {
+                    var respuesta = context.SaveChanges();
+
                     if (rolAnterior == 1 && modelUsuario.idRol == 2)
                     {
+                        var empleadoExistente = context.EMPLEADO.FirstOrDefault(x => x.ID_USUARIO == modelUsuario.idUsuario);
                         if (empleadoExistente == null)
                         {
                             return RedirectToAction("RegistrarEmpleado", "Empleado", new { idUsuario = modelUsuario.idUsuario });
@@ -317,15 +371,16 @@ namespace MasterLitho.Controllers
                         else
                         {
                             empleadoExistente.ES_EMPLEADO = true;
-                            context.SaveChanges();  
+                            context.SaveChanges();
                         }
                     }
                     else if (rolAnterior == 2 && modelUsuario.idRol == 1)
                     {
+                        var empleadoExistente = context.EMPLEADO.FirstOrDefault(x => x.ID_USUARIO == modelUsuario.idUsuario);
                         if (empleadoExistente != null)
                         {
                             empleadoExistente.ES_EMPLEADO = false;
-                            context.SaveChanges();  
+                            context.SaveChanges();
                         }
                     }
 
@@ -410,7 +465,7 @@ namespace MasterLitho.Controllers
                         ViewBag.MensajePantalla = "Ocurrió un error al registrar el usuario.";
                     }
                 }
-                catch 
+                catch
                 {
                     ViewBag.MensajePantalla = "Ha ocurrido un error al registrar el usuario, intente de nuevo";
                 }
