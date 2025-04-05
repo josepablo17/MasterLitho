@@ -5,98 +5,93 @@
 }
 
 <style>
-
     .card {
-        width: 100%;
         margin: auto;
         padding: 15px;
-        overflow: hidden;
         height: auto;
-        max-width: 1200px;
+        max-width: 100%;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     }
 
     .card-body {
         padding: 10px 20px;
     }
 
-
     .table-responsive {
-        max-height: none;
+        overflow-x: auto;
     }
 
-    .container-fluid, #content-wrapper {
-        min-height: 120vh;
-        width: 110vh;
-        max-width: 100%;
-        margin: auto;
+    body, html {
+        overflow-x: hidden;
+    }
+    .acciones-columna {
+        width: 110px;
+        white-space: nowrap;
     }
 </style>
 
-<div id="content-wrapper" class="container">
-    <div id="content">
-        <div class="container text-left mb-4">
-            <h1 class="my-4 text-center text-dark fw-bold">
-                <i class="fas fa-file-invoice-dollar text-primary me-2"></i> Gestión de Planillas
-            </h1>
-        </div>
+<div class="container-fluid px-4">
+    <div class="text-center mb-4">
+        <h1 class="my-4 text-dark fw-bold">
+            <i class="fas fa-file-invoice-dollar text-primary me-2"></i> Gestión de Planillas
+        </h1>
+    </div>
 
-        <div class="container-fluid text-left">
-            <div class="d-flex justify-content-end mb-3">
-                <a href="@Url.Action("CrearNuevaPlanilla", "Planillas")" class="btn btn-success btn-lg rounded-pill shadow-sm">
+    <div class="card rounded shadow">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                <h5 class="text-primary fw-bold mb-0">Lista de planillas</h5>
+                <a href="@Url.Action("CrearNuevaPlanilla", "Planillas")" class="btn btn-success btn-lg rounded-pill shadow-sm mt-2 mt-md-0">
                     <i class="fas fa-plus-circle me-1"></i> Crear Planilla
                 </a>
             </div>
 
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de planillas</h5>
-                    <div class="table-responsive">
-                        <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Nombre del empleado</th>
-                                    <th>Apellido del empleado</th>
-                                    <th>Fecha de contratación</th>
-                                    <th>Fecha creación</th>
-                                    <th>Fecha de pago</th>
-                                    <th>Salario neto</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var planilla in Model)
-                                {
-                                    <tr>
-                                        <td>@planilla.nombreEmpleado</td>
-                                        <td>@planilla.apellidoEmpleado</td>
-                                        <td>@planilla.fechaContratacion.ToShortDateString()</td>
-                                        <td>@planilla.fechaCreacion.ToShortDateString()</td>
-                                        <td>@planilla.fechaPago.ToShortDateString()</td>
-                                        <td>@planilla.salarioNeto</td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <a class="btn btn-outline-primary btn"
-                                                   href="@Url.Action("DetallePlanilla", "Planillas", new { q = planilla.idPlanilla })"
-                                                   data-bs-toggle="tooltip" title="Ver Detalles">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a class="btn btn-primary btn"
-                                                   href="@Url.Action("EditarPlanilla", "Planillas", new { q = planilla.idPlanilla })"
-                                                   data-bs-toggle="tooltip" title="Editar Planilla">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="table-responsive">
+                <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre del empleado</th>
+                            <th>Apellido del empleado</th>
+                            <th>Fecha de contratación</th>
+                            <th>Fecha creación</th>
+                            <th>Fecha de pago</th>
+                            <th>Salario neto</th>
+                            <th class="acciones-columna">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var planilla in Model)
+                        {
+                            <tr>
+                                <td>@planilla.nombreEmpleado</td>
+                                <td>@planilla.apellidoEmpleado</td>
+                                <td>@planilla.fechaContratacion.ToShortDateString()</td>
+                                <td>@planilla.fechaCreacion.ToShortDateString()</td>
+                                <td>@planilla.fechaPago.ToShortDateString()</td>
+                                <td>@planilla.salarioNeto</td>
+                                <td class="acciones-columna">
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-outline-primary btn"
+                                           href="@Url.Action("DetallePlanilla", "Planillas", new { q = planilla.idPlanilla })"
+                                           data-bs-toggle="tooltip" title="Ver Detalles">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-primary btn"
+                                           href="@Url.Action("EditarPlanilla", "Planillas", new { q = planilla.idPlanilla })"
+                                           data-bs-toggle="tooltip" title="Editar Planilla">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <script>

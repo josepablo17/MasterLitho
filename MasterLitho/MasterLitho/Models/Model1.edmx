@@ -126,8 +126,8 @@
           <Property Name="Mensaje" Type="text" Nullable="false" />
           <Property Name="FechaEnvio" Type="datetime" Nullable="false" />
           <Property Name="Leido" Type="bit" Nullable="false" />
-          <Property Name="UsuarioEmisor" Type="int" Nullable="false" />
-          <Property Name="UsuarioReceptor" Type="int" Nullable="false" />
+          <Property Name="UsuarioEmisor" Type="int" />
+          <Property Name="UsuarioReceptor" Type="int" />
           <Property Name="roomName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="NOTICIAS">
@@ -530,7 +530,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mensajes_MensajesReceptor">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
           <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">
@@ -542,7 +542,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mensajes_USUARIOEmisor">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
           <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">
@@ -864,8 +864,8 @@
           <Property Name="Mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FechaEnvio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Leido" Type="Boolean" Nullable="false" />
-          <Property Name="UsuarioEmisor" Type="Int32" Nullable="false" />
-          <Property Name="UsuarioReceptor" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioEmisor" Type="Int32" />
+          <Property Name="UsuarioReceptor" Type="Int32" />
           <Property Name="roomName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_Mensajes_MensajesReceptor" FromRole="Mensajes" ToRole="USUARIO" />
           <NavigationProperty Name="USUARIO1" Relationship="Self.FK_Mensajes_USUARIOEmisor" FromRole="Mensajes" ToRole="USUARIO" />
@@ -1227,7 +1227,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mensajes_MensajesReceptor">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
           <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">
@@ -1239,7 +1239,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mensajes_USUARIOEmisor">
-          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
           <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USUARIO">

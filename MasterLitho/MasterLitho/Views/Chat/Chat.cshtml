@@ -227,37 +227,32 @@
             };
 
 
+        $("#sendButton").click(function () {
+            var message = $("#message").val().trim();
+            if (usuarioSeleccionado == null) {
+                Swal.fire("Por favor, selecciona un usuario para chatear.");
 
+                return;
+            }
+            if (message === "") {
+                Swal.fire("El mensaje no puede estar vacío..");
 
+                return;
+            }
 
+            let messageHtml = `<li class="clearfix">
+                <div class="message-data text-right">
+                    <span class="message-data-time">${new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", hour12: true }).replace("a. m.", "a. m.").replace("p. m.", "p. m.")}</span>
+                    <strong>${usuarioActual}</strong>
+                </div>
+                <div class="message my-message float-right">${message}</div>
+                </li>`;
 
+            $("#discussion").append(messageHtml);
 
-
-
-            $("#sendButton").click(function () {
-                var message = $("#message").val().trim();
-                if (usuarioSeleccionado == null) {
-                    alert("Por favor, selecciona un usuario para chatear.");
-                    return;
-                }
-                if (message === "") {
-                    alert("El mensaje no puede estar vacío.");
-                    return;
-                }
-
-                let messageHtml = `<li class="clearfix">
-                    <div class="message-data text-right">
-                        <span class="message-data-time">${new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit", hour12: true }).replace("a. m.", "a. m.").replace("p. m.", "p. m.")}</span>
-                        <strong>${usuarioActual}</strong>
-                    </div>
-                    <div class="message my-message float-right">${message}</div>
-                </li>`;
-
-                $("#discussion").append(messageHtml);
-
-                chat.server.sendMessageToRoom(roomName, usuarioActual, message, idUsuarioSeleccionado);
-                $("#message").val("");
-            });
+            chat.server.sendMessageToRoom(roomName, usuarioActual, message, idUsuarioSeleccionado);
+            $("#message").val("");
+        });
 
 
 

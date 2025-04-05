@@ -525,11 +525,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Mensajes_MensajesReceptor">
-<<<<<<< HEAD
-    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-=======
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
->>>>>>> origin/sebas
     <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIO">
@@ -541,11 +537,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Mensajes_USUARIOEmisor">
-<<<<<<< HEAD
-    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
-=======
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
->>>>>>> origin/sebas
     <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="USUARIO">

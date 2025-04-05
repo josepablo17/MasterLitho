@@ -311,7 +311,7 @@ namespace MasterLitho.Controllers
                 if (datos == null)
                 {
                     ViewBag.MensajePantalla = "El usuario no se ha encontrado.";
-                    CargarRoles();
+                    CargarListaRoles();
                     return View(modelUsuario);
                 }
 
@@ -325,7 +325,7 @@ namespace MasterLitho.Controllers
                     if (empleadoExistente != null)
                     {
                         ViewBag.MensajePantalla = "La identificación ya está registrada. Por favor, ingrese una identificación diferente.";
-                        CargarRoles();
+                        CargarListaRoles();
                         return View(modelUsuario);
                     }
 

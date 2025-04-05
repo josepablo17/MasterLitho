@@ -4,6 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .card {
+        margin: auto;
+        padding: 15px;
+        height: auto;
+        max-width: 100%;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .card-body {
+        padding: 10px 20px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .acciones-columna {
+        width: 100px;
+        white-space: nowrap;
+    }
+</style>
+
 <div id="content-wrapper" class="container">
     <!-- Main Content -->
     <div id="content">
@@ -60,22 +87,19 @@
                 </div>
 
                 <div class="tab-pane fade" id="enviadas">
-                    <h1 class="my-4 text-center">Historial de Constancias Solicitadas</h1>
+                    <h2 class="my-4 text-center text-dark fw-bold">Historial de Constancias Solicitadas</h2>
 
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Historial de Constancias Enviadas</h6>
-                        </div>
+                    <div class="card rounded shadow">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                                <table id="dataTable" class="table table-hover table-striped align-middle w-100">
                                     <thead class="table-dark">
                                         <tr>
                                             <th>ID</th>
                                             <th>Nombre empleado</th>
                                             <th>Tipo de Constancia</th>
                                             <th>Fecha de emisión</th>
-                                            <th>Acciones</th>
+                                            <th class="acciones-columna">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,12 +110,11 @@
                                                 <td>@item.NOMBRE_EMPLEADO</td>
                                                 <td>@item.NOMBRE_TIPO_CONSTANCIA</td>
                                                 <td>@item.FECHA_EMISION.ToString("yyyy/MM/dd")</td>
-                                                <td>
-                                                    <a href="@Url.Action("PrintConstancia", "Constancias", new { q = item.ID_CONSTANCIA })" class="btn btn-primary btn-sm" title="Ver Constancia">
+                                                <td class="acciones-columna">
+                                                    <a href="@Url.Action("PrintConstancia", "Constancias", new { q = item.ID_CONSTANCIA })"
+                                                       class="btn btn-primary btn-sm" title="Ver Constancia">
                                                         <i class="bi bi-file-earmark-pdf"></i>
                                                     </a>
-
-                                                    
                                                 </td>
                                             </tr>
                                         }
@@ -106,22 +129,19 @@
 
         @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1")
         {
-            <h1 class="my-4 text-center">Historial de Constancias Solicitadas</h1>
+            <h2 class="my-4 text-center text-dark fw-bold">Historial de Constancias Solicitadas</h2>
 
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Historial de Constancias Enviadas</h6>
-                </div>
+            <div class="card rounded shadow">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                            <thead>
+                        <table id="dataTable1" class="table table-hover table-striped align-middle w-100">
+                            <thead class="table-dark">
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre empleado</th>
                                     <th>Tipo de Constancia</th>
                                     <th>Fecha de emisión</th>
-                                    <th>Acciones</th>
+                                    <th class="acciones-columna">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -132,12 +152,11 @@
                                         <td>@item.NOMBRE_EMPLEADO</td>
                                         <td>@item.NOMBRE_TIPO_CONSTANCIA</td>
                                         <td>@item.FECHA_EMISION.ToString("yyyy/MM/dd")</td>
-                                        <td>
-                                            <a href="@Url.Action("PrintConstancia", "Constancias", new { q = item.ID_CONSTANCIA })" class="btn btn-primary btn-sm" title="Ver Constancia">
+                                        <td class="acciones-columna">
+                                            <a href="@Url.Action("PrintConstancia", "Constancias", new { q = item.ID_CONSTANCIA })"
+                                               class="btn btn-primary btn-sm" title="Ver Constancia">
                                                 <i class="bi bi-file-earmark-pdf"></i>
                                             </a>
-
-                                            
                                         </td>
                                     </tr>
                                 }
@@ -150,23 +169,26 @@
     </div>
 </div>
 
-
 <script>
     $(document).ready(function () {
         setTimeout(function () {
             $("#alertaMensaje").fadeOut("slow");
         }, 5000);
 
-        $('#dataTable').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/Spanish.json"
+        const opcionesDT = {
+            language: {
+                url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
             }
-        });
+        };
 
-        $('#dataTable1').DataTable({
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/Spanish.json"
-            }
-        });
+        if ($.fn.DataTable.isDataTable('#dataTable')) {
+            $('#dataTable').DataTable().destroy();
+        }
+        $('#dataTable').DataTable(opcionesDT);
+
+        if ($.fn.DataTable.isDataTable('#dataTable1')) {
+            $('#dataTable1').DataTable().destroy();
+        }
+        $('#dataTable1').DataTable(opcionesDT);
     });
 </script>

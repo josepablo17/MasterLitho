@@ -436,10 +436,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="ImgNoticias\00bc9c02-b15b-4bf9-af42-b38c4c5e58a4.png" />
-    <Content Include="ImgNoticias\2e71da75-b7dc-4541-ae24-e7eeaedc416f.jpg" />
-    <Content Include="ImgNoticias\757fc6c8-9663-4c19-845e-5df2dcd7a51c.jpg" />
-    <Content Include="ImgNoticias\89592aa3-cd54-4e0f-81d4-1d382ddec14e.jpg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -2466,7 +2462,6 @@
     <Content Include="Styles\scss\_utilities.scss" />
     <Content Include="Styles\scss\_variables.scss" />
     <Content Include="Views\Constancias\EnvioConstancia.cshtml" />
-    <Content Include="Views\Constancias\detallesConstancia.cshtml" />
     <Content Include="Views\QuejasReportes\GestionQuejasReportes.cshtml" />
     <Content Include="Views\QuejasReportes\DetallesReporte.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillas.cshtml" />
@@ -2478,7 +2473,6 @@
     <Content Include="Views\Login\IniciarSesion.cshtml" />
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
     <Content Include="Views\SolicitudVacaciones\SolicitarVacaciones.cshtml" />
-    <Content Include="Views\Constancias\SolicitarConstanciaEmpleado.cshtml" />
     <Content Include="Views\Expedientes\CrearExpediente.cshtml" />
     <Content Include="Views\QuejasReportes\EnviarQuejas.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillasEmpleado.cshtml" />
@@ -2526,6 +2520,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImgNoticias\" />
     <Folder Include="ImgUsuarios\" />
     <Folder Include="obj\Debug\" />
   </ItemGroup>

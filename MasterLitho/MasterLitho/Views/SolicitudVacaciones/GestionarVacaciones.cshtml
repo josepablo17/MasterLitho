@@ -4,78 +4,103 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id="content-wrapper" class="container">
-    <div id="content">
-        <h1 class="my-4 text-center text-dark fw-bold">
-            <i class="fas fa-plane-departure me-2 text-primary"></i>
-            Gestión y Aprobación de Solicitudes de Vacaciones
+<style>
+    .card {
+        margin: auto;
+        padding: 15px;
+        height: auto;
+        max-width: 100%;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .card-body {
+        padding: 10px 20px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .acciones-columna {
+        width: 140px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="container-fluid px-4">
+    <div class="text-center mb-4">
+        <h1 class="my-4 text-dark fw-bold">
+            <i class="fas fa-plane-departure me-2 text-primary"></i> Gestión y Aprobación de Solicitudes de Vacaciones
         </h1>
+    </div>
 
+    <div class="card rounded shadow">
+        <div class="card-body">
+            <h5 class="text-primary fw-bold text-center mb-4">Lista de solicitudes</h5>
 
-        <div class="container-fluid">
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de solicitudes</h5>
-                    <div class="table-responsive">
-                        <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Nombre usuario</th>
-                                    <th>Fecha de la solicitud</th>
-                                    <th>Fecha inicio</th>
-                                    <th>Fecha fin</th>
-                                    <th>Días solicitados</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
+            <div class="table-responsive">
+                <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre usuario</th>
+                            <th>Fecha de la solicitud</th>
+                            <th>Fecha inicio</th>
+                            <th>Fecha fin</th>
+                            <th>Días solicitados</th>
+                            <th>Estado</th>
+                            <th class="acciones-columna">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            bool estadoFinalizado = item.nombreEstado == "Aceptado" || item.nombreEstado == "Rechazado";
 
-                                    bool estadoFinalizado = item.nombreEstado == "Aceptado" || item.nombreEstado == "Rechazado";
-
-                                    <tr data-id="@item.idSolicitud">
-                                        <td>@item.nombreUsuario</td>
-                                        <td>@item.fechaSolicitud.ToString("dd-MM-yyyy")</td>
-                                        <td>@item.fechaInicio.ToString("dd-MM-yyyy")</td>
-                                        <td>@item.fechaFin.ToString("dd-MM-yyyy")</td>
-                                        <td>@item.diasSolicitados</td>
-                                        <td class="estado-columna">
-                                            @if (item.nombreEstado == "Pendiente")
-                                            {
-                                                <span class="badge bg-warning text-dark">Pendiente</span>
-                                            }
-                                            else if (item.nombreEstado == "Aceptado")
-                                            {
-                                                <span class="badge bg-success">Aceptado</span>
-                                            }
-                                            else if (item.nombreEstado == "Rechazado")
-                                            {
-                                                <span class="badge bg-danger">Rechazado</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-secondary">@item.nombreEstado</span>
-                                            }
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm cambiar-estado-btn"
-                                                    onclick="abrirModal(@item.idSolicitud)"
-                                                    @(estadoFinalizado ? "disabled" : "")>
-                                                Cambiar Estado
-                                            </button>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                            <tr data-id="@item.idSolicitud">
+                                <td>@item.nombreUsuario</td>
+                                <td>@item.fechaSolicitud.ToString("dd-MM-yyyy")</td>
+                                <td>@item.fechaInicio.ToString("dd-MM-yyyy")</td>
+                                <td>@item.fechaFin.ToString("dd-MM-yyyy")</td>
+                                <td>@item.diasSolicitados</td>
+                                <td>
+                                    @if (item.nombreEstado == "Pendiente")
+                                    {
+                                        <span class="badge bg-warning text-dark">Pendiente</span>
+                                    }
+                                    else if (item.nombreEstado == "Aceptado")
+                                    {
+                                        <span class="badge bg-success">Aceptado</span>
+                                    }
+                                    else if (item.nombreEstado == "Rechazado")
+                                    {
+                                        <span class="badge bg-danger">Rechazado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">@item.nombreEstado</span>
+                                    }
+                                </td>
+                                <td class="acciones-columna">
+                                    <button class="btn btn-primary btn-sm cambiar-estado-btn"
+                                            onclick="abrirModal(@item.idSolicitud)"
+                                            @(estadoFinalizado ? "disabled" : "")>
+                                        Cambiar Estado
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="cambiarEstadoModal" tabindex="-1" aria-labelledby="cambiarEstadoModalLabel" aria-hidden="true">

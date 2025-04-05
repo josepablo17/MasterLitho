@@ -29,7 +29,7 @@ namespace MasterLitho.Controllers
             if (model.periodoInicio > model.periodoFin)
                 return "La fecha de inicio no puede ser mayor que la fecha de fin.";
 
-            if (model.salarioNeto <= 0)
+            if (model.salarioNeto <= 0 || model.salarioBruto <= 0)
                 return "Revise los datos ingresados.";
 
             if (model.deducciones < 0 || model.bonos < 0 || model.horasExtra < 0 || model.aporteSeguridadSocial < 0 || model.impuestos < 0)
@@ -209,7 +209,6 @@ namespace MasterLitho.Controllers
 
                     int horasExtra = model.horasExtra ?? 0;
 
-                    // Recalcular valores internos
                     decimal salarioBruto = model.salarioBruto;
                     decimal aporteSeguridadSocial = salarioBruto * 0.105m;
                     decimal impuestoRenta = CalcularImpuestoRenta(salarioBruto);
@@ -227,6 +226,7 @@ namespace MasterLitho.Controllers
                         IMPUESTOS = impuestoRenta,
                         PERIODO_INICIO = model.periodoInicio,
                         PERIODO_FIN = model.periodoFin,
+                        SALARIO_BRUTO = model.salarioBruto,
                         FECHA_CREACION = DateTime.Now,
                         SALARIO_NETO = model.salarioNeto
                     };
@@ -272,12 +272,11 @@ namespace MasterLitho.Controllers
                     deducciones = planilla.DEDUCCIONES,
                     diasVacacionesTomados = planilla.DIAS_VACACIONES_TOMADOS,
                     otrosBeneficios = planilla.OTROS_BENEFICIOS ?? 0,
-                    aporteSeguridadSocial = planilla.APORTE_SEGURIDAD_SOCIAL ?? 0,
                     horasExtra = planilla.HORAS_EXTRAS,
-                    impuestos = planilla.IMPUESTOS ?? 0,
                     periodoInicio = planilla.PERIODO_INICIO,
                     periodoFin = planilla.PERIODO_FIN,
-                    fechaCreacion = planilla.FECHA_CREACION
+                    fechaCreacion = planilla.FECHA_CREACION,
+                    salarioBruto = planilla.SALARIO_BRUTO
                 };
 
                 CargarListaEmpleados();
@@ -294,6 +293,8 @@ namespace MasterLitho.Controllers
                 CargarListaEmpleados();
                 return View(model);
             }
+
+            model.salarioNeto = CalcularSalarioNeto(model);
 
             var mensajeValidacion = ValidarPlanilla(model);
             if (mensajeValidacion != null)
@@ -314,21 +315,23 @@ namespace MasterLitho.Controllers
                         return RedirectToAction("ConsultarPlanillas");
                     }
 
-                    decimal salarioNeto = CalcularSalarioNeto(model);
                     int horasExtra = model.horasExtra ?? 0;
-  
-                    // Actualizar campos
+                    decimal salarioBruto = model.salarioBruto;
+                    decimal aporteSeguridadSocial = salarioBruto * 0.105m;
+                    decimal impuestoRenta = CalcularImpuestoRenta(salarioBruto);
+
                     planillaExistente.FECHA_PAGO = model.fechaPago;
                     planillaExistente.DEDUCCIONES = model.deducciones;
                     planillaExistente.BONOS = model.bonos;
                     planillaExistente.DIAS_VACACIONES_TOMADOS = model.diasVacacionesTomados;
-                    planillaExistente.OTROS_BENEFICIOS = model.otrosBeneficios;
-                    planillaExistente.APORTE_SEGURIDAD_SOCIAL = model.aporteSeguridadSocial;
+                    planillaExistente.OTROS_BENEFICIOS = model.otrosBeneficios ;
                     planillaExistente.HORAS_EXTRAS = horasExtra;
-                    planillaExistente.IMPUESTOS = model.impuestos;
                     planillaExistente.PERIODO_INICIO = model.periodoInicio;
                     planillaExistente.PERIODO_FIN = model.periodoFin;
-                    planillaExistente.SALARIO_NETO = salarioNeto;
+                    planillaExistente.SALARIO_BRUTO = salarioBruto;
+                    planillaExistente.APORTE_SEGURIDAD_SOCIAL = aporteSeguridadSocial;
+                    planillaExistente.IMPUESTOS = impuestoRenta;
+                    planillaExistente.SALARIO_NETO = model.salarioNeto;
 
                     context.SaveChanges();
 
@@ -343,6 +346,7 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+
 
         #endregion
 
@@ -374,7 +378,9 @@ namespace MasterLitho.Controllers
                     impuestos = planilla.IMPUESTOS ?? 0,
                     periodoInicio = planilla.PERIODO_INICIO,
                     periodoFin = planilla.PERIODO_FIN,
-                    fechaCreacion = planilla.FECHA_CREACION
+                    fechaCreacion = planilla.FECHA_CREACION,
+                    salarioBruto = planilla.SALARIO_BRUTO,
+                    salarioNeto = planilla.SALARIO_NETO
                     
                 };
                 return View(model);
@@ -413,7 +419,9 @@ namespace MasterLitho.Controllers
                 impuestos = planilla.IMPUESTOS ?? 0,
                 periodoInicio = planilla.PERIODO_INICIO,
                 periodoFin = planilla.PERIODO_FIN,
-                fechaCreacion = planilla.FECHA_CREACION
+                fechaCreacion = planilla.FECHA_CREACION,
+                salarioNeto = planilla.SALARIO_NETO,
+                salarioBruto = planilla.SALARIO_BRUTO
             }
         };
 

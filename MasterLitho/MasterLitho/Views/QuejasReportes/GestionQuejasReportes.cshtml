@@ -5,17 +5,32 @@
 }
 
 <style>
-    #ReportesTable {
-        table-layout: fixed;
-        width: 100%;
+    .card {
+        margin: auto;
+        padding: 15px;
+        height: auto;
+        max-width: 100%;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     }
 
-        #ReportesTable th, #ReportesTable td {
-            white-space: nowrap; 
-            overflow: hidden;
-            text-overflow: ellipsis; 
-        }
+    .card-body {
+        padding: 10px 20px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .acciones-columna {
+        width: 200px;
+        white-space: nowrap;
+    }
 </style>
+
 
 <div id="content-wrapper" class="container">
     <div id="content">
@@ -38,13 +53,13 @@
                     <div class="card-body">
                         <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de Reportes</h5>
                         <div class="table-responsive">
-                            <table id="ReportesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                            <table id="ReportesTable" class="table table-hover table-striped align-middle w-100">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>Nombre del empleado</th>
                                         <th>Fecha de envío</th>
                                         <th>Estado</th>
-                                        <th>Acciones</th>
+                                        <th class="acciones-columna">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,14 +68,14 @@
                                         <tr data-id="@item.idQueja">
                                             <td>@item.nombreEmpleado</td>
                                             <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
-                                            <td class="estado-columna">@item.nombreEstado</td>
-                                            <td>
+                                            <td>@item.nombreEstado</td>
+                                            <td class="acciones-columna">
                                                 <button class="btn btn-primary btn-sm cambiar-estado-btn"
                                                         onclick="abrirModal(@item.idQueja)"
                                                         @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
                                                     Cambiar Estado
                                                 </button>
-                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
+                                                <button class="btn btn-secondary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
                                                     Ver información
                                                 </button>
                                             </td>
@@ -69,6 +84,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -79,13 +95,13 @@
                     <div class="card-body">
                         <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de Quejas</h5>
                         <div class="table-responsive">
-                            <table id="QuejasTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
+                            <table id="QuejasTable" class="table table-hover table-striped align-middle w-100">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>Nombre del empleado</th>
                                         <th>Fecha de envío</th>
                                         <th>Estado</th>
-                                        <th>Acciones</th>
+                                        <th class="acciones-columna">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,18 +110,17 @@
                                         <tr data-id="@item.idQueja">
                                             <td>@item.nombreEmpleado</td>
                                             <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
-                                            <td class="estado-columna">@item.nombreEstado</td>
-                                            <td>
+                                            <td>@item.nombreEstado</td>
+                                            <td class="acciones-columna">
                                                 <button class="btn btn-primary btn-sm cambiar-estado-btn"
                                                         onclick="abrirModal(@item.idQueja)"
                                                         @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
                                                     Cambiar Estado
                                                 </button>
-                                                <button class="btn btn-primary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
+                                                <button class="btn btn-secondary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
                                                     Ver información
                                                 </button>
                                             </td>
-
                                         </tr>
                                     }
                                 </tbody>
