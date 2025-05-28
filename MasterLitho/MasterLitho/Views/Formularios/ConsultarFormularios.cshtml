@@ -26,7 +26,7 @@
     }
 
     .acciones-columna {
-        width: 180px;
+        width: 1%;
         white-space: nowrap;
     }
 </style>
@@ -50,8 +50,8 @@
             </div>
 
             <div class="table-responsive">
-                <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                    <thead class="table-dark">
+                <table id="solicitudesTable" class="table text-nowrap align-middle mb-0 w-100">
+                    <thead>
                         <tr>
                             <th>Nombre del formulario</th>
                             <th>Fecha de envío</th>
@@ -67,13 +67,13 @@
                                 <td class="acciones-columna">
                                     <div class="btn-group" role="group">
                                         <a href="@Url.Action("ConsultarDetallesFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
-                                           class="btn btn-primary"
+                                           class="btn btn-primary btn-sm"
                                            title="Ver detalles" data-bs-toggle="tooltip">
                                             <i class="fas fa-eye"></i> Ver
                                         </a>
 
                                         <a href="@Url.Action("AsignarFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
-                                           class="btn btn-warning"
+                                           class="btn btn-warning btn-sm"
                                            title="Asignar" data-bs-toggle="tooltip">
                                             <i class="fas fa-user-plus"></i> Asignar
                                         </a>

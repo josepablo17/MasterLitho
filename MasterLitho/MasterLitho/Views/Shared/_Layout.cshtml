@@ -13,31 +13,113 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>MasterLitho</title>
+
     <style>
-        .sidebar {
-            transition: background-color 0.3s ease;
+        .main-content {
+            padding-left: 200px;
+            padding-top: 2rem;
         }
 
+        /* Transición suave */
+        .sidebar {
+            background: linear-gradient(180deg, #0f172a 0%, #1f2937 100%);
+            color: #e2e8f0;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+            padding-top: 1.5rem;
+            transition: all 0.3s ease-in-out;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            min-width: 200px;
+            position: fixed;
+            z-index: 1000;
+        }
+
+        /* Roles */
         .sidebar-admin {
-            background-color: #061b9c;
+            background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
         }
 
         .sidebar-employee {
-            background-color: #007bff;
+            background: linear-gradient(180deg, #1e3a8a 0%, #2563eb 100%);
         }
 
+        /* Enlaces del menú */
         .sidebar .nav-link {
-            color: #ffffff;
+            color: #cbd5e1;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
         }
 
             .sidebar .nav-link:hover {
-                color: #f8f9fa;
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #ffffff;
+                border-left: 4px solid #2563eb;
+                padding-left: calc(1.5rem - 4px);
             }
 
+            .sidebar .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: #ffffff;
+                border-left: 4px solid #22d3ee;
+                font-weight: 600;
+            }
+
+        /* Texto superior de la marca */
         .sidebar .sidebar-brand-text {
             color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
         }
+
+        /* Botón para contraer el menú */
+        .sidebar-toggle {
+            margin: 1rem auto;
+            background: #1e293b;
+            border: none;
+            border-radius: 50%;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            color: #e2e8f0;
+        }
+
+            .sidebar-toggle:hover {
+                background: #334155;
+            }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.05);
+                border-left: 3px solid #e11d48;
+                color: #fff;
+            }
+
+            .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.1);
+                font-weight: bold;
+                border-left: 3px solid #22d3ee;
+            }
+
+        .sidebar-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
     </style>
+
     <link href="~/Styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -66,167 +148,222 @@
 
             @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "1")
             {
+                <!-- Branding del sistema -->
                 <li class="nav-item">
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                            <i class=""></i>
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home")">
+                        <div class="sidebar-brand-icon">
+                            <i class="fas fa-cogs fa-spin text-light"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">MasterLithoADMIN</div>
+                        <div class="sidebar-brand-text mx-3 fw-bold fs-5 text-uppercase">
+                            MasterLitho <span class="text-primary">Admin</span>
+                        </div>
                     </a>
                 </li>
 
-                <li><hr class="sidebar-divider my-0"></li>
-                <li><hr class="sidebar-divider"></li>
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: Gestión Administrativa -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>Gestión Administrativa</span>
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("GestionarVacaciones", "SolicitudVacaciones")">
-                        <i class="fas fa-fw fa-calendar-check"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("GestionarVacaciones", "SolicitudVacaciones")">
+                        <i class="fas fa-fw fa-calendar-check me-2"></i>
                         <span>Solicitudes de Vacaciones</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("EnvioConstancia", "Constancias")">
-                        <i class="fas fa-fw fa-paper-plane"></i>
-                        <span>Envio de Constancias</span>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("EnvioConstancia", "Constancias")">
+                        <i class="fas fa-fw fa-file-signature me-2"></i>
+                        <span>Envío de Constancias</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("GestionQuejasReportes", "QuejasReportes")">
-                        <i class="fas fa-fw fa-exclamation-circle"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("GestionQuejasReportes", "QuejasReportes")">
+                        <i class="fas fa-fw fa-triangle-exclamation me-2"></i>
                         <span>Reportes y Quejas</span>
                     </a>
                 </li>
 
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: Información Financiera -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>Finanzas</span>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ConsultarPlanillas", "Planillas")">
-                        <i class="fas fa-fw fa-table"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("ConsultarPlanillas", "Planillas")">
+                        <i class="fas fa-fw fa-file-invoice-dollar me-2"></i>
                         <span>Consultas de Planillas</span>
                     </a>
                 </li>
 
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: Recursos Humanos -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>Recursos Humanos</span>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("IndexExpedientes", "Expedientes")">
-                        <i class="fas fa-fw fa-folder"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("IndexExpedientes", "Expedientes")">
+                        <i class="fas fa-fw fa-briefcase me-2"></i>
                         <span>Gestión de Expedientes</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ConsultarFormularios", "Formularios")">
-                        <i class="fas fa-fw fa-clipboard"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("ConsultarFormularios", "Formularios")">
+                        <i class="fas fa-fw fa-list-check me-2"></i>
                         <span>Formularios</span>
                     </a>
                 </li>
 
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: Comunicación y Calendario -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>Comunicación</span>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Noticias", "Noticias")">
-                        <i class="fas fa-fw fa-newspaper"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("Noticias", "Noticias")">
+                        <i class="fas fa-fw fa-newspaper me-2"></i>
                         <span>Gestión de Noticias</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Calendario", "Calendario")">
-                        <i class="fas fa-fw fa-calendar-alt"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("Calendario", "Calendario")">
+                        <i class="fas fa-fw fa-calendar-days me-2"></i>
                         <span>Calendario</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("GestionUsuarios", "Usuarios")">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Gestion Usuarios</span>
-                    </a>
+
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: Administración del sistema -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>Administración</span>
                 </li>
 
-
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("GestionUsuarios", "Usuarios")">
+                        <i class="fas fa-fw fa-users-gear me-2"></i>
+                        <span>Gestión de Usuarios</span>
+                    </a>
+                </li>
             }
 
             @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "2")
             {
+                <!-- Branding del sistema -->
                 <li class="nav-item">
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Home")">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                            <i class=""></i>
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home")">
+                        <div class="sidebar-brand-icon">
+                            <i class="fas fa-user text-light"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">MasterLitho</div>
+                        <div class="sidebar-brand-text mx-3 fw-bold fs-5 text-uppercase">
+                            MasterLitho <span class="text-info">Empleado</span>
+                        </div>
                     </a>
                 </li>
 
-                <li><hr class="sidebar-divider my-0"></li>
-                <li><hr class="sidebar-divider"></li>
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: Solicitudes y Reportes -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>Solicitudes</span>
+                </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("SolicitarVacaciones","SolicitudVacaciones")">
-                        <i class="fas fa-fw fa-calendar-check"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("SolicitarVacaciones","SolicitudVacaciones")">
+                        <i class="fas fa-fw fa-calendar-check me-2"></i>
                         <span>Solicitar Vacaciones</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("EnvioConstancia","Constancias")">
-                        <i class="fas fa-fw fa-paper-plane"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("EnvioConstancia","Constancias")">
+                        <i class="fas fa-fw fa-file-signature me-2"></i>
                         <span>Solicitar Constancia</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("EnviarQueja","QuejasReportes")">
-                        <i class="fas fa-fw fa-exclamation-circle"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("EnviarQueja","QuejasReportes")">
+                        <i class="fas fa-fw fa-comment-dots me-2"></i>
                         <span>Reportes y Quejas</span>
                     </a>
                 </li>
 
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: Consultas -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>Consultas</span>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Expedientes","EmpleadoExpedientes")">
-                        <i class="fas fa-fw fa-table"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("Expedientes","EmpleadoExpedientes")">
+                        <i class="fas fa-fw fa-address-card me-2"></i>
                         <span>Consulta de Expediente</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ConsultarPlanillasEmpleado","Planillas")">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>Consultar planilla</span>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("ConsultarPlanillasEmpleado","Planillas")">
+                        <i class="fas fa-fw fa-file-invoice-dollar me-2"></i>
+                        <span>Consultar Planilla</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("ConsultarDiasVacaciones","SolicitudVacaciones")">
-                        <i class="fas fa-fw fa-clipboard"></i>
-                        <span>Dias de vacaciones</span>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("ConsultarDiasVacaciones","SolicitudVacaciones")">
+                        <i class="fas fa-fw fa-hourglass-half me-2"></i>
+                        <span>Días de Vacaciones</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("FormulariosAsignados","Formularios")">
-                        <i class="fas fa-fw fa-newspaper"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("FormulariosAsignados","Formularios")">
+                        <i class="fas fa-fw fa-list-ul me-2"></i>
                         <span>Consultar Formularios</span>
                     </a>
                 </li>
 
+                <li><hr class="sidebar-divider my-2"></li>
+
+                <!-- Sección: General -->
+                <li class="nav-item text-white px-3 mt-2 fw-bold small">
+                    <span>General</span>
+                </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Calendario", "Calendario")">
-                        <i class="fas fa-fw fa-calendar-alt"></i>
+                    <a class="nav-link d-flex align-items-center" href="@Url.Action("Calendario", "Calendario")">
+                        <i class="fas fa-fw fa-calendar-days me-2"></i>
                         <span>Calendario</span>
                     </a>
                 </li>
             }
 
+            <!-- Opción de Chat (común) -->
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Chat", "Chat")">
-                    <i class="fas fa-fw fa-envelope"></i>
+                <a class="nav-link d-flex align-items-center" href="@Url.Action("Chat", "Chat")">
+                    <i class="fas fa-fw fa-comments me-2"></i>
                     <span>Chat</span>
                 </a>
             </li>
 
+            <!-- Botón para contraer menú -->
             <li class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </li>
-
         </ul>
-
 
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
@@ -282,23 +419,14 @@
                                         Cerrar Sesión
                                     </a>
                                 </div>
-
                             </li>
-
                         </ul>
-
                     </nav>
-
                 </header>
 
-
-                <div class="container-fluid">
-                    <div class="row">
-                        @RenderBody()
-                    </div>
+                <div class="main-content">
+                    @RenderBody()
                 </div>
-
-
 
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
@@ -363,7 +491,7 @@
         <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
         <script src="~/signalr/hubs"></script>
         <script src="https://cdn.jsdelivr.net/npm/signalr@3.1.17/dist/browser/signalr.min.js"></script>
-        <script>  window.chat = null;</script>
+        <script>window.chat = null;</script>
         <script src="~/Styles/FuncionesJS/InitSignalR.js"></script>
         <script>
 

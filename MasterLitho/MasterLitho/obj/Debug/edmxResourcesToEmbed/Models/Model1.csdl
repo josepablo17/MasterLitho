@@ -243,6 +243,16 @@
     <NavigationProperty Name="SOLICITUD_VACACIONES1" Relationship="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" FromRole="SOLICITUD_VACACIONES" ToRole="SOLICITUD_VACACIONES1" />
     <NavigationProperty Name="SOLICITUD_VACACIONES2" Relationship="Self.FK_SOLICITUD_VACACIONES_SOLICITUD_VACACIONES" FromRole="SOLICITUD_VACACIONES1" ToRole="SOLICITUD_VACACIONES" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="TIPO_QUEJA">
     <Key>
       <PropertyRef Name="ID_TIPO" />
@@ -648,6 +658,7 @@
     <EntitySet Name="RESPUESTAS_FORMULARIO" EntityType="Self.RESPUESTAS_FORMULARIO" />
     <EntitySet Name="ROL" EntityType="Self.ROL" />
     <EntitySet Name="SOLICITUD_VACACIONES" EntityType="Self.SOLICITUD_VACACIONES" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="TIPO_QUEJA" EntityType="Self.TIPO_QUEJA" />
     <EntitySet Name="TIPOS_CONSTANCIA" EntityType="Self.TIPOS_CONSTANCIA" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />

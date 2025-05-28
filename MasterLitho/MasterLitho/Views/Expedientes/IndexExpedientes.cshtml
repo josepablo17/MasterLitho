@@ -6,6 +6,7 @@
 }
 
 <style>
+
     .card {
         margin: auto;
         padding: 15px;
@@ -26,13 +27,13 @@
         overflow-x: hidden;
     }
     .acciones-columna {
-        width: 180px;
+        width: 1%;
         white-space: nowrap;
     }
 </style>
 
 
-<div class="container-fluid px-4 mt-4 mb-5">
+<div class="container-fluid px-4">
     <div class="text-center mb-4">
         <h1 class="my-4 text-dark fw-bold">
             <i class="fas fa-folder-open text-primary me-2"></i> Gestión de Expedientes
@@ -52,8 +53,8 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table id="expedientesTable" class="table table-hover table-striped align-middle w-100">
-                        <thead class="table-dark text-center">
+                    <table id="expedientesTable" class="table text-nowrap align-middle mb-0 w-100">
+                        <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>Usuario</th>
@@ -78,22 +79,22 @@
                                     </td>
                                     <td>@exp.nombreUsuario</td>
                                     <td>@exp.identificacion</td>
-                                    <td class="text-nowrap">@exp.fechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
-                                    <td class="text-center acciones-columna">
+                                    <td>@exp.fechaCreacion.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="acciones-columna">
                                         <div class="btn-group" role="group">
                                             <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = exp.idExpediente })"
-                                               class="btn btn-primary"
+                                               class="btn btn-primary btn-sm"
                                                title="Ver detalles" data-bs-toggle="tooltip">
                                                 <i class="fas fa-eye"></i>
                                             </a>
                                             <button type="button"
-                                                    class="btn btn-danger"
+                                                    class="btn btn-danger btn-sm"
                                                     onclick="confirmDelete(@exp.idExpediente, '@(exp.nombreExpediente ?? "Sin nombre")')"
                                                     title="Eliminar expediente" data-bs-toggle="tooltip">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                             <a href="@Url.Action("EnviarDocCorreo", "Expedientes", new { idUsuario = exp.idUsuario })"
-                                               class="btn btn-success"
+                                               class="btn btn-success btn-sm"
                                                title="Enviar documento por correo" data-bs-toggle="tooltip">
                                                 <i class="fas fa-paper-plane"></i>
                                             </a>

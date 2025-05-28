@@ -26,7 +26,7 @@
     }
 
     .acciones-columna {
-        width: 200px;
+        width: 1%;
         white-space: nowrap;
     }
 </style>
@@ -34,170 +34,177 @@
 
 <div id="content-wrapper" class="container">
     <div id="content">
-        <h1 class="my-4">Gestión de Quejas y Reportes</h1>
+        <div class="text-center mb-4">
+            <h1 class="my-4 text-dark fw-bold">
+                <i class="fas fa-exclamation-circle me-2 text-primary"></i> Gestión de quejas y reportes
+            </h1>
+        </div>
 
-        <!-- Pestañas para Reportes y Quejas -->
-        <ul class="nav nav-tabs" id="quejasReportesTabs">
-            <li class="nav-item">
-                <a class="nav-link active" data-bs-toggle="tab" href="#reportes">Reportes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#quejas">Quejas</a>
-            </li>
-        </ul>
+            <!-- Pestañas para Reportes y Quejas -->
+            <ul class="nav nav-tabs" id="quejasReportesTabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#reportes">Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#quejas">Quejas</a>
+                </li>
+            </ul>
 
-        <div class="tab-content mt-3">
-            <!-- Tab de Reportes -->
-            <div class="tab-pane fade show active" id="reportes">
-                <div class="card shadow-lg rounded">
-                    <div class="card-body">
-                        <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de Reportes</h5>
-                        <div class="table-responsive">
-                            <table id="ReportesTable" class="table table-hover table-striped align-middle w-100">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>Nombre del empleado</th>
-                                        <th>Fecha de envío</th>
-                                        <th>Estado</th>
-                                        <th class="acciones-columna">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Reportes)
-                                    {
-                                        <tr data-id="@item.idQueja">
-                                            <td>@item.nombreEmpleado</td>
-                                            <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
-                                            <td>@item.nombreEstado</td>
-                                            <td class="acciones-columna">
-                                                <button class="btn btn-primary btn-sm cambiar-estado-btn"
-                                                        onclick="abrirModal(@item.idQueja)"
-                                                        @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
-                                                    Cambiar Estado
-                                                </button>
-                                                <button class="btn btn-secondary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
-                                                    Ver información
-                                                </button>
-                                            </td>
+            <div class="tab-content mt-3">
+                <!-- Tab de Reportes -->
+                <div class="tab-pane fade show active" id="reportes">
+                    <div class="card shadow-lg rounded">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-primary fw-bold mb-4">Lista de Reportes</h5>
+                            <div class="table-responsive">
+                                <table id="ReportesTable" class="table text-nowrap align-middle mb-0 w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del empleado</th>
+                                            <th>Fecha de envío</th>
+                                            <th>Estado</th>
+                                            <th class="acciones-columna">Acciones</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab de Quejas -->
-            <div class="tab-pane fade" id="quejas">
-                <div class="card shadow-lg rounded">
-                    <div class="card-body">
-                        <h5 class="card-title text-center text-primary font-weight-bold mb-4">Lista de Quejas</h5>
-                        <div class="table-responsive">
-                            <table id="QuejasTable" class="table table-hover table-striped align-middle w-100">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>Nombre del empleado</th>
-                                        <th>Fecha de envío</th>
-                                        <th>Estado</th>
-                                        <th class="acciones-columna">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Quejas)
-                                    {
-                                        <tr data-id="@item.idQueja">
-                                            <td>@item.nombreEmpleado</td>
-                                            <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
-                                            <td>@item.nombreEstado</td>
-                                            <td class="acciones-columna">
-                                                <button class="btn btn-primary btn-sm cambiar-estado-btn"
-                                                        onclick="abrirModal(@item.idQueja)"
-                                                        @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
-                                                    Cambiar Estado
-                                                </button>
-                                                <button class="btn btn-secondary btn-sm" data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))' onclick="abrirModalInfo(this)">
-                                                    Ver información
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Reportes)
+                                        {
+                                            <tr data-id="@item.idQueja">
+                                                <td>@item.nombreEmpleado</td>
+                                                <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
+                                                <td>@item.nombreEstado</td>
+                                                <td class="acciones-columna">
+                                                    <button class="btn btn-primary btn-sm cambiar-estado-btn"
+                                                            onclick="abrirModal(@item.idQueja)"
+                                                            @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
+                                                        Cambiar Estado
+                                                    </button>
+                                                    <button class="btn btn-secondary btn-sm"
+                                                            data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))'
+                                                            onclick="abrirModalInfo(this)">
+                                                        Ver información
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Modal para cambiar el estado -->
-        <div class="modal fade" id="cambiarEstadoModal" tabindex="-1" aria-labelledby="cambiarEstadoModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="cambiarEstadoModalLabel">Cambiar Estado de la queja o reporte</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="estadoForm">
-                            <input type="hidden" id="quejaId" name="idQueja" />
-                            <div class="mb-3">
-                                <label for="nuevoEstado" class="form-label">Nuevo Estado</label>
-                                <select id="nuevoEstado" name="estado" class="form-select">
-                                    @foreach (var estado in ViewBag.listaEstadosQuejas as List<SelectListItem>)
-                                    {
-                                        <option value="@estado.Value">@estado.Text</option>
-                                    }
-                                </select>
+                <!-- Tab de Quejas -->
+                <div class="tab-pane fade" id="quejas">
+                    <div class="card shadow-lg rounded">
+                        <div class="card-body">
+                            <h5 class="card-title text-center text-primary fw-bold mb-4">Lista de Quejas</h5>
+                            <div class="table-responsive">
+                                <table id="QuejasTable" class="table text-nowrap align-middle mb-0 w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre del empleado</th>
+                                            <th>Fecha de envío</th>
+                                            <th>Estado</th>
+                                            <th class="acciones-columna">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Quejas)
+                                        {
+                                            <tr data-id="@item.idQueja">
+                                                <td>@item.nombreEmpleado</td>
+                                                <td>@item.fechaEnvio.ToString("dd-MM-yyyy")</td>
+                                                <td>@item.nombreEstado</td>
+                                                <td class="acciones-columna">
+                                                    <button class="btn btn-primary btn-sm cambiar-estado-btn"
+                                                            onclick="abrirModal(@item.idQueja)"
+                                                            @(item.nombreEstado == "Procede" || item.nombreEstado == "No procede" ? "disabled" : "")>
+                                                        Cambiar Estado
+                                                    </button>
+                                                    <button class="btn btn-secondary btn-sm"
+                                                            data-solicitud='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(item))'
+                                                            onclick="abrirModalInfo(this)">
+                                                        Ver información
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="mb-3">
-                                <label for="comentario" class="form-label">Comentario</label>
-                                <textarea id="comentario" name="comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" onclick="guardarEstado()">Guardar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="modal fade" id="detalleQuejaModal" tabindex="-1" role="dialog" aria-labelledby="detalleQuejaModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="detalleQuejaModalLabel">Detalles de la queja</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <!-- Modal para cambiar el estado -->
+            <div class="modal fade" id="cambiarEstadoModal" tabindex="-1" aria-labelledby="cambiarEstadoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="cambiarEstadoModalLabel">Cambiar Estado de la queja o reporte</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="estadoForm">
+                                <input type="hidden" id="quejaId" name="idQueja" />
+                                <div class="mb-3">
+                                    <label for="nuevoEstado" class="form-label">Nuevo Estado</label>
+                                    <select id="nuevoEstado" name="estado" class="form-select">
+                                        @foreach (var estado in ViewBag.listaEstadosQuejas as List<SelectListItem>)
+                                        {
+                                            <option value="@estado.Value">@estado.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="comentario" class="form-label">Comentario</label>
+                                    <textarea id="comentario" name="comentario" class="form-control" rows="3" placeholder="Ingrese un comentario"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="guardarEstado()">Guardar</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="detalleEmpleado">Nombre del empleado</label>
-                                <textarea id="detalleEmpleado" class="form-control" rows="3" readonly></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="detalleFechaEnvio">Fecha de envío</label>
-                                <input type="text" id="detalleFechaEnvio" class="form-control" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="detalleComentario">Detalle de la queja o reporte</label>
-                                <textarea id="detalleComentario" class="form-control" rows="3" readonly></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+
+            <div class="modal fade" id="detalleQuejaModal" tabindex="-1" role="dialog" aria-labelledby="detalleQuejaModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="detalleQuejaModalLabel">Detalles de la queja</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="detalleEmpleado">Nombre del empleado</label>
+                                    <textarea id="detalleEmpleado" class="form-control" rows="3" readonly></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="detalleFechaEnvio">Fecha de envío</label>
+                                    <input type="text" id="detalleFechaEnvio" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="detalleComentario">Detalle de la queja o reporte</label>
+                                    <textarea id="detalleComentario" class="form-control" rows="3" readonly></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
 <script>

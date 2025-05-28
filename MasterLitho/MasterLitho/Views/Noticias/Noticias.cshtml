@@ -50,12 +50,12 @@
             </div>
 
             <div class="table-responsive">
-                <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                    <thead class="table-dark">
+                <table id="solicitudesTable" class="table text-nowrap align-middle mb-0 w-100">
+                    <thead>
                         <tr>
                             <th>Título de la noticia</th>
                             <th>Fecha publicación</th>
-                            <th>Imagen</th>
+                            <th class="imagen-columna">Imagen</th>
                             <th class="acciones-columna">Acciones</th>
                         </tr>
                     </thead>
@@ -65,25 +65,25 @@
                             <tr>
                                 <td>@noticia.TITULO</td>
                                 <td>@noticia.FECHA_PUBLICACION.ToString("yyyy-MM-dd HH:mm")</td>
-                                <td>
+                                <td class="imagen-columna">
                                     @if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA))
                                     {
-                                        <img src="@Url.Content(noticia.IMAGEN_RUTA)" alt="Imagen Noticia" width="100" class="img-thumbnail" />
+                                        <img src="@Url.Content(noticia.IMAGEN_RUTA)" alt="Imagen Noticia" class="img-thumbnail miniatura-noticia" />
                                     }
                                     else
                                     {
-                                        <span>No disponible</span>
+                                        <span class="text-muted">No disponible</span>
                                     }
                                 </td>
                                 <td class="acciones-columna">
                                     <div class="btn-group" role="group">
-                                        <a class="btn btn-primary"
+                                        <a class="btn btn-primary btn-sm"
                                            href="@Url.Action("EditarNoticia", "Noticias", new { id = noticia.ID_NOTICIA })"
                                            data-bs-toggle="tooltip" title="Editar Noticia">
-                                            <i class="bi bi-pencil"></i>
+                                            <i class="fas fa-pen"></i>
                                         </a>
 
-                                        <a class="btn btn-danger"
+                                        <a class="btn btn-danger btn-sm"
                                            href="@Url.Action("EliminarNoticia", "Noticias", new { id = noticia.ID_NOTICIA })"
                                            data-bs-toggle="tooltip" title="Eliminar Noticia">
                                             <i class="fas fa-trash-alt"></i>

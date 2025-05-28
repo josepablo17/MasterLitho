@@ -26,7 +26,7 @@
     }
 
     .acciones-columna {
-        width: 100px;
+        width: 1%;
         white-space: nowrap;
     }
 </style>
@@ -48,7 +48,6 @@
                 <i class="fas fa-exclamation-circle"></i> @TempData["MensajePantallaExito"]
             </div>
         }
-
 
         @if (Session["rolUsuario"] != null && Session["rolUsuario"].ToString() == "2")
         {
@@ -92,8 +91,8 @@
                     <div class="card rounded shadow">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="dataTable" class="table table-hover table-striped align-middle w-100">
-                                    <thead class="table-dark">
+                                <table id="dataTable" class="">
+                                    <thead class="">
                                         <tr>
                                             <th>ID</th>
                                             <th>Nombre empleado</th>
@@ -134,8 +133,8 @@
             <div class="card rounded shadow">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="dataTable1" class="table table-hover table-striped align-middle w-100">
-                            <thead class="table-dark">
+                        <table id="dataTable1" class="">
+                            <thead class="">
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre empleado</th>

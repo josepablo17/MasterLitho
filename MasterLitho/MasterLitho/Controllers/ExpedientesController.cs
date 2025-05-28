@@ -127,6 +127,7 @@ namespace MasterLitho.Controllers
 
                 var modelo = new tDetalleExpediente
                 {
+                    idEmpleado = expediente.ID_USUARIO,
                     idExpediente = expediente.ID_EXPEDIENTE,
                     nombreExpediente = expediente.NOMBRE_EXPEDIENTE,
                     fechaCreacion = expediente.FECHA_CREACION,

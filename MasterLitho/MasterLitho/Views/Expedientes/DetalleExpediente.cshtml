@@ -24,21 +24,30 @@
     </div>
 
     <!-- Botones de acción -->
-    <div class="d-flex justify-content-between flex-wrap mb-4">
+    <div class="d-flex flex-wrap gap-3 mb-4">
+
+        <a href="@Url.Action("IndexExpedientes", "Expedientes")"
+           class="btn btn-secondary d-flex align-items-center px-4 py-2">
+            <i class="fas fa-arrow-left me-2"></i> Volver
+        </a>
+
         <a href="@Url.Action("AgregarDocumento", "Expedientes", new { id = Model.idExpediente })"
-           class="btn btn-outline-primary mb-2">
-            <i class="fas fa-upload me-1"></i> Agregar Documento
+           class="btn btn-outline-primary d-flex align-items-center px-4 py-2">
+            <i class="fas fa-upload me-2"></i> Agregar Documento
         </a>
 
         <a href="@Url.Action("CrearDocumento", "Documentos", new { idExpediente = Model.idExpediente })"
-           class="btn btn-success mb-2">
-            <i class="fas fa-file-alt me-1"></i> Crear Documento
+           class="btn btn-success d-flex align-items-center px-4 py-2">
+            <i class="fas fa-file-alt me-2"></i> Crear Documento
         </a>
 
-        <a href="@Url.Action("IndexExpedientes", "Expedientes")" class="btn btn-secondary mb-2">
-            <i class="fas fa-arrow-left me-1"></i> Volver
+        <a href="@Url.Action("ExpedientePlanillas", "Planillas", new { idEmpleado = Model.idEmpleado })"
+           class="btn btn-outline-primary d-flex align-items-center px-4 py-2">
+            <i class="fas fa-file-invoice-dollar me-2"></i> Ver Expediente de Planillas
         </a>
+
     </div>
+
 
     <!-- Documentos -->
     @if (Model.documentos != null && Model.documentos.Any())

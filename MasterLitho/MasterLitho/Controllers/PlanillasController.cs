@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MasterLitho.Servicios;
+using System.Data.Entity;
 
 namespace MasterLitho.Controllers
 {
@@ -18,6 +19,9 @@ namespace MasterLitho.Controllers
         {
             _generalService = new GeneralService();
         }
+
+
+        #region MetodosGeneralesParaPlanillas
 
         private string ValidarPlanilla(tPlanilla model)
         {
@@ -80,6 +84,51 @@ namespace MasterLitho.Controllers
                 return (salario - 941000) * 0.10m;
             else
                 return ((1370000 - 941000) * 0.10m) + ((salario - 1370000) * 0.15m);
+        }
+
+        public int ObtenerDiasVacacionesTomados(int idEmpleado, DateTime inicio, DateTime fin)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var diasTomados = context.SOLICITUD_VACACIONES
+                    .Where(s => s.ID_USUARIO == idEmpleado
+                             && s.ESTADO_SOLICITUD.TIPO_ESTADO == "Aceptado"
+                             && s.FECHA_INICIO <= fin
+                             && s.FECHA_FIN >= inicio)
+                    .ToList()
+                    .Sum(s =>
+                    {
+                        var desde = s.FECHA_INICIO < inicio ? inicio : s.FECHA_INICIO;
+                        var hasta = s.FECHA_FIN > fin ? fin : s.FECHA_FIN;
+                        return (hasta - desde).Days + 1;
+                    });
+
+                return diasTomados;
+            }
+        }
+
+
+        #endregion
+
+        [HttpGet]
+        public JsonResult ObtenerSalarioPorEmpleado(int id)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var salario = context.EMPLEADO
+                    .Where(e => e.ID_EMPLEADO == id)
+                    .Select(e => e.Salario)
+                    .FirstOrDefault();
+
+                return Json(salario, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public JsonResult CalcularDiasVacaciones(int idEmpleado, DateTime inicio, DateTime fin)
+        {
+            int dias = ObtenerDiasVacacionesTomados(idEmpleado, inicio, fin);
+            return Json(dias, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -185,16 +234,6 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
 
-            model.salarioNeto = CalcularSalarioNeto(model);
-
-            var mensajeValidacion = ValidarPlanilla(model);
-            if (mensajeValidacion != null)
-            {
-                ViewBag.MensajePantalla = mensajeValidacion;
-                CargarListaEmpleados();
-                return View(model);
-            }
-
             using (var context = new LithoManagerEntities())
             {
                 try
@@ -207,11 +246,23 @@ namespace MasterLitho.Controllers
                         return View(model);
                     }
 
-                    int horasExtra = model.horasExtra ?? 0;
+                    decimal salarioBruto = empleado.Salario;
+                    model.salarioBruto = salarioBruto;
 
-                    decimal salarioBruto = model.salarioBruto;
+                    model.diasVacacionesTomados = ObtenerDiasVacacionesTomados(model.idEmpleado, model.periodoInicio, model.periodoFin);
+
+                    int horasExtra = model.horasExtra ?? 0;
                     decimal aporteSeguridadSocial = salarioBruto * 0.105m;
                     decimal impuestoRenta = CalcularImpuestoRenta(salarioBruto);
+                    model.salarioNeto = CalcularSalarioNeto(model);
+
+                    var mensajeValidacion = ValidarPlanilla(model);
+                    if (mensajeValidacion != null)
+                    {
+                        ViewBag.MensajePantalla = mensajeValidacion;
+                        CargarListaEmpleados();
+                        return View(model);
+                    }
 
                     var nuevaPlanilla = new PLANILLA
                     {
@@ -226,7 +277,7 @@ namespace MasterLitho.Controllers
                         IMPUESTOS = impuestoRenta,
                         PERIODO_INICIO = model.periodoInicio,
                         PERIODO_FIN = model.periodoFin,
-                        SALARIO_BRUTO = model.salarioBruto,
+                        SALARIO_BRUTO = salarioBruto,
                         FECHA_CREACION = DateTime.Now,
                         SALARIO_NETO = model.salarioNeto
                     };
@@ -235,7 +286,7 @@ namespace MasterLitho.Controllers
                     context.SaveChanges();
 
                     TempData["MensajeExito"] = "Planilla creada correctamente.";
-                    return RedirectToAction("ConsultarPlanillas", "Planillas");
+                    return RedirectToAction("ConsultarPlanillas");
                 }
                 catch (Exception ex)
                 {
@@ -245,6 +296,7 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+
 
 
         #endregion
@@ -294,16 +346,6 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
 
-            model.salarioNeto = CalcularSalarioNeto(model);
-
-            var mensajeValidacion = ValidarPlanilla(model);
-            if (mensajeValidacion != null)
-            {
-                ViewBag.MensajePantalla = mensajeValidacion;
-                CargarListaEmpleados();
-                return View(model);
-            }
-
             using (var context = new LithoManagerEntities())
             {
                 try
@@ -315,16 +357,26 @@ namespace MasterLitho.Controllers
                         return RedirectToAction("ConsultarPlanillas");
                     }
 
+                    var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_EMPLEADO == planillaExistente.ID_EMPLEADO);
+                    if (empleado == null)
+                    {
+                        TempData["MensajePantalla"] = "El empleado asociado ya no existe.";
+                        return RedirectToAction("ConsultarPlanillas");
+                    }
+
+                    decimal salarioBruto = empleado.Salario;
+                    model.salarioBruto = salarioBruto;
+                    model.diasVacacionesTomados = ObtenerDiasVacacionesTomados(empleado.ID_EMPLEADO, model.periodoInicio, model.periodoFin);
+
                     int horasExtra = model.horasExtra ?? 0;
-                    decimal salarioBruto = model.salarioBruto;
                     decimal aporteSeguridadSocial = salarioBruto * 0.105m;
                     decimal impuestoRenta = CalcularImpuestoRenta(salarioBruto);
-
+                    model.salarioNeto = CalcularSalarioNeto(model);
                     planillaExistente.FECHA_PAGO = model.fechaPago;
                     planillaExistente.DEDUCCIONES = model.deducciones;
                     planillaExistente.BONOS = model.bonos;
                     planillaExistente.DIAS_VACACIONES_TOMADOS = model.diasVacacionesTomados;
-                    planillaExistente.OTROS_BENEFICIOS = model.otrosBeneficios ;
+                    planillaExistente.OTROS_BENEFICIOS = model.otrosBeneficios;
                     planillaExistente.HORAS_EXTRAS = horasExtra;
                     planillaExistente.PERIODO_INICIO = model.periodoInicio;
                     planillaExistente.PERIODO_FIN = model.periodoFin;
@@ -346,6 +398,7 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+
 
 
         #endregion
@@ -428,6 +481,52 @@ namespace MasterLitho.Controllers
                 return View(model);
             }
         }
+        #endregion
+
+        #region ExpedienteDePlanillas
+        [HttpGet]
+        public ActionResult ExpedientePlanillas(int idEmpleado)
+        {
+            using (var context = new LithoManagerEntities())
+            {
+                var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_EMPLEADO == idEmpleado);
+                if (empleado == null)
+                {
+                    ViewBag.MensajePantalla = "El empleado no existe.";
+                    return RedirectToAction("ConsultarPlanillas");
+                }
+
+                // Obtiene todas las planillas del empleado
+                var planillas = context.PLANILLA
+                    .Where(p => p.ID_EMPLEADO == idEmpleado)
+                    .OrderByDescending(p => p.FECHA_PAGO)
+                    .ToList();
+
+                // Convierte a modelo de vista
+                var listaModel = planillas.Select(p => new tPlanilla
+                {
+                    idPlanilla = p.ID_PLANILLA,
+                    fechaPago = p.FECHA_PAGO,
+                    periodoInicio = p.PERIODO_INICIO,
+                    periodoFin = p.PERIODO_FIN,
+                    salarioBruto = p.SALARIO_BRUTO,
+                    bonos = p.BONOS ?? 0,
+                    deducciones = p.DEDUCCIONES,
+                    otrosBeneficios = p.OTROS_BENEFICIOS ?? 0,
+                    impuestos = p.IMPUESTOS ?? 0,
+                    aporteSeguridadSocial = p.APORTE_SEGURIDAD_SOCIAL ?? 0,
+                    salarioNeto = p.SALARIO_NETO,
+                }).ToList();
+
+                ViewBag.NombreEmpleado = empleado.USUARIO.NOMBRE_USUARIO;
+                ViewBag.IdEmpleado = empleado.ID_EMPLEADO;
+                var expediente = context.EXPEDIENTE.FirstOrDefault(e => e.ID_USUARIO == empleado.ID_USUARIO);
+                ViewBag.IdExpediente = expediente?.ID_EXPEDIENTE;
+
+                return View(listaModel);
+            }
+        }
+
         #endregion
     }
 }

@@ -4,126 +4,140 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center fw-bold text-dark mt-4 mb-4">
-    <i class="fas fa-file-invoice-dollar text-primary me-2"></i> Registro de Nueva Planilla
-</h2>
+<div class="container-fluid main-content">
 
-@using (Html.BeginForm("CrearNuevaPlanilla", "Planillas", FormMethod.Post, new { @class = "form-horizontal", id = "crearPlanillaForm" }))
-{
-    if (ViewBag.MensajePantalla != null)
+    <h2 class="text-center fw-bold text-dark mt-4 mb-4">
+        <i class="fas fa-file-invoice-dollar text-primary me-2"></i> Registro de Nueva Planilla
+    </h2>
+
+    @using (Html.BeginForm("CrearNuevaPlanilla", "Planillas", FormMethod.Post, new { @class = "form-horizontal", id = "crearPlanillaForm" }))
     {
-        <div class="alert alert-danger">
-            @ViewBag.MensajePantalla
+        if (ViewBag.MensajePantalla != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.MensajePantalla
+            </div>
+        }
+
+        <div class="accordion" id="planillaAccordion">
+            <!-- Información del empleado -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEmpleado">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#infoEmpleado" aria-expanded="true">
+                        <i class="fas fa-user-tie me-2"></i> Información del Empleado
+                    </button>
+                </h2>
+                <div id="infoEmpleado" class="accordion-collapse collapse show" data-bs-parent="#planillaAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Empleado</label>
+                                    @Html.DropDownListFor(m => m.idEmpleado, ViewBag.listaEmpleados as List<SelectListItem>,
+                                        new { @class = "form-control", id = "empleadoDropdown" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Fecha de Pago</label>
+                                    @Html.TextBoxFor(m => m.fechaPago, "{0:yyyy-MM-dd}",
+                                        new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Inicio</label>
+                                    @Html.TextBoxFor(m => m.periodoInicio, "{0:yyyy-MM-dd}",
+                                        new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01", @id = "fechaInicio" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Fin</label>
+                                    @Html.TextBoxFor(m => m.periodoFin, "{0:yyyy-MM-dd}",
+                                        new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01", @id = "fechaFin" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalles del Pago -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPago">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#detallesPago" aria-expanded="false">
+                        <i class="fas fa-coins me-2"></i> Detalles del Pago
+                    </button>
+                </h2>
+                <div id="detallesPago" class="accordion-collapse collapse" data-bs-parent="#planillaAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Salario Bruto</label>
+                                    <input type="text" class="form-control" id="salarioBrutoVisible" readonly />
+
+                                    @Html.HiddenFor(m => m.salarioBruto)
+                                    <small class="form-text text-muted">
+                                        Este salario se obtiene automáticamente del perfil del empleado.
+                                    </small>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Días de Vacaciones Tomados</label>
+                                    @Html.TextBoxFor(m => m.diasVacacionesTomados, new
+                                    {
+                                        @class = "form-control",
+                                        @readonly = "readonly",
+                                        @id = "diasVacaciones"
+                                    })
+                                    <small class="form-text text-muted">Este valor se calcula automáticamente según las solicitudes de vacaciones aceptadas.</small>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Otros Datos -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOtros">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#otrosDatos" aria-expanded="false">
+                        <i class="fas fa-cogs me-2"></i> Otros Datos
+                    </button>
+                </h2>
+                <div id="otrosDatos" class="accordion-collapse collapse" data-bs-parent="#planillaAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Bonos</label>
+                                    @Html.TextBoxFor(m => m.bonos, new { @class = "form-control", @required = "required" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Deducciones</label>
+                                    @Html.TextBoxFor(m => m.deducciones, new { @class = "form-control", @required = "required" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Horas Extras</label>
+                                    @Html.TextBoxFor(m => m.horasExtra, new { @class = "form-control", @required = "required" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>Otros beneficios</label>
+                                    @Html.TextBoxFor(m => m.otrosBeneficios, new { @class = "form-control", @required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- Botón de envío -->
+        <div class="text-center mt-3">
+            <button type="submit" id="btnCrearPlanilla" class="btn btn-success px-5 py-2 fs-5 rounded-pill" disabled>
+                <i class="fas fa-check-circle me-2"></i> Crear Planilla
+            </button>
+            <a class="btn btn-primary px-5 py-2 fs-5 rounded-pill" href="@Url.Action("ConsultarPlanillas", "Planillas")">Atrás</a>
+        </div>
+
     }
-
-    <div class="accordion" id="planillaAccordion">
-        <!-- Información del empleado -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingEmpleado">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#infoEmpleado" aria-expanded="true">
-                    <i class="fas fa-user-tie me-2"></i> Información del Empleado
-                </button>
-            </h2>
-            <div id="infoEmpleado" class="accordion-collapse collapse show" data-bs-parent="#planillaAccordion">
-                <div class="accordion-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label>Empleado</label>
-                        @Html.DropDownListFor(m => m.idEmpleado, ViewBag.listaEmpleados as List<SelectListItem>,
-                            new { @class = "form-control", id = "empleadoDropdown" })
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha de Pago</label>
-                        @Html.TextBoxFor(m => m.fechaPago, "{0:yyyy-MM-dd}",
-                            new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Inicio</label>
-                        @Html.TextBoxFor(m => m.periodoInicio, "{0:yyyy-MM-dd}",
-                            new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
-                    </div>
-                    <div class="form-group mb-3">
-                        <label>Fin</label>
-                        @Html.TextBoxFor(m => m.periodoFin, "{0:yyyy-MM-dd}",
-                            new { @type = "date", @class = "form-control", @required = "required", @min = "1980-01-01" })
-                    </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Detalles del Pago -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingPago">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#detallesPago" aria-expanded="false">
-                    <i class="fas fa-coins me-2"></i> Detalles del Pago
-                </button>
-            </h2>
-            <div id="detallesPago" class="accordion-collapse collapse" data-bs-parent="#planillaAccordion">
-                <div class="accordion-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label>Salario Bruto</label>
-                                @Html.TextBoxFor(m => m.salarioBruto, new { @class = "form-control", required = "required" })
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Días de Vacaciones Tomados</label>
-                                @Html.TextBoxFor(m => m.diasVacacionesTomados, new { @class = "form-control", required = "required" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Otros Datos -->
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOtros">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#otrosDatos" aria-expanded="false">
-                    <i class="fas fa-cogs me-2"></i> Otros Datos
-                </button>
-            </h2>
-            <div id="otrosDatos" class="accordion-collapse collapse" data-bs-parent="#planillaAccordion">
-                <div class="accordion-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group mb-3">
-                                <label>Bonos</label>
-                                @Html.TextBoxFor(m => m.bonos, new { @class = "form-control", @required = "required" })
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Deducciones</label>
-                                @Html.TextBoxFor(m => m.deducciones, new { @class = "form-control", @required = "required" })
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Horas Extras</label>
-                                @Html.TextBoxFor(m => m.horasExtra, new { @class = "form-control", @required = "required" })
-                            </div>
-                            <div class="form-group mb-3">
-                                <label>Otros beneficios</label>
-                                @Html.TextBoxFor(m => m.otrosBeneficios, new { @class = "form-control", @required = "required" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Botón de envío -->
-    <div class="text-center mt-3">
-        <button type="submit" id="btnCrearPlanilla" class="btn btn-success px-5 py-2 fs-5 rounded-pill" disabled>
-            <i class="fas fa-check-circle me-2"></i> Crear Planilla
-        </button>
-        <a class="btn btn-primary px-5 py-2 fs-5 rounded-pill" href="@Url.Action("ConsultarPlanillas", "Planillas")">Atrás</a>
-    </div>
-
-}
-
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -156,6 +170,80 @@
     });
 
 </script>
+
+<script>
+    $(document).ready(function () {
+        $('#empleadoDropdown').change(function () {
+            var idEmpleado = $(this).val();
+            if (idEmpleado) {
+                $.ajax({
+                    url: '/Planillas/ObtenerSalarioPorEmpleado',
+                    type: 'GET',
+                    data: { id: idEmpleado },
+                    success: function (data) {
+                        // Actualiza el campo visible
+                        $('#salarioBrutoVisible').val('₡' + parseFloat(data).toFixed(2));
+                        // Actualiza el valor que se enviará en el POST
+                        $('#salarioBruto').val(data);
+                    },
+                    error: function () {
+                        alert('Error al obtener el salario.');
+                        $('#salarioBrutoVisible').val('');
+                        $('#salarioBruto').val('');
+                    }
+                });
+            } else {
+                $('#salarioBrutoVisible').val('');
+                $('#salarioBruto').val('');
+            }
+        });
+
+        // Disparar el cambio al cargar si hay valor
+        var selected = $('#empleadoDropdown').val();
+        if (selected) {
+            $('#empleadoDropdown').trigger('change');
+        }
+    });
+</script>
+
+<script>
+    function actualizarDiasVacaciones() {
+        var idEmpleado = $('#empleadoDropdown').val();
+        var inicio = $('#fechaInicio').val();
+        var fin = $('#fechaFin').val();
+
+        if (idEmpleado && inicio && fin) {
+            $.ajax({
+                url: '/Planillas/CalcularDiasVacaciones',
+                type: 'GET',
+                data: {
+                    idEmpleado: idEmpleado,
+                    inicio: inicio,
+                    fin: fin
+                },
+                success: function (dias) {
+                    $('#diasVacaciones').val(dias);
+                },
+                error: function () {
+                    $('#diasVacaciones').val(0);
+                }
+            });
+        }
+    }
+
+    // Ejecutar cada vez que cambia empleado o fechas
+    $(document).ready(function () {
+        $('#empleadoDropdown, #fechaInicio, #fechaFin').on('change', function () {
+            actualizarDiasVacaciones();
+        });
+
+        // Cargar al abrir si hay datos ya cargados
+        actualizarDiasVacaciones();
+    });
+</script>
+
+
+
 
 
 

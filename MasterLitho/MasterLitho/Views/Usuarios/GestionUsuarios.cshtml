@@ -24,7 +24,7 @@
     }
 
     .acciones-columna {
-        width: 150px;
+        width: 1%;
         white-space: nowrap;
     }
 </style>
@@ -52,8 +52,8 @@
             </div>
 
             <div class="table-responsive">
-                <table id="UsuariosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                    <thead class="table-dark">
+                <table id="UsuariosTable" class="table text-nowrap align-middle mb-0 w-100">
+                    <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nombre usuario</th>
@@ -76,14 +76,17 @@
                                 <td>@item.estado</td>
                                 <td class="acciones-columna">
                                     <div class="btn-group" role="group">
-                                        <a href="@Url.Action("ActualizarUsuario", "Usuarios", new { q = item.idUsuario })" class="btn btn-primary btn">
-                                            <i class="bi bi-pencil"></i>
+                                        <a href="@Url.Action("ActualizarUsuario", "Usuarios", new { q = item.idUsuario })"
+                                           class="btn btn-primary btn-sm"
+                                           data-bs-toggle="tooltip" title="Editar Usuario">
+                                            <i class="fas fa-pen"></i>
                                         </a>
 
-                                        <button type="button" class="btn btn-danger btn abrirModal"
+                                        <button type="button" class="btn btn-danger btn-sm abrirModal"
                                                 data-id="@item.idUsuario"
                                                 data-name="@item.nombreUsuario"
-                                                data-bs-toggle="modal" data-bs-target="#modalUsuarios">
+                                                data-bs-toggle="modal" data-bs-target="#modalUsuarios"
+                                                title="Eliminar Usuario">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </div>
@@ -93,6 +96,7 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 </div>

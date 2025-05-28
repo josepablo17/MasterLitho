@@ -199,7 +199,6 @@ namespace MasterLitho.Controllers
         {
             if (Session["ID_USUARIO"] == null || !int.TryParse(Session["ID_USUARIO"].ToString(), out int idUsuario))
             {
-                // Redirigir o manejar sesión no válida
                 return RedirectToAction("Login", "Acceso");
             }
 

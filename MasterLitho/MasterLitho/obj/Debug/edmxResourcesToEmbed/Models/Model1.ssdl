@@ -199,6 +199,16 @@
     <Property Name="ID_ESTADO" Type="int" Nullable="false" />
     <Property Name="COMENTARIO" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="TIPO_QUEJA">
     <Key>
       <PropertyRef Name="ID_TIPO" />
@@ -592,6 +602,7 @@
     <EntitySet Name="RESPUESTAS_FORMULARIO" EntityType="Self.RESPUESTAS_FORMULARIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SOLICITUD_VACACIONES" EntityType="Self.SOLICITUD_VACACIONES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPO_QUEJA" EntityType="Self.TIPO_QUEJA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TIPOS_CONSTANCIA" EntityType="Self.TIPOS_CONSTANCIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />

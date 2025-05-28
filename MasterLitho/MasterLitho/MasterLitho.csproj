@@ -309,6 +309,9 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tCampoFormulario.cs" />
     <Compile Include="Models\tCampoFormularioRespuesta.cs" />
     <Compile Include="Models\tConstancia.cs" />
@@ -350,16 +353,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\MasterLitho.dll" />
     <Content Include="bin\MasterLitho.pdb" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.pdb" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.pdb" />
+    <Content Include="bin\Microsoft.AspNet.SignalR.SystemWeb.xml" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Newtonsoft.Json.xml" />
     <Content Include="bin\roslyn\csc.exe" />
     <Content Include="bin\roslyn\csi.exe" />
     <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
@@ -401,19 +407,12 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
     <Content Include="bin\Rotativa.dll" />
     <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Helpers.xml" />
     <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Mvc.xml" />
     <Content Include="bin\System.Web.Optimization.dll" />
-    <Content Include="bin\System.Web.Optimization.xml" />
     <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.Deployment.dll" />
-    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
     <Content Include="bin\System.Web.WebPages.dll" />
     <Content Include="bin\System.Web.WebPages.Razor.dll" />
-    <Content Include="bin\System.Web.WebPages.Razor.xml" />
-    <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -557,6 +556,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\MasterLithoAzure - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -565,6 +565,8 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -572,6 +574,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Styles\css\chatStyle.css" />
     <Content Include="Styles\css\ConstanciaPDF.css" />
     <Content Include="Styles\css\EstilosCorreos.css" />
     <Content Include="Styles\css\EstilosDataTables.css" />
@@ -580,11 +583,13 @@
     <Content Include="Styles\css\sb-admin-2.min.css" />
     <Content Include="Styles\css\styles.css" />
     <Content Include="Styles\FuncionesJS\CambiarContrasena.js" />
+    <Content Include="Styles\FuncionesJS\Chat.js" />
     <Content Include="Styles\FuncionesJS\DataTables.js" />
     <Content Include="Styles\FuncionesJS\FuncionesCalendario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesGestioUsuario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesModificarUsuario.js" />
     <Content Include="Styles\FuncionesJS\FuncionesSweetAlert.js" />
+    <Content Include="Styles\FuncionesJS\InitSignalR.js" />
     <Content Include="Styles\img\martelithocr-logo %281%29.png" />
     <Content Include="Styles\img\martelithocr-logo.png" />
     <Content Include="Styles\img\MasterlithoFondo.png" />
@@ -2463,7 +2468,6 @@
     <Content Include="Styles\scss\_variables.scss" />
     <Content Include="Views\Constancias\EnvioConstancia.cshtml" />
     <Content Include="Views\QuejasReportes\GestionQuejasReportes.cshtml" />
-    <Content Include="Views\QuejasReportes\DetallesReporte.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillas.cshtml" />
     <Content Include="Views\Planillas\DetallePlanilla.cshtml" />
     <Content Include="Views\Expedientes\IndexExpedientes.cshtml" />
@@ -2474,7 +2478,6 @@
     <Content Include="Views\Shared\_LayoutExterno.cshtml" />
     <Content Include="Views\SolicitudVacaciones\SolicitarVacaciones.cshtml" />
     <Content Include="Views\Expedientes\CrearExpediente.cshtml" />
-    <Content Include="Views\QuejasReportes\EnviarQuejas.cshtml" />
     <Content Include="Views\Planillas\ConsultarPlanillasEmpleado.cshtml" />
     <Content Include="Views\SolicitudVacaciones\ConsultarDiasVacaciones.cshtml" />
     <Content Include="Views\Formularios\ConsultarFormularios.cshtml" />
@@ -2490,7 +2493,6 @@
     <Content Include="Views\Empleado\ConsultarEmpleados.cshtml" />
     <Content Include="Views\Planillas\CrearNuevaPlanilla.cshtml" />
     <Content Include="Views\Planillas\EditarPlanilla.cshtml" />
-    <Content Include="Views\Calendario\ConsultarCalendario.cshtml" />
     <Content Include="Views\Noticias\CrearNoticia.cshtml" />
     <Content Include="Views\Noticias\EditarNoticia.cshtml" />
     <Content Include="Views\Planillas\DetallePlanillaPDF.cshtml" />
@@ -2517,6 +2519,7 @@
     <Content Include="Views\Formularios\ConsultarRespuestasFormulario.cshtml" />
     <Content Include="Views\Expedientes\EnviarDocCorreo.cshtml" />
     <Content Include="Views\QuejasReportes\MisQuejasYReportes.cshtml" />
+    <Content Include="Views\Planillas\ExpedientePlanillas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

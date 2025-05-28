@@ -8,31 +8,29 @@
     .card {
         margin: auto;
         padding: 15px;
-        height: auto;
-        max-width: 100%;
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    }
-
-    .card-body {
-        padding: 10px 20px;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
     }
 
     .table-responsive {
         overflow-x: auto;
+        min-height: 200px;
     }
 
-    body, html {
-        overflow-x: hidden;
+    button[disabled] {
+        opacity: 0.7;
+        cursor: not-allowed;
     }
 
     .acciones-columna {
-        width: 140px;
+        width: 1%;
         white-space: nowrap;
     }
+
 </style>
 
 
-<div class="container-fluid px-4">
+<div class="container-fluid px-4 main-content">
     <div class="text-center mb-4">
         <h1 class="my-4 text-dark fw-bold">
             <i class="fas fa-plane-departure me-2 text-primary"></i> Gestión y Aprobación de Solicitudes de Vacaciones
@@ -44,8 +42,8 @@
             <h5 class="text-primary fw-bold text-center mb-4">Lista de solicitudes</h5>
 
             <div class="table-responsive">
-                <table id="solicitudesTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                    <thead class="table-dark">
+                <table id="solicitudesTable" class="table text-nowrap align-middle mb-0 w-100">
+                    <thead>
                         <tr>
                             <th>Nombre usuario</th>
                             <th>Fecha de la solicitud</th>
