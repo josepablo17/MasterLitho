@@ -57,7 +57,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            bool estadoFinalizado = item.nombreEstado == "Aceptado" || item.nombreEstado == "Rechazado";
+                            bool estadoFinalizado = item.nombreEstado == "Aceptada" || item.nombreEstado == "Rechazada";
 
                             <tr data-id="@item.idSolicitud">
                                 <td>@item.nombreUsuario</td>
@@ -70,11 +70,11 @@
                                     {
                                         <span class="badge bg-warning text-dark">Pendiente</span>
                                     }
-                                    else if (item.nombreEstado == "Aceptado")
+                                    else if (item.nombreEstado == "Aceptada")
                                     {
                                         <span class="badge bg-success">Aceptado</span>
                                     }
-                                    else if (item.nombreEstado == "Rechazado")
+                                    else if (item.nombreEstado == "Rechazada")
                                     {
                                         <span class="badge bg-danger">Rechazado</span>
                                     }

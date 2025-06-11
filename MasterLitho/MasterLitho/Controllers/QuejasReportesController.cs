@@ -68,7 +68,6 @@ namespace MasterLitho.Controllers
         {
             using (var context = new LithoManagerEntities())
             {
-                // Buscar la solicitud
                 var queja = context.QUEJAS_REPORTES.FirstOrDefault(s => s.ID_QUEJA == idQueja);
                 if (queja == null)
                 {
@@ -88,7 +87,6 @@ namespace MasterLitho.Controllers
 
                 contenido = contenido.Replace("@@Nombre_Empleado", usuario.NOMBRE_USUARIO);
                 contenido = contenido.Replace("@@FechaEnvio", queja.FECHA_ENVIO.ToString("dd/MM/yyyy"));
-                contenido = contenido.Replace("@@Comentario", queja.COMENTARIO_ADMIN);
                 contenido = contenido.Replace("@@Estado", queja.ESTADO_QUEJA.TIPO_ESTADO);
 
                 return contenido;
@@ -281,6 +279,7 @@ namespace MasterLitho.Controllers
                         return View(model);
                     }
 
+
                     var nuevaQueja = new QUEJAS_REPORTES
                     {
                         ID_EMPLEADO = empleado.ID_EMPLEADO,
@@ -289,6 +288,12 @@ namespace MasterLitho.Controllers
                         ID_ESTADO_QUEJA = estadoPendiente.ID_ESTADO_QUEJA,
                         ID_TIPO = model.idTipo
                     };
+
+                    if (nuevaQueja.DESCRIPCION == null)
+                    {
+                        ViewBag.MensajePantalla = "Valide su descripción.";
+                        return View();
+                    }
 
                     context.QUEJAS_REPORTES.Add(nuevaQueja);
                     context.SaveChanges();

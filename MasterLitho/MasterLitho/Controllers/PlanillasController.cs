@@ -80,11 +80,12 @@ namespace MasterLitho.Controllers
         {
             if (salario <= 941000)
                 return 0m;
-            else if (salario <= 1370000)
+            else if (salario <= 1376000)
                 return (salario - 941000) * 0.10m;
             else
-                return ((1370000 - 941000) * 0.10m) + ((salario - 1370000) * 0.15m);
+                return ((1376000 - 941000) * 0.10m) + ((salario - 1376000) * 0.15m);
         }
+
 
         public int ObtenerDiasVacacionesTomados(int idEmpleado, DateTime inicio, DateTime fin)
         {
@@ -92,7 +93,7 @@ namespace MasterLitho.Controllers
             {
                 var diasTomados = context.SOLICITUD_VACACIONES
                     .Where(s => s.ID_USUARIO == idEmpleado
-                             && s.ESTADO_SOLICITUD.TIPO_ESTADO == "Aceptado"
+                             && s.ESTADO_SOLICITUD.TIPO_ESTADO == "Aceptada"
                              && s.FECHA_INICIO <= fin
                              && s.FECHA_FIN >= inicio)
                     .ToList()

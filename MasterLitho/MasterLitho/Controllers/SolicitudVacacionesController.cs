@@ -44,6 +44,7 @@ namespace MasterLitho.Controllers
                 string contenido = System.IO.File.ReadAllText(Server.MapPath("~/Styles/TemplateCorreoSolicitudVacaciones.html"));
 
                 contenido = contenido.Replace("@@Nombre_Usuario", usuario.NOMBRE_USUARIO);
+                contenido = contenido.Replace("@@Estado", solicitud.ESTADO_SOLICITUD.TIPO_ESTADO);
                 contenido = contenido.Replace("@@FechaInicio", solicitud.FECHA_INICIO.ToString("dd/MM/yyyy"));
                 contenido = contenido.Replace("@@FechaFin", solicitud.FECHA_FIN.ToString("dd/MM/yyyy"));
 
@@ -99,11 +100,11 @@ namespace MasterLitho.Controllers
                 }
                 else if (estado == "aceptado")
                 {
-                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Aceptado");
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Aceptada");
                 }
                 else if (estado == "rechazado")
                 {
-                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Rechazado");
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Rechazada");
                 }
                 var lista = datos.OrderByDescending(s => s.FECHA_SOLICITUD).ToList();
 
@@ -182,6 +183,11 @@ namespace MasterLitho.Controllers
                         string contenidoCorreo = GenerarContenidoCorreo(idSolicitud);
                         _correoService.EnviarCorreo(usuario.CORREO_USUARIO, "Solicitud de vacaciones aceptada", contenidoCorreo);
                     }
+                    else if (estadoNuevo == "Rechazado") 
+                    {
+                        string contenidoCorreo = GenerarContenidoCorreo(idSolicitud);
+                        _correoService.EnviarCorreo(usuario.CORREO_USUARIO, "Solicitud de vacaciones rechazada", contenidoCorreo);
+                    }
 
                     return Json(new { success = true });
                 }
@@ -217,7 +223,7 @@ namespace MasterLitho.Controllers
 
                 if (tienePendiente)
                 {
-                    ViewBag.MostrarAlerta = true;
+                    ViewBag.MensajePantalla = true;
                     return View();
                 }
 
