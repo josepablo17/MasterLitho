@@ -8,6 +8,7 @@ using System.Web.UI;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class SolicitudVacacionesController : Controller
     {
 

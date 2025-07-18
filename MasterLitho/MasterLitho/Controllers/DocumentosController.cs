@@ -14,6 +14,7 @@ using MasterLitho.Models;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class DocumentosController : Controller
     {
         // GET: Documentos/CrearDocumento?idExpediente=5

@@ -6,106 +6,122 @@
     var nombreUsuario = Session["NOMBRE_USUARIO"] != null ? Session["NOMBRE_USUARIO"].ToString() : "";
 }
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-<link href="~/Styles/css/chatStyle.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>MasterLithoADMIN</title>
 
-<div class="row clearfix">
-    <div class="col-lg-12">
-        <div class="card chat-app">
-            <div id="plist" class="people-list">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-search"></i></span>
-                    </div>
-                    <input type="text" class="form-control" id="myInput" onkeyup="searchByName()" placeholder="Search...">
-                </div>
-                <ul class="list-unstyled chat-list mt-2 mb-0" id="myUl">
-                    @foreach (var usuario in Model)
-                    {
-                        <li class="clearfix user-item"
-                            data-id="@usuario.ID_USUARIO"
-                            data-connection-id="@usuario.CONNECTION_ID"
-                            data-name="@usuario.NOMBRE_USUARIO"
-                            data-img="@usuario.IMAGEN_USUARIO">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Styles/css/chatStyle.css" rel="stylesheet" />
 
-                            @if (usuario.IMAGEN_USUARIO == null || string.IsNullOrEmpty(usuario.IMAGEN_USUARIO))
-                            {
-                                <img class="img-profile rounded-circle user-img" src="~/Styles/img/undraw_profile.svg">
-                            }
-                            else
-                            {
-                                <img class="img-profile rounded-circle user-img" src="@Url.Content(usuario.IMAGEN_USUARIO)">
-                            }
-                            <div class="about">
-                                <div class="name">@usuario.NOMBRE_USUARIO</div>
-                                @if (!string.IsNullOrEmpty(usuario.CONNECTION_ID))
-                                {
-                                    <div class="status">
-                                        <i class="fa fa-circle online"></i> En línea
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="status">
-                                        <i class="fa fa-circle offline"></i> Desconectado
-                                    </div>
-                                }
+    </head>
+<body id="page-top">
+    <div id="content-wrapper" class="container">
+        <div id="content">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card chat-app">
+                        <div id="plist" class="people-list">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control" id="myInput" onkeyup="searchByName()" placeholder="Search...">
                             </div>
-                        </li>
+                            <ul class="list-unstyled chat-list mt-2 mb-0" id="myUl">
+                                @foreach (var usuario in Model)
+                                {
+                                    <li class="clearfix user-item"
+                                        data-id="@usuario.ID_USUARIO"
+                                        data-connection-id="@usuario.CONNECTION_ID"
+                                        data-name="@usuario.NOMBRE_USUARIO"
+                                        data-img="@usuario.IMAGEN_USUARIO">
+
+                                        @if (usuario.IMAGEN_USUARIO == null || string.IsNullOrEmpty(usuario.IMAGEN_USUARIO))
+                                        {
+                                            <img class="img-profile rounded-circle user-img" src="~/Styles/img/undraw_profile.svg">
+                                        }
+                                        else
+                                        {
+                                            <img class="img-profile rounded-circle user-img" src="@Url.Content(usuario.IMAGEN_USUARIO)">
+                                        }
+                                        <div class="about">
+                                            <div class="name">@usuario.NOMBRE_USUARIO</div>
+                                            @if (!string.IsNullOrEmpty(usuario.CONNECTION_ID))
+                                            {
+                                                <div class="status">
+                                                    <i class="fa fa-circle online"></i> En línea
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="status">
+                                                    <i class="fa fa-circle offline"></i> Desconectado
+                                                </div>
+                                            }
+                                        </div>
+                                    </li>
 
 
-                    }
-                </ul>
+                                }
+                            </ul>
+                        </div>
+                        <div class="chat">
+                            <div class="chat-header clearfix">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                            <img id="chatUserImage" src="~/Styles/img/undraw_profile.svg" alt="avatar">
+                                        </a>
+                                        <div class="chat-about">
+                                            <h6 class="m-b-0" id="chatWith">Selecciona un usuario</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 hidden-sm text-right">
+                                        <a href="javascript:void(0);" id="EliminarChat" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="javascript:void(0);" id="infoChat" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="El chat sera borrado semanalmente">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="chat-history">
+                                <ul class="m-b-0" id="discussion">
+                                </ul>
+                            </div>
+                            <div class="chat-message clearfix">
+                                <div class="input-group mb-0">
+                                    <div class="input-group-prepend">
+                                        <span id="sendButton" class="input-group-text"><i class="fa fa-send"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Enter text here..." id="message">
+                                </div>
+                                @*<button id="sendButton" class="input-group-text" >Enviar</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="chat">
-                <div class="chat-header clearfix">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
-                                <img id="chatUserImage" src="~/Styles/img/undraw_profile.svg" alt="avatar">
-                            </a>
-                            <div class="chat-about">
-                                <h6 class="m-b-0" id="chatWith">Selecciona un usuario</h6>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 hidden-sm text-right">
-                            <a href="javascript:void(0);" id="EliminarChat" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
-                            <a href="javascript:void(0);" id="infoChat" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="El chat sera borrado semanalmente">
-                                <i class="fa fa-info-circle"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="chat-history">
-                    <ul class="m-b-0" id="discussion">
-                    </ul>
-                </div>
-                <div class="chat-message clearfix">
-                    <div class="input-group mb-0">
-                        <div class="input-group-prepend">
-                            <span id="sendButton" class="input-group-text"><i class="fa fa-send"></i></span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Enter text here..." id="message">
-                    </div>
-                    @*<button id="sendButton" class="input-group-text" >Enviar</button>*@
-                </div>
             </div>
         </div>
-    </div>
-</div>
+    
 
 
-<!-- Script references -->
-<script src="~/Scripts/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
-<script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
-<script src="~/signalr/hubs"></script>
+            <!-- Script references -->
+            <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js" defer></script>
+            <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+            <script src="~/signalr/hubs"></script>
 
-<script>
+            <script>
     $(document).ready(function () {
              $('[data-toggle="tooltip"]').tooltip();
             var chat = $.connection.chatHub;
@@ -187,7 +203,7 @@
                                         icon: "error",
                                         title: "Oops...",
                                         text: response.message,
-                                        
+
                                     });
                                 }
                             },
@@ -195,11 +211,11 @@
                                 alert("Error al eliminar el chat: " + error);
                             }
                         });
-                        
+
                     }
                 });
 
-                    
+
 
             });
 
@@ -304,4 +320,6 @@
     }
 
 
-</script>
+            </script>
+</body>
+</html>

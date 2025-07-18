@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
-
+    [Protegido]
     public class CalendarioController : Controller
     {
         [HttpGet]

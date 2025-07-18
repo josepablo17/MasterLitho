@@ -7,6 +7,8 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
+
+    [Protegido]
     public class HomeController : Controller
     {
         private readonly LithoManagerEntities _context = new LithoManagerEntities();

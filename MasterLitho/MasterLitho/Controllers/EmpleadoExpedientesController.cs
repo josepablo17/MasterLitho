@@ -13,6 +13,7 @@ namespace MasterLitho.Controllers
         // GET: EmpleadoExpedientes/MisExpedientes
         // Muestra todos los expedientes que pertenezcan al empleado actual
         [HttpGet]
+        [Protegido]
         public ActionResult Expedientes()
         {
             int idUsuario = Convert.ToInt32(Session["ID_USUARIO"]);

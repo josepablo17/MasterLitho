@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class FormulariosController : Controller
     {
         public void CargarEmpleados()
