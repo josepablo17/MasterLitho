@@ -11,7 +11,6 @@ namespace MasterLitho.Controllers
     public class EmpleadoController : Controller
     {
 
-        #region ConsultarEmpleadosProtegido
         [Protegido]
         [HttpGet]
         public ActionResult ConsultarEmpleados()
