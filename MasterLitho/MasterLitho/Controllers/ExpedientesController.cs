@@ -12,6 +12,7 @@ using System.Collections.Generic;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class ExpedientesController : Controller
     {
         private readonly ICorreo _correoService;

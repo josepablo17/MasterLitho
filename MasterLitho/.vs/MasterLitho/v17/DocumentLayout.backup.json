@@ -1,10 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\",
+  "WorkspaceRootPath": "C:\\MasterLitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\users\\jose\\onedrive - universidad fid\u00E9litas\\s\u00E9ptimo cuatrimestre\\dise\u00F1o y desarrollo\\masterlitho\\masterlitho\\masterlitho\\controllers\\planillascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\planillascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\masterlitho\\masterlitho\\masterlitho\\controllers\\empleadocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\empleadocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\masterlitho\\masterlitho\\masterlitho\\controllers\\empleadoexpedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\empleadoexpedientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\masterlitho\\masterlitho\\masterlitho\\styles\\funcionesjs\\funcionescalendario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\funcionesjs\\funcionescalendario.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|c:\\masterlitho\\masterlitho\\masterlitho\\views\\calendario\\calendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\calendario\\calendario.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,11 +26,15 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -29,36 +45,55 @@
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmpleadoController.cs",
+              "DocumentMoniker": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\EmpleadoController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\EmpleadoController.cs",
+              "ToolTip": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\EmpleadoController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\EmpleadoController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T01:08:36.06Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PlanillasController.cs",
-              "DocumentMoniker": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\PlanillasController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\PlanillasController.cs",
-              "ToolTip": "C:\\Users\\Jose\\OneDrive - Universidad Fid\u00E9litas\\S\u00E9ptimo Cuatrimestre\\Dise\u00F1o y Desarrollo\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\PlanillasController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\PlanillasController.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAmwFMAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "EmpleadoExpedientesController.cs",
+              "DocumentMoniker": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
+              "ToolTip": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\EmpleadoExpedientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-09T01:52:47.28Z",
+              "WhenOpened": "2025-07-18T01:08:34.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FuncionesCalendario.js",
+              "DocumentMoniker": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "RelativeDocumentMoniker": "MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "ToolTip": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "RelativeToolTip": "MasterLitho\\Styles\\FuncionesJS\\FuncionesCalendario.js",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-07-18T01:06:08.435Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Calendario.cshtml",
+              "DocumentMoniker": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "RelativeDocumentMoniker": "MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "ToolTip": "C:\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "RelativeToolTip": "MasterLitho\\Views\\Calendario\\Calendario.cshtml",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-18T01:05:42.538Z",
               "EditorCaption": ""
             }
           ]

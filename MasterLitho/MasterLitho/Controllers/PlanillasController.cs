@@ -11,6 +11,7 @@ using System.Data.Entity;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class PlanillasController : Controller
     {
         private readonly IGeneral _generalService;

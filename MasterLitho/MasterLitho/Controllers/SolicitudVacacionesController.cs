@@ -9,6 +9,7 @@ using System.Web.UI;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class SolicitudVacacionesController : Controller
     {
         private readonly IGeneral _generalService;

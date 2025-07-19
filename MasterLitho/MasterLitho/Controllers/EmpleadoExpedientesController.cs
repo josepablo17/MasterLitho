@@ -12,6 +12,7 @@ namespace MasterLitho.Controllers
     {
 
         [HttpGet]
+        [Protegido]
         public ActionResult Expedientes()
         {
             int idUsuario = Convert.ToInt32(Session["ID_USUARIO"]);
