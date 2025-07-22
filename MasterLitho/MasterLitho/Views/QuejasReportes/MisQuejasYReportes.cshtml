@@ -1,0 +1,114 @@
+﻿@model MasterLitho.Models.tQuejasReportes
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Mis Quejas y Reportes";
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-dark fw-bold mb-4">
+        <i class="fas fa-exclamation-circle text-danger me-2"></i> Mis Quejas y Reportes
+    </h2>
+
+    <ul class="nav nav-tabs mb-3" id="quejasReportesTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="quejas-tab" data-bs-toggle="tab" data-bs-target="#quejas" type="button" role="tab">Quejas</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="reportes-tab" data-bs-toggle="tab" data-bs-target="#reportes" type="button" role="tab">Reportes</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="quejasReportesContent">
+        <!-- TAB DE QUEJAS -->
+        <div class="tab-pane fade show active" id="quejas" role="tabpanel">
+            @if (Model.Quejas != null && Model.Quejas.Any())
+            {
+                <div class="row g-4">
+                    @foreach (var q in Model.Quejas)
+                    {
+                        string badgeClass = "bg-secondary";
+
+                        if (q.nombreEstado == "Pendiente")
+                        {
+                            badgeClass = "bg-warning text-dark";
+                        }
+                        else if (q.nombreEstado == "Procede")
+                        {
+                            badgeClass = "bg-success";
+                        }
+                        else if (q.nombreEstado == "No procede")
+                        {
+                            badgeClass = "bg-danger";
+                        }
+
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold"><i class="fas fa-calendar-alt me-1"></i> @q.fechaEnvio.ToString("dd MMM yyyy")</span>
+                                    <span class="badge @badgeClass">@q.nombreEstado</span>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Descripción:</strong> @q.descripcion</p>
+                                    <p><strong>Comentario del Administrador:</strong> @(string.IsNullOrWhiteSpace(q.comentarioAdmin) ? "Sin comentarios aún" : q.comentarioAdmin)</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info text-center">
+                    <i class="fas fa-info-circle me-2"></i> No has enviado ninguna queja.
+                </div>
+            }
+        </div>
+
+        <!-- TAB DE REPORTES -->
+        <div class="tab-pane fade" id="reportes" role="tabpanel">
+            @if (Model.Reportes != null && Model.Reportes.Any())
+            {
+                <div class="row g-4">
+                    @foreach (var r in Model.Reportes)
+                    {
+                        string badgeClass = "bg-secondary";
+
+                        if (r.nombreEstado == "Pendiente")
+                        {
+                            badgeClass = "bg-warning text-dark";
+                        }
+                        else if (r.nombreEstado == "Procede")
+                        {
+                            badgeClass = "bg-success";
+                        }
+                        else if (r.nombreEstado == "No procede")
+                        {
+                            badgeClass = "bg-danger";
+                        }
+
+                        <div class="col-md-6">
+                            <div class="card shadow-sm border-0 h-100">
+                                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                    <span class="fw-semibold"><i class="fas fa-calendar-alt me-1"></i> @r.fechaEnvio.ToString("dd MMM yyyy")</span>
+                                    <span class="badge @badgeClass">@r.nombreEstado</span>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Descripción:</strong> @r.descripcion</p>
+                                    <p><strong>Comentario del Administrador:</strong> @(string.IsNullOrWhiteSpace(r.comentarioAdmin) ? "Sin comentarios aún" : r.comentarioAdmin)</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info text-center">
+                    <i class="fas fa-info-circle me-2"></i> No has enviado ningún reporte.
+                </div>
+            }
+        </div>
+    </div>
+</div>

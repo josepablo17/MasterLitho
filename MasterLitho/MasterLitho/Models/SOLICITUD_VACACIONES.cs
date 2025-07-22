@@ -24,6 +24,7 @@ namespace MasterLitho.Models
         public string COMENTARIO { get; set; }
     
         public virtual ESTADO_SOLICITUD ESTADO_SOLICITUD { get; set; }
+        public virtual ESTADO_SOLICITUD ESTADO_SOLICITUD1 { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         public virtual SOLICITUD_VACACIONES SOLICITUD_VACACIONES1 { get; set; }
         public virtual SOLICITUD_VACACIONES SOLICITUD_VACACIONES2 { get; set; }

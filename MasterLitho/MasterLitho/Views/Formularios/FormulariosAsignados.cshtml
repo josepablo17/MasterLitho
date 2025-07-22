@@ -1,0 +1,72 @@
+﻿@model List<MasterLitho.Models.tFormulariosAsignados>
+
+@{
+    ViewBag.Title = "Formularios Asignados";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-dark fw-bold mb-4">
+        <i class="fas fa-clipboard-list text-primary me-2"></i> Formularios Asignados
+    </h2>
+
+    <form method="get" action="@Url.Action("FormulariosAsignados", "Formularios")" class="row mb-4">
+        <div class="col-md-4 offset-md-4">
+            <label for="estado" class="form-label">Filtrar por estado:</label>
+            <select name="estado" id="estado" class="form-select" onchange="this.form.submit()">
+                <option value="todos" @(ViewBag.EstadoActual == "todos" ? "selected" : "")>Todos</option>
+                <option value="pendiente" @(ViewBag.EstadoActual == "pendiente" ? "selected" : "")>Pendientes</option>
+                <option value="respondido" @(ViewBag.EstadoActual == "respondido" ? "selected" : "")>Respondidos</option>
+            </select>
+        </div>
+    </form>
+
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var formulario in Model)
+            {
+                var estadoTexto = formulario.yaRespondido ? "Respondido" : "Pendiente";
+                var estadoClase = formulario.yaRespondido ? "success" : "warning";
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold">
+                                <i class="fas fa-file-alt me-2"></i> @formulario.nombreFormulario
+                            </span>
+                            <span class="badge bg-@estadoClase">
+                                <i class="fas @(formulario.yaRespondido ? "fa-check-circle" : "fa-hourglass-half") me-1"></i>
+                                @estadoTexto
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2"><strong>Fecha asignación:</strong> @formulario.fechaAsignacion.ToShortDateString()</p>
+
+                            @if (!formulario.yaRespondido)
+                            {
+                                <a href="@Url.Action("ResponderFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
+                                   class="btn btn-success w-100 rounded-pill mt-3">
+                                    <i class="fas fa-edit me-1"></i> Responder formulario
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="alert alert-success text-center mt-3 py-2 mb-0">
+                                    <i class="fas fa-check-circle me-1"></i> Ya completado
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center mt-4 shadow-sm">
+            <i class="fas fa-info-circle me-2"></i>
+            No tenés formularios asignados por el momento.
+        </div>
+    }
+</div>

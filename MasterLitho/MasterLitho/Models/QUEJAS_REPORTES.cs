@@ -20,9 +20,12 @@ namespace MasterLitho.Models
         public string DESCRIPCION { get; set; }
         public Nullable<System.DateTime> FECHA_RESOLUCION { get; set; }
         public string COMENTARIO_ADMIN { get; set; }
-        public int ID_ESTADO { get; set; }
+        public int ID_ESTADO_QUEJA { get; set; }
+        public Nullable<int> ID_TIPO { get; set; }
     
         public virtual EMPLEADO EMPLEADO { get; set; }
-        public virtual ESTADO_SOLICITUD ESTADO_SOLICITUD { get; set; }
+        public virtual ESTADO_QUEJA ESTADO_QUEJA { get; set; }
+        public virtual ESTADO_QUEJA ESTADO_QUEJA1 { get; set; }
+        public virtual TIPO_QUEJA TIPO_QUEJA { get; set; }
     }
 }

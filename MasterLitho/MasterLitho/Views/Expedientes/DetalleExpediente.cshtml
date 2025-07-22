@@ -1,109 +1,98 @@
-﻿@model IEnumerable<MasterLitho.Models.DOCUMENTO_EXPEDIENTE>
+﻿@model MasterLitho.Models.tDetalleExpediente
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Documentos del Expediente";
-    var expediente = ViewBag.Expediente as MasterLitho.Models.EXPEDIENTE;
 }
 
-<div id="content-wrapper" class="container">
-    <div id="content">
-        <h1 class="my-4">Gestión de documentos</h1>
+<div class="container mt-4 mb-5">
+    <h2 class="text-center text-dark fw-bold mb-4">
+        <i class="fas fa-folder text-primary me-2"></i> Gestión de Documentos
+    </h2>
 
-        <div class="container-fluid">
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <!-- Ahora mostramos el NOMBRE_EXPEDIENTE -->
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">
-                        Expediente: @(expediente == null ? "NULL" : expediente.NOMBRE_EXPEDIENTE)
-                    </h5>
-
-                    <p>
-                        <strong>Usuario:</strong>
-                        @(expediente == null || expediente.USUARIO == null ? "NULL" : expediente.USUARIO.NOMBRE_USUARIO)
-                        (@(expediente == null || expediente.USUARIO == null ? "NULL" : expediente.USUARIO.IDENTIFICACION))
-                    </p>
-                    <p>
-                        <strong>Correo:</strong>
-                        @(expediente == null || expediente.USUARIO == null ? "NULL" : expediente.USUARIO.CORREO_USUARIO)
-                    </p>
-                    <p>
-                        <strong>Fecha Creación:</strong>
-                        @(expediente == null ? "NULL" : expediente.FECHA_CREACION.ToString("yyyy-MM-dd HH:mm"))
-                    </p>
-
-                    <hr />
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Documentos</h5>
-                    <div class="table-responsive">
-                        <table id="documentosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Nombre Documento</th>
-                                    <th>Tipo</th>
-                                    <th>Fecha Carga</th>
-                                    <th>Última Actualización</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var doc in Model)
-                                {
-                                    <tr>
-                                        <td>@doc.NOMBRE_DOCUMENTO</td>
-                                        <td>@doc.TIPO_DOCUMENTO</td>
-                                        <td>@doc.FECHA_CARGA.ToString("yyyy-MM-dd HH:mm")</td>
-                                        <td>
-                                            @if (doc.FECHA_ACTUALIZACION.HasValue)
-                                            {
-                                                @doc.FECHA_ACTUALIZACION.Value.ToString("yyyy-MM-dd HH:mm")
-                                            }
-                                            else
-                                            {
-                                                <span>No disponible</span>
-                                            }
-                                        </td>
-                                        <td>
-                                            <a class="btn" href="@Url.Action("EditarDocumento", "Expedientes", new { idDocumento = doc.ID_DOCUMENTO })">
-                                                <i class="fas fa-pencil"></i>
-                                            </a>
-                                            <a class="btn" href="@Url.Action("EliminarDocumento", "Expedientes", new { idDocumento = doc.ID_DOCUMENTO })"
-                                               onclick="return confirm('¿Seguro que deseas eliminar este documento?');">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                            <a class="btn" href="@Url.Action("DescargarDocumento", "Expedientes", new { idDocumento = doc.ID_DOCUMENTO })">
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-between mt-3">
-                <a href="@Url.Action("AgregarDocumento", "Expedientes", new { id = expediente == null ? 0 : expediente.ID_EXPEDIENTE })"
-                   class="btn btn-outline-primary">
-                    + Agregar documento
-                </a>
-
-                <a href="@Url.Action("CrearDocumento", "Documentos", new { idExpediente = expediente.ID_EXPEDIENTE })"
-                   class="btn btn-success">
-                    Crear Documento
-                </a>
-
-
-                <a href="@Url.Action("IndexExpedientes", "Expedientes")" class="btn btn-secondary">
-                    Volver a Expedientes
-                </a>
-            </div>
+    <!-- Card de datos del expediente -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <strong>Expediente:</strong> @(Model.nombreExpediente ?? "Sin nombre")
+        </div>
+        <div class="card-body">
+            <p><strong>Usuario:</strong> @(Model.nombreUsuario ?? "No asignado")</p>
+            <p><strong>Identificación:</strong> @(Model.identificacion ?? "-")</p>
+            <p><strong>Correo:</strong> @(Model.correoUsuario ?? "-")</p>
+            <p><strong>Fecha de creación:</strong> @(Model.fechaCreacion.ToString("dd/MM/yyyy HH:mm"))</p>
         </div>
     </div>
-</div>
 
-<script>
-    $(document).ready(function () {
-        inicializarDataTable('#documentosTable');
-    });
-</script>
+    <!-- Botones de acción -->
+    <div class="d-flex flex-wrap gap-3 mb-4">
+
+        <a href="@Url.Action("IndexExpedientes", "Expedientes")"
+           class="btn btn-secondary d-flex align-items-center px-4 py-2">
+            <i class="fas fa-arrow-left me-2"></i> Volver
+        </a>
+
+        <a href="@Url.Action("AgregarDocumento", "Expedientes", new { id = Model.idExpediente })"
+           class="btn btn-outline-primary d-flex align-items-center px-4 py-2">
+            <i class="fas fa-upload me-2"></i> Agregar Documento
+        </a>
+
+        <a href="@Url.Action("CrearDocumento", "Documentos", new { idExpediente = Model.idExpediente })"
+           class="btn btn-success d-flex align-items-center px-4 py-2">
+            <i class="fas fa-file-alt me-2"></i> Crear Documento
+        </a>
+
+        <a href="@Url.Action("ExpedientePlanillas", "Planillas", new { idEmpleado = Model.idEmpleado })"
+           class="btn btn-outline-primary d-flex align-items-center px-4 py-2">
+            <i class="fas fa-file-invoice-dollar me-2"></i> Ver Expediente de Planillas
+        </a>
+
+    </div>
+
+
+    <!-- Documentos -->
+    @if (Model.documentos != null && Model.documentos.Any())
+    {
+        <div class="row g-4">
+            @foreach (var doc in Model.documentos)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <strong class="text-dark">@doc.nombreDocumento</strong>
+                            <span class="badge bg-info text-dark">@doc.tipoDocumento</span>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Fecha de carga:</strong> @doc.fechaCarga.ToString("dd/MM/yyyy HH:mm")</p>
+                            <p>
+                                <strong>Última actualización:</strong>
+                                @(doc.fechaActualizacion?.ToString("dd/MM/yyyy HH:mm") ?? "Sin actualizar")
+                            </p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <a href="@Url.Action("EditarDocumento", "Expedientes", new { idDocumento = doc.idDocumento })"
+                               class="btn btn-outline-primary btn-sm" title="Editar">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="@Url.Action("EliminarDocumento", "Expedientes", new { idDocumento = doc.idDocumento })"
+                               class="btn btn-outline-danger btn-sm"
+                               onclick="return confirm('¿Seguro que deseas eliminar este documento?');"
+                               title="Eliminar">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            <a href="@Url.Action("DescargarDocumento", "Expedientes", new { idDocumento = doc.idDocumento })"
+                               class="btn btn-outline-success btn-sm" title="Descargar">
+                                <i class="fas fa-download"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center mt-4">
+            <i class="fas fa-info-circle me-2"></i> No hay documentos cargados en este expediente.
+        </div>
+    }
+</div>

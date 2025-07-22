@@ -1,5 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LithoManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CAMPOS_FORMULARIO">
+    <Key>
+      <PropertyRef Name="ID_CAMPO" />
+    </Key>
+    <Property Name="ID_CAMPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_FORMULARIO" Type="int" />
+    <Property Name="NOMBRE_CAMPO" Type="nvarchar" MaxLength="255" />
+    <Property Name="TIPO_CAMPO" Type="nvarchar" MaxLength="50" />
+    <Property Name="ES_REQUERIDO" Type="bit" />
+  </EntityType>
+  <EntityType Name="CONSTANCIA">
+    <Key>
+      <PropertyRef Name="ID_CONSTANCIA" />
+    </Key>
+    <Property Name="ID_CONSTANCIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+    <Property Name="FECHA_EMISION" Type="datetime" Nullable="false" />
+    <Property Name="ID_TIPO_CONSTANCIA" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="CONSTANCIA_LABORAL">
     <Key>
       <PropertyRef Name="ID_CONSTANCIA" />
@@ -32,13 +51,21 @@
     <Key>
       <PropertyRef Name="ID_EMPLEADO" />
     </Key>
-    <Property Name="ID_EMPLEADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
     <Property Name="ID_USUARIO" Type="int" Nullable="false" />
     <Property Name="DIAS_VACACIONES_DISPONIBLES" Type="int" Nullable="false" />
     <Property Name="FECHA_CONTRATACION" Type="datetime" Nullable="false" />
     <Property Name="ID_DEPARTAMENTO" Type="int" Nullable="false" />
     <Property Name="ES_EMPLEADO" Type="bit" Nullable="false" />
     <Property Name="ESTADO" Type="bit" Nullable="false" />
+    <Property Name="Salario" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ESTADO_QUEJA">
+    <Key>
+      <PropertyRef Name="ID_ESTADO_QUEJA" />
+    </Key>
+    <Property Name="ID_ESTADO_QUEJA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TIPO_ESTADO" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="ESTADO_SOLICITUD">
     <Key>
@@ -73,9 +100,30 @@
       <PropertyRef Name="ID_FORMULARIO" />
     </Key>
     <Property Name="ID_FORMULARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
     <Property Name="FECHA_ENVIO" Type="datetime" Nullable="false" />
     <Property Name="OBSERVACIONES" Type="varchar" MaxLength="255" />
+    <Property Name="NOMBRE_FORMULARIO" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="FORMULARIO_EMPLEADO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_FORMULARIO" Type="int" Nullable="false" />
+    <Property Name="ID_EMPLEADO" Type="int" Nullable="false" />
+    <Property Name="FECHA_ASIGNACION" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Mensajes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mensaje" Type="text" Nullable="false" />
+    <Property Name="FechaEnvio" Type="datetime" Nullable="false" />
+    <Property Name="Leido" Type="bit" Nullable="false" />
+    <Property Name="UsuarioEmisor" Type="int" />
+    <Property Name="UsuarioReceptor" Type="int" />
+    <Property Name="roomName" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="NOTICIAS">
     <Key>
@@ -118,7 +166,18 @@
     <Property Name="DESCRIPCION" Type="varchar" MaxLength="255" />
     <Property Name="FECHA_RESOLUCION" Type="datetime" />
     <Property Name="COMENTARIO_ADMIN" Type="varchar" MaxLength="255" />
-    <Property Name="ID_ESTADO" Type="int" Nullable="false" />
+    <Property Name="ID_ESTADO_QUEJA" Type="int" Nullable="false" />
+    <Property Name="ID_TIPO" Type="int" />
+  </EntityType>
+  <EntityType Name="RESPUESTAS_FORMULARIO">
+    <Key>
+      <PropertyRef Name="ID_RESPUESTA" />
+    </Key>
+    <Property Name="ID_RESPUESTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_FORMULARIO" Type="int" />
+    <Property Name="ID_CAMPO" Type="int" />
+    <Property Name="ID_EMPLEADO" Type="int" />
+    <Property Name="RESPUESTA" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="ROL">
     <Key>
@@ -140,6 +199,30 @@
     <Property Name="ID_ESTADO" Type="int" Nullable="false" />
     <Property Name="COMENTARIO" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TIPO_QUEJA">
+    <Key>
+      <PropertyRef Name="ID_TIPO" />
+    </Key>
+    <Property Name="ID_TIPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="60" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPOS_CONSTANCIA">
+    <Key>
+      <PropertyRef Name="ID_TIPO_CONSTANCIA" />
+    </Key>
+    <Property Name="ID_TIPO_CONSTANCIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE_TIPO_CONSTANCIA" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="USUARIO">
     <Key>
       <PropertyRef Name="ID_USUARIO" />
@@ -154,7 +237,21 @@
     <Property Name="ESTADO" Type="bit" Nullable="false" />
     <Property Name="ESTADO_CONTRASENA_TEMPORAL" Type="bit" Nullable="false" />
     <Property Name="FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL" Type="datetime" Nullable="false" />
+    <Property Name="CONNECTION_ID" Type="varchar" MaxLength="100" />
+    <Property Name="IMAGEN_USUARIO" Type="varchar" MaxLength="1024" />
   </EntityType>
+  <Association Name="FK__CamposFor__ID_FO__02FC7413">
+    <End Role="FORMULARIO" Type="Self.FORMULARIO" Multiplicity="0..1" />
+    <End Role="CAMPOS_FORMULARIO" Type="Self.CAMPOS_FORMULARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMULARIO">
+        <PropertyRef Name="ID_FORMULARIO" />
+      </Principal>
+      <Dependent Role="CAMPOS_FORMULARIO">
+        <PropertyRef Name="ID_FORMULARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__CONSTANCI__ID_EM__5070F446">
     <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
     <End Role="CONSTANCIA_LABORAL" Type="Self.CONSTANCIA_LABORAL" Multiplicity="*" />
@@ -164,6 +261,30 @@
       </Principal>
       <Dependent Role="CONSTANCIA_LABORAL">
         <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CONSTANCI__ID_EM__68487DD7">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
+    <End Role="CONSTANCIA" Type="Self.CONSTANCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLEADO">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Principal>
+      <Dependent Role="CONSTANCIA">
+        <PropertyRef Name="ID_EMPLEADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CONSTANCI__ID_TI__693CA210">
+    <End Role="TIPOS_CONSTANCIA" Type="Self.TIPOS_CONSTANCIA" Multiplicity="1" />
+    <End Role="CONSTANCIA" Type="Self.CONSTANCIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOS_CONSTANCIA">
+        <PropertyRef Name="ID_TIPO_CONSTANCIA" />
+      </Principal>
+      <Dependent Role="CONSTANCIA">
+        <PropertyRef Name="ID_TIPO_CONSTANCIA" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -191,19 +312,47 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__FORMULARI__ID_EM__534D60F1">
-    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1" />
-    <End Role="FORMULARIO" Type="Self.FORMULARIO" Multiplicity="*" />
+  <Association Name="FK__FORMULARI__ID_EM__6EF57B66">
+    <End Role="EMPLEADO" Type="Self.EMPLEADO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FORMULARIO_EMPLEADO" Type="Self.FORMULARIO_EMPLEADO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EMPLEADO">
         <PropertyRef Name="ID_EMPLEADO" />
       </Principal>
-      <Dependent Role="FORMULARIO">
+      <Dependent Role="FORMULARIO_EMPLEADO">
         <PropertyRef Name="ID_EMPLEADO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__NOTICIAS__ID_ADM__5441852A">
+  <Association Name="FK__FORMULARI__ID_FO__6FE99F9F">
+    <End Role="FORMULARIO" Type="Self.FORMULARIO" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FORMULARIO_EMPLEADO" Type="Self.FORMULARIO_EMPLEADO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMULARIO">
+        <PropertyRef Name="ID_FORMULARIO" />
+      </Principal>
+      <Dependent Role="FORMULARIO_EMPLEADO">
+        <PropertyRef Name="ID_FORMULARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NOTICIAS__ID_ADM__72C60C4A">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="NOTICIAS">
+        <PropertyRef Name="ID_ADMINISTRADOR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NOTICIAS__ID_ADM__73BA3083">
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
     <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
     <ReferentialConstraint>
@@ -239,15 +388,63 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__QUEJAS_RE__ID_ES__5812160E">
-    <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="1" />
+  <Association Name="FK__QUEJAS_RE__ID_ES__778AC167">
+    <End Role="ESTADO_QUEJA" Type="Self.ESTADO_QUEJA" Multiplicity="1" />
     <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="ESTADO_SOLICITUD">
-        <PropertyRef Name="ID_ESTADO" />
+      <Principal Role="ESTADO_QUEJA">
+        <PropertyRef Name="ID_ESTADO_QUEJA" />
       </Principal>
       <Dependent Role="QUEJAS_REPORTES">
-        <PropertyRef Name="ID_ESTADO" />
+        <PropertyRef Name="ID_ESTADO_QUEJA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUEJAS_RE__ID_ES__787EE5A0">
+    <End Role="ESTADO_QUEJA" Type="Self.ESTADO_QUEJA" Multiplicity="1" />
+    <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_QUEJA">
+        <PropertyRef Name="ID_ESTADO_QUEJA" />
+      </Principal>
+      <Dependent Role="QUEJAS_REPORTES">
+        <PropertyRef Name="ID_ESTADO_QUEJA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__QUEJAS_RE__ID_TI__797309D9">
+    <End Role="TIPO_QUEJA" Type="Self.TIPO_QUEJA" Multiplicity="0..1" />
+    <End Role="QUEJAS_REPORTES" Type="Self.QUEJAS_REPORTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPO_QUEJA">
+        <PropertyRef Name="ID_TIPO" />
+      </Principal>
+      <Dependent Role="QUEJAS_REPORTES">
+        <PropertyRef Name="ID_TIPO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RESPUESTA__ID_CA__7A672E12">
+    <End Role="CAMPOS_FORMULARIO" Type="Self.CAMPOS_FORMULARIO" Multiplicity="0..1" />
+    <End Role="RESPUESTAS_FORMULARIO" Type="Self.RESPUESTAS_FORMULARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAMPOS_FORMULARIO">
+        <PropertyRef Name="ID_CAMPO" />
+      </Principal>
+      <Dependent Role="RESPUESTAS_FORMULARIO">
+        <PropertyRef Name="ID_CAMPO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Respuesta__ID_FO__05D8E0BE">
+    <End Role="FORMULARIO" Type="Self.FORMULARIO" Multiplicity="0..1" />
+    <End Role="RESPUESTAS_FORMULARIO" Type="Self.RESPUESTAS_FORMULARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMULARIO">
+        <PropertyRef Name="ID_FORMULARIO" />
+      </Principal>
+      <Dependent Role="RESPUESTAS_FORMULARIO">
+        <PropertyRef Name="ID_FORMULARIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -263,7 +460,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__SOLICITUD__ID_ES__59FA5E80">
+  <Association Name="FK__SOLICITUD__ID_ES__7D439ABD">
     <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="1" />
     <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="*" />
     <ReferentialConstraint>
@@ -275,7 +472,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__USUARIO__ID_ROL__5BE2A6F2">
+  <Association Name="FK__SOLICITUD__ID_ES__7E37BEF6">
+    <End Role="ESTADO_SOLICITUD" Type="Self.ESTADO_SOLICITUD" Multiplicity="1" />
+    <End Role="SOLICITUD_VACACIONES" Type="Self.SOLICITUD_VACACIONES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTADO_SOLICITUD">
+        <PropertyRef Name="ID_ESTADO" />
+      </Principal>
+      <Dependent Role="SOLICITUD_VACACIONES">
+        <PropertyRef Name="ID_ESTADO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIO__ID_ROL__00200768">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="ID_ROL" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="ID_ROL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USUARIO__ID_ROL__01142BA1">
     <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
     <ReferentialConstraint>
@@ -313,6 +534,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mensajes_MensajesReceptor">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="Mensajes">
+        <PropertyRef Name="UsuarioReceptor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mensajes_USUARIOEmisor">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="Mensajes" Type="Self.Mensajes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="Mensajes">
+        <PropertyRef Name="UsuarioEmisor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_NOTICIAS_ID_ADMINISTRADOR">
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
     <End Role="NOTICIAS" Type="Self.NOTICIAS" Multiplicity="*" />
@@ -338,23 +583,44 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="LithoManagerModelStoreContainer">
+    <EntitySet Name="CAMPOS_FORMULARIO" EntityType="Self.CAMPOS_FORMULARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONSTANCIA" EntityType="Self.CONSTANCIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CONSTANCIA_LABORAL" EntityType="Self.CONSTANCIA_LABORAL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DOCUMENTO_EXPEDIENTE" EntityType="Self.DOCUMENTO_EXPEDIENTE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EMPLEADO" EntityType="Self.EMPLEADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ESTADO_QUEJA" EntityType="Self.ESTADO_QUEJA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ESTADO_SOLICITUD" EntityType="Self.ESTADO_SOLICITUD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EVENTOS" EntityType="Self.EVENTOS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EXPEDIENTE" EntityType="Self.EXPEDIENTE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FORMULARIO" EntityType="Self.FORMULARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FORMULARIO_EMPLEADO" EntityType="Self.FORMULARIO_EMPLEADO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mensajes" EntityType="Self.Mensajes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NOTICIAS" EntityType="Self.NOTICIAS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PLANILLA" EntityType="Self.PLANILLA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QUEJAS_REPORTES" EntityType="Self.QUEJAS_REPORTES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RESPUESTAS_FORMULARIO" EntityType="Self.RESPUESTAS_FORMULARIO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SOLICITUD_VACACIONES" EntityType="Self.SOLICITUD_VACACIONES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPO_QUEJA" EntityType="Self.TIPO_QUEJA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPOS_CONSTANCIA" EntityType="Self.TIPOS_CONSTANCIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__CamposFor__ID_FO__02FC7413" Association="Self.FK__CamposFor__ID_FO__02FC7413">
+      <End Role="FORMULARIO" EntitySet="FORMULARIO" />
+      <End Role="CAMPOS_FORMULARIO" EntitySet="CAMPOS_FORMULARIO" />
+    </AssociationSet>
     <AssociationSet Name="FK__CONSTANCI__ID_EM__5070F446" Association="Self.FK__CONSTANCI__ID_EM__5070F446">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
       <End Role="CONSTANCIA_LABORAL" EntitySet="CONSTANCIA_LABORAL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CONSTANCI__ID_EM__68487DD7" Association="Self.FK__CONSTANCI__ID_EM__68487DD7">
+      <End Role="EMPLEADO" EntitySet="EMPLEADO" />
+      <End Role="CONSTANCIA" EntitySet="CONSTANCIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CONSTANCI__ID_TI__693CA210" Association="Self.FK__CONSTANCI__ID_TI__693CA210">
+      <End Role="TIPOS_CONSTANCIA" EntitySet="TIPOS_CONSTANCIA" />
+      <End Role="CONSTANCIA" EntitySet="CONSTANCIA" />
     </AssociationSet>
     <AssociationSet Name="FK__EMPLEADO__ID_DEP__5165187F" Association="Self.FK__EMPLEADO__ID_DEP__5165187F">
       <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
@@ -364,11 +630,19 @@
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
     </AssociationSet>
-    <AssociationSet Name="FK__FORMULARI__ID_EM__534D60F1" Association="Self.FK__FORMULARI__ID_EM__534D60F1">
+    <AssociationSet Name="FK__FORMULARI__ID_EM__6EF57B66" Association="Self.FK__FORMULARI__ID_EM__6EF57B66">
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
-      <End Role="FORMULARIO" EntitySet="FORMULARIO" />
+      <End Role="FORMULARIO_EMPLEADO" EntitySet="FORMULARIO_EMPLEADO" />
     </AssociationSet>
-    <AssociationSet Name="FK__NOTICIAS__ID_ADM__5441852A" Association="Self.FK__NOTICIAS__ID_ADM__5441852A">
+    <AssociationSet Name="FK__FORMULARI__ID_FO__6FE99F9F" Association="Self.FK__FORMULARI__ID_FO__6FE99F9F">
+      <End Role="FORMULARIO" EntitySet="FORMULARIO" />
+      <End Role="FORMULARIO_EMPLEADO" EntitySet="FORMULARIO_EMPLEADO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NOTICIAS__ID_ADM__72C60C4A" Association="Self.FK__NOTICIAS__ID_ADM__72C60C4A">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="NOTICIAS" EntitySet="NOTICIAS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NOTICIAS__ID_ADM__73BA3083" Association="Self.FK__NOTICIAS__ID_ADM__73BA3083">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="NOTICIAS" EntitySet="NOTICIAS" />
     </AssociationSet>
@@ -380,19 +654,43 @@
       <End Role="EMPLEADO" EntitySet="EMPLEADO" />
       <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
     </AssociationSet>
-    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__5812160E" Association="Self.FK__QUEJAS_RE__ID_ES__5812160E">
-      <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
+    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__778AC167" Association="Self.FK__QUEJAS_RE__ID_ES__778AC167">
+      <End Role="ESTADO_QUEJA" EntitySet="ESTADO_QUEJA" />
       <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUEJAS_RE__ID_ES__787EE5A0" Association="Self.FK__QUEJAS_RE__ID_ES__787EE5A0">
+      <End Role="ESTADO_QUEJA" EntitySet="ESTADO_QUEJA" />
+      <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__QUEJAS_RE__ID_TI__797309D9" Association="Self.FK__QUEJAS_RE__ID_TI__797309D9">
+      <End Role="TIPO_QUEJA" EntitySet="TIPO_QUEJA" />
+      <End Role="QUEJAS_REPORTES" EntitySet="QUEJAS_REPORTES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RESPUESTA__ID_CA__7A672E12" Association="Self.FK__RESPUESTA__ID_CA__7A672E12">
+      <End Role="CAMPOS_FORMULARIO" EntitySet="CAMPOS_FORMULARIO" />
+      <End Role="RESPUESTAS_FORMULARIO" EntitySet="RESPUESTAS_FORMULARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Respuesta__ID_FO__05D8E0BE" Association="Self.FK__Respuesta__ID_FO__05D8E0BE">
+      <End Role="FORMULARIO" EntitySet="FORMULARIO" />
+      <End Role="RESPUESTAS_FORMULARIO" EntitySet="RESPUESTAS_FORMULARIO" />
     </AssociationSet>
     <AssociationSet Name="FK__SOLICITUD__ID_EM__5070F446" Association="Self.FK__SOLICITUD__ID_EM__5070F446">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
-    <AssociationSet Name="FK__SOLICITUD__ID_ES__59FA5E80" Association="Self.FK__SOLICITUD__ID_ES__59FA5E80">
+    <AssociationSet Name="FK__SOLICITUD__ID_ES__7D439ABD" Association="Self.FK__SOLICITUD__ID_ES__7D439ABD">
       <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
       <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
     </AssociationSet>
-    <AssociationSet Name="FK__USUARIO__ID_ROL__5BE2A6F2" Association="Self.FK__USUARIO__ID_ROL__5BE2A6F2">
+    <AssociationSet Name="FK__SOLICITUD__ID_ES__7E37BEF6" Association="Self.FK__SOLICITUD__ID_ES__7E37BEF6">
+      <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
+      <End Role="SOLICITUD_VACACIONES" EntitySet="SOLICITUD_VACACIONES" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIO__ID_ROL__00200768" Association="Self.FK__USUARIO__ID_ROL__00200768">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USUARIO__ID_ROL__01142BA1" Association="Self.FK__USUARIO__ID_ROL__01142BA1">
       <End Role="ROL" EntitySet="ROL" />
       <End Role="USUARIO" EntitySet="USUARIO" />
     </AssociationSet>
@@ -403,6 +701,14 @@
     <AssociationSet Name="FK_EXPEDIENTE_USUARIO" Association="Self.FK_EXPEDIENTE_USUARIO">
       <End Role="USUARIO" EntitySet="USUARIO" />
       <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mensajes_MensajesReceptor" Association="Self.FK_Mensajes_MensajesReceptor">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="Mensajes" EntitySet="Mensajes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mensajes_USUARIOEmisor" Association="Self.FK_Mensajes_USUARIOEmisor">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="Mensajes" EntitySet="Mensajes" />
     </AssociationSet>
     <AssociationSet Name="FK_NOTICIAS_ID_ADMINISTRADOR" Association="Self.FK_NOTICIAS_ID_ADMINISTRADOR">
       <End Role="USUARIO" EntitySet="USUARIO" />

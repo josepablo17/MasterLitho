@@ -14,11 +14,24 @@ namespace MasterLitho.Models
     
     public partial class FORMULARIO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FORMULARIO()
+        {
+            this.CAMPOS_FORMULARIO = new HashSet<CAMPOS_FORMULARIO>();
+            this.FORMULARIO_EMPLEADO = new HashSet<FORMULARIO_EMPLEADO>();
+            this.RESPUESTAS_FORMULARIO = new HashSet<RESPUESTAS_FORMULARIO>();
+        }
+    
         public int ID_FORMULARIO { get; set; }
-        public int ID_EMPLEADO { get; set; }
         public System.DateTime FECHA_ENVIO { get; set; }
         public string OBSERVACIONES { get; set; }
+        public string NOMBRE_FORMULARIO { get; set; }
     
-        public virtual EMPLEADO EMPLEADO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CAMPOS_FORMULARIO> CAMPOS_FORMULARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORMULARIO_EMPLEADO> FORMULARIO_EMPLEADO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RESPUESTAS_FORMULARIO> RESPUESTAS_FORMULARIO { get; set; }
     }
 }

@@ -1,6 +1,32 @@
-﻿
-.dataTable thead th {
-    background-color: #092cfe;
-    color: white !important;
+﻿/* Estilo para encabezado de tabla */
+table thead tr {
+    background-color: #f1f5f9; /* gris claro */
+    color: #1e293b; /* texto oscuro */
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+table tbody tr:hover {
+    background-color: #f9fafb; /* muy sutil */
+}
+
+/* Celdas */
+table td, table th {
+    padding: 8px 10px; 
+    vertical-align: middle;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Elimina bordes pesados si los hay */
+.table-bordered th,
+.table-bordered td {
+    border: none;
+}
+
+/* Opcional: agrega borde sutil a la tabla en general */
+.table {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
 }
 

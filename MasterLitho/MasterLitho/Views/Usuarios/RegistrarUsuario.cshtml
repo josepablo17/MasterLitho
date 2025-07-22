@@ -13,7 +13,7 @@
                             </a>
                         </div>
                         <h4 class="card-title fw-bold text-primary text-center mb-4">
-                            <i class="fas fa-user-edit me-2"></i> Actualizar Usuario
+                            <i class="fas fa-user-edit me-2"></i> Registrar Usuario
                         </h4>
 
                         @if (ViewBag.MensajePantalla != null)
@@ -29,17 +29,17 @@
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold"><i class="fas fa-id-card me-2"></i> Identificación</label>
-                                @Html.TextBoxFor(m => m.identificacion, new { @class = "form-control border-primary", @placeholder = "Ingrese la identificacion" })
+                                @Html.TextBoxFor(m => m.identificacion, new { @class = "form-control border-primary", @placeholder = "Ingrese la identificacion", @type = "number" })
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold"><i class="fas fa-user me-2"></i> Nombre de usuario</label>
-                                @Html.TextBoxFor(m => m.nombreUsuario, new { @class = "form-control border-primary", @placeholder = "Ingrese el nombre del usuario" })
+                                @Html.TextBoxFor(m => m.nombreUsuario, new { @class = "form-control border-primary solo-letras", @placeholder = "Ingrese el nombre del usuario" })
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold"><i class="fas fa-user-tag me-2"></i> Apellidos</label>
-                                @Html.TextBoxFor(m => m.apellidoUsuario, new { @class = "form-control border-primary", @placeholder = "Ingrese los apellidos" })
+                                @Html.TextBoxFor(m => m.apellidoUsuario, new { @class = "form-control border-primary solo-letras", @placeholder = "Ingrese los apellidos" })
                             </div>
 
                             <div class="mb-4">
@@ -68,5 +68,18 @@
         </div>
     </div>
 </div>
-<script src="~/Styles/FuncionesJS/FuncionesModificarUsuario.js"></script>
 
+<script>
+    document.querySelectorAll('.solo-letras').forEach(input => {
+        input.addEventListener('keypress', function (e) {
+            const char = String.fromCharCode(e.which || e.keyCode);
+            if (!/^[a-zA-Z\s]+$/.test(char)) {
+                e.preventDefault();
+            }
+        });
+
+        input.addEventListener('input', function () {
+            this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+        });
+    });
+</script>

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class NoticiasController : Controller
     {
         // Vista principal para consultar las noticias
@@ -105,10 +106,6 @@ namespace MasterLitho.Controllers
                 return 0;  // Si no se encuentra el usuario, devolver un valor por defecto
             }
         }
-
-
-
-
 
         // Editar Noticia (GET)
         [HttpGet]

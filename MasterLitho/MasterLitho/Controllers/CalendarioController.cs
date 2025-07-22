@@ -1,4 +1,5 @@
 ﻿using MasterLitho.Models;
+using MasterLitho.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,15 +11,23 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
-
+    [Protegido]
     public class CalendarioController : Controller
     {
+        private readonly ICorreo _correoService;
+
+        public CalendarioController()
+        {
+            _correoService = new CorreoService();
+        }
+
         [HttpGet]
         public ActionResult Calendario()
         {
             return View();
         }
 
+        #region AgregarEvento
         [HttpPost]
         public JsonResult AgregarEvento(EVENTOS model)
         {
@@ -51,7 +60,7 @@ namespace MasterLitho.Controllers
                             string contenido = System.IO.File.ReadAllText(ruta);
                             contenido = contenido.Replace("@@NombreEvento", model.NOMBRE_EVENTO);
 
-                            EnviarCorreo(correo, "Evento agregado", contenido);
+                            _correoService.EnviarCorreo(correo, "Evento agregado", contenido);
                         }
                     }
 
@@ -63,8 +72,9 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+        #endregion
 
-
+        #region ObtenerCorreosSeleccionados
         [HttpGet]
         public JsonResult ObtenerCorreosSeleccionados(string q)
         {
@@ -105,10 +115,9 @@ namespace MasterLitho.Controllers
                 return Json(new { results = resultados }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
-
-
-
+        #region MostrarEventos
         [HttpGet]
         public JsonResult MostrarEventos()
         {
@@ -158,7 +167,9 @@ namespace MasterLitho.Controllers
                 return Json(eventos, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
 
+        #region EliminarEvento
         [HttpPost]
         public JsonResult EliminarEvento(int id)
         {
@@ -184,6 +195,9 @@ namespace MasterLitho.Controllers
                 return Json(new { success = false, message = $"Error al eliminar el evento: {ex.Message}" });
             }
         }
+        #endregion
+
+        #region ObtenerEventoPorId
         [HttpGet]
         public JsonResult ObtenerEventByID(int id)
         {
@@ -218,7 +232,9 @@ namespace MasterLitho.Controllers
                 return Json(new { success = false, message = $"Error al obtener el evento: {ex.Message}" });
             }
         }
+        #endregion
 
+        #region EditarEvento
         [HttpPost]
         public JsonResult EditarEvento(EVENTOS model)
         {
@@ -256,34 +272,7 @@ namespace MasterLitho.Controllers
                 return Json(new { success = false, message = "Ocurrió un error: " + ex.Message });
             }
         }
-
-
-        private void EnviarCorreo(string destino, string asunto, string contenido)
-        {
-            string cuenta = ConfigurationManager.AppSettings["CorreoNotificaciones"].ToString();
-            string contrasenna = ConfigurationManager.AppSettings["ContrasennaNotificaciones"].ToString();
-
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress(cuenta);
-
-            foreach (var item in destino.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                message.To.Add(new MailAddress(item));
-            }
-            message.Subject = asunto;
-            message.Body = contenido;
-            message.Priority = MailPriority.Normal;
-            message.IsBodyHtml = true;
-
-            SmtpClient client = new SmtpClient("smtp.office365.com", 587);
-            client.Credentials = new System.Net.NetworkCredential(cuenta, contrasenna);
-            client.EnableSsl = true;
-            client.Send(message);
-
-        }
-
-
-
+        #endregion
 
 
     }

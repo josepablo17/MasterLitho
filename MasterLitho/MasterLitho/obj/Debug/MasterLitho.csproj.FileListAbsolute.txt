@@ -1,66 +1,9 @@
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll.config
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.pdb
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe.config
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.rsp
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe.config
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.rsp
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.AppContext.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Console.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Globalization.Calendars.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Net.Sockets.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.ValueTuple.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe.config
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.rsp
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLi.E9F2EFE4.Up2Date
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb
-C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Rotativa.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\libSkiaSharp.dylib
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\x86\libSkiaSharp.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\x64\libSkiaSharp.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\arm64\libSkiaSharp.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll.config
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.pdb
@@ -112,122 +55,319 @@ D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe.config
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.rsp
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe.config
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.dll
-D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Rotativa.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Cors.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Jwt.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Owin.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Cors.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.dll
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Antlr3.Runtime.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.xml
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Cors.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Jwt.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\Newtonsoft.Json.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.pdb
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Helpers.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Mvc.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Optimization.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Razor.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Deployment.xml
+D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Razor.xml
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLi.E9F2EFE4.Up2Date
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
 D:\Ufidelitas\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\libSkiaSharp.dylib
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\x86\libSkiaSharp.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\x64\libSkiaSharp.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\arm64\libSkiaSharp.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll.config
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.pdb
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe.config
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.rsp
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe.config
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.rsp
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Managed.Core.targets
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Win32.Primitives.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.AppContext.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Console.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Globalization.Calendars.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.ZipFile.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.Primitives.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Net.Sockets.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Algorithms.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Encoding.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Primitives.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Text.Encoding.CodePages.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Threading.Tasks.Extensions.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.ValueTuple.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.ReaderWriter.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XmlDocument.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.XDocument.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe.config
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.rsp
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\BouncyCastle.Cryptography.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.Parser.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.Framework.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\ExcelNumberFormat.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Owin.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\RBush.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Rotativa.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\SixLabors.Fonts.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\SkiaSharp.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Xceed.Pdf.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\BouncyCastle.Cryptography.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.pdb
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.Parser.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.Framework.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\ExcelNumberFormat.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.pdb
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\RBush.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\SixLabors.Fonts.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\SkiaSharp.pdb
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\SkiaSharp.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\bin\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLi.E9F2EFE4.Up2Date
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
-C:\Users\yeray\Source\Repos\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\libSkiaSharp.dylib
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll.config
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe.config
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.rsp
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe.config
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.rsp
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.AppContext.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Console.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.ValueTuple.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe.config
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.rsp
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Jwt.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Owin.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Jwt.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLi.E9F2EFE4.Up2Date
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\BouncyCastle.Cryptography.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.Parser.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.Framework.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\ExcelNumberFormat.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\RBush.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\SixLabors.Fonts.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\SkiaSharp.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Xceed.Pdf.dll
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\BouncyCastle.Cryptography.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.Parser.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.Framework.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\ExcelNumberFormat.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\RBush.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\SixLabors.Fonts.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\SkiaSharp.pdb
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\SkiaSharp.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.xml
+C:\Users\Jose\OneDrive - Universidad Fidélitas\Séptimo Cuatrimestre\Diseño y Desarrollo\MasterLitho\MasterLitho\MasterLitho\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.AssemblyReference.cache
+C:\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.csproj.CoreCompileInputs.cache
+C:\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.dll
+C:\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLitho.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll.config
+C:\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\MasterLitho.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.exe.config
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csc.rsp
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.exe.config
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\csi.rsp
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Managed.Core.targets
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.AppContext.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Collections.Immutable.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Console.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Globalization.Calendars.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Net.Http.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Net.Sockets.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Reflection.Metadata.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.ValueTuple.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XmlDocument.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.exe.config
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\vbc.rsp
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe
+C:\MasterLitho\MasterLitho\MasterLitho\bin\roslyn\VBCSCompiler.exe.config
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Antlr3.Runtime.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\BouncyCastle.Cryptography.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.Parser.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.Framework.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\ExcelNumberFormat.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Jwt.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.OAuth.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Web.Infrastructure.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Newtonsoft.Json.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Owin.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\RBush.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Rotativa.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\SixLabors.Fonts.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Helpers.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Mvc.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Optimization.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Razor.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Deployment.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Razor.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\WebGrease.dll
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Antlr3.Runtime.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\BouncyCastle.Cryptography.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\ClosedXML.Parser.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\DocumentFormat.OpenXml.Framework.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\EntityFramework.SqlServer.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\ExcelNumberFormat.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\itextsharp.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Bcl.HashCode.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Logging.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.IdentityModel.Tokens.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.Jwt.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Microsoft.Owin.Security.OAuth.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\Newtonsoft.Json.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\RBush.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\SixLabors.Fonts.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Buffers.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.pdb
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Memory.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Numerics.Vectors.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Helpers.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Mvc.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Optimization.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.Razor.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Deployment.xml
+C:\MasterLitho\MasterLitho\MasterLitho\bin\System.Web.WebPages.Razor.xml
+C:\MasterLitho\MasterLitho\MasterLitho\obj\Debug\MasterLi.E9F2EFE4.Up2Date

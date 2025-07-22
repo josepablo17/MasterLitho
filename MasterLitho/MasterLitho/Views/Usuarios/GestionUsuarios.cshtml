@@ -1,68 +1,106 @@
-﻿<div id="content-wrapper" class="container">
-    <div id="content">
-        <h1 class="my-4">Gestión de usuarios</h1>
-        <div class="container mb-4">
-            <div class="d-flex justify-content-start">
-                <!-- Botón para agregar usuario -->
-                <a href="@Url.Action("RegistrarUsuario", "Usuarios")" class="btn btn-success btn-lg me-3">
-                    <i class="fas fa-plus-circle" style="font-size: 1.4em;"></i> Agregar Usuario
-                </a>
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-                <!-- Botón para ver empleados -->
-                <a href="@Url.Action("ConsultarEmpleados", "Empleado")" class="btn btn-info btn-lg">
-                    <i class="fas fa-users" style="font-size: 1.4em;"></i> Ver Empleados
-                </a>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <h5 class="card-title text-center text-primary font-weight-bold mb-4">Usuarios</h5>
-                    <div class="table-responsive">
-                        <table id="UsuariosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre usuario</th>
-                                    <th>Apellidos</th>
-                                    <th>Correo</th>
-                                    <th>Rol</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td>@item.idUsuario</td>
-                                        <td>@item.nombreUsuario</td>
-                                        <td>@item.apellidoUsuario</td>
-                                        <td>@item.correoUsuario</td>
-                                        <td>@item.NombreRol</td>
-                                        <td>@item.estado</td>
-                                        <td>
-                                            <a href="@Url.Action("ActualizarUsuario", "Usuarios", new {q = item.idUsuario})" class="btn btn-primary btn-sm">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
+<style>
+    .card {
+        margin: auto;
+        padding: 15px;
+        height: auto;
+        max-width: 100%;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
 
-                                            <button type="button" class="btn btn-danger btn-sm abrirModal"
-                                                    data-id="@item.idUsuario"
-                                                    data-name="@item.nombreUsuario"
-                                                    data-bs-toggle="modal" data-bs-target="#modalUsuarios">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+    .card-body {
+        padding: 10px 20px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .acciones-columna {
+        width: 1%;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="container-fluid px-4">
+    <div class="text-center mb-4">
+        <h1 class="my-4 text-dark fw-bold">
+            <i class="fas fa-users-cog text-primary me-2"></i> Gestión de Usuarios
+        </h1>
+    </div>
+
+    <div class="card rounded shadow">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                <h5 class="text-primary fw-bold mb-0">Usuarios</h5>
+                <div class="d-flex flex-wrap gap-2 mt-2 mt-md-0">
+                    <a href="@Url.Action("RegistrarUsuario", "Usuarios")" class="btn btn-success btn-lg rounded-pill shadow-sm">
+                        <i class="fas fa-plus-circle me-1"></i> Agregar Usuario
+                    </a>
+                    <a href="@Url.Action("ConsultarEmpleados", "Empleado")" class="btn btn-info btn-lg rounded-pill shadow-sm">
+                        <i class="fas fa-users me-1" style="font-size: 1.2em;"></i> Ver Empleados
+                    </a>
                 </div>
             </div>
+
+            <div class="table-responsive">
+                <table id="UsuariosTable" class="table text-nowrap align-middle mb-0 w-100">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre usuario</th>
+                            <th>Apellidos</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th class="acciones-columna">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.idUsuario</td>
+                                <td>@item.nombreUsuario</td>
+                                <td>@item.apellidoUsuario</td>
+                                <td>@item.correoUsuario</td>
+                                <td>@item.NombreRol</td>
+                                <td>@item.estado</td>
+                                <td class="acciones-columna">
+                                    <div class="btn-group" role="group">
+                                        <a href="@Url.Action("ActualizarUsuario", "Usuarios", new { q = item.idUsuario })"
+                                           class="btn btn-primary btn-sm"
+                                           data-bs-toggle="tooltip" title="Editar Usuario">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+
+                                        <button type="button" class="btn btn-danger btn-sm abrirModal"
+                                                data-id="@item.idUsuario"
+                                                data-name="@item.nombreUsuario"
+                                                data-bs-toggle="modal" data-bs-target="#modalUsuarios"
+                                                title="Eliminar Usuario">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
+
 
 <!-- Modal de confirmación -->
 <div class="modal fade" id="modalUsuarios" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

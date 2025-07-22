@@ -23,5 +23,6 @@ namespace MasterLitho.Models
     
         public virtual USUARIO USUARIO { get; set; }
         public virtual USUARIO USUARIO1 { get; set; }
+        public virtual USUARIO USUARIO2 { get; set; }
     }
 }

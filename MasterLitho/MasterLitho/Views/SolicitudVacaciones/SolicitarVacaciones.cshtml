@@ -7,48 +7,51 @@
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <div class="card shadow-lg">
-                <div class="card-header bg-primary text-white text-center py-3">
-                    <h3 class="fw-bold mb-0">Solicitud de Vacaciones</h3>
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4 rounded-top">
+                    <h3 class="fw-bold mb-1">
+                        <i class="fas fa-plane-departure me-2"></i> Solicitud de Vacaciones
+                    </h3>
+                    <small class="fst-italic">Rellena los campos para enviar tu solicitud</small>
                 </div>
-                <div class="card-body p-4">
-                    @using (Html.BeginForm("SolicitarVacaciones", "SolicitudVacaciones"))
+
+                <div class="card-body px-4 py-4">
+                    @using (Html.BeginForm("SolicitarVacaciones", "SolicitudVacaciones", FormMethod.Post, new { id = "formSolicitud" }))
                     {
                         @Html.HiddenFor(m => m.idUsuario)
 
-                        <!-- Mostrar días disponibles -->
-                        <div class="mb-4">
-                            <label for="diasDisponibles" class="form-label fw-semibold">Días Disponibles</label>
-                            @Html.TextBoxFor(m => m.diasVacacionesDisponibles, new { @class = "form-control rounded-pill", @readonly = "readonly" })
+                        <!-- Días disponibles -->
+                        <div class="form-floating mb-4">
+                            @Html.TextBoxFor(m => m.diasVacacionesDisponibles, new { @class = "form-control", @readonly = "readonly", @id = "diasDisponibles" })
+                            <label for="diasDisponibles">Días disponibles</label>
                         </div>
 
-                        <!-- Fecha de inicio -->
-                        <div class="mb-4">
-                            <label for="FechaInicio" class="form-label fw-semibold">Fecha de inicio</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light"><i class="bi bi-calendar"></i></span>
-                                @Html.TextBoxFor(m => m.fechaInicio, new { @class = "form-control rounded-end-pill", @type = "date", @required = "required" })
-                            </div>
+                        <!-- Fecha inicio -->
+                        <div class="form-floating mb-4">
+                            @Html.TextBoxFor(m => m.fechaInicio, new { @class = "form-control", @type = "date", @id = "fechaInicio", @required = "required" })
+                            <label for="fechaInicio">Fecha de inicio</label>
                         </div>
 
-                        <!-- Fecha de fin -->
-                        <div class="mb-4">
-                            <label for="FechaFin" class="form-label fw-semibold">Fecha de fin</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light"><i class="bi bi-calendar"></i></span>
-                                @Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control rounded-end-pill", @type = "date", @required = "required" })
-                            </div>
+                        <!-- Fecha fin -->
+                        <div class="form-floating mb-4">
+                            @Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control", @type = "date", @id = "fechaFin", @required = "required" })
+                            <label for="fechaFin">Fecha de fin</label>
                         </div>
 
-                        <!-- Botón de envío -->
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fs-5">Enviar Solicitud</button>
+                        <!-- Botón de enviar -->
+                        <button type="button"
+                                class="btn btn-success w-100 rounded-pill py-2 fs-5 shadow-sm"
+                                onclick="confirmarEnvio('¿Estás seguro de enviar la solicitud?', 'formSolicitud')">
+                            <i class="fas fa-paper-plane me-2"></i> Enviar Solicitud
+                        </button>
                     }
 
                     <!-- Mensaje de error -->
                     @if (!string.IsNullOrEmpty(ViewBag.MensajePantalla))
                     {
-                        <div class="alert alert-warning mt-3">
-                            @ViewBag.MensajePantalla
+                        <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i> @ViewBag.MensajePantalla
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                         </div>
                     }
 
@@ -56,17 +59,19 @@
                     @if (ViewBag.MostrarAlerta != null && (bool)ViewBag.MostrarAlerta)
                     {
                         <script>
-                            Swal.fire({
-                                icon: 'warning',
-                                title: '¡Solicitud pendiente!',
-                                text: 'No puedes realizar una nueva solicitud mientras tienes una en estado pendiente.',
-                                confirmButtonText: 'Entendido',
-                                customClass: {
-                                    confirmButton: 'btn btn-primary'
-                                },
-                                buttonsStyling: false
-                            }).then(() => {
-                                window.location.href = '@Url.Action("Index", "Home")';
+                            document.addEventListener("DOMContentLoaded", function () {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: '¡Solicitud pendiente!',
+                                    text: 'No puedes realizar una nueva solicitud mientras tienes una en estado pendiente.',
+                                    confirmButtonText: 'Entendido',
+                                    customClass: {
+                                        confirmButton: 'btn btn-primary'
+                                    },
+                                    buttonsStyling: false
+                                }).then(() => {
+                                    window.location.href = '@Url.Action("Index", "Home")';
+                                });
                             });
                         </script>
                     }
@@ -75,5 +80,4 @@
         </div>
     </div>
 </div>
-
 

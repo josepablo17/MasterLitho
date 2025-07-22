@@ -7,8 +7,11 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
+    
     public class EmpleadoController : Controller
     {
+
+        [Protegido]
         [HttpGet]
         public ActionResult ConsultarEmpleados()
         {
@@ -55,8 +58,6 @@ namespace MasterLitho.Controllers
         }
 
 
-
-
         [HttpGet]
         public ActionResult RegistrarEmpleado(int idUsuario)
         {
@@ -94,13 +95,14 @@ namespace MasterLitho.Controllers
 
                 var tabla = new EMPLEADO
                 {
-                    ID_USUARIO = usuario.ID_USUARIO,
                     ID_EMPLEADO = usuario.ID_USUARIO,
+                    ID_USUARIO = usuario.ID_USUARIO,
                     DIAS_VACACIONES_DISPONIBLES = 14,
                     FECHA_CONTRATACION = empleado.FECHA_CONTRATACION,
                     ID_DEPARTAMENTO = empleado.ID_DEPARTAMENTO,
                     ES_EMPLEADO = true,
                     ESTADO = true,
+                    Salario = empleado.SALARIO
                 };
 
                 Console.WriteLine($"ID_EMPLEADO a insertar: {tabla.ID_EMPLEADO}");

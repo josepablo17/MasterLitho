@@ -1,94 +1,131 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutEmpleado.cshtml";
+﻿@model List<MasterLitho.Models.tFormularioConRespuesta>
+
+@{
+    ViewBag.Title = "Consultar Formularios";
 }
 
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    .card {
+        margin: auto;
+        padding: 15px;
+        height: auto;
+        max-width: 100%;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    .card-body {
+        padding: 10px 20px;
+    }
 
-    <title>Formularios Pendientes</title>
+    .table-responsive {
+        overflow-x: auto;
+    }
 
-    <!-- Bootstrap CSS (Asegúrate de tener el link correcto) -->
-    <link href="~/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    body, html {
+        overflow-x: hidden;
+    }
 
-<body id="page-top">
-    <div id="content-wrapper" class="container mt-4">
-        <h1 class="mb-4">Formularios Pendientes</h1>
+    .acciones-columna {
+        width: 1%;
+        white-space: nowrap;
+    }
+</style>
 
-        <!-- Notificación de Formulario Pendiente -->
-        <div class="alert alert-warning" role="alert">
-            Tienes un formulario pendiente con fecha límite: <strong>2024-07-20</strong>.
-        </div>
 
-        <!-- Sección de Formularios -->
-        <div class="card mb-4">
-            <div class="card-header">Completar Formulario</div>
-            <div class="card-body">
-                <form id="employeeForm">
-                    <div class="form-group">
-                        <label for="employeeName">Nombre del Empleado</label>
-                        <input type="text" class="form-control" id="employeeName" placeholder="Ingresa tu nombre" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="employeeEmail">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="employeeEmail" placeholder="Ingresa tu correo" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="comments">Comentarios</label>
-                        <textarea class="form-control" id="comments" rows="4" placeholder="Ingresa tus comentarios" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Enviar Formulario</button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Mensaje de Éxito en el Envío -->
-        <div class="alert alert-success d-none" role="alert" id="successAlert">
-            El formulario se ha enviado correctamente.
-        </div>
-
-        <!-- Mensaje de Error en el Envío -->
-        <div class="alert alert-danger d-none" role="alert" id="errorAlert">
-            Hubo un error al enviar el formulario. Inténtalo de nuevo más tarde.
-        </div>
+<div class="container-fluid px-4">
+    <div class="text-center mb-4">
+        <h1 class="my-4 text-dark fw-bold">
+            <i class="fas fa-file-alt text-primary me-2"></i> Gestión de Formularios
+        </h1>
     </div>
 
-    <!-- Botón para subir al inicio -->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+    <div class="card rounded shadow">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+                <h5 class="text-primary fw-bold mb-0">Lista de formularios</h5>
+                <a href="@Url.Action("CrearFormulario", "Formularios")"
+                   class="btn btn-success btn-lg rounded-pill shadow-sm mt-2 mt-md-0">
+                    <i class="fas fa-plus-circle me-1"></i> Crear nuevo formulario
+                </a>
+            </div>
 
-    <!-- Scripts de Bootstrap y JavaScript -->
-    <script src="~/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('employeeForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+            <div class="table-responsive">
+                <table id="solicitudesTable" class="table text-nowrap align-middle mb-0 w-100">
+                    <thead>
+                        <tr>
+                            <th>Nombre del formulario</th>
+                            <th>Fecha de envío</th>
+                            <th class="acciones-columna">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var formulario in Model)
+                        {
+                            <tr>
+                                <td>@formulario.nombreFormulario</td>
+                                <td>@formulario.fechaEnvio.ToShortDateString()</td>
+                                <td class="acciones-columna">
+                                    <div class="btn-group" role="group">
+                                        <a href="@Url.Action("ConsultarDetallesFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
+                                           class="btn btn-primary btn-sm"
+                                           title="Ver detalles" data-bs-toggle="tooltip">
+                                            <i class="fas fa-eye"></i> Ver
+                                        </a>
 
-            // Simula el envío del formulario
-            const success = Math.random() > 0.2; // 80% de probabilidad de éxito
+                                        <a href="@Url.Action("AsignarFormulario", "Formularios", new { idFormulario = formulario.idFormulario })"
+                                           class="btn btn-warning btn-sm"
+                                           title="Asignar" data-bs-toggle="tooltip">
+                                            <i class="fas fa-user-plus"></i> Asignar
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
-            if (success) {
-                document.getElementById('successAlert').classList.remove('d-none');
-                document.getElementById('errorAlert').classList.add('d-none');
-                document.getElementById('employeeForm').reset();
-            } else {
-                document.getElementById('errorAlert').classList.remove('d-none');
-                document.getElementById('successAlert').classList.add('d-none');
-            }
-        });
-    </script>
-</body>
+                @foreach (var formulario in Model)
+                {
+                    if (formulario.respuestas != null && formulario.respuestas.Any())
+                    {
+                        <div class="accordion mt-4" id="respuestasAccordion-@formulario.idFormulario">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-@formulario.idFormulario">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@formulario.idFormulario" aria-expanded="false" aria-controls="collapse-@formulario.idFormulario">
+                                        Ver respuestas para: <strong class="ms-2">@formulario.nombreFormulario</strong>
+                                    </button>
+                                </h2>
+                                <div id="collapse-@formulario.idFormulario" class="accordion-collapse collapse" aria-labelledby="heading-@formulario.idFormulario" data-bs-parent="#respuestasAccordion-@formulario.idFormulario">
+                                    <div class="accordion-body">
+                                        <ul class="mb-0">
+                                            @foreach (var empleado in formulario.respuestas)
+                                            {
+                                                <li class="mb-2">
+                                                    <i class="fas fa-user me-1 text-primary"></i>
+                                                    @empleado.nombreEmpleado
+                                                    <a href="@Url.Action("ConsultarRespuestasFormulario", "Formularios", new { idFormulario = formulario.idFormulario, idEmpleado = empleado.idEmpleado })"
+                                                       class="btn btn-sm btn-outline-secondary ms-2" title="Ver respuestas">
+                                                        <i class="fas fa-eye"></i> Ver Respuestas
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
-</html>
+
+<script>
+    $(document).ready(function () {
+        inicializarDataTable('#solicitudesTable');
+    });
+</script>
 
 

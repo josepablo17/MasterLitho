@@ -1,0 +1,118 @@
+﻿@model MasterLitho.Models.tFormulario
+
+<div class="card shadow-lg border-0">
+    <div class="card-header bg-primary text-white text-center">
+        <h2 class="mb-0"><i class="fas fa-clipboard-list"></i> Crear Nuevo Formulario</h2>
+    </div>
+
+    <div class="card-body p-4">
+        @using (Html.BeginForm("CrearFormulario", "Formularios", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+        {
+            <div class="mb-4">
+                <label class="font-weight-bold"> Nombre del Formulario:</label>
+                @Html.TextBoxFor(m => m.nombreFormulario, new { @class = "form-control form-control-lg", required = "required", placeholder = "Ej. Encuesta de satisfacción" })
+                <div class="invalid-feedback">Este campo es obligatorio.</div>
+            </div>
+
+            <h3 class="mb-3 text-secondary"> Definir Campos</h3>
+
+            <div class="table-responsive">
+                <table id="camposTabla" class="table table-hover table-bordered">
+                    <thead class="bg-dark text-white text-center">
+                        <tr>
+                            <th>Nombre del Campo</th>
+                            <th>Tipo</th>
+                            <th>Requerido</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <button type="button" class="btn btn-success mb-3" onclick="agregarCampo()">
+                <i class="fas fa-plus"></i> Agregar Campo
+            </button>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg px-4">
+                    <i class="fas fa-save"></i> Guardar Formulario
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function agregarCampo() {
+        var index = $("#camposTabla tbody tr").length;
+        var fila = `<tr class="align-middle text-center">
+        <td><input type="text" name="campos[${index}].NombreCampo" class="form-control" required placeholder="Ej. Nombre, Fecha de Nacimiento" /></td>
+        <td>
+            <select name="campos[${index}].TipoCampo" class="form-control">
+                <option value="Texto">Texto</option>
+                <option value="Número">Número</option>
+                <option value="Fecha">Fecha</option>
+            </select>
+        </td>
+        <td class="text-center">
+            <input type="hidden" name="campos[${index}].EsRequerido" value="false">
+            <input type="checkbox" name="campos[${index}].EsRequerido" value="true" class="form-check-input" onchange="actualizarCheckbox(this)">
+        </td>
+        <td>
+            <button type="button" class="btn btn-danger btn-sm" onclick="eliminarCampo(this)">
+                <i class="fas fa-trash-alt"></i> Eliminar
+            </button>
+        </td>
+    </tr>`;
+        $("#camposTabla tbody").append(fila);
+    }
+
+    function actualizarCheckbox(checkbox) {
+        if (checkbox.checked) {
+            checkbox.previousElementSibling.disabled = true; 
+        } else {
+            checkbox.previousElementSibling.disabled = false;
+        }
+    }
+
+
+    function eliminarCampo(btn) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "Este campo será eliminado.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(btn).closest("tr").fadeOut(300, function () {
+                    $(this).remove();
+                });
+                Swal.fire("Eliminado", "El campo ha sido eliminado.", "success");
+            }
+        });
+    }
+
+    (function () {
+        "use strict";
+        window.addEventListener("load", function () {
+            var forms = document.getElementsByClassName("needs-validation");
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener("submit", function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add("was-validated");
+                }, false);
+            });
+        }, false);
+    })();
+</script>

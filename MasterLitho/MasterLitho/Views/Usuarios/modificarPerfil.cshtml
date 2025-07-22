@@ -1,5 +1,10 @@
 ﻿@model MasterLitho.Models.USUARIO
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
 
 <div class="page-wrapper d-flex align-items-start justify-content-center min-vh-100" style="background-color: #f9f9f9; padding-top: 5vh;">
     <div class="container">
@@ -23,8 +28,26 @@
                             </div>
                         }
 
-                        @using (Html.BeginForm("modificarPerfil", "Usuarios", FormMethod.Post, new { @id = "formActualizarPerfil" }))
+                        @using (Html.BeginForm("modificarPerfil", "Usuarios", FormMethod.Post, new { @id = "formActualizarPerfil", enctype = "multipart/form-data" }))
                         {
+                            <!-- Contenedor de la imagen de perfil -->
+                            <div class="text-center mb-4">
+                                <div class="position-relative d-inline-block" style="width: 150px; height: 150px;">
+                                    <img id="previewImg"
+                                         src="@(!string.IsNullOrEmpty(Model.IMAGEN_USUARIO) ? Url.Content(Model.IMAGEN_USUARIO) : Url.Content("~/Styles/img/undraw_profile.svg"))"
+                                         data-original="@(!string.IsNullOrEmpty(Model.IMAGEN_USUARIO) ? Url.Content(Model.IMAGEN_USUARIO) : Url.Content("~/Styles/img/undraw_profile.svg"))"
+                                         class="rounded-circle border border-3 border-primary shadow"
+                                         style="width: 150px; height: 150px; object-fit: cover; display: block;">
+                                    <label for="ImagenUsuario" class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle p-2 shadow"
+                                           style="cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fas fa-camera"></i>
+                                        <input type="file" id="ImagenUsuario" name="ImagenUsuario" accept="image/*" class="d-none">
+                                    </label>
+                                </div>
+                            </div>
+
+
+
                             <div class="mb-3">
                                 <label class="form-label fw-semibold"><i class="fas fa-id-card me-2"></i> Identificación</label>
                                 @Html.TextBoxFor(m => m.IDENTIFICACION, new { @class = "form-control border-primary", @placeholder = "Ingrese su identificación" })
@@ -42,25 +65,22 @@
 
                             <div class="mb-4">
                                 <label class="form-label fw-semibold"><i class="fas fa-envelope me-2"></i> Correo</label>
-                                @Html.TextBoxFor(m => m.CORREO_USUARIO, new { @class = "form-control border-primary", @type = "email", @placeholder = "Ingrese su correo electrónico" })
+                                @Html.TextBoxFor(m => m.CORREO_USUARIO, new { @class = "form-control border-primary", @type = "email", @placeholder = "Ingrese su correo electrónico", readOnly = true })
                             </div>
 
+                            
                             <!-- Botones -->
                             <div class="d-grid gap-3">
-                                
-                                    <button type="submit" class="btn btn-primary btn-lg shadow" id="cambiarPass">
-                                        <i class="fas fa-save me-2"></i> Realizar Cambio
-                                    </button>
-                                
+                                <button type="button" class="btn btn-primary btn-lg shadow" id="cambiarPass">
+                                    <i class="fas fa-save me-2"></i> Realizar Cambio
+                                </button>
 
                                 <a class="btn btn-secondary btn-lg shadow" href="@Url.Action("CambiarContrasena", "Usuarios")">
-                                    <i class="fas fa-key me-2"></i>
-                                    <span>Cambiar Contraseña</span>
+                                    <i class="fas fa-key me-2"></i> <span>Cambiar Contraseña</span>
                                 </a>
-
-
                             </div>
                         }
+
 
                     </div>
                 </div>

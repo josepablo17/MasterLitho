@@ -4,103 +4,105 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="my-4">Consulta empleados</h1>
+<style>
+    .acciones-columna {
+        width: 1%;
+        white-space: nowrap;
+    }
+</style>
 
-<ul class="nav nav-tabs" id="empleadoTabs">
-    <li class="nav-item">
-        <a class="nav-link active" data-bs-toggle="tab" href="#activos">Empleados Activos</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="tab" href="#inactivos">Empleados Inactivos</a>
-    </li>
-</ul>
+<div class="container-fluid main-content">
+    <h1 class="my-4">Consulta empleados</h1>
 
-<div class="tab-content mt-3">
-    <!-- Empleados Activos -->
-    <div class="tab-pane fade show active" id="activos">
-        <div class="card shadow-lg rounded">
-            <div class="card-body">
-                <h5 class="card-title text-center text-primary font-weight-bold mb-4">Empleados Activos</h5>
-                <div class="table-responsive">
-                    <table id="EmpleadosActivosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre usuario</th>
-                                <th>Días de vacaciones</th>
-                                <th>Fecha de contratación</th>
-                                <th>Departamento</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.EmpleadosActivos)
-                            {
+    <ul class="nav nav-tabs" id="empleadoTabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#activos">Empleados Activos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#inactivos">Empleados Inactivos</a>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-3">
+        <!-- Empleados Activos -->
+        <div class="tab-pane fade show active" id="activos">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-primary fw-bold mb-4">Empleados Activos</h5>
+                    <div class="table-responsive">
+                        <table id="EmpleadosActivosTable" class="table text-nowrap align-middle mb-0 w-100">
+                            <thead>
                                 <tr>
-                                    <td>@item.ID_EMPLEADO</td>
-                                    <td>@item.NOMBRE_USUARIO</td>
-                                    <td>@item.DIAS_VACACIONES_DISPONIBLES</td>
-                                    <td>@item.FECHA_CONTRATACION.ToString("yyyy-MM-dd")</td>
-                                    <td>@item.NOMBRE_DEPARTAMENTO</td>
+                                    <th>ID</th>
+                                    <th>Nombre usuario</th>
+                                    <th>Días de vacaciones</th>
+                                    <th>Fecha de contratación</th>
+                                    <th>Departamento</th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.EmpleadosActivos)
+                                {
+                                    <tr>
+                                        <td>@item.ID_EMPLEADO</td>
+                                        <td>@item.NOMBRE_USUARIO</td>
+                                        <td>@item.DIAS_VACACIONES_DISPONIBLES</td>
+                                        <td>@item.FECHA_CONTRATACION.ToString("yyyy-MM-dd")</td>
+                                        <td class="acciones-columna">@item.NOMBRE_DEPARTAMENTO</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empleados Inactivos -->
+        <div class="tab-pane fade" id="inactivos">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <h5 class="card-title text-center text-danger fw-bold mb-4">Empleados Inactivos</h5>
+                    <div class="table-responsive">
+                        <table id="EmpleadosInactivosTable" class="table text-nowrap align-middle mb-0 w-100">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre usuario</th>
+                                    <th>Días de vacaciones</th>
+                                    <th>Fecha de contratación</th>
+                                    <th>Departamento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.EmpleadosInactivos)
+                                {
+                                    <tr>
+                                        <td>@item.ID_EMPLEADO</td>
+                                        <td>@item.NOMBRE_USUARIO</td>
+                                        <td>@item.DIAS_VACACIONES_DISPONIBLES</td>
+                                        <td>@item.FECHA_CONTRATACION.ToString("yyyy-MM-dd")</td>
+                                        <td class="acciones-columna">@item.NOMBRE_DEPARTAMENTO</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+   </div>
 
-    <!-- Empleados Inactivos -->
-    <div class="tab-pane fade" id="inactivos">
-        <div class="card shadow-lg rounded">
-            <div class="card-body">
-                <h5 class="card-title text-center text-danger font-weight-bold mb-4">Empleados Inactivos</h5>
-                <div class="table-responsive">
-                    <table id="EmpleadosInactivosTable" class="table table-hover table-striped text-nowrap align-middle mb-0 w-100">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre usuario</th>
-                                <th>Días de vacaciones</th>
-                                <th>Fecha de contratación</th>
-                                <th>Departamento</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.EmpleadosInactivos)
-                            {
-                                <tr>
-                                    <td>@item.ID_EMPLEADO</td>
-                                    <td>@item.NOMBRE_USUARIO</td>
-                                    <td>@item.DIAS_VACACIONES_DISPONIBLES</td>
-                                    <td>@item.FECHA_CONTRATACION.ToString("yyyy-MM-dd")</td>
-                                    <td>@item.NOMBRE_DEPARTAMENTO</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Incluir los estilos de DataTables -->
-<link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
-
-<!-- Incluir las librerías de jQuery y DataTables -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
-<!-- Script para inicializar DataTables -->
-<script>
-    $(document).ready(function () {
-        $('#EmpleadosActivosTable, #EmpleadosInactivosTable').DataTable({
-            "paging": true,
-            "searching": true,
-            "ordering": true,
-            "lengthChange": false,
-            "info": false
+    <!-- Script para inicializar DataTables -->
+    <script>
+        $(document).ready(function () {
+            $('#EmpleadosActivosTable, #EmpleadosInactivosTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "lengthChange": false,
+                "info": false
+            });
         });
-    });
-</script>
+    </script>

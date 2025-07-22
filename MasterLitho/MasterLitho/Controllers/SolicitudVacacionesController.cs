@@ -1,4 +1,5 @@
 ﻿using MasterLitho.Models;
+using MasterLitho.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,33 +9,52 @@ using System.Web.UI;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class SolicitudVacacionesController : Controller
     {
+        private readonly IGeneral _generalService;
+        private readonly ICorreo _correoService;
 
-        public void CargarEstados()
+        public SolicitudVacacionesController()
+        {
+            _generalService = new GeneralService();
+            _correoService = new CorreoService();
+        }
+
+        private void CargarListaEstados()
+        {
+            ViewBag.listaEstados = _generalService.ObtenerEstados();
+        }
+
+        private string GenerarContenidoCorreo(int idSolicitud)
         {
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.ESTADO_SOLICITUD.ToList();
-                var estados = new List<SelectListItem>();
-
-                estados.Add(new SelectListItem
+                var solicitud = context.SOLICITUD_VACACIONES.FirstOrDefault(s => s.ID_SOLICITUD == idSolicitud);
+                if (solicitud == null)
                 {
-                    Text = "Seleccione",
-                    Value = string.Empty
-                });
-                foreach (var item in datos)
-                {
-                    estados.Add(new SelectListItem
-                    {
-                        Text = item.TIPO_ESTADO,
-                        Value = item.ID_ESTADO.ToString()
-                    });
+                    throw new Exception("Solicitud no encontrada.");
                 }
-                ViewBag.listaEstados = estados;
+
+                var usuario = context.USUARIO.FirstOrDefault(e => e.ID_USUARIO == solicitud.ID_USUARIO);
+                if (usuario == null)
+                {
+                    throw new Exception("Empleado no encontrado.");
+                }
+
+                string contenido = System.IO.File.ReadAllText(Server.MapPath("~/Styles/TemplateCorreoSolicitudVacaciones.html"));
+
+                contenido = contenido.Replace("@@Nombre_Usuario", usuario.NOMBRE_USUARIO);
+                contenido = contenido.Replace("@@Estado", solicitud.ESTADO_SOLICITUD.TIPO_ESTADO);
+                contenido = contenido.Replace("@@FechaInicio", solicitud.FECHA_INICIO.ToString("dd/MM/yyyy"));
+                contenido = contenido.Replace("@@FechaFin", solicitud.FECHA_FIN.ToString("dd/MM/yyyy"));
+
+                return contenido;
             }
         }
 
+
+        #region GestionarVacaciones
         [HttpGet]
         public ActionResult GestionarVacaciones()
         {
@@ -58,24 +78,40 @@ namespace MasterLitho.Controllers
                         comentario = item.COMENTARIO
                     });
                 }
-                CargarEstados();
+                CargarListaEstados();
                 return View(solicitudes);
             }
         }
+        #endregion
 
+        #region ConsultarMisSolicitudes
         [HttpGet]
-        public ActionResult ConsultarMisSolicitudes()
+        public ActionResult ConsultarMisSolicitudes(string estado = "todos")
         {
             int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
 
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.SOLICITUD_VACACIONES.Where(s => s.ID_USUARIO == idUsuario)
-                    .ToList();
+                var datos = context.SOLICITUD_VACACIONES
+                    .Where(s => s.ID_USUARIO == idUsuario);
+
+                if (estado == "pendiente")
+                {
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Pendiente");
+                }
+                else if (estado == "aceptado")
+                {
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Aceptada");
+                }
+                else if (estado == "rechazado")
+                {
+                    datos = datos.Where(s => s.ESTADO_SOLICITUD.TIPO_ESTADO == "Rechazada");
+                }
+                var lista = datos.OrderByDescending(s => s.FECHA_SOLICITUD).ToList();
 
                 var solicitudes = new List<tVacaciones>();
 
-                foreach (var item in datos)
+                foreach (var item in lista)
                 {
                     solicitudes.Add(new tVacaciones
                     {
@@ -88,46 +124,17 @@ namespace MasterLitho.Controllers
                         estado = item.ID_ESTADO,
                         nombreEstado = item.ESTADO_SOLICITUD.TIPO_ESTADO,
                         comentario = item.COMENTARIO
-                    });    
+                    });
                 }
+                ViewBag.EstadoActual = estado; 
+
                 return View(solicitudes);
-            }
-
-        } 
-    
-
-        private string GenerarContenidoCorreo(int idSolicitud)
-        {
-            using (var context = new LithoManagerEntities())
-            {
-                // Buscar la solicitud
-                var solicitud = context.SOLICITUD_VACACIONES.FirstOrDefault(s => s.ID_SOLICITUD == idSolicitud);
-                if (solicitud == null)
-                {
-                    throw new Exception("Solicitud no encontrada.");
-                }
-
-                // Buscar el empleado asociado a la solicitud
-                var usuario = context.USUARIO.FirstOrDefault(e => e.ID_USUARIO == solicitud.ID_USUARIO);
-                if (usuario == null)
-                {
-                    throw new Exception("Empleado no encontrado.");
-                }
-
-                // Leer la plantilla de correo
-                string contenido = System.IO.File.ReadAllText(Server.MapPath("~/Styles/TemplateCorreoSolicitudVacaciones.html"));
-
-                // Reemplazar los marcadores con los datos obtenidos de la base de datos
-                contenido = contenido.Replace("@@Nombre_Usuario", usuario.NOMBRE_USUARIO);
-                contenido = contenido.Replace("@@FechaInicio", solicitud.FECHA_INICIO.ToString("dd/MM/yyyy"));
-                contenido = contenido.Replace("@@FechaFin", solicitud.FECHA_FIN.ToString("dd/MM/yyyy"));
-
-                return contenido;
             }
         }
 
+        #endregion
 
-
+        #region EditarEstado
         [HttpPost]
         public JsonResult EditarEstado(int idSolicitud, int idEstado, string comentario)
         {
@@ -135,59 +142,52 @@ namespace MasterLitho.Controllers
             {
                 try
                 {
-                    // Buscar la solicitud de vacaciones
                     var solicitud = context.SOLICITUD_VACACIONES.FirstOrDefault(s => s.ID_SOLICITUD == idSolicitud);
                     if (solicitud == null)
                     {
                         return Json(new { success = false, message = "Solicitud no encontrada." });
                     }
 
-                    // Buscar el empleado relacionado con la solicitud
                     var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == solicitud.ID_USUARIO);
                     if (empleado == null)
                     {
                         return Json(new { success = false, message = "Empleado no encontrado." });
                     }
 
-                    // Buscar el usuario relacionado con la solicitud
                     var usuario = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == solicitud.ID_USUARIO);
                     if (usuario == null)
                     {
                         return Json(new { success = false, message = "Usuario no encontrado." });
                     }
+                    string estadoAnterior = solicitud.ESTADO_SOLICITUD.TIPO_ESTADO;
+                    string estadoNuevo = context.ESTADO_SOLICITUD.FirstOrDefault(e => e.ID_ESTADO == idEstado)?.TIPO_ESTADO;
 
-                    // Obtener el estado actual de la solicitud
-                    int estadoActual = solicitud.ID_ESTADO;
-
-                    // Ajustar días disponibles del empleado según el cambio de estado
-                    if (estadoActual != idEstado)
+                    if (estadoAnterior != estadoNuevo)
                     {
-                        if (estadoActual == 1 || estadoActual == 3) // Si estaba pendiente o aceptado
+                        if (estadoAnterior == "Pendiente" || estadoAnterior == "Aceptado")
                         {
                             empleado.DIAS_VACACIONES_DISPONIBLES += solicitud.DIAS_SOLICITADOS;
                         }
 
-                        if (idEstado == 3 || idEstado == 1) // Si pasa a pendiente o aceptado
+                        if (estadoNuevo == "Pendiente" || estadoNuevo == "Aceptado")
                         {
                             empleado.DIAS_VACACIONES_DISPONIBLES -= solicitud.DIAS_SOLICITADOS;
                         }
                     }
 
-                    // Actualizar el estado de la solicitud
                     solicitud.ID_ESTADO = idEstado;
-
-                    // Guardar el comentario del administrador
                     solicitud.COMENTARIO = comentario; 
-
-                    // Guardar los cambios en la base de datos
                     context.SaveChanges();
 
-                    // Si el estado es "aceptado", enviar un correo al usuario
-                    if (idEstado == 3)
+                    if (estadoNuevo == "Aceptado")
                     {
-                        var metodosComunes = new MetodosComunesController();
                         string contenidoCorreo = GenerarContenidoCorreo(idSolicitud);
-                        metodosComunes.EnviarCorreo(usuario.CORREO_USUARIO, "Solicitud de vacaciones aceptada", contenidoCorreo);
+                        _correoService.EnviarCorreo(usuario.CORREO_USUARIO, "Solicitud de vacaciones aceptada", contenidoCorreo);
+                    }
+                    else if (estadoNuevo == "Rechazado") 
+                    {
+                        string contenidoCorreo = GenerarContenidoCorreo(idSolicitud);
+                        _correoService.EnviarCorreo(usuario.CORREO_USUARIO, "Solicitud de vacaciones rechazada", contenidoCorreo);
                     }
 
                     return Json(new { success = true });
@@ -198,32 +198,44 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+        #endregion
 
+        #region SolicitarVacaciones
         [HttpGet]
         public ActionResult SolicitarVacaciones()
         {
-            int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
+            if (Session["ID_USUARIO"] == null || !int.TryParse(Session["ID_USUARIO"].ToString(), out int idUsuario))
+            {
+                return RedirectToAction("Login", "Acceso");
+            }
 
             using (var context = new LithoManagerEntities())
             {
-                bool tienePendiente = context.SOLICITUD_VACACIONES.Any(s => s.ID_USUARIO == idUsuario && s.ID_ESTADO == 1);
+                var estadoPendiente = context.ESTADO_SOLICITUD.FirstOrDefault(e => e.TIPO_ESTADO == "Pendiente");
+
+                if (estadoPendiente == null)
+                {
+                    ViewBag.MensajePantalla = "No se encontró el estado 'Pendiente' en el sistema.";
+                    return View();
+                }
+
+                bool tienePendiente = context.SOLICITUD_VACACIONES
+                    .Any(s => s.ID_USUARIO == idUsuario && s.ID_ESTADO == estadoPendiente.ID_ESTADO);
 
                 if (tienePendiente)
                 {
-                    ViewBag.MostrarAlerta = true;
+                    ViewBag.MensajePantalla = true;
                     return View();
                 }
-                // Buscar al empleado asociado al usuario
+
                 var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == idUsuario);
 
-                // Validar si el empleado existe
                 if (empleado == null)
                 {
                     ViewBag.MensajePantalla = "No se encontró información del empleado.";
                     return View(new tVacaciones { idUsuario = idUsuario });
                 }
 
-                // Crear y devolver el modelo con los días disponibles
                 var model = new tVacaciones
                 {
                     idUsuario = idUsuario,
@@ -248,10 +260,8 @@ namespace MasterLitho.Controllers
                         return View(Model);
                     }
 
-                    // Calcular los días solicitados
                     int diasSolicitados = (Model.fechaFin - Model.fechaInicio).Days + 1;
 
-                    // Buscar al empleado asociado al usuario
                     var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == Model.idUsuario);
                     if (empleado == null)
                     {
@@ -259,17 +269,23 @@ namespace MasterLitho.Controllers
                         return View(Model);
                     }
 
-                    // Asignar días disponibles al ViewBag para mostrar en la vista
                     ViewBag.DiasDisponibles = empleado.DIAS_VACACIONES_DISPONIBLES;
 
-                    // Validar si los días solicitados son mayores a los disponibles
                     if (diasSolicitados > empleado.DIAS_VACACIONES_DISPONIBLES)
                     {
                         ViewBag.MensajePantalla = "Los días solicitados superan los días disponibles. Por favor, ajusta las fechas.";
                         return View(Model);
                     }
 
-                    // Crear la solicitud
+                    int idEstadoPendiente = context.ESTADO_SOLICITUD
+                        .FirstOrDefault(e => e.TIPO_ESTADO == "Pendiente")?.ID_ESTADO ?? 0;
+
+                    if (idEstadoPendiente == 0)
+                    {
+                        ViewBag.MensajePantalla = "No se encontró el estado 'Pendiente' en el sistema.";
+                        return View(Model);
+                    }
+
                     var nuevaSolicitud = new SOLICITUD_VACACIONES
                     {
                         ID_USUARIO = Model.idUsuario,
@@ -277,13 +293,11 @@ namespace MasterLitho.Controllers
                         FECHA_INICIO = Model.fechaInicio,
                         FECHA_FIN = Model.fechaFin,
                         DIAS_SOLICITADOS = diasSolicitados,
-                        ID_ESTADO = 1,
+                        ID_ESTADO = idEstadoPendiente
                     };
 
-                    // Restar los días solicitados de las vacaciones disponibles
                     empleado.DIAS_VACACIONES_DISPONIBLES -= diasSolicitados;
 
-                    // Guardar en la base de datos
                     context.SOLICITUD_VACACIONES.Add(nuevaSolicitud);
                     if (context.SaveChanges() > 0)
                     {
@@ -294,10 +308,14 @@ namespace MasterLitho.Controllers
                 {
                     ViewBag.MensajePantalla = "Ocurrió un error al procesar la solicitud: " + ex.Message;
                 }
+
                 return View(Model);
             }
         }
 
+        #endregion
+
+        #region ConsultarDiasVacaciones
         public ActionResult ConsultarDiasVacaciones()
         {
             int idUsuario = int.Parse(Session["ID_USUARIO"].ToString());
@@ -319,6 +337,7 @@ namespace MasterLitho.Controllers
                 return View();
             }
         }
+        #endregion
 
     }
 }

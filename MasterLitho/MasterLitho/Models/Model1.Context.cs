@@ -25,19 +25,28 @@ namespace MasterLitho.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CAMPOS_FORMULARIO> CAMPOS_FORMULARIO { get; set; }
+        public virtual DbSet<CONSTANCIA> CONSTANCIA { get; set; }
         public virtual DbSet<CONSTANCIA_LABORAL> CONSTANCIA_LABORAL { get; set; }
         public virtual DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
+        public virtual DbSet<DOCUMENTO_EXPEDIENTE> DOCUMENTO_EXPEDIENTE { get; set; }
         public virtual DbSet<EMPLEADO> EMPLEADO { get; set; }
+        public virtual DbSet<ESTADO_QUEJA> ESTADO_QUEJA { get; set; }
         public virtual DbSet<ESTADO_SOLICITUD> ESTADO_SOLICITUD { get; set; }
         public virtual DbSet<EVENTOS> EVENTOS { get; set; }
+        public virtual DbSet<EXPEDIENTE> EXPEDIENTE { get; set; }
         public virtual DbSet<FORMULARIO> FORMULARIO { get; set; }
+        public virtual DbSet<FORMULARIO_EMPLEADO> FORMULARIO_EMPLEADO { get; set; }
+        public virtual DbSet<Mensajes> Mensajes { get; set; }
         public virtual DbSet<NOTICIAS> NOTICIAS { get; set; }
         public virtual DbSet<PLANILLA> PLANILLA { get; set; }
         public virtual DbSet<QUEJAS_REPORTES> QUEJAS_REPORTES { get; set; }
+        public virtual DbSet<RESPUESTAS_FORMULARIO> RESPUESTAS_FORMULARIO { get; set; }
         public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TIPO_QUEJA> TIPO_QUEJA { get; set; }
+        public virtual DbSet<TIPOS_CONSTANCIA> TIPOS_CONSTANCIA { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }
-        public virtual DbSet<DOCUMENTO_EXPEDIENTE> DOCUMENTO_EXPEDIENTE { get; set; }
-        public virtual DbSet<EXPEDIENTE> EXPEDIENTE { get; set; }
     }
 }

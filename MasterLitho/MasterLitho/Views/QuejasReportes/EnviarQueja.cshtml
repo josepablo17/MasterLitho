@@ -1,0 +1,75 @@
+﻿@model MasterLitho.Models.tQuejasReportes
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient text-black text-center py-4 rounded-top" style="background: linear-gradient(135deg, #007bff, #0056b3);">
+                    <h3 class="fw-bold mb-0">Enviar Queja o Reporte</h3>
+                </div>
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("EnviarQueja", "QuejasReportes", FormMethod.Post, new { @id = "quejaForm" }))
+                    {
+                        @Html.HiddenFor(m => m.idEmpleado)
+
+                        <div class="form-group">
+                            <label>Seleccione si es queja o reporte</label>
+                            @Html.DropDownListFor(m => m.idTipo, ViewBag.listaTiposQuejas as List<SelectListItem>,
+                                new { @class = "form-control", id = "tipoDropdown" })
+                        </div>
+
+                        <!-- Descripción -->
+                        <div class="mb-4">
+                            <label for="descripcion" class="form-label fw-semibold">Descripción del problema</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light"><i class="fas fa-comment-alt"></i></span>
+                                @Html.TextAreaFor(m => m.descripcion, new { @class = "form-control", required = "required", placeholder = "Describe el problema detalladamente...", rows = "4", autofocus = "autofocus" })
+                            </div>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <button type="button" id="btnEnviar" class="btn btn-primary w-100 rounded-pill py-2 fs-5"
+                                onclick="confirmarEnvio('¿Estás seguro de enviar esta queja o reporte?', 'quejaForm')">
+                            <i class="fas fa-paper-plane"></i> Enviar queja o reporte
+                        </button>
+
+                    }
+
+                    <!-- Mensaje de error -->
+                    @if (!string.IsNullOrEmpty(ViewBag.MensajePantalla))
+                    {
+                        <div class="alert alert-warning mt-3" role="alert">
+                            <i class="fas fa-exclamation-triangle"></i> @ViewBag.MensajePantalla
+                        </div>
+                    }
+
+
+                    <!-- Alerta de solicitud pendiente -->
+                    @if (ViewBag.MostrarAlerta != null && (bool)ViewBag.MostrarAlerta)
+                    {
+                        <script>
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '¡Solicitud pendiente!',
+                                text: 'No puedes realizar una nueva solicitud mientras tienes una en estado pendiente.',
+                                confirmButtonText: 'Entendido',
+                                customClass: {
+                                    confirmButton: 'btn btn-primary'
+                                },
+                                buttonsStyling: false
+                            }).then(() => {
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            });
+                        </script>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
