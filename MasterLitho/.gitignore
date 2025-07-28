@@ -8,6 +8,11 @@
 # Archivos de compilación
 bin/
 obj/
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
 
 # Otros
 *.cache
