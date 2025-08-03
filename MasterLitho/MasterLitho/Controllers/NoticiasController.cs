@@ -11,25 +11,25 @@ namespace MasterLitho.Controllers
     [Protegido]
     public class NoticiasController : Controller
     {
-        // Vista principal para consultar las noticias
+        
         [HttpGet]
         public ActionResult Noticias()
         {
             using (var context = new LithoManagerEntities())
             {
-                var noticias = context.NOTICIAS.ToList(); // Consulta de todas las noticias
+                var noticias = context.NOTICIAS.ToList(); 
                 return View(noticias);
             }
         }
 
-        // Crear Noticia (GET)
+       
         [HttpGet]
         public ActionResult CrearNoticia()
         {
-            return View(); // Devuelve la vista para crear una noticia
+            return View(); 
         }
 
-        // Crear Noticia (POST)
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CrearNoticia(NOTICIAS model, HttpPostedFileBase ImagenNoticia)
@@ -101,7 +101,7 @@ namespace MasterLitho.Controllers
                 // Obtener el idUsuario desde la sesión
                 int idUsuario = Convert.ToInt32(Session["ID_USUARIO"]);
 
-                // Buscar el usuario en la base de datos para obtener su idRol
+              
                 var usuario = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == idUsuario);
 
                 if (usuario != null)
@@ -109,11 +109,11 @@ namespace MasterLitho.Controllers
                     return usuario.ID_ROL;  // Devuelve el idRol del usuario
                 }
 
-                return 0;  // Si no se encuentra el usuario, devolver un valor por defecto
+                return 0; 
             }
         }
 
-        // Editar Noticia (GET)
+
         [HttpGet]
         public ActionResult EditarNoticia(int id)
         {
@@ -129,7 +129,7 @@ namespace MasterLitho.Controllers
             }
         }
 
-        // Editar Noticia (POST)
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditarNoticia(NOTICIAS model, HttpPostedFileBase ImagenNoticia)
@@ -191,7 +191,7 @@ namespace MasterLitho.Controllers
 
 
 
-        // Eliminar Noticia
+
         [HttpGet]
         public ActionResult EliminarNoticia(int id)
         {

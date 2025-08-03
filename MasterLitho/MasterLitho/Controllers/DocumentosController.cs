@@ -17,15 +17,14 @@ namespace MasterLitho.Controllers
     [Protegido]
     public class DocumentosController : Controller
     {
-        // GET: Documentos/CrearDocumento?idExpediente=5
+        
         public ActionResult CrearDocumento(int idExpediente)
         {
-            // (Opcional) Verifica que el expediente exista y pertenezca al usuario
+            
             ViewBag.IdExpediente = idExpediente;
             return View();
         }
 
-        // POST: Documentos/CrearDocumento
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CrearDocumento(int idExpediente, string tipoDocumento, string titulo, string contenido)
@@ -39,42 +38,31 @@ namespace MasterLitho.Controllers
             {
                 using (MemoryStream stream = new MemoryStream())
                 {
-                    // Renombramos la clase para evitar confusión con otras librerías
                     iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(PageSize.A4, 50, 50, 25, 25);
                     PdfWriter.GetInstance(pdfDoc, stream);
                     pdfDoc.Open();
 
-                    // Título centrado (Arial 16 negrita)
                     Font titleFont = FontFactory.GetFont("Arial", 16, Font.BOLD);
-                    Paragraph pTitulo = new Paragraph(titulo, titleFont)
-                    {
-                        Alignment = Element.ALIGN_CENTER
-                    };
+                    Paragraph pTitulo = new Paragraph(titulo, titleFont) { Alignment = Element.ALIGN_CENTER };
                     pdfDoc.Add(pTitulo);
+                    pdfDoc.Add(new Paragraph(" ")); 
 
-                    pdfDoc.Add(new Paragraph(" ")); // Espacio en blanco
-
-                    // Contenido justificado (Arial 12)
                     Font contentFont = FontFactory.GetFont("Arial", 12, Font.NORMAL);
-                    Paragraph pContenido = new Paragraph(contenido, contentFont)
-                    {
-                        Alignment = Element.ALIGN_JUSTIFIED
-                    };
+                    Paragraph pContenido = new Paragraph(contenido, contentFont) { Alignment = Element.ALIGN_JUSTIFIED };
                     pdfDoc.Add(pContenido);
 
-                    // Espacio para firma
                     pdfDoc.Add(new Paragraph("\n\n________________________\nFirma"));
                     pdfDoc.Close();
 
                     fileBytes = stream.ToArray();
                 }
+
                 extension = ".pdf";
                 mimeType = "application/pdf";
             }
             // =========== GENERACIÓN EXCEL ===========
             else if (tipoDocumento.Equals("Excel", StringComparison.OrdinalIgnoreCase))
             {
-                // Generar Excel usando ClosedXML
                 using (var workbook = new XLWorkbook())
                 {
                     var ws = workbook.Worksheets.Add("Documento");
@@ -88,12 +76,12 @@ namespace MasterLitho.Controllers
                         fileBytes = ms.ToArray();
                     }
                 }
+
                 extension = ".xlsx";
                 mimeType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             }
             else
             {
-                // Si el tipo no es PDF ni Excel, muestra error
                 ModelState.AddModelError("", "Tipo de documento no soportado (solo PDF o Excel).");
                 ViewBag.IdExpediente = idExpediente;
                 return View();
@@ -101,18 +89,20 @@ namespace MasterLitho.Controllers
 
             try
             {
-                // Guardar el archivo en disco
-                string carpeta = Server.MapPath("~/UploadedFiles/Expedientes/");
-                if (!Directory.Exists(carpeta))
-                {
-                    Directory.CreateDirectory(carpeta);
-                }
-                string fileName = Guid.NewGuid() + extension;
-                string rutaFisica = Path.Combine(carpeta, fileName);
+                // Ruta relativa para Azure
+                string carpetaRelativa = "~/UploadedFiles/Expedientes/";
+                string carpetaFisica = Server.MapPath(carpetaRelativa);
 
+                if (!Directory.Exists(carpetaFisica))
+                {
+                    Directory.CreateDirectory(carpetaFisica);
+                }
+
+                string fileName = Guid.NewGuid() + extension;
+                string rutaFisica = Path.Combine(carpetaFisica, fileName);
                 System.IO.File.WriteAllBytes(rutaFisica, fileBytes);
 
-                // Registrar el documento en la base de datos
+                // Registrar en base de datos (guardar solo la ruta relativa)
                 using (var context = new LithoManagerEntities())
                 {
                     var docRecord = new DOCUMENTO_EXPEDIENTE
@@ -127,7 +117,7 @@ namespace MasterLitho.Controllers
                     context.SaveChanges();
                 }
 
-                // Retornar el archivo para descarga (opcional)
+                // Retornar el archivo generado (opcional)
                 return File(fileBytes, mimeType, titulo + extension);
             }
             catch (Exception ex)
@@ -137,5 +127,7 @@ namespace MasterLitho.Controllers
                 return View();
             }
         }
+
+
     }
 }

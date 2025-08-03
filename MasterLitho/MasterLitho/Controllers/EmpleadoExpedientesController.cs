@@ -48,7 +48,7 @@ namespace MasterLitho.Controllers
                 return View(expediente); 
             }
         }
-
+        /*
         [HttpGet]
         public ActionResult SubirDocumentoEmpleado(int idExpediente)
         {
@@ -67,7 +67,8 @@ namespace MasterLitho.Controllers
 
             return View(); 
         }
-
+        */
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SubirDocumentoEmpleado(int idExpediente, HttpPostedFileBase archivo, string tipoDocumento)
@@ -121,7 +122,7 @@ namespace MasterLitho.Controllers
                 return RedirectToAction("DetalleMisDocumentos", new { id = idExpediente });
             }
         }
-
+        */
 
         [HttpGet]
         public FileResult DescargarDocumento(int idDocumento)
