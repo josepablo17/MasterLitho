@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class ChatController : Controller
     {
         [HttpGet]

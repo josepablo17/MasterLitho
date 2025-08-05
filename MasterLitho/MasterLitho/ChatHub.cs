@@ -67,6 +67,7 @@ namespace MasterLitho
                     var user = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == userId);
                     if (user != null && user.CONNECTION_ID != null)
                     {
+
                         user.CONNECTION_ID = null;
                         context.SaveChanges();
                     }

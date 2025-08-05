@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     var idUser = Session["ID_USUARIO"] != null ? Session["ID_USUARIO"].ToString() : "";
     var nombreUsuario = Session["NOMBRE_USUARIO"] != null ? Session["NOMBRE_USUARIO"].ToString() : "";
 }
@@ -35,8 +35,20 @@
             min-width: 200px;
             position: fixed;
             z-index: 1000;
+            overflow-y: hidden;
         }
 
+        @@media (max-width: 1600px) {
+            .sidebar {
+                overflow-y: auto;
+                scrollbar-width: none; 
+                -ms-overflow-style: none; 
+            }
+
+                .sidebar::-webkit-scrollbar {
+                    display: none;
+                }
+        }
         /* Roles */
         .sidebar-admin {
             background: linear-gradient(180deg, #0f172a 0%, #111827 100%);

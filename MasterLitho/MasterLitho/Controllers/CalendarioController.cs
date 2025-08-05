@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
-
+    [Protegido]
     public class CalendarioController : Controller
     {
         private readonly ICorreo _correoService;

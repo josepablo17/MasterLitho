@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
+    [Protegido]
     public class UsuariosController : Controller
     {
         private readonly IGeneral _generalService;
