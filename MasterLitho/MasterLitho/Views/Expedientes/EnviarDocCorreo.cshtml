@@ -17,10 +17,11 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.idUsuario)
 
-                <div class="mb-3">
-                    <label class="form-label">Correo del destinatario</label>
-                    <input type="email" class="form-control" value="@Model.correoUsuario" readonly />
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Correo del destinatario</label>
+                @Html.TextBoxFor(m => m.correoUsuario, new { @class = "form-control", type = "email", required = "required" })
+
+            </div>
 
                 <div class="mb-3">
                     <label class="form-label">Asunto</label>

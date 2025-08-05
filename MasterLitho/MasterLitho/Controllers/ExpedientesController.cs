@@ -1,14 +1,16 @@
-﻿using MasterLitho.Models;
+﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using MasterLitho.Hubs;
+using MasterLitho.Models;
+using MasterLitho.Servicios;
 using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
-using MasterLitho.Hubs;
-using MasterLitho.Servicios;
-using System.Data.Entity;
-using DocumentFormat.OpenXml.Office2010.ExcelAc;
-using System.Collections.Generic;
 
 namespace MasterLitho.Controllers
 {
@@ -179,14 +181,17 @@ namespace MasterLitho.Controllers
             {
                 string extension = Path.GetExtension(archivo.FileName);
                 string nombreArchivo = Guid.NewGuid() + extension;
-                string carpeta = Server.MapPath("~/UploadedFiles/Expedientes/");
 
-                if (!Directory.Exists(carpeta))
+                // Ruta relativa y física compatibles con Azure
+                string carpetaRelativa = "~/UploadedFiles/Expedientes/";
+                string carpetaFisica = Server.MapPath(carpetaRelativa);
+
+                if (!Directory.Exists(carpetaFisica))
                 {
-                    Directory.CreateDirectory(carpeta);
+                    Directory.CreateDirectory(carpetaFisica);
                 }
 
-                string rutaFisica = Path.Combine(carpeta, nombreArchivo);
+                string rutaFisica = Path.Combine(carpetaFisica, nombreArchivo);
                 archivo.SaveAs(rutaFisica);
 
                 using (var context = new LithoManagerEntities())
@@ -196,7 +201,7 @@ namespace MasterLitho.Controllers
                         ID_EXPEDIENTE = id,
                         NOMBRE_DOCUMENTO = Path.GetFileNameWithoutExtension(archivo.FileName),
                         TIPO_DOCUMENTO = tipoDocumento,
-                        RUTA = "/UploadedFiles/Expedientes/" + nombreArchivo,
+                        RUTA = "/UploadedFiles/Expedientes/" + nombreArchivo, // Ruta relativa para la BD
                         FECHA_CARGA = DateTime.Now
                     };
 
@@ -214,6 +219,7 @@ namespace MasterLitho.Controllers
                 return View();
             }
         }
+
 
 
         [HttpGet]
@@ -354,20 +360,26 @@ namespace MasterLitho.Controllers
 
                 if (nuevoArchivo != null && nuevoArchivo.ContentLength > 0)
                 {
-                    string rutaAntigua = Server.MapPath(doc.RUTA);
-                    if (System.IO.File.Exists(rutaAntigua))
-                        System.IO.File.Delete(rutaAntigua);
+                    // Eliminar archivo anterior
+                    if (!string.IsNullOrEmpty(doc.RUTA))
+                    {
+                        string rutaAntigua = Server.MapPath("~" + doc.RUTA);
+                        if (System.IO.File.Exists(rutaAntigua))
+                            System.IO.File.Delete(rutaAntigua);
+                    }
 
                     string extension = Path.GetExtension(nuevoArchivo.FileName);
                     string nuevoNombre = Guid.NewGuid() + extension;
-                    string carpeta = Server.MapPath("~/UploadedFiles/Expedientes/");
-                    string nuevaRuta = Path.Combine(carpeta, nuevoNombre);
+                    string carpetaRelativa = "~/UploadedFiles/Expedientes/";
+                    string carpetaFisica = Server.MapPath(carpetaRelativa);
 
-                    if (!Directory.Exists(carpeta))
-                        Directory.CreateDirectory(carpeta);
+                    if (!Directory.Exists(carpetaFisica))
+                        Directory.CreateDirectory(carpetaFisica);
 
+                    string nuevaRuta = Path.Combine(carpetaFisica, nuevoNombre);
                     nuevoArchivo.SaveAs(nuevaRuta);
-                    doc.NOMBRE_DOCUMENTO = nuevoArchivo.FileName;
+
+                    doc.NOMBRE_DOCUMENTO = Path.GetFileNameWithoutExtension(nuevoArchivo.FileName);
                     doc.RUTA = "/UploadedFiles/Expedientes/" + nuevoNombre;
                 }
 
@@ -378,6 +390,7 @@ namespace MasterLitho.Controllers
                 return RedirectToAction("DetalleExpediente", new { id = doc.ID_EXPEDIENTE });
             }
         }
+
 
 
         [HttpGet]
@@ -394,11 +407,13 @@ namespace MasterLitho.Controllers
 
                 try
                 {
-                    string rutaFisica = Server.MapPath(doc.RUTA);
-                    if (System.IO.File.Exists(rutaFisica))
+                    if (!string.IsNullOrEmpty(doc.RUTA))
                     {
-                        System.IO.File.Delete(rutaFisica);
+                        string rutaFisica = Server.MapPath("~" + doc.RUTA);
+                        if (System.IO.File.Exists(rutaFisica))
+                            System.IO.File.Delete(rutaFisica);
                     }
+
                     int idExpediente = doc.ID_EXPEDIENTE;
 
                     context.DOCUMENTO_EXPEDIENTE.Remove(doc);
@@ -414,6 +429,7 @@ namespace MasterLitho.Controllers
                 }
             }
         }
+
 
         [HttpGet]
         public ActionResult EnviarDocCorreo(int idUsuario)
@@ -455,7 +471,6 @@ namespace MasterLitho.Controllers
                     modelo.correoUsuario = usuario.CORREO_USUARIO;
                     return View(modelo);
                 }
-
                 try
                 {
                     string extension = Path.GetExtension(archivo.FileName);
@@ -474,9 +489,21 @@ namespace MasterLitho.Controllers
 
                     string mensajeHtml = ConstruirHtmlCorreo(modelo.descripcion, archivo.FileName, urlArchivo, estilosCss);
 
-                    _correoService.EnviarCorreo(usuario.CORREO_USUARIO, modelo.titulo, mensajeHtml);
-                    TempData["Mensaje"] = "📧 Correo enviado correctamente.";
+                    // ENVÍO DIRECTO DE CORREO
+                    var mail = new MailMessage();
+                    mail.From = new MailAddress("tucorreo@gmail.com", "MasterLitho");
+                    mail.To.Add(modelo.correoUsuario); // ya que ahora se permite editarlo
+                    mail.Subject = modelo.titulo;
+                    mail.Body = mensajeHtml;
+                    mail.IsBodyHtml = true;
 
+                    var smtp = new SmtpClient("smtp.gmail.com", 587);
+                    smtp.Credentials = new NetworkCredential("tucorreo@gmail.com", "tupassword_o_app_password");
+                    smtp.EnableSsl = true;
+
+                    smtp.Send(mail);
+
+                    TempData["Mensaje"] = "📧 Correo enviado correctamente.";
                     return RedirectToAction("IndexExpedientes");
                 }
                 catch (Exception ex)
@@ -485,6 +512,8 @@ namespace MasterLitho.Controllers
                     modelo.correoUsuario = usuario.CORREO_USUARIO;
                     return View(modelo);
                 }
+
+
             }
         }
 
@@ -514,18 +543,19 @@ namespace MasterLitho.Controllers
     </html>";
         }
 
-          public ActionResult DescargarArchivo(string nombreArchivo)
+        public ActionResult DescargarArchivo(string nombreArchivo)
         {
             if (string.IsNullOrEmpty(nombreArchivo))
                 return HttpNotFound("Nombre de archivo inválido.");
 
-            string rutaArchivo = Server.MapPath("~/UploadedFiles/Expedientes/" + nombreArchivo);
-            if (!System.IO.File.Exists(rutaArchivo))
+            string rutaFisica = Server.MapPath("~/UploadedFiles/Expedientes/" + nombreArchivo);
+            if (!System.IO.File.Exists(rutaFisica))
                 return HttpNotFound("Archivo no encontrado.");
 
-            string tipoContenido = MimeMapping.GetMimeMapping(rutaArchivo);
-            return File(rutaArchivo, tipoContenido, nombreArchivo);
+            string tipoContenido = MimeMapping.GetMimeMapping(rutaFisica);
+            return File(rutaFisica, tipoContenido, nombreArchivo);
         }
+
 
 
 

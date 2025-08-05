@@ -11,25 +11,25 @@ namespace MasterLitho.Controllers
     [Protegido]
     public class NoticiasController : Controller
     {
-        // Vista principal para consultar las noticias
+        
         [HttpGet]
         public ActionResult Noticias()
         {
             using (var context = new LithoManagerEntities())
             {
-                var noticias = context.NOTICIAS.ToList(); // Consulta de todas las noticias
+                var noticias = context.NOTICIAS.ToList(); 
                 return View(noticias);
             }
         }
 
-        // Crear Noticia (GET)
+       
         [HttpGet]
         public ActionResult CrearNoticia()
         {
-            return View(); // Devuelve la vista para crear una noticia
+            return View(); 
         }
 
-        // Crear Noticia (POST)
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CrearNoticia(NOTICIAS model, HttpPostedFileBase ImagenNoticia)
@@ -38,11 +38,9 @@ namespace MasterLitho.Controllers
             {
                 using (var context = new LithoManagerEntities())
                 {
-                    
                     int rolUsuario = ObtenerRolActual();
 
-                    
-                    if (rolUsuario == 1) 
+                    if (rolUsuario == 1)
                     {
                         int idUsuarioActual = Convert.ToInt32(Session["ID_Usuario"]);
 
@@ -51,40 +49,48 @@ namespace MasterLitho.Controllers
                             TITULO = model.TITULO,
                             DESCRIPCION = model.DESCRIPCION,
                             FECHA_PUBLICACION = DateTime.Now,
-                            ID_ADMINISTRADOR = idUsuarioActual // Asignamos el usuario autenticado
+                            ID_ADMINISTRADOR = idUsuarioActual
                         };
 
-                        // Validar que el usuario administrador existe en la base de datos
+                        // Validar que el usuario administrador existe
                         var admin = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == idUsuarioActual);
                         if (admin == null)
                         {
                             throw new Exception($"No existe un usuario con ID {idUsuarioActual} en la base de datos.");
                         }
 
-
-                        if (ImagenNoticia != null)
+                        // Guardar imagen si se seleccionó
+                        if (ImagenNoticia != null && ImagenNoticia.ContentLength > 0)
                         {
                             string extension = Path.GetExtension(ImagenNoticia.FileName);
-                            string ruta = AppDomain.CurrentDomain.BaseDirectory + "ImgNoticias\\" + Guid.NewGuid() + extension;
-                            ImagenNoticia.SaveAs(ruta);
-                            nuevaNoticia.IMAGEN_RUTA = "/ImgNoticias/" + Path.GetFileName(ruta);
+                            string fileName = Guid.NewGuid() + extension;
+                            string relativePath = "~/ImgNoticias/" + fileName;
+                            string absolutePath = Server.MapPath(relativePath);
+
+                            // Asegurarse de que la carpeta exista
+                            string folderPath = Server.MapPath("~/ImgNoticias");
+                            if (!Directory.Exists(folderPath))
+                            {
+                                Directory.CreateDirectory(folderPath);
+                            }
+
+                            ImagenNoticia.SaveAs(absolutePath);
+                            nuevaNoticia.IMAGEN_RUTA = "/ImgNoticias/" + fileName;
                         }
 
-                        // Guardar en la base de datos
                         context.NOTICIAS.Add(nuevaNoticia);
                         context.SaveChanges();
-                        
 
-                        return RedirectToAction("Noticias", "Noticias"); // Redirige a la lista de noticias
+                        return RedirectToAction("Noticias", "Noticias");
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home"); // Redirigir si no es admin
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
 
-            return View(model); 
+            return View(model);
         }
 
 
@@ -95,7 +101,7 @@ namespace MasterLitho.Controllers
                 // Obtener el idUsuario desde la sesión
                 int idUsuario = Convert.ToInt32(Session["ID_USUARIO"]);
 
-                // Buscar el usuario en la base de datos para obtener su idRol
+              
                 var usuario = context.USUARIO.FirstOrDefault(u => u.ID_USUARIO == idUsuario);
 
                 if (usuario != null)
@@ -103,11 +109,11 @@ namespace MasterLitho.Controllers
                     return usuario.ID_ROL;  // Devuelve el idRol del usuario
                 }
 
-                return 0;  // Si no se encuentra el usuario, devolver un valor por defecto
+                return 0; 
             }
         }
 
-        // Editar Noticia (GET)
+
         [HttpGet]
         public ActionResult EditarNoticia(int id)
         {
@@ -123,7 +129,7 @@ namespace MasterLitho.Controllers
             }
         }
 
-        // Editar Noticia (POST)
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditarNoticia(NOTICIAS model, HttpPostedFileBase ImagenNoticia)
@@ -139,47 +145,53 @@ namespace MasterLitho.Controllers
                         return HttpNotFound();
                     }
 
-                    // Actualizar los campos de la noticia
                     noticia.TITULO = model.TITULO;
                     noticia.DESCRIPCION = model.DESCRIPCION;
                     noticia.FECHA_PUBLICACION = model.FECHA_PUBLICACION != DateTime.MinValue
-                    ? model.FECHA_PUBLICACION : noticia.FECHA_PUBLICACION;
+                        ? model.FECHA_PUBLICACION : noticia.FECHA_PUBLICACION;
 
-
-                   
-                    if (ImagenNoticia != null)
+                    // Procesar nueva imagen si se seleccionó una
+                    if (ImagenNoticia != null && ImagenNoticia.ContentLength > 0)
                     {
-                       
-                        string oldImagePath = Server.MapPath(noticia.IMAGEN_RUTA);
-
-                        
-                        if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA) && System.IO.File.Exists(oldImagePath))
+                        // Eliminar imagen anterior si existe
+                        if (!string.IsNullOrEmpty(noticia.IMAGEN_RUTA))
                         {
-                            System.IO.File.Delete(oldImagePath);
+                            string oldImagePath = Server.MapPath("~" + noticia.IMAGEN_RUTA);
+                            if (System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
                         }
 
                         // Guardar nueva imagen
                         string extension = Path.GetExtension(ImagenNoticia.FileName);
                         string fileName = Guid.NewGuid() + extension;
-                        string newImagePath = Server.MapPath("~/ImgNoticias/" + fileName);
+                        string relativePath = "~/ImgNoticias/" + fileName;
+                        string absolutePath = Server.MapPath(relativePath);
 
-                        ImagenNoticia.SaveAs(newImagePath);
+                        // Asegurarse de que la carpeta exista
+                        string folderPath = Server.MapPath("~/ImgNoticias");
+                        if (!Directory.Exists(folderPath))
+                        {
+                            Directory.CreateDirectory(folderPath);
+                        }
 
-                        // Guardar solo la ruta accesible en la base de datos
+                        ImagenNoticia.SaveAs(absolutePath);
                         noticia.IMAGEN_RUTA = "/ImgNoticias/" + fileName;
                     }
 
                     context.SaveChanges();
 
-                    return RedirectToAction("Noticias", "Noticias"); 
+                    return RedirectToAction("Noticias", "Noticias");
                 }
             }
 
-            return View(model); 
+            return View(model);
         }
 
 
-        // Eliminar Noticia
+
+
         [HttpGet]
         public ActionResult EliminarNoticia(int id)
         {
