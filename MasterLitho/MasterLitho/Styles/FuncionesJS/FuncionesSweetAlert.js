@@ -1,4 +1,11 @@
 ﻿function confirmarEnvio(mensaje, formId = null, callback = null) {
+    const form = document.getElementById(formId);
+
+    if (form && !form.checkValidity()) {
+        form.reportValidity(); 
+        return; 
+    }
+
     Swal.fire({
         title: "¿Estás seguro?",
         text: mensaje || "Una vez hecha la acción, no podrá deshacerla.",
@@ -10,21 +17,11 @@
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: "Hecho",
-                text: "Tu operación fue completada correctamente.",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            setTimeout(() => {
-                if (formId) {
-                    document.getElementById(formId).submit();
-                } else if (typeof callback === "function") {
-                    callback();
-                }
-            }, 1500);
+            if (formId) {
+                form.submit();
+            } else if (typeof callback === "function") {
+                callback();
+            }
         }
     });
 }
@@ -34,7 +31,7 @@
 function alertaExito(mensaje) {
     Swal.fire({
         title: "¡Éxito!",
-        text: mensaje || "Operación realizada correctamente.",
+        text: mensaje || "Procesando tu solicitud.",
         icon: "success",
         confirmButtonColor: "#28a745",
     });

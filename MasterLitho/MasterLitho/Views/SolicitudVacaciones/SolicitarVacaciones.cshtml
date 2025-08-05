@@ -28,13 +28,13 @@
 
                         <!-- Fecha inicio -->
                         <div class="form-floating mb-4">
-                            @Html.TextBoxFor(m => m.fechaInicio, new { @class = "form-control", @type = "date", @id = "fechaInicio", @required = "required" })
+                            @Html.TextBoxFor(m => m.fechaInicio, new { @class = "form-control", @type = "date", @id = "fechaInicio", @required = "required", @min = "2025-08-01" })
                             <label for="fechaInicio">Fecha de inicio</label>
                         </div>
 
                         <!-- Fecha fin -->
                         <div class="form-floating mb-4">
-                            @Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control", @type = "date", @id = "fechaFin", @required = "required" })
+                            @Html.TextBoxFor(m => m.fechaFin, new { @class = "form-control", @type = "date", @id = "fechaFin", @required = "required", @min = "2025-08-01" })
                             <label for="fechaFin">Fecha de fin</label>
                         </div>
 
@@ -46,6 +46,15 @@
                         </button>
                     }
 
+                    <script>
+                        @if (TempData["Exito"] != null)
+                        {
+                            <text>
+                            alertaExito("@TempData["Exito"]");
+                            </text>
+                         }
+                    </script>
+
                     <!-- Mensaje de error -->
                     @if (!string.IsNullOrEmpty(ViewBag.MensajePantalla))
                     {
@@ -54,6 +63,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                         </div>
                     }
+
 
                     <!-- Alerta de solicitud pendiente -->
                     @if (ViewBag.MostrarAlerta != null && (bool)ViewBag.MostrarAlerta)

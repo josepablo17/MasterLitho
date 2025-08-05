@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Styles/FuncionesJS/FuncionesSweetAlert.js"></script>
+
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
@@ -38,6 +40,15 @@
                         </button>
 
                     }
+
+                <script>
+        $(document).ready(function () {
+            var mensaje = '@TempData["Exito"]';
+            if (mensaje && mensaje !== '') {
+                alertaExito(mensaje);
+            }
+        });
+                </script>
 
                     <!-- Mensaje de error -->
                     @if (!string.IsNullOrEmpty(ViewBag.MensajePantalla))

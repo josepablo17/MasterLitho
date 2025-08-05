@@ -223,7 +223,7 @@ namespace MasterLitho.Controllers
 
                 if (tienePendiente)
                 {
-                    ViewBag.MensajePantalla = true;
+                    ViewBag.MostrarAlerta = true;
                     return View();
                 }
 
@@ -256,6 +256,14 @@ namespace MasterLitho.Controllers
                     if (Model.fechaInicio > Model.fechaFin)
                     {
                         ViewBag.MensajePantalla = "La fecha de inicio no puede ser mayor que la fecha de fin.";
+                        return View(Model);
+                    }
+
+                    DateTime fechaMinima = new DateTime(2025, 8, 1);
+
+                    if (Model.fechaInicio < fechaMinima || Model.fechaFin < fechaMinima)
+                    {
+                        ViewBag.MensajePantalla = "Las fechas no pueden ser anteriores al 1 de agosto del 2025.";
                         return View(Model);
                     }
 
@@ -300,6 +308,7 @@ namespace MasterLitho.Controllers
                     context.SOLICITUD_VACACIONES.Add(nuevaSolicitud);
                     if (context.SaveChanges() > 0)
                     {
+                        TempData["Exito"] = "Tu solicitud fue enviada correctamente.";
                         return RedirectToAction("Index", "Home");
                     }
                 }

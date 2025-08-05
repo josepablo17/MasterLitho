@@ -79,6 +79,15 @@
     </div>
 </div>
 
+<script>
+        $(document).ready(function () {
+            var mensaje = "@TempData["Exito"]".replace(/&quot;/g, '"');
+            if (mensaje && mensaje !== '') {
+                alertaExito(mensaje);
+            }
+        });
+</script>
+
 
 
 

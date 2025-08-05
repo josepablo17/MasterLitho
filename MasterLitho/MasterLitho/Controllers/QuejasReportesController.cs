@@ -240,6 +240,7 @@ namespace MasterLitho.Controllers
                 {
                     idEmpleado = idUsuario
                 };
+                TempData.Remove("Exito");
 
                 return View(model);
             }
@@ -249,18 +250,16 @@ namespace MasterLitho.Controllers
         public ActionResult EnviarQueja(tQuejasReportes model)
         {
             CargarTiposQuejas();
-
             if (!ModelState.IsValid)
             {
+                TempData.Remove("Exito");
                 ViewBag.MensajePantalla = "El formulario tiene errores de validación.";
                 return View(model);
             }
-
             if (Session["ID_USUARIO"] == null || !int.TryParse(Session["ID_USUARIO"].ToString(), out int idUsuario))
             {
                 return RedirectToAction("IniciarSesion", "Login");
             }
-
             try
             {
                 using (var context = new LithoManagerEntities())
@@ -268,6 +267,7 @@ namespace MasterLitho.Controllers
                     var empleado = context.EMPLEADO.FirstOrDefault(e => e.ID_USUARIO == idUsuario);
                     if (empleado == null)
                     {
+                        TempData.Remove("Exito");
                         ViewBag.MensajePantalla = "No se encontró información del empleado.";
                         return View(model);
                     }
@@ -275,10 +275,10 @@ namespace MasterLitho.Controllers
                     var estadoPendiente = context.ESTADO_QUEJA.FirstOrDefault(e => e.TIPO_ESTADO == "Pendiente");
                     if (estadoPendiente == null)
                     {
+                        TempData.Remove("Exito");
                         ViewBag.MensajePantalla = "No se encontró el estado 'Pendiente'.";
                         return View(model);
                     }
-
 
                     var nuevaQueja = new QUEJAS_REPORTES
                     {
@@ -289,25 +289,26 @@ namespace MasterLitho.Controllers
                         ID_TIPO = model.idTipo
                     };
 
-                    if (nuevaQueja.DESCRIPCION == null)
+                    if (string.IsNullOrWhiteSpace(nuevaQueja.DESCRIPCION))
                     {
+                        TempData.Remove("Exito");
                         ViewBag.MensajePantalla = "Valide su descripción.";
-                        return View();
+                        return View(model);
                     }
-
                     context.QUEJAS_REPORTES.Add(nuevaQueja);
                     context.SaveChanges();
-
-                    TempData["MensajeExito"] = "La queja ha sido enviada correctamente.";
+                    TempData["Exito"] = "La queja o reporte se envió correctamente.";
                     return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception)
             {
+                TempData.Remove("Exito");
                 ViewBag.ErrorMensaje = "Ocurrió un error al enviar la queja. Intente nuevamente.";
                 return View(model);
             }
         }
+
 
         #endregion
 
