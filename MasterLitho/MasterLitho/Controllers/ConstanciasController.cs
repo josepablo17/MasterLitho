@@ -10,10 +10,11 @@ using System.Web.Mvc;
 
 namespace MasterLitho.Controllers
 {
-    [Protegido]
+    
     public class ConstanciasController : Controller
     {
         #region EnvioConstancia
+        [Protegido]
         [HttpGet]
         public ActionResult EnvioConstancia()
         {
