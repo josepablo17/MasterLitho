@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\servicios\\contrasenaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\servicios\\contrasenaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\servicios\\icontrasena.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\servicios\\icontrasena.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\views\\chat\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\views\\chat\\chat.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\styles\\css\\chatstyle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\styles\\css\\chatstyle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|d:\\ufidelitas\\masterlitho\\masterlitho\\masterlitho\\controllers\\constanciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC40A280-7AB9-446F-87D0-A5E4E1AB0A29}|MasterLitho\\MasterLitho.csproj|solutionrelative:masterlitho\\controllers\\constanciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 119,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,67 +66,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IContrasena.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Servicios\\IContrasena.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Servicios\\IContrasena.cs",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Servicios\\IContrasena.cs",
-              "RelativeToolTip": "MasterLitho\\Servicios\\IContrasena.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T19:01:21.65Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ContrasenaService.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Servicios\\ContrasenaService.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Servicios\\ContrasenaService.cs",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Servicios\\ContrasenaService.cs",
-              "RelativeToolTip": "MasterLitho\\Servicios\\ContrasenaService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T19:00:57.633Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsuariosController.cs",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\UsuariosController.cs",
-              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\UsuariosController.cs",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\UsuariosController.cs",
-              "RelativeToolTip": "MasterLitho\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAK0AAAAAAAAAAAAmwNIAAAAIAAAAAAAAAA==",
+              "Title": "ConstanciasController.cs",
+              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\ConstanciasController.cs",
+              "RelativeDocumentMoniker": "MasterLitho\\Controllers\\ConstanciasController.cs",
+              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Controllers\\ConstanciasController.cs",
+              "RelativeToolTip": "MasterLitho\\Controllers\\ConstanciasController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAcwGAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T18:53:26.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "chatStyle.css",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\css\\chatStyle.css",
-              "RelativeDocumentMoniker": "MasterLitho\\Styles\\css\\chatStyle.css",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Styles\\css\\chatStyle.css",
-              "RelativeToolTip": "MasterLitho\\Styles\\css\\chatStyle.css",
-              "ViewState": "AgIAAPQAAAAAAAAAAAAgwCEBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-08-07T18:44:15.359Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Chat.cshtml",
-              "DocumentMoniker": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "RelativeDocumentMoniker": "MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "ToolTip": "D:\\Ufidelitas\\MasterLitho\\MasterLitho\\MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "RelativeToolTip": "MasterLitho\\Views\\Chat\\Chat.cshtml",
-              "ViewState": "AgIAANcAAAAAAAAAAAAmwPMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-07T18:35:32.338Z",
+              "WhenOpened": "2025-08-07T19:39:52.475Z",
               "EditorCaption": ""
             }
           ]

@@ -54,19 +54,20 @@ namespace MasterLitho.Controllers
         }
         #endregion
 
+
+
         #region MostrarConstancia
         public ActionResult PrintConstancia(int q)
         {
             string fileName = "Constancia" + q + ".pdf";
+            string baseUrl = "https://masterlitho-eabvg4geeqg3fpdm.canadacentral-01.azurewebsites.net";
 
             using (var context = new LithoManagerEntities())
             {
                 try
                 {
                     int idlogueado = int.Parse(Session["ID_USUARIO"].ToString());
-
                     var datos = context.CONSTANCIA.FirstOrDefault(x => x.ID_CONSTANCIA == q);
-
 
                     if (datos != null)
                     {
@@ -76,27 +77,24 @@ namespace MasterLitho.Controllers
                     else
                     {
                         ViewBag.MensajePantalla = "Usuario no encontrado o constancia no disponible.";
+                        return RedirectToAction("ErrorConstancia");
                     }
 
-                    if (datos.ID_TIPO_CONSTANCIA == 2)
+                    string url = datos.ID_TIPO_CONSTANCIA == 2
+                        ? $"{baseUrl}/Constancias/DetalleConstanciaSalarialPDF?q={q}"
+                        : $"{baseUrl}/Constancias/DetalleConstanciaPDF?q={q}";
+
+                    return new UrlAsPdf(url)
                     {
-                        return new ActionAsPdf("DetalleConstanciaSalarialPDF", new { q })
-                        {
-                            FileName = fileName
-                        };
-                    }
+                        FileName = fileName
+                    };
                 }
                 catch (Exception ex)
                 {
-
                     ViewBag.MensajePantalla = "No se ha podido descargar la constancia. Error: " + ex.Message;
+                    return RedirectToAction("ErrorConstancia");
                 }
             }
-
-            return new ActionAsPdf("DetalleConstanciaPDF", new { q })
-            {
-                FileName = fileName
-            };
         }
         #endregion
 
