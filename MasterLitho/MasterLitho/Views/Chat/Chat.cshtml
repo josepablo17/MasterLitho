@@ -240,6 +240,12 @@
                 </li>`;
 
                 $("#discussion").append(messageHtml);
+
+                const ultimoMensaje = $("#discussion li").last()[0];
+                if (ultimoMensaje) {
+                    ultimoMensaje.scrollIntoView({ behavior: "smooth" });
+                }
+
             };
 
 
@@ -265,6 +271,12 @@
                 </li>`;
 
             $("#discussion").append(messageHtml);
+
+            const ultimoMensaje = $("#discussion li").last()[0];
+            if (ultimoMensaje) {
+                ultimoMensaje.scrollIntoView({ behavior: "smooth" });
+            }
+
 
             chat.server.sendMessageToRoom(roomName, usuarioActual, message, idUsuarioSeleccionado);
             $("#message").val("");

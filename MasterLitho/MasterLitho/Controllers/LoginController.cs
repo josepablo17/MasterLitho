@@ -37,7 +37,8 @@ namespace MasterLitho.Controllers
         {
             using (var context = new LithoManagerEntities())
             {
-                var datos = context.USUARIO.Where(u => u.CORREO_USUARIO == Model.correoUsuario && u.CONTRASENA == Model.contrasena).FirstOrDefault();
+                var contrasenaEncriptada = _contrasenaService.HashSHA256(Model.contrasena);
+                var datos = context.USUARIO.Where(u => u.CORREO_USUARIO == Model.correoUsuario && u.CONTRASENA == contrasenaEncriptada).FirstOrDefault();
                 if (datos != null)
                 {
                     if (datos.ESTADO_CONTRASENA_TEMPORAL && datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL < DateTime.Now)
@@ -83,9 +84,11 @@ namespace MasterLitho.Controllers
             {
                 var datos = context.USUARIO.Where(x => x.CORREO_USUARIO == Model.correoUsuario).FirstOrDefault();
 
+                string contrasena = _contrasenaService.GenerarContrasena();
+
                 if (datos != null)
                 {
-                    datos.CONTRASENA = _contrasenaService.GenerarContrasena();
+                    datos.CONTRASENA = _contrasenaService.HashSHA256(contrasena);
                     datos.ESTADO_CONTRASENA_TEMPORAL = true;
                     datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now.AddMinutes(double.Parse(ConfigurationManager.AppSettings["MinutosVigenciaTemporal"]));
                     context.SaveChanges();
@@ -95,7 +98,7 @@ namespace MasterLitho.Controllers
                     string contenido = System.IO.File.ReadAllText(ruta);
 
                     contenido = contenido.Replace("@@NOMBRE_USUARIO", datos.NOMBRE_USUARIO);
-                    contenido = contenido.Replace("@@ESTADO_CONTRASENA_TEMPORAL", datos.CONTRASENA);
+                    contenido = contenido.Replace("@@ESTADO_CONTRASENA_TEMPORAL", contrasena);
                     contenido = contenido.Replace("@@FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL", datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL.ToString("dd/MM/yyyy HH:mm"));
 
                     _correoService.EnviarCorreo(datos.CORREO_USUARIO, "Contraseña Temporal", contenido);

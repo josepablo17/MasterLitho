@@ -299,9 +299,6 @@
     <Compile Include="Models\SOLICITUD_VACACIONES.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tCampoFormulario.cs" />
     <Compile Include="Models\tCampoFormularioRespuesta.cs" />
     <Compile Include="Models\tConstancia.cs" />

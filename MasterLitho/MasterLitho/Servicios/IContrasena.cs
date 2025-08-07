@@ -9,5 +9,7 @@ namespace MasterLitho.Servicios
     internal interface IContrasena
     {
         string GenerarContrasena();
+        
+        string HashSHA256(string texto);
     }
 }

@@ -175,6 +175,8 @@ namespace MasterLitho.Controllers
         [HttpPost]
         public JsonResult CambiarContrasena(tUsuario model)
         {
+
+            string contraAnteriorEncrip = _contrasenaService.HashSHA256(model.contrasenaAnterior);
             if (model.contrasenaAnterior == model.contrasena)
             {
                 return Json(new { success = false, message = "Debe ingresar una contraseña diferente a la actual" });
@@ -191,12 +193,12 @@ namespace MasterLitho.Controllers
 
                 if (datos != null)
                 {
-                    if (datos.CONTRASENA != model.contrasenaAnterior)
+                    if (datos.CONTRASENA != contraAnteriorEncrip)
                     {
                         return Json(new { success = false, message = "La contraseña actual no coincide" });
                     }
 
-                    datos.CONTRASENA = model.contrasena;
+                    datos.CONTRASENA = _contrasenaService.HashSHA256(model.contrasena);
                     datos.ESTADO_CONTRASENA_TEMPORAL = false;
                     datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL = DateTime.Now;
                     context.SaveChanges();
@@ -423,6 +425,8 @@ namespace MasterLitho.Controllers
                         return View();
                     }
 
+                    string contrasenaGenerada = _contrasenaService.GenerarContrasena();
+                    string contrasenaHasheada = _contrasenaService.HashSHA256(contrasenaGenerada);
 
                     var tabla = new USUARIO
                     {
@@ -430,7 +434,7 @@ namespace MasterLitho.Controllers
                         NOMBRE_USUARIO = modelUsuario.nombreUsuario,
                         APELLIDO_USUARIO = modelUsuario.apellidoUsuario,
                         CORREO_USUARIO = CreateEmail(modelUsuario.nombreUsuario, modelUsuario.apellidoUsuario),
-                        CONTRASENA = _contrasenaService.GenerarContrasena(),
+                        CONTRASENA = contrasenaHasheada,
                         ID_ROL = modelUsuario.idRol,
                         ESTADO = true,
                         ESTADO_CONTRASENA_TEMPORAL = true,
