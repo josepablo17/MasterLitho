@@ -55,6 +55,14 @@
                             </div>
                         }
 
+                        @if (ViewBag.MensajePantalla != null)
+                        {
+                            <script>
+                                console.warn("Login fallido:", "@ViewBag.MensajePantalla");
+                            </script>
+                        }
+
+
                         @using (Html.BeginForm("IniciarSesion", "Login"))
                         {
                             <h3 class="text-center fw-bold mb-4">Iniciar Sesión</h3>

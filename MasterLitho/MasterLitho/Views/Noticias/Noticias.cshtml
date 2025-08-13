@@ -25,9 +25,17 @@
     body, html {
         overflow-x: hidden;
     }
+
     .acciones-columna {
         width: 100px;
         white-space: nowrap;
+    }
+
+    .miniatura-noticia {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
     }
 </style>
 
@@ -83,11 +91,12 @@
                                             <i class="fas fa-pen"></i>
                                         </a>
 
-                                        <a class="btn btn-danger btn-sm"
-                                           href="@Url.Action("EliminarNoticia", "Noticias", new { id = noticia.ID_NOTICIA })"
-                                           data-bs-toggle="tooltip" title="Eliminar Noticia">
+                                        <button type="button"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="confirmarEliminacion(@noticia.ID_NOTICIA)"
+                                                data-bs-toggle="tooltip" title="Eliminar Noticia">
                                             <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -99,8 +108,29 @@
     </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $(document).ready(function () {
         inicializarDataTable('#solicitudesTable');
     });
+
+    function confirmarEliminacion(idNoticia) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Esta acción eliminará la noticia de forma permanente.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Noticias/EliminarNoticia/' + idNoticia;
+            }
+        });
+    }
 </script>
+

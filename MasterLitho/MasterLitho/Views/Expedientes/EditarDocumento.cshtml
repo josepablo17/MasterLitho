@@ -11,7 +11,7 @@
             <h2 class="mb-0 text-center">Editar Documento</h2>
         </div>
         <div class="card-body">
-            @using (Html.BeginForm("EditarDocumento", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("EditarDocumento", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data", @id = "formEditarDoc" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -37,9 +37,16 @@
                 <div class="text-end">
                     <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = Model.idExpediente })"
                        class="btn btn-secondary">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    <button type="button" class="btn btn-primary" id="btnEditarDoc">Guardar Cambios</button>
                 </div>
             }
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Styles/FuncionesJS/FuncionesSweetAlert.js"></script>
+<script>
+        document.getElementById("btnEditarDoc").addEventListener("click", function () {
+            confirmarEnvio("¿Desea editar este documento?", "formEditarDoc");
+        });
+</script>

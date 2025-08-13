@@ -96,15 +96,16 @@
                                                 </a>
                                                 <button type="button"
                                                         class="btn btn-danger btn-sm"
-                                                        onclick="confirmDelete(@exp.idExpediente, '@(exp.nombreExpediente ?? "Sin nombre")')"
-                                                        title="Eliminar expediente" data-bs-toggle="tooltip">
+                                                        onclick="confirmarEliminacionExpediente(@exp.idExpediente, '@(exp.nombreExpediente ?? "Sin nombre")')"
+                                                        title="Eliminar">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
-                                                <a href="@Url.Action("EnviarDocCorreo", "Expedientes", new { idUsuario = exp.idUsuario })"
+
+                                                <!--<a href="@Url.Action("EnviarDocCorreo", "Expedientes", new { idUsuario = exp.idUsuario })"
                                                    class="btn btn-success btn-sm"
                                                    title="Enviar documento por correo" data-bs-toggle="tooltip">
                                                     <i class="fas fa-paper-plane"></i>
-                                                </a>
+                                                </a> -->
                                             </div>
                                         </td>
                                     </tr>
@@ -127,7 +128,7 @@
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                @using (Html.BeginForm("EliminarExpedienteConfirmed", "Expedientes", FormMethod.Post))
+                @using (Html.BeginForm("EliminarExpedienteConfirmed", "Expedientes", FormMethod.Post, new { id = "formEliminarExpediente" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
@@ -146,22 +147,25 @@
             </div>
         </div>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+      function confirmarEliminacionExpediente(idExpediente, nombreExpediente) {
+          Swal.fire({
+              title: '¿Estás seguro?',
+              html: `El expediente <strong>${nombreExpediente}</strong> se eliminará permanentemente.`,
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#d33',
+              cancelButtonColor: '#6c757d',
+              confirmButtonText: 'Sí, eliminar',
+              cancelButtonText: 'Cancelar'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  document.getElementById("deleteExpedienteId").value = idExpediente;
+                  document.getElementById("formEliminarExpediente").submit();
+              }
+          });
+      }
 
+</script>
 
-    <script>
-        // Función que se invoca al presionar el botón de eliminar expediente
-        function confirmDelete(expedienteId, expedienteNombre) {
-            // Asigna el ID en el input oculto del modal
-            document.getElementById("deleteExpedienteId").value = expedienteId;
-            // Muestra el nombre del expediente en el modal
-            document.getElementById("deleteExpedienteNombre").innerText = expedienteNombre;
-            // Muestra el modal usando Bootstrap (asegúrate de tener jQuery y Bootstrap JS cargados)
-            $('#deleteModal').modal('show');
-        }
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            inicializarDataTable('#expedientesTable');
-        });
-    </script>

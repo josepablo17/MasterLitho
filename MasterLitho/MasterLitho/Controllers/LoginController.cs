@@ -32,42 +32,46 @@ namespace MasterLitho.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult IniciarSesion(tUsuario Model)
-        {
-            using (var context = new LithoManagerEntities())
-            {
-                var contrasenaEncriptada = _contrasenaService.HashSHA256(Model.contrasena);
-                var datos = context.USUARIO.Where(u => u.CORREO_USUARIO == Model.correoUsuario && u.CONTRASENA == contrasenaEncriptada).FirstOrDefault();
-                if (datos != null)
-                {
-                    if (datos.ESTADO_CONTRASENA_TEMPORAL && datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL < DateTime.Now)
-                    {
-                        ViewBag.MensajePantalla = "Sus credenciales han expirado.";
-                        return View();
-                    }
-                    else
-                    {
-                        Session["ID_USUARIO"] = datos.ID_USUARIO;
-                        Session["NOMBRE_USUARIO"] = datos.NOMBRE_USUARIO;
-                        Session["rolUsuario"] = datos.ID_ROL;
-                        Session["correoUsuario"] = datos.CORREO_USUARIO;
-                        Session["CONNECTION_ID"] = null;
 
-                        if(datos.IMAGEN_USUARIO != null)
-                        {
-                            Session["IMAGEN_USUARIO"] = datos.IMAGEN_USUARIO;
-                        }
+              [HttpPost]
+                  public ActionResult IniciarSesion(tUsuario Model)
+                  {
+                      using (var context = new LithoManagerEntities())
+                      {
+                          var contrasenaEncriptada = _contrasenaService.HashSHA256(Model.contrasena);
+                          var datos = context.USUARIO.Where(u => u.CORREO_USUARIO == Model.correoUsuario && u.CONTRASENA == contrasenaEncriptada).FirstOrDefault();
+                          if (datos != null)
+                          {
+                              if (datos.ESTADO_CONTRASENA_TEMPORAL && datos.FECHA_VENCIMIENTO_CONTRASENA_TEMPORAL < DateTime.Now)
+                              {
+                                  ViewBag.MensajePantalla = "Sus credenciales han expirado.";
+                                  return View();
+                              }
+                              else
+                              {
+                                  Session["ID_USUARIO"] = datos.ID_USUARIO;
+                                  Session["NOMBRE_USUARIO"] = datos.NOMBRE_USUARIO;
+                                  Session["rolUsuario"] = datos.ID_ROL;
+                                  Session["correoUsuario"] = datos.CORREO_USUARIO;
+                                  Session["CONNECTION_ID"] = null;
 
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
+                                  if(datos.IMAGEN_USUARIO != null)
+                                  {
+                                      Session["IMAGEN_USUARIO"] = datos.IMAGEN_USUARIO;
+                                  }
 
-                ViewBag.MensajePantalla = "Su información no se ha podido validar correctamente";
-                return View();
-            }
-        }
-        #endregion
+                                  return RedirectToAction("Index", "Home");
+                              }
+                          }
+
+                          ViewBag.MensajePantalla = "Su información no se ha podido validar correctamente";
+                          return View();
+                      }
+
+                  } 
+                  #endregion 
+
+
 
         #region RecuperarAcceso
         [HttpGet]

@@ -10,7 +10,7 @@
             <h2 class="mb-0 text-center">Crear Documento para Expediente #@idExpediente</h2>
         </div>
         <div class="card-body">
-            @using (Html.BeginForm("CrearDocumento", "Documentos", FormMethod.Post))
+            @using (Html.BeginForm("CrearDocumento", "Documentos", FormMethod.Post, new {@id= "formCrearDocumento"}))
             {
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="idExpediente" value="@idExpediente" />
@@ -45,9 +45,18 @@
                     <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = idExpediente })" class="btn btn-secondary">
                         Cancelar
                     </a>
-                    <button type="submit" class="btn btn-primary">Crear Documento</button>
+                    <button type="button" class="btn btn-primary" id="btnCrearDocumento">Crear Documento</button>
                 </div>
             }
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Styles/FuncionesJS/FuncionesSweetAlert.js"></script>
+<script>
+        document.getElementById("btnCrearDocumento").addEventListener("click", function () {
+            confirmarEnvio("¿Desea crear este documento?", "formCrearDocumento");
+        });
+    </script>
+
