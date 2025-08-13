@@ -11,7 +11,7 @@
             <h2 class="mb-0 text-center">Agregar Documento</h2>
         </div>
         <div class="card-body">
-            @using (Html.BeginForm("AgregarDocumento", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("AgregarDocumento", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data", @id = "formAgregarDoc" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.idExpediente)
@@ -35,11 +35,30 @@
                     <a href="@Url.Action("DetalleExpediente", "Expedientes", new { id = Model.idExpediente })" class="btn btn-secondary">
                         Cancelar
                     </a>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" id="btnSubirDoc">
                         <i class="fas fa-upload me-1"></i> Subir
                     </button>
                 </div>
             }
+
         </div>
     </div>
 </div>
+<script src="~/Styles/FuncionesJS/FuncionesSweetAlert.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const btnSubir = document.getElementById("btnSubirDoc");
+
+        if (btnSubir) {
+            btnSubir.addEventListener("click", function () {
+                confirmarEnvio("¿Desea subir este documento al expediente?", "formAgregarDoc");
+            });
+        }
+    });
+</script>
+@if (TempData["Exito"] != null)
+{
+    <script>
+                alertaExito("@TempData["Exito"]");
+    </script>
+}

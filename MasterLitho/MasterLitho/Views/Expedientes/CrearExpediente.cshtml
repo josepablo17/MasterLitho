@@ -11,7 +11,7 @@
             <h2 class="mb-0 text-center">Crear Expediente</h2>
         </div>
         <div class="card-body">
-            @using (Html.BeginForm("CrearExpediente", "Expedientes", FormMethod.Post))
+            @using (Html.BeginForm("CrearExpediente", "Expedientes", FormMethod.Post, new { @id = "formCrearExpediente" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -30,9 +30,16 @@
 
                 <div class="text-end">
                     <a href="@Url.Action("IndexExpedientes", "Expedientes")" class="btn btn-secondary">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="btnCrearExpediente">Guardar</button>
                 </div>
             }
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Styles/FuncionesJS/FuncionesSweetAlert.js"></script>
+<script>
+    document.getElementById("btnCrearExpediente").addEventListener("click", function () {
+        confirmarEnvio("¿Desea crear este expediente?", "formCrearExpediente");
+        });
+</script>

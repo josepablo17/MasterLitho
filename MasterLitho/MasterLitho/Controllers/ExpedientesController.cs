@@ -209,8 +209,9 @@ namespace MasterLitho.Controllers
                     context.SaveChanges();
                 }
 
-                TempData["MensajeExito"] = "Documento cargado correctamente.";
-                return RedirectToAction("DetalleExpediente", new { id });
+                TempData["Exito"] = "📁 Documento agregado correctamente al expediente.";
+                return RedirectToAction("DetalleExpediente", new { id = id });
+
             }
             catch (Exception ex)
             {
@@ -508,6 +509,13 @@ namespace MasterLitho.Controllers
                 }
                 catch (Exception ex)
                 {
+                    TempData["Error"] = "Error al enviar el correo: " + ex.Message;
+                    modelo.correoUsuario = usuario.CORREO_USUARIO;
+                    
+
+                    Console.WriteLine("ERROR EN ENVÍO DE CORREO:");
+                    Console.WriteLine(ex.ToString());
+
                     TempData["Error"] = "Error al enviar el correo: " + ex.Message;
                     modelo.correoUsuario = usuario.CORREO_USUARIO;
                     return View(modelo);

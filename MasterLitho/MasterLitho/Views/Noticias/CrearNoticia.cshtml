@@ -11,7 +11,7 @@
             <h2 class="mb-0 text-center">Crear Noticia</h2>
         </div>
         <div class="card-body">
-            @using (Html.BeginForm("CrearNoticia", "Noticias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("CrearNoticia", "Noticias", FormMethod.Post, new { enctype = "multipart/form-data", @id = "formCrearNoticia" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -35,12 +35,19 @@
 
                 <div class="text-end">
                     <a href="@Url.Action("Noticias", "Noticias")" class="btn btn-secondary">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-primary" id="btnCrearNoticia">Guardar</button>
                 </div>
             }
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Styles/FuncionesJS/FuncionesSweetAlert.js"></script>
+<script>
+    document.getElementById("btnCrearNoticia").addEventListener("click", function () {
+        confirmarEnvio("¿Desea crear esta noticia?", "formCrearNoticia");
+    });
+</script>
 
 <script>
     function previewImage(event) {

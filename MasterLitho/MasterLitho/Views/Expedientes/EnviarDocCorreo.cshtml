@@ -12,16 +12,24 @@
         </div>
 
         <div class="card-body">
+
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger text-center fw-bold">
+                    @TempData["Error"]
+                </div>
+            }
+
             @using (Html.BeginForm("EnviarDocCorreo", "Expedientes", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.idUsuario)
 
-            <div class="mb-3">
-                <label class="form-label">Correo del destinatario</label>
-                @Html.TextBoxFor(m => m.correoUsuario, new { @class = "form-control", type = "email", required = "required" })
+                <div class="mb-3">
+                    <label class="form-label">Correo del destinatario</label>
+                    @Html.TextBoxFor(m => m.correoUsuario, new { @class = "form-control", type = "email", required = "required" })
 
-            </div>
+                </div>
 
                 <div class="mb-3">
                     <label class="form-label">Asunto</label>
@@ -42,6 +50,8 @@
                     <a href="@Url.Action("IndexExpedientes", "Expedientes")" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
+
+
             }
         </div>
     </div>

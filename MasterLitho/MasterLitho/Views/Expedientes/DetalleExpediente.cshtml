@@ -73,12 +73,12 @@
                                class="btn btn-outline-primary btn-sm" title="Editar">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
-                            <a href="@Url.Action("EliminarDocumento", "Expedientes", new { idDocumento = doc.idDocumento })"
-                               class="btn btn-outline-danger btn-sm"
-                               onclick="return confirm('¿Seguro que deseas eliminar este documento?');"
-                               title="Eliminar">
+                            <button type="button"
+                                    class="btn btn-outline-danger btn-sm"
+                                    onclick="confirmarEliminacionDocumento('@Url.Action("EliminarDocumento", "Expedientes", new { idDocumento = doc.idDocumento })')"
+                                    title="Eliminar">
                                 <i class="fas fa-trash-alt"></i>
-                            </a>
+                            </button>
                             <a href="@Url.Action("DescargarDocumento", "Expedientes", new { idDocumento = doc.idDocumento })"
                                class="btn btn-outline-success btn-sm" title="Descargar">
                                 <i class="fas fa-download"></i>
@@ -96,3 +96,22 @@
         </div>
     }
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmarEliminacionDocumento(url) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Este documento se eliminará permanentemente.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+        }
+    </script>
