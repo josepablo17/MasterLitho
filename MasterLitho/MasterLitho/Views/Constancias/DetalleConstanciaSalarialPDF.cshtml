@@ -1,4 +1,4 @@
-﻿@model List<MasterLitho.Models.tConstancia>
+﻿@model MasterLitho.Models.tConstancia
 @{
 
     Layout = "~/Views/Shared/_LayoutExterno.cshtml";
@@ -8,21 +8,21 @@
 
 <div class="invoice-container">
     <div class="invoice-header">
-        
+
         <p>Fecha de emisión: @DateTime.Now.ToString("yyyy/MM/dd")</p>
     </div>
 
     <div class="invoice-section">
         <p class="section-title">A quien corresponda:</p>
         <p>
-            Por medio de la presente, certificamos que el/la empleado/a <strong>@Model.FirstOrDefault().NOMBRE_EMPLEADO @Model.FirstOrDefault().APELLIDOS_EMPLEADO</strong>,
-            identificado/a con cédula N° <strong>@Model.FirstOrDefault().IDENTIFICACION</strong>, labora en nuestra empresa
-            <strong>MasterLitho S.A.</strong> desde el <strong>@Model.FirstOrDefault().FECHA_INGRESO.ToString("yyyy/MM/dd")</strong>.
+            Por medio de la presente, certificamos que el/la empleado/a <strong>@Model.NOMBRE_EMPLEADO @Model.APELLIDOS_EMPLEADO</strong>,
+            identificado/a con cédula N° <strong>@Model.IDENTIFICACION</strong>, labora en nuestra empresa
+            <strong>MasterLitho S.A.</strong> desde el <strong>@Model.FECHA_INGRESO.ToString("yyyy/MM/dd")</strong>.
         </p>
         <p>
-            El/la Sr(a). @Model.FirstOrDefault().NOMBRE_EMPLEADO percibe un salario mensual bruto de
-            <strong>¢@Model.FirstOrDefault().SALARIO</strong>, correspondiente al desempeño que realiza en el departamento de
-            <strong>@Model.FirstOrDefault().NOMBRE_DEPARTAMENTO</strong>.
+            El/la Sr(a). @Model.NOMBRE_EMPLEADO percibe un salario mensual bruto de
+            <strong>¢@Model.SALARIO</strong>, correspondiente al desempeño que realiza en el departamento de
+            <strong>@Model.NOMBRE_DEPARTAMENTO</strong>.
         </p>
         <p>
             Esta constancia se emite a solicitud del interesado para fines salariales que estime convenientes, y puede ser

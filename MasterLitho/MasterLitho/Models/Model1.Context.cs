@@ -44,6 +44,7 @@ namespace MasterLitho.Models
         public virtual DbSet<RESPUESTAS_FORMULARIO> RESPUESTAS_FORMULARIO { get; set; }
         public virtual DbSet<ROL> ROL { get; set; }
         public virtual DbSet<SOLICITUD_VACACIONES> SOLICITUD_VACACIONES { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TIPO_QUEJA> TIPO_QUEJA { get; set; }
         public virtual DbSet<TIPOS_CONSTANCIA> TIPOS_CONSTANCIA { get; set; }
         public virtual DbSet<USUARIO> USUARIO { get; set; }

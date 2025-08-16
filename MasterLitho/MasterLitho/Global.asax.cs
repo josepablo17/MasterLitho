@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.SignalR;
+using QuestPDF.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace MasterLitho
 
             //NO IMPLEMENTADO AUN- ACCION: Pop up cuando el admin agruegue un doc al expediente del usr
             GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => new SignalRUserIdProvider());
+            QuestPDF.Settings.License = LicenseType.Community;
+
         }
     }
 }
